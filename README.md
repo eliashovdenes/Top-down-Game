@@ -7,7 +7,7 @@
 ## Spesifikasjoner
 * Top-down.
 * Tile basert.
-* En form for fiende(r).
+* En form for fiende(r). Lages med enkel AI.
 * Inventory.
 * Våpen, sverd, pil og bue, magi?.
 * Møter på utfordringer med økende vanskelighetsgrad underveis.
