@@ -1,7 +1,19 @@
-# Top Down Squad
+# INF112 - Top Down Squad
 
-## Ide
-* Et Zelda inspirert spill. 
+## Medlemmer
+* Team: Top Down Squad (Gruppe 8)
+* Casper Karlsen
+* Bjørn Hagen
+* Magnus Sponnich Brørby,
+* Elias Hovdenes
+* Hans-Christian Lønne
+
+## Om spillet
+Vi vil lage et Rouge Like 2D spill hvor du ser brettet ovenfra. I spillet må du beseire fiender før du kan bevege deg videre til neste rom. Fiendene vil bli gradvis sterkere når du avanserer i spillet. 
+
+## Ideer
+Karakterutvikling:
+* 
 
 
 ## Spesifikasjoner
