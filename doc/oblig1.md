@@ -36,6 +36,23 @@ Utvikling av fiender:
 * Hvert tiende level kan være en boss-fight
 * Sjanse for å legge fra seg gjenstander spilleren kan plukke opp når de dør
 
+## Få oversikt over forventet produkt (A3.2)
+
+### Minimum Viable Product (MVP)
+1. Vise spillbrettet
+2. Vise spilleren på spillbrettet
+3. Kunne bruke tastene til å flytte spilleren
+4. En enkel fiende spilleren kan bekjempe
+5. Spilleren må ha hit points
+6. Spilleren må kunne ta skade og dø
+7. Spilleren må kunne gå til et nytt rom
+8. En teller som viser hvilket nivå/rom nummer(level) spilleren er på
+9. Startskjerm når spillet kjøres
+10. Game Over skjerm
+11. Mulighet til å starte på nytt
+
+## Brukerhistorier
+
 ## Oppsumering (A5)
 
 Hva som gikk bra
