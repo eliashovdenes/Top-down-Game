@@ -3,17 +3,17 @@ Readme.md er oppdatert
 
 Kartlegging av kompetanse: 
 * Magnus:       Komfortabel med git, java, python, haskell. Ung, ambisiøs og fremadstormende.
-Hans-Christian: Komfortabel med Python, Java. Mange års arbeidserfaring! 
-Elias:          Fra Os. Sannsynligvis komfortabel med java, python, haskell. 
-Casper:         Komfortabel med java, python, haskell, 
-Bjørn:          Komfortabel med Python, Java, R. Erfaring med personal-ledelse, retail.
+* Hans-Christian: Komfortabel med Python, Java. Mange års arbeidserfaring! 
+* Elias:          Fra Os. Sannsynligvis komfortabel med java, python, haskell. 
+* Casper:         Komfortabel med java, python, haskell, 
+* Bjørn:          Komfortabel med Python, Java, R. Erfaring med personal-ledelse, retail.
 
 Fordeling av roller: 
-Magnus:     Teamlead (og GitMaster)  
-Casper:     HR og kommunikasjonsansvarlig (Discordmaster)  
-Bjørn:      Dokumentasjonsansvarlig  
-Hans-Chr:   Test-ansvarlig  
-Elias:      Produktutvikler  
+* Magnus:     Teamlead (og GitMaster)  
+* Casper:     HR og kommunikasjonsansvarlig (Discordmaster)  
+* Bjørn:      Dokumentasjonsansvarlig  
+* Hans-Chr:   Test-ansvarlig  
+* Elias:      Produktutvikler  
 
 Vi har fordelt roller basert på ønsker og hva den enkelte føler seg komfortabel med. Magnus har satt seg inn i git og har fått ansvar for den delen. Casper har ansvar for å passe på at alle er oppdatert på når vi skal møtes og hvilke oppgaver den enkelte har. Bjørn tok møtenotater på eget initativ og ble automatisk referent. Hans-Chr. har fått ansvar for å passe på at koden er godt nok testet. Vi regner med at vi må redefinere rollene i løpet av prosjektet når vi har blitt bedre kjent både med hverandre og prosjektet.
 
