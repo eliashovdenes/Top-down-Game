@@ -53,6 +53,25 @@ Utvikling av fiender:
 
 ## Brukerhistorier
 
+1. Som spiller så ønsker jeg å ha muligheten til å kunne forbedre spill karakteren min. 
+
+2. som spiller ønsker jeg at det skal bli mer utfordrene etterhvert som jeg kommer lengre inn i spillet.
+
+3. som spill designer ønsker jeg muligheten til at nivåene skal være annerledes og endre seg etter hvert "nivå"
+
+4. som programmerer ønsker jeg at det skal være lett å legge til fiender og endre på "stats" hos fienden. Dette gjør det mye letter å videreutvikle spillet.
+
+5. som spiller ønsker jeg at spillet skal være lett å spille og at det skal være underholdende.
+
+## Kode(A4)
+Vi har nesten et helt fungerende MVP spill, denne koden ble laget før vi laget en git repository så vi har et fungerende som vi har vist til gruppeleder. 
+
+Måten vi har lyst å sette opp koden til spillet vil vi bruke en loop som gjør at spillet oppdaterer seg 60 ganger i løpet av et sekund. Hver gang denne "ticker" så vil dette "tegne" brettet på nytt. En slik loop vil gjøre at selve spillet vil føles behagelig å spille og ha svært lite input lag.
+
+En enum fil med objekter som gjør at vi kan instansiere flere objecter av samme type uten at de skal være bundet. Som la oss si vi tar skade på en fiende så fungerer ikke spillet optimalt om de har en felles HP-bar.
+
+
+
 ## Oppsumering (A5)
 
 * Hva som gikk bra
