@@ -55,6 +55,21 @@ Utvikling av fiender:
 * Hvert tiende level kan være en boss-fight
 * Sjanse for å legge fra seg gjenstander spilleren kan plukke opp når de dør
 
+## Velg og tilpass en prosess for teamet (A3.1)
+
+Vi har valgt å ha to fysiske møter per uke og discordmøter etter behov. I tillegg bruker vi discord-chatten til å holde hverandre oppdatert og hjelpe hverandre.  
+Møtetidspunkter:
+* Onsdager  kl 14:00 VilVite
+* Torsdager kl 10:15 VilVite (den oppsatte gruppetimen) 
+
+Vi vil bruke GitLab issue board til å organisere arbeidet. Da kan vi ta utgangspunkt i brukerhistoriene og sette opp oppgaver som vi kan fordele. Det gjør det oversiktlig å se hvem som jobber på hva og hva som fremdeles må gjøres. Casper har som kommunikasjonsansvarlig hovedansvar for å følge opp arbeidet. Alle på gruppen har også ansvar for å oppdatere de andre i gruppen om hvordan de ligger an. Hvis noen ligger bakpå eller sliter med å få til en oppgave, er det viktig at de sier ifra til resten av gruppen slik at vi kan løse problemet sammen.
+
+Koden og alle dokumentene er samlet på gitlab. Vi har laget en egen folder (meetingminutes) hvor vi samler møtereferatene. Klassediagrammer og annen dokumentasjon vil også bli samlet på gitlab.
+
+I neste del av prosjektet vil vi arbeide med å lagge et minimum viable product (MVP). Her tenker vi det er lurt å først tegne opp et klassediagram. Vi vil følge model-view-controler modellen og et klassediagram gjør arbeidet mye mer oversiktlig. Videre tenker vi å lage interface i fellesskap, slik at alle er enige om hvilken funksjonalitet klassene skal ha. Da er det lettere å sette opp oppgaver på Kanban-boardet og det blir mer tydelig for den enkelte hva han skal gjøre. 
+
+Vi prøvde litt parprogrammering på øvelsesoppgavene, men ble ikke helt komfortable med det. Vi tenker likevel at vi kan bytte på å implementere interface og skrive tester slik at det ikke er den som skriver metodene som også skriver testene (i allefall bør det være noen i tillegg til den som skriver metodene som skriver tester).
+
 ## Få oversikt over forventet produkt (A3.2)
 
 ### Minimum Viable Product (MVP)
