@@ -87,15 +87,25 @@ Vi prøvde litt parprogrammering på øvelsesoppgavene, men ble ikke helt komfor
 
 ## Brukerhistorier
 
-1. Som spiller så ønsker jeg å ha muligheten til å kunne forbedre spill karakteren min. 
+1. Som spiller så ønsker jeg å ha muligheten til å kunne forbedre spill karakteren min slik at jeg kan overvinne sterkere fiender senere i spillet. 
 
-2. som spiller ønsker jeg at det skal bli mer utfordrene etterhvert som jeg kommer lengre inn i spillet.
+2. Som spiller ønsker jeg at det skal bli mer utfordrene etterhvert som jeg kommer lengre inn i spillet slik at spillet ikke blir for lett/kjedelig.
 
-3. som spill designer ønsker jeg muligheten til at nivåene skal være annerledes og endre seg etter hvert "nivå"
+3. Som spilldesigner ønsker jeg muligheten til at nivåene skal være annerledes og endre seg etter hvert "nivå" slik at det skal bli mer tydelig for spilleren at han har kommet seg lenger i spillet.
 
-4. som programmerer ønsker jeg at det skal være lett å legge til fiender og endre på "stats" hos fienden. Dette gjør det mye letter å videreutvikle spillet.
+4. Som programmerer ønsker jeg at det skal være lett å legge til fiender og endre på "stats" hos fienden. Dette gjør det mye letter å videreutvikle spillet.
 
-5. som spiller ønsker jeg at spillet skal være lett å spille og at det skal være underholdende.
+5. Som spiller ønsker jeg at spillet skal være lett å starte slik at jeg slipper å bruke mye tid på å komme igang.
+
+6. Som spiller ønsker jeg at jeg kan bevege karakteren min slik at jeg kan unngå at fiender skader meg.
+
+7. Som utvikler i en gruppe ønsker jeg å ha et klassediagram slik at jeg får oversikt over strukturen i koden.
+
+8. Som spiller ønsker jeg å kunne angripe fiendene slik at jeg kan overvinne dem.
+
+9. Som utvikler ønsker jeg at det er lett å skille områdene spilleren kan bevege seg på fra hindringer og vegger slik at det er enklere å teste at spillet fungerer som det skal
+
+10. Som spiller ønsker jeg at det er en visuell effekt når jeg tar skade slik at jeg ser når fiender skader meg
 
 ## Kode(A4)
 Vi har nesten et helt fungerende MVP spill, denne koden ble laget før vi laget en git repository så vi har et fungerende som vi har vist til gruppeleder. 
