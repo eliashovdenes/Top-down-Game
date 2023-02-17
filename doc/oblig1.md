@@ -1,3 +1,22 @@
+## (A1)
+Readme.md er oppdatert
+
+Kartlegging av kompetanse: 
+* Magnus:       Komfortabel med git, java, python, haskell. Ung, ambisiøs og fremadstormende.
+Hans-Christian: Komfortabel med Python, Java. Mange års arbeidserfaring! 
+Elias:          Fra Os. Sannsynligvis komfortabel med java, python, haskell. 
+Casper:         Komfortabel med java, python, haskell, 
+Bjørn:          Komfortabel med Python, Java, R. Erfaring med personal-ledelse, retail.
+
+Fordeling av roller: 
+Magnus:     Teamlead (og GitMaster)  
+Casper:     HR og kommunikasjonsansvarlig (Discordmaster)  
+Bjørn:      Dokumentasjonsansvarlig  
+Hans-Chr:   Test-ansvarlig  
+Elias:      Produktutvikler  
+
+Vi har fordelt roller basert på ønsker og hva den enkelte føler seg komfortabel med. Magnus har satt seg inn i git og har fått ansvar for den delen. Casper har ansvar for å passe på at alle er oppdatert på når vi skal møtes og hvilke oppgaver den enkelte har. Bjørn tok møtenotater på eget initativ og ble automatisk referent. Hans-Chr. har fått ansvar for å passe på at koden er godt nok testet. Vi regner med at vi må redefinere rollene i løpet av prosjektet når vi har blitt bedre kjent både med hverandre og prosjektet.
+
 ## Konsept (A2)
 
 Vi vil lage et Rouge Like 2D spill hvor du ser brettet ovenfra og har hentet inspirasjon fra [The Legend of Zelda (1986)](https://en.wikipedia.org/wiki/The_Legend_of_Zelda). I spillet må du beseire fiender før du kan bevege deg videre til neste rom. Fiendene vil bli gradvis sterkere når du avanserer i spillet. Målet med spillet er å overleve lengst mulig/fullføre så mange rom som mulig (et rom er fullført når alle fiendene i rommet er beseiret). Når fiendene dør har de en sjanse til å legge fra seg gjenstander som hjelper spilleren.
