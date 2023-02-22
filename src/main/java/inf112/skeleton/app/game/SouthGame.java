@@ -25,7 +25,7 @@ public class SouthGame implements ApplicationListener {
     public void create() {
         batch = new SpriteBatch();
         font = new BitmapFont();
-        font.setColor(Color.RED);
+        //font.setColor(Color.RED);
         player = new Player();
         
     }
