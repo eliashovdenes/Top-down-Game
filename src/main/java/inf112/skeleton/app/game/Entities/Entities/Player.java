@@ -8,7 +8,6 @@ import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import inf112.skeleton.app.game.Entities.AbstractEntity;
 
 public class Player extends AbstractEntity {
-
     
     /*
      * The Player class will extend the Entity class and represent the player character. 
