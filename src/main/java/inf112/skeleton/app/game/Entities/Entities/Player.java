@@ -3,12 +3,11 @@ package inf112.skeleton.app.game.Entities.Entities;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 
 import inf112.skeleton.app.game.Entities.AbstractEntity;
 
 public class Player extends AbstractEntity {
-    
+
     /*
      * The Player class will extend the Entity class and represent the player character. 
      * It will have methods for handling player input and updating the player's state.
