@@ -9,6 +9,6 @@ public class Obstacle extends AbstractEntity{
      * handling events that involve the obstacle.
      * 
      * 
-     * testestestet
+   
      */
 }
