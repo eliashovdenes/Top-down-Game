@@ -25,7 +25,7 @@ public class View implements Screen {
 
     @Override
     public void show() {
-        map = new TmxMapLoader().load("/Users/brorby/Documents/V23/projects/inf-112-23-v-libgdx-template-magnus/src/main/java/inf112/skeleton/app/assets/mapet.tmx");
+        map = new TmxMapLoader().load("src/main/java/inf112/skeleton/app/assets/mapet.tmx");
         renderer = new OrthogonalTiledMapRenderer(map);
         camera = new OrthographicCamera();
         player = new Player(new Sprite(new Texture(PlayerPics.DOWN.source)), 150, 120, ID.Player, controller, map);

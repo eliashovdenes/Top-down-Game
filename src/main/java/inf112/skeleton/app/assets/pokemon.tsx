@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <tileset version="1.9" tiledversion="1.9.2" name="pokemon" tilewidth="8" tileheight="8" tilecount="468" columns="26">
- <image source="/Users/brorby/Documents/V23/projects/inf-112-23-v-libgdx-template-magnus/src/main/java/inf112/skeleton/app/assets/mapet.tmx" width="208" height="144"/>
+ <image source="tilemap.png" width="208" height="144"/>
  <tile id="4">
   <properties>
    <property name="blocked" value=""/>

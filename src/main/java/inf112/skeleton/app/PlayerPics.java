@@ -1,10 +1,10 @@
 package inf112.skeleton.app;
 
 public enum PlayerPics {
-    RIGHT("/Users/brorby/Documents/V23/projects/inf-112-23-v-libgdx-template-magnus/src/main/java/inf112/skeleton/app/assets/playerPics/playerR.png"),
-    LEFT("/Users/brorby/Documents/V23/projects/inf-112-23-v-libgdx-template-magnus/src/main/java/inf112/skeleton/app/assets/playerPics/playerL.png"),
-    UP("/Users/brorby/Documents/V23/projects/inf-112-23-v-libgdx-template-magnus/src/main/java/inf112/skeleton/app/assets/playerPics/playerUP.png"),
-    DOWN("/Users/brorby/Documents/V23/projects/inf-112-23-v-libgdx-template-magnus/src/main/java/inf112/skeleton/app/assets/playerPics/playerDOWN.png");
+    RIGHT("src/main/java/inf112/skeleton/app/assets/playerPics/playerR.png"),
+    LEFT("src/main/java/inf112/skeleton/app/assets/playerPics/playerL.png"),
+    UP("src/main/java/inf112/skeleton/app/assets/playerPics/playerUP.png"),
+    DOWN("src/main/java/inf112/skeleton/app/assets/playerPics/playerDOWN.png");
 
     String source;
 
