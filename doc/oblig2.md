@@ -1,52 +1,98 @@
-## Brukerhistorier, akseptansekriterier og arbeidsoppgaver til MVP
+## Brukerhistorier, akseptansekriterier og arbeidsoppgaver til MVP (som vi har jobbet med)
 
 1. Som spiller ønsker jeg en startmeny slik at jeg kan starte spillet
-	Gitt at vi har en startmeny så skal:
-		1. Vi ha en enum med alle game states
-		2. Vi skille mellom start meny og active game
-		3. Vise menyen på skjermen
-		4. Ha en keyListener som registrerer når spilleren trykker på start
-		5. Forandre game state i modellen
+* Gitt at vi har en startmeny så skal:
+	1. Vi ha en enum med alle game states
+	2. Vi skille mellom start meny og active game
+	3. Vise menyen på skjermen
+	4. Ha en keyListener som registrerer når spilleren trykker på start
+	5. Forandre game state i modellen
 		
 2. Som spiller ønsker jeg å se spillbrettet på skjermen slik at jeg kan se hvor fiendene er og hvor jeg kan bevege karakteren min
-	Gitt at vi har startet et nytt spill, så skal spillbrettet vises på skjermen
+* Gitt at vi har startet et nytt spill, så skal spillbrettet vises på skjermen
 		
-	Arbeidsoppgaver:
-		1. Vi må ha et grid som representerer brettet
-		2. Gridet må ha en størrele
+* Arbeidsoppgaver:
+	1. Vi må ha et grid som representerer brettet
+	2. Gridet må ha en størrele
 		
 3. Som utvikler ønsker jeg å se karakteren min på skjermen slik at jeg kan se hvor jeg er og kan gjøre valg
-	Gitt at vi har startet et nytt spill, så skal karakteren vises på skjermen
+* Gitt at vi har startet et nytt spill, så skal karakteren vises på skjermen
 	
-	Arbeidsoppgaver:
-		1. Vi må ha en spiller-klasse
-		2. Karakteren må ha en posisjon
-		3. Karakteren må tegnes på skjermen
+* Arbeidsoppgaver:
+	1. Vi må ha en spiller-klasse
+	2. Karakteren må ha en posisjon
+	3. Karakteren må tegnes på skjermen
 		
 4. Som spiller ønsker jeg at jeg kan bevege karakteren min ved å trykke på tastene slik at jeg kan unngå at fiender skader meg.
-	Gitt at vi har startet et nytt spill, brettet vises og karakteren vises, så skal karakteren kunne flyttes:
+* Gitt at vi har startet et nytt spill, brettet vises og karakteren vises, så skal karakteren kunne flyttes:
 	1. Nord ved å trykke på "w"
 	2. West ved å trykke på "a"
 	3. Øst ved å trykke på "d"
 	4. Sør ved å trykke på "s"
 	
-	Arbeidsoppgaver:
-		1. Vi må ha en actionListener som registrerer tastetrykk
-		2. Vi må ha en metode som tester at spilleren holder seg på brettet (ikke går out of bounds)
-		3. Vi må ha en move() metode som flytter spilleren i riktig rettning
-		4. Vi må ha en enum med retninger karakteren kan flyttes i
-		5. Modellen må oppdateres med den nye posisjonen
-		6. View må tegne karakteren i den nye posisjonen
+* Arbeidsoppgaver:
+	1. Vi må ha en actionListener som registrerer tastetrykk
+	2. Vi må ha en metode som tester at spilleren holder seg på brettet (ikke går out of bounds)
+	3. Vi må ha en move() metode som flytter spilleren i riktig rettning
+	4. Vi må ha en enum med retninger karakteren kan flyttes i
+	5. Modellen må oppdateres med den nye posisjonen
+	6. View må tegne karakteren i den nye posisjonen
 		
 5. Som utvikler ønsker jeg at det er lett å skille områdene spilleren kan bevege seg på fra hindringer og vegger slik at det er enklere å teste at spillet fungerer som det skal
-	Gitt at vi har startet et nytt spill og karakteren kan flyttes, så skal:
+* Gitt at vi har startet et nytt spill og karakteren kan flyttes, så skal:
 	1. Brettet vises med vegger og hindringer
 	2. Karakteren ikke kunne passere vegger og hindringer
 	
-	Arbeidsoppgaver:
-		1. Spillbrettet må vise ulike tiles
-		2. Vi må skille mellom tiles karakteren kan bevege seg over og tiles som karakteren ikke kan passere
-		3. Karakteren, vegger og hindringer må ha kollisjonsbokser
-		4. Vi må ha en isLegalMove() metode som sjekker om karakteren har lov til å flytte seg i riktig rettning
-		5. Modellen må ha informasjon om de ulike tiles-ene og hvor de er
-		6. View må vite hva som skal tegnes hvor og hvordan tiles ser ut
+* Arbeidsoppgaver:
+	1. Spillbrettet må vise ulike tiles
+	2. Vi må skille mellom tiles karakteren kan bevege seg over og tiles som karakteren ikke kan passere
+	3. Karakteren, vegger og hindringer må ha kollisjonsbokser
+	4. Vi må ha en isLegalMove() metode som sjekker om karakteren har lov til å flytte seg i riktig rettning
+	5. Modellen må ha informasjon om de ulike tiles-ene og hvor de er
+	6. View må vite hva som skal tegnes hvor og hvordan tiles ser ut
+
+6. Som utvikler ønsker jeg at spillet har fiender som spilleren kan drepe, slik at det er noe som skjer i spillet som er underholdende for spilleren.
+* Gitt at spillet kjører, så skal det være fiender på spillbrettet
+
+* Arbeidsoppgaver:
+	1. Vi må ha et interface for fiender
+	2. Vi må ha en abstrakt klasse som utvider interfacet og implementerer alle metodene som er felles for alle fiendene
+	3. Vi må ha en(eller flere) fiende klasse(r)
+	4. En fiende må ha hitpoints
+	5. En fiende må ha en startposisjon
+	6. En fiende må ha en hitbox
+	7. Fienden må ha en oppførsel/bevegelsesmønster
+	8. Fienden må tegnes på skjermen
+
+7. Som spiller ønsker jeg å kunne angripe fiendene slik at jeg kan overvinne dem.
+* Gitt at det er fiender på brettet, så skal spilleren kunne angripe og gjøre skade på dem
+
+* Arbeidsoppgaver:
+	1. Spillkarakteren må ha en metode som gjør at han skyter eller slår en fiende med et våpen
+	2. Det må være en knapp spilleren kan trykke på for å angripe
+	3. Det må registreres når spilleren treffer fienden med våpenet
+	4. Fienden må miste hit points når den blir truffet
+	5. Fienden må dø og forsvinne når den ikke har flere hit points
+
+
+# Krav og spesifikasjon
+
+Vi har prioritert å lage et MVP. Kriteriene for å oppnå dette spesifiserte vi i oblig1.md. Dette var:
+
+1. Vise spillbrettet
+2. Vise spilleren på spillbrettet
+3. Kunne bruke tastene til å flytte spilleren
+4. En enkel fiende spilleren kan bekjempe
+5. Spilleren må ha hit points
+6. Spilleren må kunne ta skade og dø
+7. Spilleren må kunne gå til et nytt rom
+8. En teller som viser hvilket nivå/rom nummer(level) spilleren er på
+9. Startskjerm når spillet kjøres
+10. Game Over skjerm
+11. Mulighet til å starte på nytt
+
+Vi har oppfylt det aller meste av dette. Vi har brukt Tiled til å lage spillbrettet og spillkarakteren vises og kan beveges i åtte retninger. Spillet har en startmeny, active game og game over meny. Når spillet er over, kan du starte på nytt. Det eneste fra listen som mangler er å vise på skjermen hvilket nivå/level spilleren er på. Vi må også finne et poengsystem. Dette kan for eksempel være å telle antall fiender spilleren har beseiret.
+
+### Prioriteringer frammover
+
+Nå som vi har fått et MVP, vil vi bruke tiden framover til å videreutvikle spillet. Vi vil legge til flere fiender, flere maps og skalere fiende slik at de blir vanskligere å bekjempe jo lenger ut i spillet du kommer. Videre må vi refaktorere koden slik at stukturen blir bedre. En av tingene vi vil prøve på er å skille modellen fra view bedre. Det har gått med mye tid på å bli kjent med libGDX og Tiled, dette har gjort at vi måtte prioritere å få laget et MVP til denne innleveringen, noe som har gått på bekostning av å skrive tester. Framover vil vi gå over til mer testdrevet utvikling hvor vi skriver testene parallelt med koden.
