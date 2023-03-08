@@ -1,0 +1,34 @@
+Dato: 08.03.23
+Sted: VilVite	
+Start: 14:15	
+Slutt: 16:00
+
+Deltakere: Magnus, Casper, Bjørn, Elias, Hans-Christian
+Fravær: 
+
+Neste møte: 
+Torsdag 09.03.23 kl 10:15 Høytek Lille Auditorium
+-----------------------------------------
+
+Framgang siden forrige møte:
+- Casper, Magnus og Elias har satt seg inn i Tiles og laget eksemplet på spillbrett
+- Hans-Christian har laget en enkel Player og Monster klasse, samt en MonsterFactory
+  som skal produsere fiender
+- Bjørn har laget start- og game over meny
+
+Hva vi gjorde/diskuterte:
+- Hvordan vi skal merge branchene vi har jobbet på
+- Hva vi mangler for å ha et MVP
+- Fordele oppaver til neste innlevering (fredag 10.03)
+- Vi fikk lagt spillbrettet Casper, Magnus og Elias hadde jobbet med til developer branchen
+- Jobbet med rapporten til oblig2
+
+Avgjørelser:
+- Hele spillbrettet skal få plass på 
+
+Oppgaver til neste gang:
+- Hans-Chr. Rapport: krav og spesifikasjoner, readme
+- Bjørn: Jobbe med rapporten
+- Casper: Klassediagram
+- Elias: Lage flere maps til spillet
+- Magnus: Lage fiende(r) til spillet

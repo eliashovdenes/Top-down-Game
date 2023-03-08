@@ -1,0 +1,30 @@
+Dato: 02.03.23
+Sted: Høytek 3. etg, Rips	
+Start: 10:15
+Slutt: 12:00
+
+Deltakere: Magnus, Casper, Bjørn, Elias, Hans-Christian
+Fravær: 
+
+Neste møte: 
+Onsdag 08.03.23 kl 14:00 VilVite
+-----------------------------------------
+
+Framgang siden forrige møte:
+- Jobbet med å sette opp prosjektet
+- Lagt til oppgaver i Trello
+
+Hva vi gjorde/diskuterte:
+- Fikk hjelp til å sette opp prosjektet slik at vi kan bruke Tiled
+
+Avgjørelser:
+- Vi bytter fra GitLab issue boards til Trello
+- Vi kombinerer kanban og scrum
+	- Hver sprint er tiden til neste innlevering
+	- Vi setter opp alle oppgaver vi ønsker å fullføre til neste innlevering
+
+
+Oppgaver til neste gang:
+- Bjørn lage startmeny og gameover screen
+- Casper, Magnus og Elias ser på Tiled og lager et spillebrett
+- Hans-Christian ser på player og monster klasse
