@@ -46,4 +46,3 @@ public class HelloWorld implements ApplicationListener {
     public void resume() {
     }
 }
-
