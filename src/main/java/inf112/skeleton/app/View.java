@@ -28,7 +28,7 @@ public class View implements Screen {
         map = new TmxMapLoader().load("src/main/java/inf112/skeleton/app/assets/mapet.tmx");
         renderer = new OrthogonalTiledMapRenderer(map);
         camera = new OrthographicCamera();
-        player = new Player(new Sprite(new Texture(PlayerPics.DOWN.source)), 110, 120, ID.Player, controller, map);
+        player = new Player(new Sprite(new Texture(PlayerPics.DOWN.source)), 110, 110, ID.Player, controller, map);
         Gdx.input.setInputProcessor(controller);
     }
 
@@ -36,7 +36,10 @@ public class View implements Screen {
     public void render(float delta) {
         Gdx.gl.glClearColor(0, 0, 0, 0);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-        camera.position.set(player.getX() + player.getWidth() / 2, player.getY() + player.getHeight() / 2, 0);
+        camera.position.set(120, 120, 0);
+        
+        //setter position på spiller;
+        // camera.position.set(player.getX() + player.getWidth() / 2, player.getY() + player.getHeight() / 2, 0);
         camera.update();
         renderer.setView(camera);
         renderer.render();
