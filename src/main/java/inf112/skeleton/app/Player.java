@@ -70,6 +70,15 @@ public class Player extends GameObject {
         else if (!controller.isRight()) {
             velX = 0;
         }
+
+        if (controller.isFast()) {
+            speed = 2;
+        }
+        else 
+        speed = 1;
+
+
+
         setX(getX() + velX * deltaTime);
 
         if (collision.chechXDirection(velX, oldX)) {
