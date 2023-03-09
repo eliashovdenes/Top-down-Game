@@ -17,6 +17,8 @@ Framgang siden forrige møte:
 - Bjørn har laget start- og game over meny
 
 Hva vi gjorde/diskuterte:
+- Hva vi har gjort siden sist
+- Bruker mye tid på å gå igjennom prosjektrapport og snakke om hvordan det har gått.
 - Hvordan vi skal merge branchene vi har jobbet på
 - Hva vi mangler for å ha et MVP
 - Fordele oppaver til neste innlevering (fredag 10.03)
@@ -28,7 +30,8 @@ Avgjørelser:
 
 Oppgaver til neste gang:
 - Hans-Chr. Rapport: krav og spesifikasjoner, readme
-- Bjørn: Jobbe med rapporten
+- Bjørn: Jobbe med rapporten, mainmenu og gameover screens.
 - Casper: Klassediagram
 - Elias: Lage flere maps til spillet
 - Magnus: Lage fiende(r) til spillet
+
