@@ -10,16 +10,17 @@ public class Player extends GameObject {
 
     private float speed = 1;
     private Controller controller;
-    private TiledMap map;
     private Collision collision;
+    private String  lastPlayerPics;
 
     
 
-    public Player(Sprite sprite, float x, float y, ID id, Controller controller, TiledMap map) {
+    public Player(Sprite sprite, float x, float y, ID id, Controller controller, TiledMap map, String lastPlayerPics) {
         super(x, y, id, sprite, map);
         setPosition(x, y);
         this.controller = controller;
         this.map = map;
+        this.lastPlayerPics = lastPlayerPics;
         collision = new Collision(map, this); 
     }
 
@@ -37,11 +38,13 @@ public class Player extends GameObject {
         //save recent position
         float oldX = getX(), oldY = getY();
 
-        
+        //if(controlleri)
 
         if (controller.isUp()){ 
             velY = speed;
             setTexture(new Texture(PlayerPics.UP.source));
+            lastPlayerPics = PlayerPics.UP.source;
+           
         }
         else if (!controller.isDown()) {
             velY = 0;
@@ -50,6 +53,8 @@ public class Player extends GameObject {
         if (controller.isDown()) {
             velY = - speed;
             setTexture(new Texture(PlayerPics.DOWN.source));
+            lastPlayerPics = PlayerPics.DOWN.source;
+            
         }
         else if (!controller.isUp()) {
             velY = 0;
@@ -58,17 +63,26 @@ public class Player extends GameObject {
         if (controller.isRight()) {
             velX = speed;
             setTexture(new Texture(PlayerPics.RIGHT.source));
+            lastPlayerPics = PlayerPics.RIGHT.source;
         }
         else if (!controller.isLeft()) {
             velX = 0;
+            
         }
 
         if (controller.isLeft()) {
             velX = -speed;
             setTexture(new Texture(PlayerPics.LEFT.source));
+            lastPlayerPics = PlayerPics.LEFT.source;
         }
         else if (!controller.isRight()) {
             velX = 0;
+        }
+
+        if(!controller.isAttack()){
+            setScale(1); 
+            setTexture(new Texture(lastPlayerPics));
+            System.out.println("trynet ditt brage du holder aldri kjeft");
         }
         setX(getX() + velX * deltaTime);
 
@@ -85,6 +99,38 @@ public class Player extends GameObject {
             velY = 0;
             System.out.println("y");
         }
+
+
+        //
+        if (controller.isAttack()) {
+            System.out.println("hore");
+            if(lastPlayerPics==PlayerPics.DOWN.source){
+                setTexture(new Texture(PlayerPics.ATTACKDOWN.source));
+                setScale((float) 1.8,(float) 1.8); 
+            }
+            if(lastPlayerPics==PlayerPics.UP.source){
+                setTexture(new Texture(PlayerPics.ATTACKUP.source));
+                setScale((float) 1.3,( float) 1.3); 
+            }
+            if(lastPlayerPics==PlayerPics.LEFT.source){
+                setTexture(new Texture(PlayerPics.ATTACKLEFT.source));
+                setScale((float) 1.8,(float) 1.8); 
+            }
+            if(lastPlayerPics==PlayerPics.RIGHT.source){
+                setTexture(new Texture(PlayerPics.ATTACKRIGHT.source));
+                setScale((float) 1.8,(float) 1.8); 
+            }
+            
+            System.out.println(lastPlayerPics);
+        
+        
+            
+        }
+        // if (!controller.isAttack()){
+        //     setScale(1);
+            
+        //  }
+        // TODO må skrive en funskjon som holder følge på hvilke retning spilleren sist beveget seg
     }
 
     @Override

@@ -5,7 +5,7 @@ import com.badlogic.gdx.Input.Keys;
 
 public class Controller implements InputProcessor{
 
-    private boolean isUp = false, isDown = false, isRight = false, isLeft = false;
+    private boolean isUp = false, isDown = false, isRight = false, isLeft = false, isAttack = false;
 
     @Override
     public boolean keyDown(int keycode) {
@@ -13,6 +13,7 @@ public class Controller implements InputProcessor{
         if (keycode == Keys.S) isDown = true;
         if (keycode == Keys.A) isLeft = true;
         if (keycode == Keys.D) isRight = true;
+        if (keycode == Keys.X) isAttack = true;
         // if (keycode == Keys.Q) mapShift = true;
         return true;
     }
@@ -22,6 +23,7 @@ public class Controller implements InputProcessor{
         if (keycode == Keys.S) isDown = false;
         if (keycode == Keys.A) isLeft = false;
         if (keycode == Keys.D) isRight = false;
+        if (keycode == Keys.X) isAttack = false;
         // if (keycode == Keys.Q) mapShift = false;
         return true;
     }
@@ -74,6 +76,14 @@ public class Controller implements InputProcessor{
     }
     public void setLeft(boolean isLeft) {
         this.isLeft = isLeft;
+    }
+
+    //setter attack
+    public void setAttack(boolean isAttack){
+        this.isAttack = isAttack;
+    }
+    public boolean isAttack(){
+        return isAttack;
     }
 
 
