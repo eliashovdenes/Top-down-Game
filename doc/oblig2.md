@@ -21,12 +21,14 @@ Ansvar for å drive produktet framover slik at vi møter produksjonskrav.
 ### Trenger vi andre roller?
 Vi har muligens behov for en arkitekt slik at vi ikke ender opp med spagettikode. 
 
-### Har vi erfaringer team-messig eller mtp prosjektmetodikk som er verdt å nevne? 
-Vi synes det var vanskelig å fordele spesifikke arbeidsoppgaver tidlig da vi er nok så uerfarne, og	 MVP ble en slags flaskehals. Når vi kom forbi der ble det lettere å se hva som må gjøres. 
-Prosjektverktøy: 
-Vi startet med GITlab Issueboard, men gikk over til Trello (lettere å logge inn og i bruk), som Kanban board med elementer av Scrum ved å ha spesifikke arbeidsoppgaver lagt inn i en spesifikk sprint som varer i en uke. 
-Liker vi valgene vi har tatt underveis?
-Ja. Er ganske enige om de tekniske valgene. Det som ikke har fungert har vi endret (Issueboard). Vi er fortsatt litt usikre på hvilket arkitekturdesign vi skal følge. Nå er vi kommet så langt at det lettere å fordele spesifikke arbeidsoppgaver og det er kjekt. 
+### Har vi erfaringer team-messig eller mtp prosjektmetodikk som er verdt å nevne? 	
+	Vi synes det var vanskelig å fordele spesifikke arbeidsoppgaver tidlig da vi er nok så uerfarne, og	 MVP ble en slags flaskehals. Når vi kom forbi der ble det lettere å se hva som må gjøres. 
+
+### Prosjektverktøy: 
+	Vi startet med GITlab Issueboard, men gikk over til Trello (lettere å logge inn og i bruk), som Kanban board med elementer av Scrum ved å ha spesifikke arbeidsoppgaver lagt inn i en spesifikk sprint som varer i en uke. 
+
+### Liker vi valgene vi har tatt underveis?
+	Ja. Er ganske enige om de tekniske valgene. Det som ikke har fungert har vi endret (Issueboard). Vi er fortsatt litt usikre på hvilket arkitekturdesign vi skal følge. Nå er vi kommet så langt at det lettere å fordele spesifikke arbeidsoppgaver og det er kjekt. 
 
 ### Hvordan er gruppedynamikken? Uenigheter?
 Ikke mye uenigheter. Sunne diskusjoner.
