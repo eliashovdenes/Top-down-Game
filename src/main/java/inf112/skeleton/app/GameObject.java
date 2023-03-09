@@ -1,5 +1,6 @@
 package inf112.skeleton.app;
 
+
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 
@@ -9,6 +10,8 @@ public abstract class GameObject extends Sprite {
     protected float velX, velY;
     protected ID id;
     protected TiledMap map;
+    protected float speed = 1;
+    protected Collision collision;
 
     public GameObject(float x, float y, ID id, Sprite sprite, TiledMap map) {
         super(sprite);
@@ -16,10 +19,9 @@ public abstract class GameObject extends Sprite {
         this.x = x;
         this.y = y;
         this.id = id;
+        setPosition(x, y);
     }
 
-    public abstract void tick();
-    public abstract void render();
 
     public float getX() {
         return x;

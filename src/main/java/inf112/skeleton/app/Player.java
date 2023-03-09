@@ -8,18 +8,14 @@ import com.badlogic.gdx.maps.tiled.TiledMap;
 
 public class Player extends GameObject {
 
-    private float speed = 1;
     private Controller controller;
-    private TiledMap map;
     private Collision collision;
 
     
 
     public Player(Sprite sprite, float x, float y, ID id, Controller controller, TiledMap map) {
         super(x, y, id, sprite, map);
-        setPosition(x, y);
         this.controller = controller;
-        this.map = map;
         collision = new Collision(map, this); 
     }
 
@@ -84,7 +80,7 @@ public class Player extends GameObject {
         if (collision.chechXDirection(velX, oldX)) {
             setX(oldX);
             velX = 0;
-            System.out.println(oldX);
+            // System.out.println(oldX);
         }
 
         setY(getY() + velY * deltaTime);
@@ -92,20 +88,8 @@ public class Player extends GameObject {
         if (collision.chechYDirection(velY, oldY)) {
             setY(oldY);
             velY = 0;
-            System.out.println("y");
+            // System.out.println("y");
         }
-    }
-
-    @Override
-    public void tick() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'tick'");
-    }
-
-    @Override
-    public void render() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'render'");
     }
     
 }

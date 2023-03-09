@@ -11,6 +11,7 @@ import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
+import com.badlogic.gdx.math.Rectangle;
 
 public class View implements Screen {
 
@@ -18,7 +19,10 @@ public class View implements Screen {
     private OrthogonalTiledMapRenderer renderer;
     private OrthographicCamera camera;
     private Player player;
+    private Enemy enemy;
     private Controller controller = new Controller();
+    private Rectangle playerRect;
+    private Rectangle enemyRect;
 
     
 
@@ -29,6 +33,9 @@ public class View implements Screen {
         renderer = new OrthogonalTiledMapRenderer(map);
         camera = new OrthographicCamera();
         player = new Player(new Sprite(new Texture(PlayerPics.DOWN.source)), 110, 110, ID.Player, controller, map);
+        playerRect = new Rectangle(player.getX(), player.getY(), player.getWidth(), player.getHeight());
+        enemy = new Enemy(150, 110, ID.Enemy, new Sprite(new Texture(PlayerPics.ENEMYDOWN.source)),controller, map);
+        enemyRect = new Rectangle(enemy.getX(), enemy.getY(), enemy.getWidth(), enemy.getHeight());
         Gdx.input.setInputProcessor(controller);
     }
 
@@ -45,8 +52,19 @@ public class View implements Screen {
         renderer.render();
 
         renderer.getBatch().begin();
+
+        if (enemyRect.overlaps(playerRect)) {
+            System.out.println("sprite collide");
+            
+        }
         player.draw(renderer.getBatch());
+        enemy.draw(renderer.getBatch());
+        playerRect = new Rectangle(player.getX(), player.getY(), player.getWidth(), player.getHeight());
+        enemyRect = new Rectangle(enemy.getX(), enemy.getY(), enemy.getWidth(), enemy.getHeight());
+
         renderer.getBatch().end();
+
+        
         
 
     }
