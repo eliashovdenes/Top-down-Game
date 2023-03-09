@@ -1,21 +1,21 @@
-### PROSJEKTRAPPORT
+# PROSJEKTRAPPORT
 
 ## Hvordan fungerer rollene i teamet? 
 Vi opplever at rollene fungerer fint slik som det er nå. Det har vært hjelpsomt å ha en som fordyper seg i GIT og andre som tar ansvar for å lage og oppretteholder kommunikasjon mellom gruppemedlemmene. Ellers opplever vi at medlemmene i gruppen tar ansvar for å ta på seg oppgaver underveis, men vi har behov for å avklare og utdype hva de forskjellige rollene fungerer. 
 
-# Magnus: TEAMLEAD og GitMaster 
+### Magnus: TEAMLEAD og GitMaster 
 Ansvarlig for individene i gruppen. At alle er involvert og opplever at de utvikles i faget. Drive gruppen videre og hjelpe å beslutte hvis det er utfordrende. Sørge for at frister blir imøtekommet og eventuelt ta tak i ting som ikke fungerer som ønsket.
 	
-# Casper: Kommunikasjonsansvarlig 
+### Casper: Kommunikasjonsansvarlig 
 Ansvar for at vi holder oss til møtepunktene. At vi snakker til hverandre på en god måte og bygger relasjoner med alle på teamet. Kundekontakt og 
 
-# Bjørn: Dokumentasjonsansvarlig
+### Bjørn: Dokumentasjonsansvarlig
 Sørge for at både prosjektet er tilstrekkelig dokumentert og at koden er tilstrekkelig dokumentert med javadoc. 
 	
-# Hans-Chr: Testansvarlig (trelloMaster)	
+### Hans-Chr: Testansvarlig (trelloMaster)	
 	Sørger for at alle i gruppen skriver robuste tester til koden de implementerer. 
 
-# Elias: Produktutvikler
+## Elias: Produktutvikler
 Ansvar for å drive produktet framover slik at vi møter produksjonskrav. 
 
 ## Trenger vi andre roller?
