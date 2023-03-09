@@ -7,7 +7,7 @@ Vi opplever at rollene fungerer fint slik som det er nå. Det har vært hjelpsom
 Ansvarlig for individene i gruppen. At alle er involvert og opplever at de utvikles i faget. Drive gruppen videre og hjelpe å beslutte hvis det er utfordrende. Sørge for at frister blir imøtekommet og eventuelt ta tak i ting som ikke fungerer som ønsket.
 	
 #### Casper: Kommunikasjonsansvarlig 
-Ansvar for at vi holder oss til møtepunktene. At vi snakker til hverandre på en god måte og bygger relasjoner med alle på teamet. Kundekontakt og 
+Ansvar for at vi holder oss til møtepunktene. At vi snakker til hverandre på en god måte og bygger relasjoner med alle på teamet. Han har også ansvar for kontakt ut mot kunden.
 
 #### Bjørn: Dokumentasjonsansvarlig
 Sørge for at både prosjektet er tilstrekkelig dokumentert og at koden er tilstrekkelig dokumentert med javadoc. 
@@ -19,28 +19,31 @@ Sørger for at alle i gruppen skriver robuste tester til koden de implementerer.
 Ansvar for å drive produktet framover slik at vi møter produksjonskrav. 
 
 ### Trenger vi andre roller?
-Vi har muligens behov for en arkitekt slik at vi ikke ender opp med spagettikode. 
+Vi har nok behov for en arkitekt som har som ansvar å organisere systemet i henhold til SOLID. Er vi for sent ute med dette kan vi ende opp med ganske stor jobb med å sørge for at prosjektet har lav coupling og høy cohesion. 
 
 ### Har vi erfaringer team-messig eller mtp prosjektmetodikk som er verdt å nevne? 	
-	Vi synes det var vanskelig å fordele spesifikke arbeidsoppgaver tidlig da vi er nok så uerfarne, og	 MVP ble en slags flaskehals. Når vi kom forbi der ble det lettere å se hva som må gjøres. 
+Vi synes det var vanskelig å fordele spesifikke arbeidsoppgaver tidlig da vi er nok så uerfarne og MVP ble en slags flaskehals. Når vi kom forbi der ble det lettere å se hva som må gjøres. 
 
 ### Prosjektverktøy: 
-	Vi startet med GITlab Issueboard, men gikk over til Trello (lettere å logge inn og i bruk), som Kanban board med elementer av Scrum ved å ha spesifikke arbeidsoppgaver lagt inn i en spesifikk sprint som varer i en uke. 
+* Vi startet med GITlab Issueboard, men gikk over til Trello (lettere å logge inn og lettere å bruke). Trello bruker vi som et Kanban board. Vi organiserer oss med elementer av Scrum ved å ha spesifikke arbeidsoppgaver lagt inn i en spesifikk sprint som varer i en uke. 
+* Vi benytter oss også mye av parprogrammering i gruppetimer og når vi treffes utenom gruppetimen hver onsdag. Spesielt på de litt 'tyngre' oppgavene som å lage maps i TILED. 
 
 ### Liker vi valgene vi har tatt underveis?
-	Ja. Er ganske enige om de tekniske valgene. Det som ikke har fungert har vi endret (Issueboard). Vi er fortsatt litt usikre på hvilket arkitekturdesign vi skal følge. Nå er vi kommet så langt at det lettere å fordele spesifikke arbeidsoppgaver og det er kjekt. 
+Ja. Er ganske enige om de tekniske valgene. Det som ikke har fungert har vi endret (Issueboard). Vi er fortsatt litt usikre på hvilket arkitekturdesign vi skal følge. Nå er vi kommet så langt at det lettere å fordele spesifikke arbeidsoppgaver og gruppemedlemmene opplevere det som lettere å produsere.
 
 ### Hvordan er gruppedynamikken? Uenigheter?
 Ikke mye uenigheter. Sunne diskusjoner.
 
 ### Hvordan har kommunikasjon fungert for oss?
-Det en har fungert bra.
+Det har fungert bra. Et av gruppemedlemmene er dog veldig direkte og det går ut over nattsøvnen til resten av gruppen.
 
 ### Kort retrospektiv om hva som er bra og hva som kan forbedres. Hva har vi fått til det nå? 
-Det har gått litt i rykk og napp, men alle har levert individuelt bra og tatt tak i verktøyene for å lære seg de. Det oppleves litt som vi sitter litt på hver vår haug mens vi finner ut av hvordan man gjør dette, men det er nokså naturlig. Framover skal vi jobbe mer samkjørt, fordi vi er ganske heldige som alle er engasjert for å få til endepunkter og kreativt er ganske på samme side.
-Bli enige om maks 3 forbedringspunkter som skal følges opp.
-Se på semesteroppgaveteksten tidligere etter hver innlevering å jobbe med den mer strukturert. 
-Oppgaver kan være enda mer spesifikt fordelt.
+Det har gått litt i rykk og napp, men alle har levert individuelt bra og tatt tak i verktøyene for å lære seg dem. Det kan oppleves som vi sitter litt på hver vår haug og programmerer i hver vår retning, mens vi finner ut av hvordan man gjør dette. Men det er nokså naturlig. Når vi har treffes har vi presentert det vi har jobbet med å bestemt oss for hva vi ønsker å ha med i en merge til developer og jobbe videre med. Framover skal vi jobbe mer samkjørt, fordi vi er ganske heldige som alle er engasjert for å få til endeproduktet og kreativt er nokså på samme side.
+
+### Bli enige om maks 3 forbedringspunkter som skal følges opp.
+1. Se på semesteroppgaveteksten tidligere etter hver innlevering å jobbe med den mer strukturert. 
+2. Oppgaver kan være enda mer spesifikt fordelt.
+3. Jobbe mer samkjørt, committe og merge oftere.
 
 
 
