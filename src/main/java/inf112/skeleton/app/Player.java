@@ -79,6 +79,7 @@ public class Player extends GameObject {
             velX = 0;
         }
 
+        //Denne er nok ikke så godt optimalisert, MTP hvordan update metoden funker.
         if(!controller.isAttack()){
             setScale(1); 
             setTexture(new Texture(lastPlayerPics));
@@ -101,7 +102,7 @@ public class Player extends GameObject {
         }
 
 
-        //
+        
         if (controller.isAttack()) {
             System.out.println("hore");
             if(lastPlayerPics==PlayerPics.DOWN.source){
@@ -126,16 +127,13 @@ public class Player extends GameObject {
         
             
         }
-        // if (!controller.isAttack()){
-        //     setScale(1);
-            
-        //  }
         // TODO må skrive en funskjon som holder følge på hvilke retning spilleren sist beveget seg
     }
 
+    //trenger ikke disse?
     @Override
     public void tick() {
-        // TODO Auto-generated method stub
+        
         throw new UnsupportedOperationException("Unimplemented method 'tick'");
     }
 
