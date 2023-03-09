@@ -9,8 +9,10 @@ public class Collision {
     private GameObject entity;
     private float tileWidth;
     private float tileHeight;
+    private View view;
 
-    public Collision(TiledMap map, GameObject entity) {
+    public Collision(TiledMap map, GameObject entity, View view) {
+        this.view = view;
         this.map = map;
         this.entity = entity;
         tileWidth = ((TiledMapTileLayer) map.getLayers().get(0)).getTileWidth();
@@ -19,6 +21,8 @@ public class Collision {
 
     public boolean chechXDirection(float velX, float oldX) {
         boolean collisionX = false;
+
+        
         // when moving to the left
         if (velX < 0) {
             // top left tile
@@ -31,6 +35,8 @@ public class Collision {
             // bottom left tile
             if (!collisionX)
                 collisionX = checkCollisionWith((int) (entity.getX() / tileWidth), (int) ((entity.getY() + entity.getHeight() / 5) / tileHeight));
+
+            
         }
 
         // when moving to the right
@@ -46,6 +52,7 @@ public class Collision {
             if (!collisionX)
                 collisionX = checkCollisionWith((int) ((entity.getX() + entity.getWidth()) / tileWidth), (int) ((entity.getY() + entity.getHeight() / 4) / tileHeight));
             }
+
 
             if (collisionX) return true;
             return false;
@@ -101,9 +108,10 @@ public class Collision {
             TiledMapTileLayer layer = (TiledMapTileLayer) map.getLayers().get(i);
             // System.out.println(layer);
             
+            
             try {
                 if (layer.getCell((int) xpos, (int) ypos).getTile().getProperties().containsKey("blocked")) { 
-                    System.out.println("blocked tile");
+                    
                     return true;
                 }
             } catch (Exception e) {

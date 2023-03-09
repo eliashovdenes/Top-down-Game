@@ -13,10 +13,10 @@ public class Player extends GameObject {
 
     
 
-    public Player(Sprite sprite, float x, float y, ID id, Controller controller, TiledMap map) {
-        super(x, y, id, sprite, map);
+    public Player(Sprite sprite, float x, float y, ID id, Controller controller, TiledMap map, View view) {
+        super(x, y, id, sprite, map, view);
         this.controller = controller;
-        collision = new Collision(map, this); 
+        collision = new Collision(map, this, view); 
     }
 
     @Override
@@ -27,12 +27,14 @@ public class Player extends GameObject {
 
 
     private void update(float deltaTime) {
+       
         x += velX;
         y += velY;
 
+        
         //save recent position
-        float oldX = getX(), oldY = getY();
-
+        oldX = getX();
+        oldY = getY();
         
 
         if (controller.isUp()){ 
@@ -73,12 +75,14 @@ public class Player extends GameObject {
         else 
         speed = 1;
 
-
+        
 
         setX(getX() + velX * deltaTime);
 
-        if (collision.chechXDirection(velX, oldX)) {
-            setX(oldX);
+        if (collision.chechXDirection(velX, oldX)) { 
+            
+             x = oldX;
+            // System.out.println(oldX);
             velX = 0;
             // System.out.println(oldX);
         }
@@ -86,10 +90,22 @@ public class Player extends GameObject {
         setY(getY() + velY * deltaTime);
 
         if (collision.chechYDirection(velY, oldY)) {
-            setY(oldY);
+            y = oldY;
             velY = 0;
             // System.out.println("y");
         }
+    }
+
+    public void setOldXNdY(float oldX, float oldY) {
+        this.oldX = oldX;
+        this.oldY = oldY;
+    }
+
+    public float getOldX() {
+        return oldX;
+    }
+    public float getOldY() {
+        return oldY;
     }
     
 }

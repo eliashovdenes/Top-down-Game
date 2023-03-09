@@ -12,11 +12,11 @@ public class Enemy extends GameObject {
     private Collision collision;
     private Controller controller;
 
-    public Enemy(float x, float y, ID id, Sprite sprite, Controller controller, TiledMap map) {
-        super(x, y, id, sprite, map);
-        collision = new Collision(map, this);
+    public Enemy(float x, float y, ID id, Sprite sprite, Controller controller, TiledMap map, View view) {
+        super(x, y, id, sprite, map, view);
+        collision = new Collision(map, this, view);
         this.controller = controller;
-        velX = 0;
+        velX = 1;
         velY = 0;
     }
 
@@ -64,10 +64,27 @@ public class Enemy extends GameObject {
             setY(oldY);
             if (velY < 0) velY = speed;
             else if (velY > 0) velY = -speed;
-            System.out.println("y");
+            // System.out.println("y");
         }
 
 
+    }
+
+    @Override
+    public void setOldXNdY(float oldX, float oldY) {
+        this.oldX = oldX;
+        this.oldY = oldY;
+
+    }
+
+    @Override
+    public float getOldX() {
+        return oldX;
+    }
+
+    @Override
+    public float getOldY() {
+        return oldY;
     }
 
     
