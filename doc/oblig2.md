@@ -213,22 +213,16 @@ Nå som vi har fått et MVP, vil vi bruke tiden framover til å videreutvikle sp
 * Løper raskere ved å holde inne "shift"
 
 ## Produkt og kode:
-
 Dette har vi fikset siden sist:
-Vi har at spilleren kan bevege seg i åtte retninger.
-Vi har fikset kollisjon mellom spiller og map objektene slik at spilleren ikke kan gå gjennom kartet.
-Vi har lagt til fiender som kan angripe spilleren.
-Vi har lagt til sverd animasjon.
-Vi har lagt til en start meny.
-Vi har lagt til en game over meny når man dør.
-Vi har lagt til tre forskjellig maps som spiller kan flytte seg gjennom.
+* Spilleren kan bevege seg "behagelig" i åtte retninger.
+* Collision detection er i orden mellom GameObject(spiller, fiende) og kart. Vi kan nå enkelt besteme hvor spilleren kan gå og ikke.
+* Det finnes nå en fiende og collision detection mellom fienden og spilleren. Man kan både drepe fienden eller bli drept av fienden avhengig av om man bruker sverdet eller ikke i det man kolliderer med fienden.
+* Vi har lagt til sverd animasjon for fire retninger.
+* Vi har lagt til en start meny.
+* Vi har lagt til en game over meny når man dør.
+* Vi har lagt til tre forskjellige maps som spiller kan flytte seg gjennom.
 
-For å kjøre spillet så kjører man Main.java filen. 
-
-Man kan manuelt teste spillet ved å kjøre Main.java filen:
-
-Deretter gå mot den bevegende fienden og se at spilleren dør også at det kommer opp en game over meny.
-Man kan også bevege seg mot treer og se at spilleren kolliderer. Man kan gå inn i døren på huset og se at mappet endrer seg til et hus map, og at man går inn i hulen i huset at man kommer til et nytt map. Når man holder inne shift knappen så skal spillet gå i en hurtigere hastighet og når man trykker på x så skal spilleren slå med sverdet sitt.
+manuell testing og brukermanualer ligger i readme.md filen.
 
 ## Bildet på klassediagrammet
 ![image.png](./Klassediagram.png)
