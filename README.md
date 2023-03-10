@@ -15,6 +15,11 @@ Vi vil lage et Rouge-Like 2D spill hvor du ser brettet ovenfra. I spillet må du
 Foreløpig må spille kjøres i en IDE.
 Start spillet ved å gjøre main.java
 
+## Hvordan styre karateren i spillet
+* Du syrer karateren med "w", "a", "s", "d"
+* Angriper ved å holde inne "x"
+* Løper raskere ved å holde inne "shift"
+
 ## Kjente feil
 Fiender beveger seg utenfor spillbrettet i huset fordi den ikke bare har collisionchecks i hovedmapet
 Fiender kan spawne i hindringer og sette seg fast
