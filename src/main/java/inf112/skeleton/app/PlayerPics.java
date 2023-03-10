@@ -8,7 +8,12 @@ public enum PlayerPics {
     ENEMYDOWN("src/main/java/inf112/skeleton/app/assets/enemyPics/enemyDown.png"),
     ENEMYUP("src/main/java/inf112/skeleton/app/assets/enemyPics/enemyUp.png"),
     ENEMYLEFT("src/main/java/inf112/skeleton/app/assets/enemyPics/enemyLeft.png"),
-    ENEMYRIGHT("src/main/java/inf112/skeleton/app/assets/enemyPics/enemyRight.png");
+    ENEMYRIGHT("src/main/java/inf112/skeleton/app/assets/enemyPics/enemyRight.png"),
+    ATTACKUP("src/main/java/inf112/skeleton/app/assets/playerPics/linkattacktop.png"),
+    ATTACKDOWN("src/main/java/inf112/skeleton/app/assets/playerPics/linkAttack_down.png"),
+    ATTACKLEFT("src/main/java/inf112/skeleton/app/assets/playerPics/linkattackleft.png"),
+    ATTACKRIGHT("src/main/java/inf112/skeleton/app/assets/playerPics/linkattack_right.png");
+
 
     
 
