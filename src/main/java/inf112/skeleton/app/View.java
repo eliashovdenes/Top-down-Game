@@ -43,7 +43,7 @@ public class View implements Screen {
 
     @Override
     public void show() {
-        map = new TmxMapLoader().load("src/main/java/inf112/skeleton/app/assets/stormappet.tmx");
+        map = new TmxMapLoader().load(Maps.Level1.source);
         renderer = new OrthogonalTiledMapRenderer(map);
         camera = new OrthographicCamera();
         player = new Player(new Sprite(new Texture(PlayerPics.DOWN.source)), 500, 500, ID.Player, controller, map, this);

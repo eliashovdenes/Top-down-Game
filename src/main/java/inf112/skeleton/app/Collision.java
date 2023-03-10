@@ -5,7 +5,6 @@ import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 
 public class Collision {
 
-    private View view;
 
     private boolean housePortal = false, level2 = false;
     
@@ -19,7 +18,8 @@ public class Collision {
     }
 
 
-    private Player player;
+    private GameObject entity;
+
     private float tileWidth;
     private float tileHeight;
     private View view;
@@ -113,14 +113,12 @@ public class Collision {
             view.changeMap(Maps.House.source, 400, 500);
             housePortal = false;
             
-
-            
         }
 
 
         //Level 2 portal
         if (level2){
-            view.changeMap(Maps.Level2.source, 13*16, 25*16); 
+            view.changeMap(Maps.Level2.source, 12*16, 25*16); 
             level2 = false;
             
 
