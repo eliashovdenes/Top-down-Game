@@ -159,12 +159,12 @@ Vi har prioritert å lage et MVP. Kriteriene for å oppnå dette spesifiserte vi
 10. Game Over skjerm
 11. Mulighet til å starte på nytt
 
-Vi har oppfylt det aller meste av dette. Vi har brukt Tiled til å lage spillbrettet og spillkarakteren vises og kan beveges i åtte retninger. Spillet har en startmeny, active game og game over meny. Når spillet er over, kan du starte på nytt. 
+Vi har oppfylt det aller meste av dette. Vi har brukt Tiled til å lage spillbrettet og spillkarakteren vises og kan beveges i åtte retninger. Spillet har en startmeny, active game og game over meny. Når spillet er over, kan du starte på nytt. Foreløpig kan ikke spilleren skade fiender. Spillet har fiender som beveger seg på skjermen som spilleren må unngå. Hvis fienden treffer spilleren, dør han og spillet er over. Vi har laget en attack-animasjon in fire rettninger som du bruker ved å trykke på "x", men vi har ikke implementert at angrepet skader fienden ennå. I spillet kan du gå inn og ut av huset og dermed gå fra et map til neste. Vi har en score på skjermen som skal oppdateres hver gang du dreper en fiende, men denne blir ikke oppdatert nå siden spilleren ikke kan drepe fiender for øyeblikket. Spilleren har heller ikke hit points, men dør ved første berøring av en fiende.
 
 
 ### Prioriteringer framover
 
-Nå som vi har fått et MVP, vil vi bruke tiden framover til å videreutvikle spillet. Vi vil legge til flere fiender, flere maps og skalere fiendene slik at de blir vanskligere å bekjempe jo lenger ut i spillet du kommer. Videre må vi refaktorere koden slik at stukturen blir bedre. Noe av refaktoreringen vi vil gjøre er å skille modellen fra view bedre og lage en MonsterFactory som kan lage nye fiender. Det har gått med mye tid på å bli kjent med libGDX og Tiled, dette har gjort at vi måtte prioritere å få laget et MVP til denne innleveringen, noe som har gått på bekostning av å skrive tester. Framover vil vi gå over til mer testdrevet utvikling hvor vi skriver testene parallelt med koden.
+Nå som vi har fått et MVP, vil vi bruke tiden framover til å videreutvikle spillet. Vi vil legge til flere fiender, flere maps og skalere fiendene slik at de blir vanskligere å bekjempe jo lenger ut i spillet du kommer. Spilleren må kunne skade fiendene og både fiendene og spilleren må ha hit points. Videre må vi refaktorere koden slik at stukturen blir bedre. Noe av refaktoreringen vi vil gjøre er å skille modellen fra view bedre og lage en MonsterFactory som kan lage nye fiender. Det har gått med mye tid på å bli kjent med libGDX og Tiled, dette har gjort at vi måtte prioritere å få laget et MVP til denne innleveringen, noe som har gått på bekostning av å skrive tester. Framover vil vi gå over til mer testdrevet utvikling hvor vi skriver testene parallelt med koden.
 
 
 
