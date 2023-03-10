@@ -36,7 +36,7 @@ public class MainMenuScreen extends ScreenAdapter {
 
         //Draw the "Start" button
         if (Gdx.input.justTouched()) {
-            game.setScreen(new View());
+            game.setScreen(new View(game));
         }
     }
 
