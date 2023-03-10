@@ -1,0 +1,36 @@
+{
+    "Map/SizeTest": {
+        "height": 4300,
+        "width": 2
+    },
+    "activeFile": "",
+    "expandedProjectPaths": [
+    ],
+    "fileStates": {
+        "stormappet.tmx": {
+            "scale": 0.93,
+            "selectedLayer": 1,
+            "viewCenter": {
+                "x": 399.99999999999994,
+                "y": 400.5376344086021
+            }
+        }
+    },
+    "last.imagePath": "/Users/brorby/Documents/V23/INF112/top-down-squad/src/main/java/inf112/skeleton/app/assets",
+    "map.height": 50,
+    "map.lastUsedFormat": "tmx",
+    "map.tileHeight": 16,
+    "map.tileWidth": 16,
+    "map.width": 50,
+    "openFiles": [
+    ],
+    "project": "untitled.tiled-project",
+    "recentFiles": [
+        "stormappet.tmx"
+    ],
+    "tileset.lastUsedFormat": "tsx",
+    "tileset.tileSize": {
+        "height": 16,
+        "width": 16
+    }
+}
