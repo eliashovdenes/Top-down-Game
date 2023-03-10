@@ -28,7 +28,7 @@ public class View implements Screen {
         map = new TmxMapLoader().load("src/main/java/inf112/skeleton/app/assets/mapet.tmx");
         renderer = new OrthogonalTiledMapRenderer(map);
         camera = new OrthographicCamera();
-        player = new Player(new Sprite(new Texture(PlayerPics.DOWN.source)), 110, 110, ID.Player, controller, map, PlayerPics.DOWN.source);
+        player = new Player(new Sprite(new Texture(PlayerPics.DOWN.source)), 120 , 120, ID.Player, controller, map, PlayerPics.DOWN.source);
         Gdx.input.setInputProcessor(controller);
     }
 
