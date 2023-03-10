@@ -160,4 +160,4 @@ Nå som vi har fått et MVP, vil vi bruke tiden framover til å videreutvikle sp
 
 
 ### Bildet
-![image.png](./image.png)
+![image.png](./klassediagram.png)
