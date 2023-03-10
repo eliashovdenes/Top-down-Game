@@ -33,17 +33,19 @@ public class MapTest {
         renderer.renderTileLayer((TiledMapTileLayer) map.getLayers().get(0));
         int tileWidth = ((TiledMapTileLayer) map.getLayers().get(0)).getTileWidth();
         int tileHeight = ((TiledMapTileLayer) map.getLayers().get(0)).getTileHeight();
-        int expectedX = 1* tileWidth;
-        int expectedY = 1* tileHeight;
+        int expX = 1* tileWidth;
+        int expY = 1* tileHeight;
 
         boolean isTileRendered = false;
         
+        //går igjennomhvert layer og sjekker om cellen
+        //helt nede til venstre (1,1) render riktig i hvert layer i map.
         for (MapLayer layer : map.getLayers()){
             if (layer instanceof TiledMapTileLayer){
                 TiledMapTileLayer tileLayer = (TiledMapTileLayer) layer;
                 TiledMapTile tile = tileLayer.getCell(1,1).getTile();
 
-                if (tile != null && tile.getTextureRegion().getRegionX() == expectedX && tile.getTextureRegion().getRegionY() == expectedY) {
+                if (tile != null && tile.getTextureRegion().getRegionX() == expX && tile.getTextureRegion().getRegionY() == expY) {
                                      
                                     isTileRendered = true;
                                     break;
