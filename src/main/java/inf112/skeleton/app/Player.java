@@ -83,7 +83,6 @@ public class Player extends GameObject {
         if(!controller.isAttack()){
             setScale(1); 
             setTexture(new Texture(lastPlayerPics));
-            System.out.println("trynet ditt brage du holder aldri kjeft");
         }
         setX(getX() + velX * deltaTime);
 
@@ -104,7 +103,6 @@ public class Player extends GameObject {
 
         
         if (controller.isAttack()) {
-            System.out.println("hore");
             if(lastPlayerPics==PlayerPics.DOWN.source){
                 setTexture(new Texture(PlayerPics.ATTACKDOWN.source));
                 setScale((float) 1.8,(float) 1.8); 
