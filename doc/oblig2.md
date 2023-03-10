@@ -61,12 +61,16 @@ Det har gått litt i rykk og napp, men alle har levert individuelt bra og tatt t
 
 1. Som spiller ønsker jeg en MainMenuScreen og en GameOverScreen, slik at jeg kan starte spillet, velge nytt spill og når jeg vinner/taper i spillet så kommer jeg meg tilbake til main menu.
 
-* Gitt at vi har en startmeny så skal:
-	1. Vi har flere screen som vi kan bytte imellom slik at vi enkelt kan navigere til nytt spill og starte på nytt.
-	2. Vi skille mellom MainMenu, GameOver og active game.
-	3. Alle 3 screens skal vises forskjellig på skjermen, hvor active game inneholder selvet spillet.
-	4. Ha en keyListener som registrerer når spilleren trykker på start
-	5. La spilleren enkelt navigere de forskjellige screensene.
+* Akseptansekriterier:
+	1. Vi har en startmeny hvor spilleren kan starte et nytt spill.
+	2. Vi har en Active Game skjerm, som er skjermen der spillet kjører.
+	3. Når spilleren dør, kommer han til Game Over skjermen og kan starte spillet på nytt.
+	
+* Arbeidsoppgaver:
+	1. Alle 3 skjermene skal vises forskjellig på skjermen, hvor Active Game inneholder selvet spillet.
+	2. Lage en Startmeny
+	3. Ha en keyListener som registrerer når spilleren trykker på start
+	4. Lage en metode som registrerer når spilleren er død/har null hit points.
 		
 2. Som spiller ønsker jeg å se spillbrettet på skjermen slik at jeg kan se hvor fiendene er og hvor jeg kan bevege karakteren min. 
 * Gitt at vi har startet et nytt spill, så skal spillbrettet vises på skjermen
@@ -76,7 +80,7 @@ Det har gått litt i rykk og napp, men alle har levert individuelt bra og tatt t
 	2. Gridet må ha en størrelse.
 	
 		
-3. Som utvikler ønsker jeg å se karakteren min på skjermen slik at jeg kan se hvor jeg er og kan gjøre valg
+3. Som spiller ønsker jeg å se karakteren min på skjermen slik at jeg kan se hvor jeg er og kan gjøre valg
 * Gitt at vi har startet et nytt spill, så skal karakteren vises på skjermen
 	
 * Arbeidsoppgaver:
@@ -98,7 +102,7 @@ Det har gått litt i rykk og napp, men alle har levert individuelt bra og tatt t
 	4. Modellen må oppdateres med den nye posisjonen
 	5. Vi må tegne karakteren i den nye posisjonen
 		
-5. Som utvikler ønsker jeg at det er lett å skille områdene spilleren kan bevege seg på fra hindringer og vegger slik at det er enklere å teste at spillet fungerer som det skal
+5. Som spiller ønsker jeg at det er lett å skille områdene spilleren kan bevege seg på fra hindringer og vegger slik at det er enklere å teste at spillet fungerer som det skal
 * Gitt at vi har startet et nytt spill og karakteren kan flyttes, så skal:
 	1. Brettet vises med vegger og hindringer
 	2. Karakteren ikke kunne passere vegger og hindringer
@@ -111,7 +115,7 @@ Det har gått litt i rykk og napp, men alle har levert individuelt bra og tatt t
 	5. Modellen må ha informasjon om de ulike tiles-ene og hvor de er.
 	6. View må vite hva som skal tegnes hvor og hvordan tiles ser ut
 
-6. Som utvikler ønsker jeg at spillet har fiender som spilleren kan drepe, slik at det er noe som skjer i spillet som er underholdende for spilleren.
+6. Som spiller ønsker jeg at spillet har fiender som spilleren kan drepe, slik at det er noe som skjer i spillet som er underholdende for spilleren.
 * Gitt at spillet kjører, så skal det være fiender på spillbrettet
 
 * Arbeidsoppgaver:
