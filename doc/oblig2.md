@@ -52,7 +52,7 @@ Det har gått litt i rykk og napp, men alle har levert individuelt bra og tatt t
 ### Bli enige om maks 3 forbedringspunkter som skal følges opp.
 1. Se på semesteroppgaveteksten tidligere etter hver innlevering og jobbe med den mer strukturert. 
 2. Oppgaver kan være enda mer spesifikt fordelt slik at det er klarere for den enkelte hva han skal gjøre. For eksempel: "Implementer Player klassen" blir for vagt, vi må bli enige om hvilke metoder og funksjonalitet Player skal ha. 
-3. Jobbe mer samkjørt, committe og merge oftere. Flere kan jobbe sammen på samme branch i stedet for at alle arbeider på hver sin branch. Dette gjør også at de som arbeider med den samme delen av klasen også må samarbeide tettere.
+3. Jobbe mer samkjørt, committe og merge oftere. Flere kan jobbe sammen på samme branch i stedet for at alle arbeider på hver sin branch. Dette gjør også at de som arbeider med den samme delen av klassen også må samarbeide tettere.
 
 
 
