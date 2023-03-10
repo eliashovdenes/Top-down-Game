@@ -1,6 +1,7 @@
 package inf112.skeleton.app;
 
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 
@@ -10,7 +11,7 @@ public abstract class GameObject extends Sprite {
     protected float velX, velY;
     protected ID id;
     protected TiledMap map;
-    protected float speed = 1;
+    protected float speed = Gdx.graphics.getDeltaTime();
     protected Collision collision;
     protected View view;
     protected float oldX, oldY;
