@@ -5,8 +5,9 @@ import com.badlogic.gdx.Input.Keys;
 
 public class Controller implements InputProcessor{
 
-    private boolean isUp = false, isDown = false, isRight = false, isLeft = false, fast = false;
+    private boolean isUp = false, isDown = false, isRight = false, isLeft = false, fast = false, mapShift = false;
 
+    
     public boolean isFast() {
         return fast;
     }
@@ -33,6 +34,9 @@ public class Controller implements InputProcessor{
         // if (keycode == Keys.Q) mapShift = false;
         return true;
     }
+
+
+    
     @Override
     public boolean keyTyped(char character) {
         return false;
@@ -83,6 +87,8 @@ public class Controller implements InputProcessor{
     public void setLeft(boolean isLeft) {
         this.isLeft = isLeft;
     }
+
+    
 
 
 
