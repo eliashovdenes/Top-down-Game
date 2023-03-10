@@ -35,8 +35,12 @@ public class View implements Screen {
     private Random random = new Random();
     private int points = 0;
     private BitmapFont font = new BitmapFont();
+    private Zelda game;
 
-    // int timer = 0;
+   
+    public View(Zelda game) {
+        this.game = game;
+    }   
 
     
 
@@ -48,7 +52,7 @@ public class View implements Screen {
         camera = new OrthographicCamera();
         player = new Player(new Sprite(new Texture(PlayerPics.DOWN.source)), 500, 500, ID.Player, controller, map, this, PlayerPics.DOWN.source );
         playerRect = new RectangleMapObject(player.getX(), player.getY(), player.getWidth(), player.getHeight());
-        enemy = new Enemy(500, 550, ID.Enemy, new Sprite(new Texture(PlayerPics.ENEMYDOWN.source)),controller, map, this);
+        enemy = new Enemy(15*16, 20*16, ID.Enemy, new Sprite(new Texture(PlayerPics.ENEMYDOWN.source)),controller, map, this);
         enemyRect = new RectangleMapObject(enemy.getX(), enemy.getY(), enemy.getWidth(), enemy.getHeight());
         Gdx.input.setInputProcessor(controller);
         enemyexists = true;
@@ -106,13 +110,19 @@ public class View implements Screen {
         renderer.setMap(map);
     }
 
+    /**
+     * sjekker kollisjon mellom sprites
+     * avslutter foreløpig programmet.
+     * instansierer en gameoverscreen.
+     */
     public void checkSpriteCollision() {
         
         if (playerRect.getRectangle().overlaps(enemyRect.getRectangle())) {
-            points ++;
-            int x = random.nextInt(400, 600), y = random.nextInt(400, 600);
-            enemy.x = x;
-            enemy.y = y;
+            game.setScreen(new GameOverScreen(game));
+            // points ++;
+            // int x = random.nextInt(400, 600), y = random.nextInt(400, 600);
+            // enemy.x = x;
+            // enemy.y = y;
         }
     }
 
