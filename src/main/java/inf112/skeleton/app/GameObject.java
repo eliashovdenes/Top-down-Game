@@ -13,7 +13,7 @@ public abstract class GameObject extends Sprite {
     protected float speed = 1;
     protected Collision collision;
     protected View view;
-    protected float oldX, oldY;
+    protected float oldX, oldY; 
 
     public GameObject(float x, float y, ID id, Sprite sprite, TiledMap map, View view) {
         super(sprite);

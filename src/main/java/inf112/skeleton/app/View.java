@@ -118,11 +118,14 @@ public class View implements Screen {
     public void checkSpriteCollision() {
         
         if (playerRect.getRectangle().overlaps(enemyRect.getRectangle())) {
-            game.setScreen(new GameOverScreen(game));
-            // points ++;
-            // int x = random.nextInt(400, 600), y = random.nextInt(400, 600);
-            // enemy.x = x;
-            // enemy.y = y;
+            if (controller.isAttack()) {
+                points ++;
+                int x = random.nextInt(23*16, 41*16), y = random.nextInt(17*16, 34*16);
+                enemy.x = x;
+                enemy.y = y;
+            }
+            else game.setScreen(new GameOverScreen(game));
+            
         }
     }
 
