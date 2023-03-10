@@ -41,12 +41,12 @@ public class View implements Screen {
 
     @Override
     public void show() {
-        map = new TmxMapLoader().load("src/main/java/inf112/skeleton/app/assets/mapet.tmx");
+        map = new TmxMapLoader().load("src/main/java/inf112/skeleton/app/assets/stormappet.tmx");
         renderer = new OrthogonalTiledMapRenderer(map);
         camera = new OrthographicCamera();
-        player = new Player(new Sprite(new Texture(PlayerPics.DOWN.source)), 110, 110, ID.Player, controller, map, this);
+        player = new Player(new Sprite(new Texture(PlayerPics.DOWN.source)), 500, 500, ID.Player, controller, map, this);
         playerRect = new RectangleMapObject(player.getX(), player.getY(), player.getWidth(), player.getHeight());
-        enemy = new Enemy(150, 110, ID.Enemy, new Sprite(new Texture(PlayerPics.ENEMYDOWN.source)),controller, map, this);
+        enemy = new Enemy(500, 550, ID.Enemy, new Sprite(new Texture(PlayerPics.ENEMYDOWN.source)),controller, map, this);
         enemyRect = new RectangleMapObject(enemy.getX(), enemy.getY(), enemy.getWidth(), enemy.getHeight());
         Gdx.input.setInputProcessor(controller);
         enemyexists = true;
@@ -56,7 +56,7 @@ public class View implements Screen {
     public void render(float delta) {
         Gdx.gl.glClearColor(0, 0, 0, 0);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-        camera.position.set(120, 120, 0);
+        camera.position.set(320, 500, 0);
         renderer.getBatch().setProjectionMatrix(camera.combined);
         
 
@@ -70,7 +70,7 @@ public class View implements Screen {
         checkSpriteCollision();
         renderer.getBatch().begin();
 
-        font.draw(renderer.getBatch(), "score: " + points, 50, 180);
+        font.draw(renderer.getBatch(), "score: " + points, 230, 570);
 
         enemyRect.getRectangle().setPosition(enemy.x, enemy.y);
         enemy.draw(renderer.getBatch());
@@ -87,7 +87,7 @@ public class View implements Screen {
         
         if (playerRect.getRectangle().overlaps(enemyRect.getRectangle())) {
             points ++;
-            int x = random.nextInt(90, 160), y = random.nextInt(50, 180);
+            int x = random.nextInt(400, 600), y = random.nextInt(400, 600);
             enemy.x = x;
             enemy.y = y;
         }
@@ -95,8 +95,8 @@ public class View implements Screen {
 
     @Override
     public void resize(int width, int height) {
-        camera.viewportWidth = width / 2;
-        camera.viewportHeight = height / 2;
+        camera.viewportWidth = width;
+        camera.viewportHeight = height;
     }
 
     @Override
