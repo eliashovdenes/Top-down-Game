@@ -159,5 +159,22 @@ Vi har oppfylt det aller meste av dette. Vi har brukt Tiled til å lage spillbre
 Nå som vi har fått et MVP, vil vi bruke tiden framover til å videreutvikle spillet. Vi vil legge til flere fiender, flere maps og skalere fiendene slik at de blir vanskligere å bekjempe jo lenger ut i spillet du kommer. Videre må vi refaktorere koden slik at stukturen blir bedre. Noe av refaktoreringen vi vil gjøre er å skille modellen fra view bedre og lage en MonsterFactory som kan lage nye fiender. Det har gått med mye tid på å bli kjent med libGDX og Tiled, dette har gjort at vi måtte prioritere å få laget et MVP til denne innleveringen, noe som har gått på bekostning av å skrive tester. Framover vil vi gå over til mer testdrevet utvikling hvor vi skriver testene parallelt med koden.
 
 
-### Bildet
+
+## Produkt og kode:
+
+Dette har vi fikset siden sist:
+Vi har at spilleren kan bevege seg i åtte retninger.
+Vi har fikset kollisjon mellom spiller og map objektene slik at spilleren ikke kan gå gjennom kartet.
+Vi har lagt til fiender som kan angripe spilleren.
+Vi har lagt til sverd animasjon.
+Vi har lagt til en start meny.
+Vi har lagt til en game over meny når man dør.
+Vi har lagt til tre forskjellig maps som spiller kan flytte seg gjennom.
+
+For å kjøre spillet så kjører man Main.java filen. ###Skriv om hvordan det testes
+
+
+
+## Bildet på klassediagrammet
 ![image.png](./klassediagram.png)
+
