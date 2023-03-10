@@ -179,9 +179,12 @@ Vi har lagt til en start meny.
 Vi har lagt til en game over meny når man dør.
 Vi har lagt til tre forskjellig maps som spiller kan flytte seg gjennom.
 
-For å kjøre spillet så kjører man Main.java filen.
+For å kjøre spillet så kjører man Main.java filen. 
 
+Man kan manuelt teste spillet ved å kjøre Main.java filen:
 
+Deretter gå mot den bevegende fienden og se at spilleren dør også at det kommer opp en game over meny.
+Man kan også bevege seg mot treer og se at spilleren kolliderer. Man kan gå inn i døren på huset og se at mappet endrer seg til et hus map, og at man går inn i hulen i huset at man kommer til et nytt map. Når man holder inne shift knappen så skal spillet gå i en hurtigere hastighet og når man trykker på x så skal spilleren slå med sverdet sitt.
 
 ## Bildet på klassediagrammet
 ![image.png](./Klassediagram.png)
