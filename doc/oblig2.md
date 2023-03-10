@@ -4,7 +4,7 @@
 Vi opplever at rollene fungerer fint slik som det er nå. Det har vært hjelpsomt å ha en som fordyper seg i GIT og andre som tar ansvar for å lage og oppretteholder kommunikasjon mellom gruppemedlemmene. Ellers opplever vi at medlemmene i gruppen tar ansvar for å ta på seg oppgaver underveis, men vi har behov for å avklare og utdype hva de forskjellige rollene fungerer så det kommer her:
 
 #### Magnus: TEAMLEAD og GitMaster 
-Ansvarlig for individene i gruppen. At alle er involvert og opplever at de utvikles i faget. Drive gruppen videre og hjelpe å beslutte hvis det er utfordrende. Sørge for at frister blir imøtekommet og eventuelt ta tak i ting som ikke fungerer som ønsket.
+Ansvarlig for individene i gruppen. At alle er involvert og opplever at de utvikles i faget. Drive gruppen videre, hjelper til å beslutte hvis det er utfordrende. Sørge for at frister blir imøtekommet og eventuelt ta tak i ting som ikke fungerer som ønsket.
 	
 #### Casper: Kommunikasjonsansvarlig 
 Ansvar for at vi holder oss til møtepunktene. At vi snakker til hverandre på en god måte og bygger relasjoner med alle på teamet. Han har også ansvar for kontakt ut mot kunden.
@@ -12,14 +12,23 @@ Ansvar for at vi holder oss til møtepunktene. At vi snakker til hverandre på e
 #### Bjørn: Dokumentasjonsansvarlig
 Sørge for at både prosjektet er tilstrekkelig dokumentert og at koden er tilstrekkelig dokumentert med javadoc. 
 	
-#### Hans-Chr: Testansvarlig (trelloMaster)	
+#### Hans-Chr: Testansvarlig, trelloMaster	
 Sørger for at alle i gruppen skriver robuste tester til koden de implementerer. 
 
-#### Elias: Produktutvikler
+#### Elias: Produktutvikler, Mapdesigner
 Ansvar for å drive produktet framover slik at vi møter produksjonskrav. 
 
 ### Trenger vi andre roller?
+
+Arkitekt: 
 Vi har nok behov for en arkitekt som har som ansvar å organisere systemet i henhold til SOLID. Er vi for sent ute med dette kan vi ende opp med ganske stor jobb med å sørge for at prosjektet har lav coupling og høy cohesion. 
+
+Dette ansvaret gir vi til Bjørn
+
+Mapdesigner:
+At en tar ansvar for å bruke mer tid på å være kreativ med mapdesign.
+
+Dette ansvaret blir vi enige om at Elias tar.
 
 ### Har vi erfaringer team-messig eller mtp prosjektmetodikk som er verdt å nevne? 	
 Vi synes det var vanskelig å fordele spesifikke arbeidsoppgaver tidlig da vi er nok så uerfarne og MVP ble en slags flaskehals. Når vi kom forbi der ble det lettere å se hva som må gjøres. 
