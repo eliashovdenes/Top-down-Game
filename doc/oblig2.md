@@ -34,27 +34,25 @@ Dette ansvaret blir vi enige om at Elias tar.
 Vi synes det var vanskelig å fordele spesifikke arbeidsoppgaver tidlig da vi er nok så uerfarne og MVP ble en slags flaskehals. Når vi kom forbi der ble det lettere å se hva som må gjøres. 
 
 ### Prosjektverktøy: 
-* Vi startet med GITlab Issueboard, men gikk over til Trello (lettere å logge inn og lettere å bruke). Trello bruker vi som et Kanban board. Vi organiserer oss med elementer av Scrum ved å ha spesifikke arbeidsoppgaver lagt inn i en spesifikk sprint som varer i en uke. 
+* Vi startet med GITlab Issueboard, men gikk over til Trello (lettere å logge inn og lettere å bruke). Trello bruker vi som et Kanban board. Vi organiserer oss med elementer av Scrum ved å ha spesifikke arbeidsoppgaver lagt inn i en spesifikk sprint som varer til neste innlevering. 
 * Vi benytter oss også mye av parprogrammering i gruppetimer og når vi treffes utenom gruppetimen hver onsdag. Spesielt på de litt 'tyngre' oppgavene som å lage maps i TILED. 
 
 ### Liker vi valgene vi har tatt underveis?
 Ja. Er ganske enige om de tekniske valgene. Det som ikke har fungert har vi endret (Issueboard). Vi er fortsatt litt usikre på hvilket arkitekturdesign vi skal følge. Nå er vi kommet så langt at det lettere å fordele spesifikke arbeidsoppgaver og gruppemedlemmene opplevere det som lettere å produsere.
 
 ### Hvordan er gruppedynamikken? Uenigheter?
-Ikke mye uenigheter. Sunne diskusjoner.
+Ikke mye uenigheter. Sunne diskusjoner og alle er flinke til å komme med innspill.
 
 ### Hvordan har kommunikasjon fungert for oss?
-Det har fungert bra. Et av gruppemedlemmene er dog veldig direkte og det går ut over nattsøvnen til resten av gruppen.
+Det har fungert bra. Et av gruppemedlemmene er dog veldig direkte og det går ut over nattsøvnen til resten av gruppen. Medlemmene i gruppen er flinke til å gi beskjed hvis de er forsinket til en gruppetime eller hvis de er syke. Det virker som om alle er like investert i prosjektet og dette er nok hovedgrunnen til at vi ikke har hatt noen konflikter.
 
 ### Kort retrospektiv om hva som er bra og hva som kan forbedres. Hva har vi fått til det nå? 
-Det har gått litt i rykk og napp, men alle har levert individuelt bra og tatt tak i verktøyene for å lære seg dem. Det kan oppleves som vi sitter litt på hver vår haug og programmerer i hver vår retning, mens vi finner ut av hvordan man gjør dette. Men det er nokså naturlig. Når vi har treffes har vi presentert det vi har jobbet med å bestemt oss for hva vi ønsker å ha med i en merge til developer og jobbe videre med. Framover skal vi jobbe mer samkjørt, fordi vi er ganske heldige som alle er engasjert for å få til endeproduktet og kreativt er nokså på samme side.
+Det har gått litt i rykk og napp, men alle har levert individuelt bra og tatt tak i verktøyene for å lære seg dem. Det kan oppleves som vi sitter litt på hver vår haug og programmerer i hver vår retning, mens vi finner ut av hvordan man gjør dette. Men det er nokså naturlig. Når vi har treffes har vi presentert det vi har jobbet med å bestemt oss for hva vi ønsker å ha med i en merge til developer og jobbe videre med. Framover skal vi jobbe mer samkjørt, fordi vi er heldige som har en gruppe hvor alle er engasjert for å få til et godt sluttprodukt.
 
 ### Bli enige om maks 3 forbedringspunkter som skal følges opp.
 1. Se på semesteroppgaveteksten tidligere etter hver innlevering og jobbe med den mer strukturert. 
-2. Oppgaver kan være enda mer spesifikt fordelt.
-3. Jobbe mer samkjørt, committe og merge oftere.
-
-
+2. Oppgaver kan være enda mer spesifikt fordelt slik at det er klarere for den enkelte hva han skal gjøre. For eksempel: "Implementer Player klassen" blir for vagt, vi må bli enige om hvilke metoder og funksjonalitet Player skal ha. 
+3. Jobbe mer samkjørt, committe og merge oftere. Flere kan jobbe sammen på samme branch i stedet for at alle arbeider på hver sin branch. Dette gjør også at de som arbeider med den samme delen av klasen også må samarbeide tettere.
 
 
 
@@ -153,11 +151,12 @@ Vi har prioritert å lage et MVP. Kriteriene for å oppnå dette spesifiserte vi
 10. Game Over skjerm
 11. Mulighet til å starte på nytt
 
-Vi har oppfylt det aller meste av dette. Vi har brukt Tiled til å lage spillbrettet og spillkarakteren vises og kan beveges i åtte retninger. Spillet har en startmeny, active game og game over meny. Når spillet er over, kan du starte på nytt. Det eneste fra listen som mangler er å vise på skjermen hvilket nivå/level spilleren er på. Vi må også finne et poengsystem. Dette kan for eksempel være å telle antall fiender spilleren har beseiret.
+Vi har oppfylt det aller meste av dette. Vi har brukt Tiled til å lage spillbrettet og spillkarakteren vises og kan beveges i åtte retninger. Spillet har en startmeny, active game og game over meny. Når spillet er over, kan du starte på nytt. 
+
 
 ### Prioriteringer framover
 
-Nå som vi har fått et MVP, vil vi bruke tiden framover til å videreutvikle spillet. Vi vil legge til flere fiender, flere maps og skalere fiende slik at de blir vanskligere å bekjempe jo lenger ut i spillet du kommer. Videre må vi refaktorere koden slik at stukturen blir bedre. Noe av refaktoreringen vi vil gjøre er å skille modellen fra view bedre og lage en MonsterFactory som kan lage nye fiender. Det har gått med mye tid på å bli kjent med libGDX og Tiled, dette har gjort at vi måtte prioritere å få laget et MVP til denne innleveringen, noe som har gått på bekostning av å skrive tester. Framover vil vi gå over til mer testdrevet utvikling hvor vi skriver testene parallelt med koden.
+Nå som vi har fått et MVP, vil vi bruke tiden framover til å videreutvikle spillet. Vi vil legge til flere fiender, flere maps og skalere fiendene slik at de blir vanskligere å bekjempe jo lenger ut i spillet du kommer. Videre må vi refaktorere koden slik at stukturen blir bedre. Noe av refaktoreringen vi vil gjøre er å skille modellen fra view bedre og lage en MonsterFactory som kan lage nye fiender. Det har gått med mye tid på å bli kjent med libGDX og Tiled, dette har gjort at vi måtte prioritere å få laget et MVP til denne innleveringen, noe som har gått på bekostning av å skrive tester. Framover vil vi gå over til mer testdrevet utvikling hvor vi skriver testene parallelt med koden.
 
 
 ### Bildet
