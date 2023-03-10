@@ -59,7 +59,7 @@ Det har gått litt i rykk og napp, men alle har levert individuelt bra og tatt t
 
 ## Brukerhistorier, akseptansekriterier og arbeidsoppgaver til MVP (som vi har jobbet med)
 
-1. Som spiller ønsker jeg en MainMenuScreen og en GameOverScreen, slik at jeg kan starte spillet, velge nytt spill og når jeg vinner/taper i spillet så kommer jeg meg tilbake til main menu.
+**1. Som spiller ønsker jeg en MainMenuScreen og en GameOverScreen, slik at jeg kan starte spillet, velge nytt spill og når jeg vinner/taper i spillet så kommer jeg meg tilbake til main menu.**
 
 * Akseptansekriterier:
 	1. Vi har en startmeny hvor spilleren kan starte et nytt spill.
@@ -72,40 +72,39 @@ Det har gått litt i rykk og napp, men alle har levert individuelt bra og tatt t
 	3. Ha en keyListener som registrerer når spilleren trykker på start
 	4. Lage en metode som registrerer når spilleren er død/har null hit points.
 		
-2. Som spiller ønsker jeg å se spillbrettet på skjermen slik at jeg kan se hvor fiendene er og hvor jeg kan bevege karakteren min. 
-* Gitt at vi har startet et nytt spill, så skal spillbrettet vises på skjermen
+**2. Som spiller ønsker jeg å se spillbrettet på skjermen slik at jeg kan se hvor jeg kan bevege karakteren min.** 
+* Akseptansekriterier:
+	1. Spillet starter og viser spillbrettet
 		
 * Arbeidsoppgaver:
-	1. Vi må ha et grid som representerer brettet
-	2. Gridet må ha en størrelse.
+	1. Vi må lage et brett i Tiled
+	2. Brettet må vises på skjermen
 	
 		
-3. Som spiller ønsker jeg å se karakteren min på skjermen slik at jeg kan se hvor jeg er og kan gjøre valg
-* Gitt at vi har startet et nytt spill, så skal karakteren vises på skjermen
+**3. Som spiller ønsker jeg å se karakteren min på skjermen slik at jeg kan se hvor jeg er**
+* Akseptansekriterier:
+	1. Spilleren skal vises på spillbrettet
 	
 * Arbeidsoppgaver:
 	1. Vi må ha en spiller-klasse
 	2. Karakteren må ha en posisjon
 	3. Karakteren må tegnes på skjermen
 		
-4. Som spiller ønsker jeg at jeg kan bevege karakteren min ved å trykke på tastene slik at jeg kan unngå at fiender skader meg.
-* Gitt at vi har startet et nytt spill, brettet vises og karakteren vises, så skal karakteren kunne flyttes:
-	1. Nord ved å trykke på "w"
-	2. West ved å trykke på "a"
-	3. Øst ved å trykke på "d"
-	4. Sør ved å trykke på "s"
+**4. Som spiller ønsker jeg at jeg kan bevege karakteren min ved å trykke på tastene slik at jeg kan unngå at fiender skader meg.**
+* Akseptansekriterier:
+	1. Spilleren skal kunne bevege seg på skjermen i åtte retninger ved å bruke tastene "w", "a", "s", "d"
 	
 * Arbeidsoppgaver:
 	1. Vi må ha en actionListener som registrerer tastetrykk
-	2. Vi må ha en metode som tester at spilleren holder seg på brettet (ikke går out of bounds)
-	3. Vi må registrere inputs fra bruker slik at spilleren flytter seg i riktig retning.
+	2. Vi må sette opp controller slik at spilleren beveger seg nord, vest, sør og øst ved å trykke på henholdsvis "w", "a", "s", "d".
+	3. Kombinasjoner av tastetrykkene må bevege spilleren diagonalt
 	4. Modellen må oppdateres med den nye posisjonen
 	5. Vi må tegne karakteren i den nye posisjonen
 		
-5. Som spiller ønsker jeg at det er lett å skille områdene spilleren kan bevege seg på fra hindringer og vegger slik at det er enklere å teste at spillet fungerer som det skal
-* Gitt at vi har startet et nytt spill og karakteren kan flyttes, så skal:
-	1. Brettet vises med vegger og hindringer
-	2. Karakteren ikke kunne passere vegger og hindringer
+**5. Som spiller ønsker jeg at det er lett å skille områdene spilleren kan bevege seg på fra hindringer og vegger slik at det er lett å se hvor jeg kan bevege meg på brettet**
+* Akseptansekriterier:
+	1. Brettet skal vises med vegger og hindringer
+	2. Karakteren skal ikke kunne passere vegger og hindringer
 	
 * Arbeidsoppgaver:
 	1. Spillbrettet må vise ulike tiles
@@ -115,28 +114,33 @@ Det har gått litt i rykk og napp, men alle har levert individuelt bra og tatt t
 	5. Modellen må ha informasjon om de ulike tiles-ene og hvor de er.
 	6. View må vite hva som skal tegnes hvor og hvordan tiles ser ut
 
-6. Som spiller ønsker jeg at spillet har fiender som spilleren kan drepe, slik at det er noe som skjer i spillet som er underholdende for spilleren.
-* Gitt at spillet kjører, så skal det være fiender på spillbrettet
+**6. Som spiller ønsker jeg at spillet har fiender, slik at det er noe som skjer i spillet som er underholdende for spilleren.**
+* Akseptansekriterier:
+	1. Spillet må ha en fiende som vises på skjermen
+	
 
 * Arbeidsoppgaver:
 	1. Vi må ha et interface for fiender
 	2. Vi må ha en abstrakt klasse som utvider interfacet og implementerer alle metodene som er felles for alle fiendene
-	3. Vi må ha en(eller flere) fiende klasse(r)
-	4. En fiende må ha hitpoints
-	5. En fiende må ha en startposisjon
-	6. En fiende må ha en hitbox
-	7. Fienden må ha en oppførsel/bevegelsesmønster
-	8. Fienden må tegnes på skjermen
+	3. Vi må ha en(eller flere) fiende klasse(r) 
+	4. En fiende må ha en startposisjon
+	5. En fiende må ha en hitbox
+	6. Fienden må ha en oppførsel/bevegelsesmønster
+	7. Fienden må tegnes på skjermen
 
-7. Som spiller ønsker jeg å kunne angripe fiendene slik at jeg kan overvinne dem.
-* Gitt at det er fiender på brettet, så skal spilleren kunne angripe og gjøre skade på dem
+**7. Som spiller ønsker jeg å kunne angripe fiendene slik at jeg kan overvinne dem.**
+
+* Akseptansekriterier:
+	1. Splilleren på kunne drepe fienden
+	2. Fienden skal forsvinne fra brettet når han dør
 
 * Arbeidsoppgaver:
-	1. Spillkarakteren må ha en metode som gjør at han skyter eller slår en fiende med et våpen
+	1. Spillkarakteren må ha en metode som gjør at han skyter eller slår en fiende med et våpen eller på en annen måte skade fienden
 	2. Det må være en knapp spilleren kan trykke på for å angripe
 	3. Det må registreres når spilleren treffer fienden med våpenet
-	4. Fienden må miste hit points når den blir truffet
-	5. Fienden må dø og forsvinne når den ikke har flere hit points
+	4. En fiende må ha hitpoints
+	5. Fienden må miste hit points når den blir truffet
+	6. Fienden må dø og forsvinne når den ikke har flere hit points
 
 
 # Krav og spesifikasjon
