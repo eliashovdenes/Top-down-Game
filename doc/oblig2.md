@@ -175,7 +175,7 @@ Vi har lagt til en start meny.
 Vi har lagt til en game over meny når man dør.
 Vi har lagt til tre forskjellig maps som spiller kan flytte seg gjennom.
 
-For å kjøre spillet så kjører man Main.java filen. ###Skriv om hvordan det testes
+For å kjøre spillet så kjører man Main.java filen.
 
 
 
