@@ -41,7 +41,7 @@ Det har fungert bra. Et av gruppemedlemmene er dog veldig direkte og det går ut
 Det har gått litt i rykk og napp, men alle har levert individuelt bra og tatt tak i verktøyene for å lære seg dem. Det kan oppleves som vi sitter litt på hver vår haug og programmerer i hver vår retning, mens vi finner ut av hvordan man gjør dette. Men det er nokså naturlig. Når vi har treffes har vi presentert det vi har jobbet med å bestemt oss for hva vi ønsker å ha med i en merge til developer og jobbe videre med. Framover skal vi jobbe mer samkjørt, fordi vi er ganske heldige som alle er engasjert for å få til endeproduktet og kreativt er nokså på samme side.
 
 ### Bli enige om maks 3 forbedringspunkter som skal følges opp.
-1. Se på semesteroppgaveteksten tidligere etter hver innlevering å jobbe med den mer strukturert. 
+1. Se på semesteroppgaveteksten tidligere etter hver innlevering og jobbe med den mer strukturert. 
 2. Oppgaver kan være enda mer spesifikt fordelt.
 3. Jobbe mer samkjørt, committe og merge oftere.
 
