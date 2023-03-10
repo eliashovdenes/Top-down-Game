@@ -159,17 +159,21 @@ Vi har prioritert å lage et MVP. Kriteriene for å oppnå dette spesifiserte vi
 10. Game Over skjerm
 11. Mulighet til å starte på nytt
 
-Vi har oppfylt det aller meste av dette. Vi har brukt Tiled til å lage spillbrettet og spillkarakteren vises og kan beveges i åtte retninger. Spillet har en startmeny, active game og game over meny. Når spillet er over, kan du starte på nytt. Hvis fienden treffer spilleren, dør han og spillet er over. Vi har laget en attack-animasjon in fire rettninger som du bruker ved å trykke på "x". For å skade og drepe fienden må du holde inne "x" og treffe fienden med sverdet. I spillet kan du gå inn og ut av huset og dermed gå fra et map til neste. Her starter spilleren på level1, går inn i huset og kommer ut igjen til level2 (level1 og level2 er veldig like utseende messig). Vi har en score på skjermen som skal oppdateres hver gang du dreper en fiende. Spilleren og fiendene har foreløpig ikke hit points, spilleren dør hvis han blir truffet og fienden dør når den blir truffet av sverdet. 
+Vi har oppfylt det aller meste av dette. Vi har brukt Tiled til å lage spillbrettet og spillkarakteren vises og kan beveges i åtte retninger. Spillet har en startmeny, active game og game over meny. Når spillet er over, kan du starte på nytt. Hvis fienden treffer spilleren, dør han og spillet er over. Vi har laget en attack-animasjon in fire rettninger som du bruker ved å trykke på "x". For å skade og drepe fienden må du holde inne "x" og treffe fienden med sverdet. I spillet kan du gå inn og ut av huset og dermed gå fra et map til neste. Her starter spilleren på level1, går inn i huset og kommer ut igjen til level2 (level1 og level2 er veldig like utseende messig). Vi har en score på skjermen som skal oppdateres hver gang du dreper en fiende. Spilleren og fiendene har foreløpig ikke hit points, spilleren dør hvis han blir truffet og fienden dør når den blir truffet av sverdet. Spilleren kan også gå raskere ved å trykke på "shift"
 
 ### Bugs
-Inne i huset går fiendene ut av av brettet. Dette er fordi fiendene sjekker kollison i hovedbrettet og ikke inne i huset ennå. Fiender kan også spawne inne i trærne slik at de ikke kan bevege seg.
+* Inne i huset går fiendene ut av av brettet. Dette er fordi fiendene sjekker kollison i hovedbrettet og ikke inne i huset ennå. * Fiender kan også spawne inne i trærne slik at de ikke kan bevege seg.
+* Vi har lagt til SpotBugs Maven Plugin i pom.xml for å hjelpe oss til å finne bugs
 
 
 ### Prioriteringer framover
 
 Nå som vi har fått et MVP, vil vi bruke tiden framover til å videreutvikle spillet. Vi vil legge til flere fiender, flere maps og skalere fiendene slik at de blir vanskligere å bekjempe jo lenger ut i spillet du kommer.Spilleren og fiendene skal ha hit points og de ulike fiendene skal gjøre ulik skade. Videre må vi refaktorere koden slik at stukturen blir bedre. Noe av refaktoreringen vi vil gjøre er å skille modellen fra view bedre og lage en MonsterFactory som kan lage nye fiender. Det har gått med mye tid på å bli kjent med libGDX og Tiled, dette har gjort at vi måtte prioritere å få laget et MVP til denne innleveringen, noe som har gått på bekostning av å skrive tester. Vi har noen JUnit tester samt noen manuelle tester som er beskrevet i neste del. I neste del av prosjektet vil vi legge til flere tester slik av vi testene har større dekningsgrad. Framover vil vi gå over til mer testdrevet utvikling hvor vi skriver testene parallelt med koden.
 
-
+### Hvordan styre karateren i spillet
+* Du syrer karateren med "w", "a", "s", "d"
+* Angriper ved å holde inne "x"
+* Løper raskere ved å holde inne "shift"
 
 ## Produkt og kode:
 
