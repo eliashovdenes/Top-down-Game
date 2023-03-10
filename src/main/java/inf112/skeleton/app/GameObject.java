@@ -11,7 +11,7 @@ public abstract class GameObject extends Sprite {
     protected float velX, velY;
     protected ID id;
     protected TiledMap map;
-    protected float speed = Gdx.graphics.getDeltaTime();
+    protected float speed = 1;
     protected Collision collision;
     protected View view;
     protected float oldX, oldY;
