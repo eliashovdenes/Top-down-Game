@@ -208,7 +208,7 @@ Nå som vi har fått et MVP, vil vi bruke tiden framover til å videreutvikle sp
 
 
 ### Hvordan styre karateren i spillet
-* Du syrer karateren med "w", "a", "s", "d"
+* Du styrer karateren med "w", "a", "s", "d"
 * Angriper ved å holde inne "x"
 * Løper raskere ved å holde inne "shift"
 
