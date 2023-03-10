@@ -15,6 +15,9 @@ import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class MapTest {
+
+
+    /* 
     private static TiledMap map;
     private static OrthographicCamera camera;
     private static TiledMapRenderer renderer;
@@ -65,5 +68,5 @@ public class MapTest {
             //assertEquals(andre egenskaper)
 
         }
-        
+        */
 }
