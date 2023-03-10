@@ -16,9 +16,10 @@ public class Player extends GameObject {
 
     
 
-    public Player(Sprite sprite, float x, float y, ID id, Controller controller, TiledMap map, View view) {
+    public Player(Sprite sprite, float x, float y, ID id, Controller controller, TiledMap map, View view, String lastPLayerPics) {
         super(x, y, id, sprite, map, view);
         this.controller = controller;
+        this.lastPlayerPics = lastPLayerPics;
         collision = new Collision(map, this, view); 
     }
 
@@ -55,6 +56,11 @@ public class Player extends GameObject {
         else if (!controller.isDown()) {
             velY = 0;
         }
+        
+        if(!controller.isAttack()){
+            setScale(1); 
+            setTexture(new Texture(lastPlayerPics));
+        }
 
         if (controller.isDown()) {
             velY = - speed;
@@ -65,6 +71,7 @@ public class Player extends GameObject {
         else if (!controller.isUp()) {
             velY = 0;
         }
+
 
         if (controller.isRight()) {
             velX = speed;
@@ -140,17 +147,18 @@ public class Player extends GameObject {
     }
 
     //trenger ikke disse?
-    @Override
-    public void tick() {
-        
-        throw new UnsupportedOperationException("Unimplemented method 'tick'");
-    }
 
     public float getOldX() {
         return oldX;
     }
     public float getOldY() {
         return oldY;
+    }
+
+    @Override
+    public void setOldXNdY(float oldX, float oldY) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'setOldXNdY'");
     }
     
 }

@@ -46,7 +46,7 @@ public class View implements Screen {
         map = new TmxMapLoader().load(Maps.Level1.source);
         renderer = new OrthogonalTiledMapRenderer(map);
         camera = new OrthographicCamera();
-        player = new Player(new Sprite(new Texture(PlayerPics.DOWN.source)), 500, 500, ID.Player, controller, map, this);
+        player = new Player(new Sprite(new Texture(PlayerPics.DOWN.source)), 500, 500, ID.Player, controller, map, this, PlayerPics.DOWN.source );
         playerRect = new RectangleMapObject(player.getX(), player.getY(), player.getWidth(), player.getHeight());
         enemy = new Enemy(500, 550, ID.Enemy, new Sprite(new Texture(PlayerPics.ENEMYDOWN.source)),controller, map, this);
         enemyRect = new RectangleMapObject(enemy.getX(), enemy.getY(), enemy.getWidth(), enemy.getHeight());
@@ -91,7 +91,7 @@ public class View implements Screen {
         TiledMap newMap = mapLoader.load(mapFilename);
     
         // Create a new instance of Player with the new map
-        Player newPlayer = new Player(new Sprite(new Texture(PlayerPics.DOWN.source)), x, y, ID.Player, this.controller, newMap,this);
+        Player newPlayer = new Player(new Sprite(new Texture(PlayerPics.DOWN.source)), x, y, ID.Player, this.controller, newMap,this, PlayerPics.DOWN.source);
 
         // Dispose of the old instance of Player
         player.getTexture().dispose();
