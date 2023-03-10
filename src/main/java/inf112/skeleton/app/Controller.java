@@ -88,7 +88,13 @@ public class Controller implements InputProcessor{
         this.isLeft = isLeft;
     }
 
-    
+    //setter attack
+    public void setAttack(boolean isAttack){
+        this.isAttack = isAttack;
+    }
+    public boolean isAttack(){
+        return isAttack;
+    }
 
 
 

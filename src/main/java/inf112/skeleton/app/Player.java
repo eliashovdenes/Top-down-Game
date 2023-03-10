@@ -10,6 +10,7 @@ public class Player extends GameObject {
 
     private Controller controller;
     private Collision collision;
+    private String  lastPlayerPics;
 
     private View view;
 
@@ -48,6 +49,8 @@ public class Player extends GameObject {
         if (controller.isUp()){ 
             velY = speed;
             setTexture(new Texture(PlayerPics.UP.source));
+            lastPlayerPics = PlayerPics.UP.source;
+           
         }
         else if (!controller.isDown()) {
             velY = 0;
@@ -56,6 +59,8 @@ public class Player extends GameObject {
         if (controller.isDown()) {
             velY = - speed;
             setTexture(new Texture(PlayerPics.DOWN.source));
+            lastPlayerPics = PlayerPics.DOWN.source;
+            
         }
         else if (!controller.isUp()) {
             velY = 0;
@@ -64,14 +69,17 @@ public class Player extends GameObject {
         if (controller.isRight()) {
             velX = speed;
             setTexture(new Texture(PlayerPics.RIGHT.source));
+            lastPlayerPics = PlayerPics.RIGHT.source;
         }
         else if (!controller.isLeft()) {
             velX = 0;
+            
         }
 
         if (controller.isLeft()) {
             velX = -speed;
             setTexture(new Texture(PlayerPics.LEFT.source));
+            lastPlayerPics = PlayerPics.LEFT.source;
         }
         else if (!controller.isRight()) {
             velX = 0;
@@ -104,16 +112,38 @@ public class Player extends GameObject {
         }
 
 
-        // //When pressing "q" it changes the map here
-        // if (controller.isMapShift()) {
-        //     view.changeMap("src/main/java/inf112/skeleton/app/assets/Level 2.tmx");
-        // }
         
+        if (controller.isAttack()) {
+            if(lastPlayerPics==PlayerPics.DOWN.source){
+                setTexture(new Texture(PlayerPics.ATTACKDOWN.source));
+                setScale((float) 1.8,(float) 1.8); 
+            }
+            if(lastPlayerPics==PlayerPics.UP.source){
+                setTexture(new Texture(PlayerPics.ATTACKUP.source));
+                setScale((float) 1.3,( float) 1.3); 
+            }
+            if(lastPlayerPics==PlayerPics.LEFT.source){
+                setTexture(new Texture(PlayerPics.ATTACKLEFT.source));
+                setScale((float) 1.8,(float) 1.8); 
+            }
+            if(lastPlayerPics==PlayerPics.RIGHT.source){
+                setTexture(new Texture(PlayerPics.ATTACKRIGHT.source));
+                setScale((float) 1.8,(float) 1.8); 
+            }
+            
+            System.out.println(lastPlayerPics);
+        
+        
+            
+        }
+        // TODO må skrive en funskjon som holder følge på hvilke retning spilleren sist beveget seg
     }
 
-    public void setOldXNdY(float oldX, float oldY) {
-        this.oldX = oldX;
-        this.oldY = oldY;
+    //trenger ikke disse?
+    @Override
+    public void tick() {
+        
+        throw new UnsupportedOperationException("Unimplemented method 'tick'");
     }
 
     public float getOldX() {
