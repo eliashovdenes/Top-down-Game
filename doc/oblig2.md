@@ -170,6 +170,43 @@ Vi har oppfylt det aller meste av dette. Vi har brukt Tiled til å lage spillbre
 
 Nå som vi har fått et MVP, vil vi bruke tiden framover til å videreutvikle spillet. Vi vil legge til flere fiender, flere maps og skalere fiendene slik at de blir vanskligere å bekjempe jo lenger ut i spillet du kommer.Spilleren og fiendene skal ha hit points og de ulike fiendene skal gjøre ulik skade. Videre må vi refaktorere koden slik at stukturen blir bedre. Noe av refaktoreringen vi vil gjøre er å skille modellen fra view bedre og lage en MonsterFactory som kan lage nye fiender. Det har gått med mye tid på å bli kjent med libGDX og Tiled, dette har gjort at vi måtte prioritere å få laget et MVP til denne innleveringen, noe som har gått på bekostning av å skrive tester. Vi har noen JUnit tester samt noen manuelle tester som er beskrevet i neste del. I neste del av prosjektet vil vi legge til flere tester slik av vi testene har større dekningsgrad. Framover vil vi gå over til mer testdrevet utvikling hvor vi skriver testene parallelt med koden.
 
+### Brukerhistorier, akseptansekriterier og arbeidsoppgaver til neste innlevering (foreløpig liste)
+
+**1. Som spiller ønsker jeg at spillkarakteren har hit points slik at jeg ikke dør med en gang jeg tar skade**
+
+* Akseptansekriterier:
+	1. Spilleren skal ha hitpoints og antall hitpoints skal vises på skjermen
+	2. Hitpoints skal oppdateres når spilleren tar skade
+	3. Spilleren skal dø når hitpoints er mindre eller lik null
+	
+* Arbeidsoppgaver:
+	1. Vi må legge til hitpoints i spillerklassen
+	2. Current hitpoints skal vises på skjermen
+	3. Hvis hitpoints er mindre enn null, skal det settes til null og spilleren dør
+	4. Skrive en metode som oppdaterer hitpoints
+	5. Skrive en metode som gjør at spilleren ikke kan ta skade i x-antall sekunder etter han tok skade for å unngå at spilleren tar kontinuerlig skade når han for eksempel går på en fiende
+
+**2. Som spiller ønsker jeg at fiendene har hit points slik at noen fiender tåler mer enn andre og spillet blir mer utfordrende**
+
+* Akseptansekriterier:
+	1. Fiender skal ha hitpoints
+	2. Hitpoints skal oppdateres når fienden tar skade
+	3. Fiender skal dø når hitpoints er mindre eller lik null
+	
+* Arbeidsoppgaver:
+	1. Vi må legge til hitpoints i fiende interfacet 
+	2. Hvis hitpoints er mindre enn null, skal hitpoints settes til null og fienden dør
+	3. Skrive en metode som oppdaterer hitpoints for fiender
+
+**3. Som fiende ønsker jeg å bli sterkere i løpet av spillet slik at spillern ikke dreper meg hver gang**
+
+* Akseptansekriterier:
+	1. Fiender skal skalere og få mer hitpoints og gjøre mer skade utover i spillet
+	
+* Arbeidsoppgaver:
+	1. Vi implementere en måte å skalere hitpoints og skade til fiendene
+
+
 ### Hvordan styre karateren i spillet
 * Du syrer karateren med "w", "a", "s", "d"
 * Angriper ved å holde inne "x"
