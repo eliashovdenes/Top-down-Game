@@ -34,7 +34,6 @@ public class MainMenuScreen extends ScreenAdapter {
         font.draw(batch, "Credits", 300, 100);
         batch.end();
 
-        //Draw the "Start" button
         if (Gdx.input.justTouched()) {
             game.setScreen(new View(game));
         }
