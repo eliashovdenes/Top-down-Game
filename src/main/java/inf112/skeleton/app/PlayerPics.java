@@ -5,10 +5,12 @@ public enum PlayerPics {
     LEFT("src/main/java/inf112/skeleton/app/assets/playerPics/playerL.png"),
     UP("src/main/java/inf112/skeleton/app/assets/playerPics/playerUP.png"),
     DOWN("src/main/java/inf112/skeleton/app/assets/playerPics/playerDOWN.png"),
-    ATTACKDOWN("src/main/java/inf112/skeleton/app/assets/playerPics/linkAttack_down.png"),
-    ATTACKLEFT("src/main/java/inf112/skeleton/app/assets/playerPics/linkattackleft.png"),
-    ATTACKUP("src/main/java/inf112/skeleton/app/assets/playerPics/linkattacktop.png"),
-    ATTACKRIGHT("src/main/java/inf112/skeleton/app/assets/playerPics/linkattack_right.png");
+    ENEMYDOWN("src/main/java/inf112/skeleton/app/assets/enemyPics/enemyDown.png"),
+    ENEMYUP("src/main/java/inf112/skeleton/app/assets/enemyPics/enemyUp.png"),
+    ENEMYLEFT("src/main/java/inf112/skeleton/app/assets/enemyPics/enemyLeft.png"),
+    ENEMYRIGHT("src/main/java/inf112/skeleton/app/assets/enemyPics/enemyRight.png");
+
+    
 
     String source;
 

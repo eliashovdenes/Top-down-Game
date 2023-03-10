@@ -6,7 +6,7 @@ public class Zelda extends Game{
 
     @Override
     public void create() {
-        setScreen(new View());
+        setScreen(new MainMenuScreen(this));
     }
 
     @Override

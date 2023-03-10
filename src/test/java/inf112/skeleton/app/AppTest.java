@@ -13,6 +13,7 @@ public class AppTest {
 	 */
 	@BeforeAll
 	static void setUpBeforeAll() {
+		
 	}
 
 	/**
@@ -20,6 +21,7 @@ public class AppTest {
 	 */
 	@BeforeEach
 	void setUpBeforeEach() {
+		
 	}
 
 	/**

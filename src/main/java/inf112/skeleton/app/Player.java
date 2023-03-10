@@ -8,20 +8,18 @@ import com.badlogic.gdx.maps.tiled.TiledMap;
 
 public class Player extends GameObject {
 
-    private float speed = 1;
     private Controller controller;
     private Collision collision;
     private String  lastPlayerPics;
 
+    private View view;
+
     
 
-    public Player(Sprite sprite, float x, float y, ID id, Controller controller, TiledMap map, String lastPlayerPics) {
-        super(x, y, id, sprite, map);
-        setPosition(x, y);
+    public Player(Sprite sprite, float x, float y, ID id, Controller controller, TiledMap map, View view) {
+        super(x, y, id, sprite, map, view);
         this.controller = controller;
-        this.map = map;
-        this.lastPlayerPics = lastPlayerPics;
-        collision = new Collision(map, this); 
+        collision = new Collision(map, this, view); 
     }
 
     @Override
@@ -30,15 +28,23 @@ public class Player extends GameObject {
         super.draw(batch);
     }
 
+    public void setmap(TiledMap tileMap, Controller controller){
+        this.map = tileMap;
+        collision.setMap(tileMap);
+        this.controller = controller;
+    }
+
 
     private void update(float deltaTime) {
+       
         x += velX;
         y += velY;
 
+        
         //save recent position
-        float oldX = getX(), oldY = getY();
-
-        //if(controlleri)
+        oldX = getX();
+        oldY = getY();
+        
 
         if (controller.isUp()){ 
             velY = speed;
@@ -79,25 +85,30 @@ public class Player extends GameObject {
             velX = 0;
         }
 
-        //Denne er nok ikke så godt optimalisert, MTP hvordan update metoden funker.
-        if(!controller.isAttack()){
-            setScale(1); 
-            setTexture(new Texture(lastPlayerPics));
+        if (controller.isFast()) {
+            speed = 2;
         }
+        else 
+        speed = 1;
+
+        
+
         setX(getX() + velX * deltaTime);
 
-        if (collision.chechXDirection(velX, oldX)) {
-            setX(oldX);
+        if (collision.chechXDirection(velX, oldX)) { 
+            
+             x = oldX;
+            // System.out.println(oldX);
             velX = 0;
-            System.out.println(oldX);
+            // System.out.println(oldX);
         }
 
         setY(getY() + velY * deltaTime);
 
         if (collision.chechYDirection(velY, oldY)) {
-            setY(oldY);
+            y = oldY;
             velY = 0;
-            System.out.println("y");
+            // System.out.println("y");
         }
 
 
@@ -135,10 +146,11 @@ public class Player extends GameObject {
         throw new UnsupportedOperationException("Unimplemented method 'tick'");
     }
 
-    @Override
-    public void render() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'render'");
+    public float getOldX() {
+        return oldX;
+    }
+    public float getOldY() {
+        return oldY;
     }
     
 }
