@@ -11,6 +11,8 @@ public class Player extends GameObject {
     private Controller controller;
     private Collision collision;
 
+    private View view;
+
     
 
     public Player(Sprite sprite, float x, float y, ID id, Controller controller, TiledMap map, View view) {
@@ -23,6 +25,12 @@ public class Player extends GameObject {
     public void draw(Batch batch) {
         update(Gdx.graphics.getDeltaTime());
         super.draw(batch);
+    }
+
+    public void setmap(TiledMap tileMap, Controller controller){
+        this.map = tileMap;
+        collision.setMap(tileMap);
+        this.controller = controller;
     }
 
 
@@ -94,6 +102,13 @@ public class Player extends GameObject {
             velY = 0;
             // System.out.println("y");
         }
+
+
+        // //When pressing "q" it changes the map here
+        // if (controller.isMapShift()) {
+        //     view.changeMap("src/main/java/inf112/skeleton/app/assets/Level 2.tmx");
+        // }
+        
     }
 
     public void setOldXNdY(float oldX, float oldY) {

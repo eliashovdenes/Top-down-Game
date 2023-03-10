@@ -36,6 +36,8 @@ public class View implements Screen {
     private int points = 0;
     private BitmapFont font = new BitmapFont();
 
+    // int timer = 0;
+
     
 
 
@@ -62,7 +64,7 @@ public class View implements Screen {
 
         
         //setter position på spiller;
-        // camera.position.set(player.getX() + player.getWidth() / 2, player.getY() + player.getHeight() / 2, 0);
+        camera.position.set(player.getX() + player.getWidth() / 2, player.getY() + player.getHeight() / 2, 0);
         camera.update();
         renderer.setView(camera);
         renderer.render();
@@ -79,8 +81,29 @@ public class View implements Screen {
         
 
         renderer.getBatch().end();
-        
+    }
 
+    
+
+    public void changeMap(String mapFilename, int x, int y) {
+        // Load the new map from file
+        TmxMapLoader mapLoader = new TmxMapLoader();
+        TiledMap newMap = mapLoader.load(mapFilename);
+    
+        // Create a new instance of Player with the new map
+        Player newPlayer = new Player(new Sprite(new Texture(PlayerPics.DOWN.source)), x, y, ID.Player, this.controller, newMap,this);
+
+        // Dispose of the old instance of Player
+        player.getTexture().dispose();
+        map.dispose();
+    
+        //Change the local values of map and player to the new ones
+        this.map = newMap;
+        this.player = newPlayer;
+
+
+        //render the new map 
+        renderer.setMap(map);
     }
 
     public void checkSpriteCollision() {

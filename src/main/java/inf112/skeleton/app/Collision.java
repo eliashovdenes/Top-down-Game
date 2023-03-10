@@ -4,9 +4,22 @@ import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 
 public class Collision {
+
+    private View view;
+
+    private boolean housePortal = false, level2 = false;
     
     private TiledMap map;
-    private GameObject entity;
+    public TiledMap getMap() {
+        return map;
+    }
+
+    public void setMap(TiledMap map) {
+        this.map = map;
+    }
+
+
+    private Player player;
     private float tileWidth;
     private float tileHeight;
     private View view;
@@ -94,6 +107,26 @@ public class Collision {
 
         }
 
+
+        //House portal
+        if (housePortal){
+            view.changeMap(Maps.House.source, 400, 500);
+            housePortal = false;
+            
+
+            
+        }
+
+
+        //Level 2 portal
+        if (level2){
+            view.changeMap(Maps.Level2.source, 13*16, 25*16); 
+            level2 = false;
+            
+
+            
+        }
+
         if (collisionY) return true;
 
             return false;
@@ -110,6 +143,24 @@ public class Collision {
             
             
             try {
+                if (layer.getCell((int) xpos, (int) ypos).getTile().getProperties().containsKey("portal")) { 
+                    // System.out.println("portal tile");
+                    
+                    if (layer.getCell((int) xpos, (int) ypos).getTile().getProperties().containsKey("house")) {
+                        System.out.println("house portal");
+                        housePortal = true;
+                        return housePortal;
+                    }
+
+                    if (layer.getCell((int) xpos, (int) ypos).getTile().getProperties().containsKey("level2")) {
+                        System.out.println("level2");
+                        level2 = true;
+                        return level2;
+                    }
+                    
+            
+                }
+            
                 if (layer.getCell((int) xpos, (int) ypos).getTile().getProperties().containsKey("blocked")) { 
                     
                     return true;
