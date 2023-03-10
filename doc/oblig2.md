@@ -180,5 +180,5 @@ For å kjøre spillet så kjører man Main.java filen. ###Skriv om hvordan det t
 
 
 ## Bildet på klassediagrammet
-![image.png](./klassediagram.png)
+![image.png](./Klassediagram.png)
 
