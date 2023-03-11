@@ -28,7 +28,7 @@ public class MainMenuScreen extends ScreenAdapter {
 
         // Draw the title
         batch.begin();
-        font.draw(batch, "SouthGame", 300, 400);
+        font.draw(batch, "SouthGame", Main.screenWidth / 3, Main.screenHeight / 2);
         font.draw(batch, "New Game", 300, 300);
         font.draw(batch, "Load Game", 300, 200);
         font.draw(batch, "Credits", 300, 100);

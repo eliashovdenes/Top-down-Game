@@ -1,6 +1,5 @@
 package inf112.skeleton.app;
 
-import java.awt.Color;
 
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
@@ -17,6 +16,7 @@ import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.math.Rectangle;
+import com.badlogic.gdx.graphics.Color;
 
 import java.util.HashMap;
 import java.util.LinkedList;
@@ -37,9 +37,12 @@ public class View implements Screen {
     public boolean enemyexists;
     private Random random = new Random();
     private int points = 0;
-    private BitmapFont font = new BitmapFont();
+    private BitmapFont pointText = new BitmapFont();
+    private BitmapFont lifeText = new BitmapFont();
     private Zelda game;
-    private HashMap<GameObject, Rectangle> enemies;
+    private HashMap<GameObject, Rectangle> enemies = new HashMap<>();
+    private float startX = 51*16;
+    private float startY = 19*16;
 
    
     public View(Zelda game) {
@@ -54,21 +57,25 @@ public class View implements Screen {
         map = new TmxMapLoader().load(Maps.Level1.source);
         renderer = new OrthogonalTiledMapRenderer(map);
         camera = new OrthographicCamera();
-        player = new Player(new Sprite(new Texture(PlayerPics.DOWN.source)), 500, 500, ID.Player, controller, map, this, PlayerPics.DOWN.source );
+        player = new Player(new Sprite(new Texture(PlayerPics.DOWN.source)), startX, startY, ID.Player, controller, map, this, PlayerPics.DOWN.source );
         playerRect = new RectangleMapObject(player.getX(), player.getY(), player.getWidth(), player.getHeight());
 
-        enemies = generateEnemies();
+        generateEnemies(10);
+        // enemies.clear();
 
 
         Gdx.input.setInputProcessor(controller);
         enemyexists = true;
+        pointText.getData().setScale(2);
+        lifeText.getData().setScale(1);
+        lifeText.setColor(Color.YELLOW);
     }
 
     @Override
     public void render(float delta) {
         Gdx.gl.glClearColor(0, 0, 0, 0);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-        camera.position.set(320, 500, 0);
+        // camera.position.set(320, 500, 0);
         renderer.getBatch().setProjectionMatrix(camera.combined);
         
 
@@ -86,7 +93,8 @@ public class View implements Screen {
             checkSpriteCollision(enemi, enemies.get(enemi));
         }
 
-        font.draw(renderer.getBatch(), "score: " + points, 230, 570);
+        pointText.draw(renderer.getBatch(), "score: " + points, 19*16, 33*16);
+        lifeText.draw(renderer.getBatch(), "Lives: " + (int) player.getLives(), player.x - 12, player.y + player.getHeight() + 15);
 
         playerRect.getRectangle().setPosition(player.x, player.y);
         player.draw(renderer.getBatch());
@@ -95,18 +103,17 @@ public class View implements Screen {
         renderer.getBatch().end();
     }
 
-    public HashMap<GameObject, Rectangle> generateEnemies() {
-        HashMap<GameObject, Rectangle> enemies = new HashMap<>();
-        int amountOfEnemies = 3;
-        
-        
+
+
+    public void generateEnemies(int amountOfEnemies) {
         Random rand = new Random();
+
         for (int i = 0; i < amountOfEnemies; i++) {
             GameObject entity = new Enemy((rand.nextInt(23, 41))*16, (rand.nextInt(14, 33))*16, ID.Enemy, new Sprite(new Texture(PlayerPics.ENEMYDOWN.source)), controller, map, this);
             Rectangle rect = new Rectangle(entity.getX(), entity.getY(), entity.getWidth(), entity.getHeight());
             enemies.put(entity, rect);
         }
-        return enemies;
+
     }
 
     
@@ -146,7 +153,13 @@ public class View implements Screen {
                 entity.x = x;
                 entity.y = y;
             }
-            else game.setScreen(new GameOverScreen(game));
+            else {
+                    player.x = startX;
+                    player.y = startY;
+                    player.takeDamage(1);
+
+                if (player.getLives() <= 0) game.setScreen(new GameOverScreen(game));
+            }
             
         }
     }

@@ -11,8 +11,8 @@ public class Player extends GameObject {
     private Controller controller;
     private Collision collision;
     private String  lastPlayerPics;
+    public float lives;
 
-    private View view;
 
     
 
@@ -21,6 +21,7 @@ public class Player extends GameObject {
         this.controller = controller;
         this.lastPlayerPics = lastPLayerPics;
         collision = new Collision(map, this, view); 
+        lives = 3;
     }
 
     @Override
@@ -159,6 +160,18 @@ public class Player extends GameObject {
     public void setOldXNdY(float oldX, float oldY) {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'setOldXNdY'");
+    }
+
+    public void takeDamage(float damage) {
+        lives -= damage;
+    }
+
+    public void heal(float healnes) {
+        lives += healnes;
+    }
+
+    public float getLives() {
+        return lives;
     }
     
 }
