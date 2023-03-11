@@ -343,6 +343,7 @@
  </tile>
  <tile id="1833">
   <properties>
+   <property name="blocked" value=""/>
    <property name="level2" value=""/>
    <property name="portal" value=""/>
   </properties>

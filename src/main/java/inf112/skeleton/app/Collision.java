@@ -112,8 +112,8 @@ public class Collision {
 
         //House portal
         if (housePortal){
-            entity.setOldXNdY(23*16, 30*16);
-            view.changeMap(Maps.House.source, 23, 30, 21, 33, 38, 47, 1);
+            entity.setOldXNdY(18*16, 42*16);
+            view.changeMap(Maps.House.source, 18, 42, 21, 33, 38, 47, 1);
             housePortal = false;
             
         }
@@ -121,8 +121,8 @@ public class Collision {
 
         //Level 2 portal
         if (level2){
-            entity.setOldXNdY(12*16, 25*16);
-            view.changeMap(Maps.Level2.source, 12, 25, 23, 40, (45-31), (45-12), 4); 
+            entity.setOldXNdY(12*16, 23*16);
+            view.changeMap(Maps.Level2.source, 12, 23, 23, 40, (45-31), (45-12), 4); 
             level2 = false;
             
 
@@ -145,6 +145,7 @@ public class Collision {
             
             
             try {
+                if (entity.getId() == ID.Player) {
                 if (layer.getCell((int) xpos, (int) ypos).getTile().getProperties().containsKey("portal")) { 
                     // System.out.println("portal tile");
                     
@@ -160,12 +161,12 @@ public class Collision {
                         return false;
                     }
 
-                    return false;
                     
             
                 }
+            }
             
-                else if (layer.getCell((int) xpos, (int) ypos).getTile().getProperties().containsKey("blocked")) { 
+                if (layer.getCell((int) xpos, (int) ypos).getTile().getProperties().containsKey("blocked")) { 
                     
                     return true;
                     

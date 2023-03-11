@@ -168,5 +168,9 @@ public class Player extends GameObject {
     public float getLives() {
         return lives;
     }
+
+    public ID getId() {
+        return id;
+    }
     
 }

@@ -33,7 +33,7 @@ public class View implements Screen {
     private OrthogonalTiledMapRenderer renderer;
     private OrthographicCamera camera;
     private Player player;
-    private Controller controller = new Controller();
+    private Controller controller;
     public RectangleMapObject playerRect;
     public RectangleMapObject enemyRect;
     public boolean enemyexists;
@@ -48,8 +48,9 @@ public class View implements Screen {
     private int fromX = 23, toX = 40, fromY = (45-31), toY = (45-12);
 
    
-    public View(Zelda game) {
+    public View(Zelda game, Controller controller) {
         this.game = game;
+        this.controller = controller;
     }   
 
     
@@ -67,7 +68,6 @@ public class View implements Screen {
         // enemies.clear();
 
 
-        Gdx.input.setInputProcessor(controller);
         enemyexists = true;
         pointText.getData().setScale(2);
         lifeText.getData().setScale(1);
@@ -178,7 +178,7 @@ public class View implements Screen {
                     player.y = startY*16;
                     player.takeDamage(1);
 
-                if (player.getLives() <= 0) game.setScreen(new GameOverScreen(game));
+                if (player.getLives() <= 0) game.setScreen(new GameOverScreen(game, controller));
             }
             
         }
