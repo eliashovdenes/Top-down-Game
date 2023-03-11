@@ -20,8 +20,8 @@ public class Controller implements InputProcessor{
         if (keycode == Keys.S) isDown = true;
         if (keycode == Keys.A) isLeft = true;
         if (keycode == Keys.D) isRight = true;
-        if (keycode == Keys.SHIFT_LEFT) fast = true;
-        if (keycode == Keys.X) isAttack = true;
+        if (keycode == Keys.L) fast = true;
+        if (keycode == Keys.P) isAttack = true;
         // if (keycode == Keys.Q) mapShift = true;
         return true;
     }
@@ -31,8 +31,8 @@ public class Controller implements InputProcessor{
         if (keycode == Keys.S) isDown = false;
         if (keycode == Keys.A) isLeft = false;
         if (keycode == Keys.D) isRight = false;
-        if (keycode == Keys.SHIFT_LEFT) fast = false;
-        if (keycode == Keys.X) isAttack = false;
+        if (keycode == Keys.L) fast = false;
+        if (keycode == Keys.P) isAttack = false;
         // if (keycode == Keys.Q) mapShift = false;
         return true;
     }
