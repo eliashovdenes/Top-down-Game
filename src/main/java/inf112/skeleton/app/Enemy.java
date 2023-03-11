@@ -1,5 +1,7 @@
 package inf112.skeleton.app;
 
+import java.util.Random;
+
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
@@ -10,12 +12,11 @@ import com.badlogic.gdx.maps.tiled.TiledMap;
 public class Enemy extends GameObject {
 
     private Collision collision;
-    private Controller controller;
+    private Random rand = new Random();
 
-    public Enemy(float x, float y, ID id, Sprite sprite, Controller controller, TiledMap map, View view) {
+    public Enemy(float x, float y, ID id, Sprite sprite, TiledMap map, View view) {
         super(x, y, id, sprite, map, view);
         collision = new Collision(map, this, view);
-        this.controller = controller;
         velX = 1;
         velY = 0;
     }
@@ -52,8 +53,9 @@ public class Enemy extends GameObject {
 
         if (collision.chechXDirection(velX, oldX)) {
             setX(oldX);
-            if (velX < 0) velX = speed;
-            else if (velX > 0) velX = -speed;
+            newDeirection();
+            // if (velX < 0) velX = speed;
+            // else if (velX > 0) velX = -speed;
             
             // System.out.println(oldX);
         }
@@ -62,12 +64,26 @@ public class Enemy extends GameObject {
 
         if (collision.chechYDirection(velY, oldY)) {
             setY(oldY);
-            if (velY < 0) velY = speed;
-            else if (velY > 0) velY = -speed;
+            newDeirection();
+            // if (velY < 0) velY = speed;
+            // else if (velY > 0) velY = -speed;
             // System.out.println("y");
         }
 
 
+    }
+
+    private void newDeirection() {
+        int dir = rand.nextInt(1,9);
+        System.out.println(dir);
+        if (dir == 1) {velX = speed; velY = 0;}
+        if (dir == 2) {velX = -speed; velY = 0;}
+        if (dir == 3) {velY = speed; velX = 0;}
+        if (dir == 4) {velY = -speed; velX = 0;}
+        if (dir == 5) {velY = speed; velX = speed;}
+        if (dir == 6) {velY = -speed; velX = speed;}
+        if (dir == 7) {velY = speed; velX = -speed;} 
+        if (dir == 8) {velY = -speed; velX = -speed;}
     }
 
     @Override
@@ -85,6 +101,10 @@ public class Enemy extends GameObject {
     @Override
     public float getOldY() {
         return oldY;
+    }
+
+    public ID getId() {
+        return id;
     }
 
     

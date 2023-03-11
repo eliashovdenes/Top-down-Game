@@ -9,9 +9,9 @@ public class ControllerTest {
     void testInputAttack(){
         Controller controll = new Controller();
         assertFalse(controll.isAttack());
-        controll.keyDown(Keys.X);
+        controll.keyDown(Keys.P);
         assertTrue(controll.isAttack());
-        controll.keyUp(Keys.X);
+        controll.keyUp(Keys.P);
         assertFalse(controll.isAttack());
     }
 

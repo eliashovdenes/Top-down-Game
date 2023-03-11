@@ -1,5 +1,7 @@
 package inf112.skeleton.app;
 
+import javax.swing.text.html.parser.Entity;
+
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 
@@ -110,7 +112,8 @@ public class Collision {
 
         //House portal
         if (housePortal){
-            view.changeMap(Maps.House.source, 400, 500);
+            entity.setOldXNdY(18*16, 42*16);
+            view.changeMap(Maps.House.source, 18, 42, 13, 30, 42, 54, 1);
             housePortal = false;
             
         }
@@ -118,7 +121,8 @@ public class Collision {
 
         //Level 2 portal
         if (level2){
-            view.changeMap(Maps.Level2.source, 12*16, 25*16); 
+            entity.setOldXNdY(12*16, 23*16);
+            view.changeMap(Maps.Level2.source, 12, 23, 23, 40, (45-31), (45-12), 4); 
             level2 = false;
             
 
@@ -141,27 +145,31 @@ public class Collision {
             
             
             try {
+                if (entity.getId() == ID.Player) {
                 if (layer.getCell((int) xpos, (int) ypos).getTile().getProperties().containsKey("portal")) { 
                     // System.out.println("portal tile");
                     
                     if (layer.getCell((int) xpos, (int) ypos).getTile().getProperties().containsKey("house")) {
-                        System.out.println("house portal");
+                        // System.out.println("house portal");
                         housePortal = true;
-                        return housePortal;
+                        return false;
                     }
 
                     if (layer.getCell((int) xpos, (int) ypos).getTile().getProperties().containsKey("level2")) {
-                        System.out.println("level2");
+                        // System.out.println("level2");
                         level2 = true;
-                        return level2;
+                        return false;
                     }
+
                     
             
                 }
+            }
             
                 if (layer.getCell((int) xpos, (int) ypos).getTile().getProperties().containsKey("blocked")) { 
                     
                     return true;
+                    
                 }
             } catch (Exception e) {
                 continue;

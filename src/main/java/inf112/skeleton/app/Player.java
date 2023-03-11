@@ -11,8 +11,8 @@ public class Player extends GameObject {
     private Controller controller;
     private Collision collision;
     private String  lastPlayerPics;
+    public float lives;
 
-    private View view;
 
     
 
@@ -21,6 +21,7 @@ public class Player extends GameObject {
         this.controller = controller;
         this.lastPlayerPics = lastPLayerPics;
         collision = new Collision(map, this, view); 
+        lives = 3;
     }
 
     @Override
@@ -29,10 +30,9 @@ public class Player extends GameObject {
         super.draw(batch);
     }
 
-    public void setmap(TiledMap tileMap, Controller controller){
+    public void setmap(TiledMap tileMap){
         this.map = tileMap;
-        collision.setMap(tileMap);
-        this.controller = controller;
+        collision = new Collision(tileMap, this, view);
     }
 
 
@@ -103,11 +103,8 @@ public class Player extends GameObject {
         setX(getX() + velX * deltaTime);
 
         if (collision.chechXDirection(velX, oldX)) { 
-            
              x = oldX;
-            // System.out.println(oldX);
             velX = 0;
-            // System.out.println(oldX);
         }
 
         setY(getY() + velY * deltaTime);
@@ -115,7 +112,6 @@ public class Player extends GameObject {
         if (collision.chechYDirection(velY, oldY)) {
             y = oldY;
             velY = 0;
-            // System.out.println("y");
         }
 
 
@@ -138,7 +134,7 @@ public class Player extends GameObject {
                 setScale((float) 1.8,(float) 1.8); 
             }
             
-            System.out.println(lastPlayerPics);
+            // System.out.println(lastPlayerPics);
         
         
             
@@ -157,8 +153,24 @@ public class Player extends GameObject {
 
     @Override
     public void setOldXNdY(float oldX, float oldY) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'setOldXNdY'");
+        this.oldX = oldX;
+        this.oldY = oldY;
+    }
+
+    public void takeDamage(float damage) {
+        lives -= damage;
+    }
+
+    public void heal(float healnes) {
+        lives += healnes;
+    }
+
+    public float getLives() {
+        return lives;
+    }
+
+    public ID getId() {
+        return id;
     }
     
 }

@@ -12,11 +12,13 @@ public class MainMenuScreen extends ScreenAdapter {
     private SpriteBatch batch;
     private Zelda game;
     private BitmapFont font;
+    private Controller controller;
 
-    public MainMenuScreen(Zelda southGame) {
+    public MainMenuScreen(Zelda southGame, Controller controller) {
         this.game = southGame;
         batch = new SpriteBatch();
         font = new BitmapFont();
+        this.controller = controller;
     }
 
 
@@ -28,14 +30,17 @@ public class MainMenuScreen extends ScreenAdapter {
 
         // Draw the title
         batch.begin();
-        font.draw(batch, "SouthGame", 300, 400);
-        font.draw(batch, "New Game", 300, 300);
-        font.draw(batch, "Load Game", 300, 200);
-        font.draw(batch, "Credits", 300, 100);
+        font.getData().setScale(2);
+        font.draw(batch, "Press Enter to begin", 10, 750);
+        font.getData().setScale(1);
+        font.draw(batch, "SouthGame", 10, 700);
+        font.draw(batch, "New Game", 10, 650);
+        font.draw(batch, "Load Game", 10, 600);
+        font.draw(batch, "Credits", 10, 550);
         batch.end();
 
-        if (Gdx.input.justTouched()) {
-            game.setScreen(new View(game));
+        if (controller.isEnter()) {
+            game.setScreen(new View(game, controller));
         }
     }
 

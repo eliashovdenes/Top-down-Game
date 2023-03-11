@@ -1,6 +1,7 @@
 package inf112.skeleton.app;
 
 
+
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.ScreenAdapter;
 import com.badlogic.gdx.graphics.GL20;
@@ -12,11 +13,13 @@ public class GameOverScreen extends ScreenAdapter {
     private SpriteBatch batch;
     private BitmapFont font;
     private Zelda game;
+    private Controller controller;
 
-    public GameOverScreen(Zelda game){
+    public GameOverScreen(Zelda game, Controller controller){
         this.game = game;
         batch = new SpriteBatch();
         font = new BitmapFont();
+        this.controller = controller;
 
     }
     @Override
@@ -27,13 +30,15 @@ public class GameOverScreen extends ScreenAdapter {
 
         // Draw the "Game Over" message
         batch.begin();
-        font.draw(batch, "Game Over!", 350, 400);
-        font.draw(batch, "press anything to move to main menu", 250, 250);
+        font.getData().setScale(2);
+        font.draw(batch, "Game Over, you died!", 10, 750);
+        font.getData().setScale(1);
+        font.draw(batch, "Press space to move to main menu", 10, 700);
         batch.end();
 
         // Draw the "Restart" button
-        if (Gdx.input.justTouched()) {
-            game.setScreen(new MainMenuScreen(game));
+        if (controller.isSpace()) {
+            game.setScreen(new MainMenuScreen(game, controller));
         }
     }
     @Override

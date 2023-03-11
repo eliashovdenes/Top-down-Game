@@ -8,12 +8,32 @@
     ],
     "file.lastUsedOpenFilter": "All Files (*)",
     "fileStates": {
+        "House.tmx": {
+            "scale": 0.6106,
+            "selectedLayer": 2,
+            "viewCenter": {
+                "x": 633.8028169014084,
+                "y": 564.1991483786439
+            }
+        },
+        "Level 2.tmx": {
+            "scale": 0.7311607142857143,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 559.3845402369031,
+                "y": 360.38588350225916
+            }
+        },
+        "pokemon1.tsx": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
         "stormappet.tmx": {
             "scale": 0.93,
             "selectedLayer": 1,
             "viewCenter": {
-                "x": 399.99999999999994,
-                "y": 400.5376344086021
+                "x": 398.92473118279565,
+                "y": 237.09677419354838
             }
         }
     },
@@ -27,7 +47,8 @@
     ],
     "project": "untitled.tiled-project",
     "recentFiles": [
-        "stormappet.tmx"
+        "stormappet.tmx",
+        "pokemon1.tsx"
     ],
     "tileset.lastUsedFormat": "tsx",
     "tileset.tileSize": {

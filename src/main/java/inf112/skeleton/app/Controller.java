@@ -5,9 +5,27 @@ import com.badlogic.gdx.Input.Keys;
 
 public class Controller implements InputProcessor{
 
-    private boolean isUp = false, isDown = false, isRight = false, isLeft = false, fast = false, mapShift = false, isAttack = false;
+    private boolean isUp = false,
+    isDown = false,
+    isRight = false,
+    isLeft = false,
+    fast = false,
+    mapShift = false,
+    isAttack = false,
+    isSpace = false,
+    enter = false;
+
 
     
+    public boolean isEnter() {
+        return enter;
+    }
+    public void setEnter(boolean enter) {
+        this.enter = enter;
+    }
+    public boolean isSpace() {
+        return isSpace;
+    }
     public boolean isFast() {
         return fast;
     }
@@ -20,8 +38,10 @@ public class Controller implements InputProcessor{
         if (keycode == Keys.S) isDown = true;
         if (keycode == Keys.A) isLeft = true;
         if (keycode == Keys.D) isRight = true;
-        if (keycode == Keys.SHIFT_LEFT) fast = true;
-        if (keycode == Keys.X) isAttack = true;
+        if (keycode == Keys.L) fast = true;
+        if (keycode == Keys.P) isAttack = true;
+        if (keycode == Keys.SPACE) isSpace = true;
+        if (keycode == Keys.ENTER) enter = true;
         // if (keycode == Keys.Q) mapShift = true;
         return true;
     }
@@ -31,8 +51,10 @@ public class Controller implements InputProcessor{
         if (keycode == Keys.S) isDown = false;
         if (keycode == Keys.A) isLeft = false;
         if (keycode == Keys.D) isRight = false;
-        if (keycode == Keys.SHIFT_LEFT) fast = false;
-        if (keycode == Keys.X) isAttack = false;
+        if (keycode == Keys.L) fast = false;
+        if (keycode == Keys.P) isAttack = false;
+        if (keycode == Keys.SPACE) isSpace = false;
+        if (keycode == Keys.ENTER) enter = false;
         // if (keycode == Keys.Q) mapShift = false;
         return true;
     }
@@ -45,7 +67,7 @@ public class Controller implements InputProcessor{
     }
     @Override
     public boolean touchDown(int screenX, int screenY, int pointer, int button) {
-        return false;
+        return true;
     }
     @Override
     public boolean touchUp(int screenX, int screenY, int pointer, int button) {
