@@ -25,6 +25,8 @@ import java.util.random.*;
 
 import javax.xml.catalog.Catalog;
 
+import org.lwjgl.system.linux.Stat;
+
 public class View implements Screen {
 
     private TiledMap map;
@@ -41,8 +43,9 @@ public class View implements Screen {
     private BitmapFont lifeText = new BitmapFont();
     private Zelda game;
     private HashMap<GameObject, Rectangle> enemies = new HashMap<>();
-    private float startX = 51*16;
-    private float startY = 19*16;
+    private float startX = 51;
+    private float startY = 19;
+    private int fromX = 23, toX = 40, fromY = (45-31), toY = (45-12);
 
    
     public View(Zelda game) {
@@ -57,10 +60,10 @@ public class View implements Screen {
         map = new TmxMapLoader().load(Maps.Level1.source);
         renderer = new OrthogonalTiledMapRenderer(map);
         camera = new OrthographicCamera();
-        player = new Player(new Sprite(new Texture(PlayerPics.DOWN.source)), startX, startY, ID.Player, controller, map, this, PlayerPics.DOWN.source );
+        player = new Player(new Sprite(new Texture(PlayerPics.DOWN.source)), startX*16, startY*16, ID.Player, controller, map, this, PlayerPics.DOWN.source );
         playerRect = new RectangleMapObject(player.getX(), player.getY(), player.getWidth(), player.getHeight());
 
-        generateEnemies(10);
+        generateEnemies(10, map);
         // enemies.clear();
 
 
@@ -105,11 +108,11 @@ public class View implements Screen {
 
 
 
-    public void generateEnemies(int amountOfEnemies) {
+    public void generateEnemies(int amountOfEnemies, TiledMap enemyMap) {
         Random rand = new Random();
 
         for (int i = 0; i < amountOfEnemies; i++) {
-            GameObject entity = new Enemy((rand.nextInt(23, 41))*16, (rand.nextInt(14, 33))*16, ID.Enemy, new Sprite(new Texture(PlayerPics.ENEMYDOWN.source)), controller, map, this);
+            GameObject entity = new Enemy((rand.nextInt(fromX, toX))*16, (rand.nextInt(fromY, toY))*16, ID.Enemy, new Sprite(new Texture(PlayerPics.ENEMYDOWN.source)), enemyMap, this);
             Rectangle rect = new Rectangle(entity.getX(), entity.getY(), entity.getWidth(), entity.getHeight());
             enemies.put(entity, rect);
         }
@@ -118,13 +121,27 @@ public class View implements Screen {
 
     
 
-    public void changeMap(String mapFilename, int x, int y) {
+    public void changeMap(String mapFilename, int playerX, int playerY, int fromX, int toX, int fromY, int toY, int amountOfEnemies) {
+
+        // Sets bounds for where enemies can spawn
+        this.toX = toX;
+        this.fromX = fromX;
+        this.toY = toY;
+        this.fromY = fromY;
+
+        startX = playerX;
+        startY = playerY;
+
         // Load the new map from file
         TmxMapLoader mapLoader = new TmxMapLoader();
         TiledMap newMap = mapLoader.load(mapFilename);
+
+        // generates new enemies according to the new map rules.
+        enemies.clear();
+        generateEnemies(amountOfEnemies, newMap);
     
         // Create a new instance of Player with the new map
-        Player newPlayer = new Player(new Sprite(new Texture(PlayerPics.DOWN.source)), x, y, ID.Player, this.controller, newMap,this, PlayerPics.DOWN.source);
+        Player newPlayer = new Player(new Sprite(new Texture(PlayerPics.DOWN.source)), playerX*16, playerY*16, ID.Player, this.controller, newMap,this, PlayerPics.DOWN.source);
 
         // Dispose of the old instance of Player
         player.getTexture().dispose();
@@ -149,13 +166,13 @@ public class View implements Screen {
         if (playerRect.getRectangle().overlaps(rect)) {
             if (controller.isAttack()) {
                 points ++;
-                int x = random.nextInt(23*16, 41*16), y = random.nextInt(14*16, 33*16);
+                int x = random.nextInt(fromX*16, toX*16), y = random.nextInt(fromY*16, toY*16);
                 entity.x = x;
                 entity.y = y;
             }
             else {
-                    player.x = startX;
-                    player.y = startY;
+                    player.x = startX*16;
+                    player.y = startY*16;
                     player.takeDamage(1);
 
                 if (player.getLives() <= 0) game.setScreen(new GameOverScreen(game));

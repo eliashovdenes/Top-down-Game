@@ -12,7 +12,7 @@ public class Enemy extends GameObject {
     private Collision collision;
     private Controller controller;
 
-    public Enemy(float x, float y, ID id, Sprite sprite, Controller controller, TiledMap map, View view) {
+    public Enemy(float x, float y, ID id, Sprite sprite, TiledMap map, View view) {
         super(x, y, id, sprite, map, view);
         collision = new Collision(map, this, view);
         this.controller = controller;

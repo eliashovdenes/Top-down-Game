@@ -110,7 +110,7 @@ public class Collision {
 
         //House portal
         if (housePortal){
-            view.changeMap(Maps.House.source, 400, 500);
+            view.changeMap(Maps.House.source, 23, 30, 21, 33, 38, 47, 1);
             housePortal = false;
             
         }
@@ -118,7 +118,7 @@ public class Collision {
 
         //Level 2 portal
         if (level2){
-            view.changeMap(Maps.Level2.source, 12*16, 25*16); 
+            view.changeMap(Maps.Level2.source, 12, 25, 23, 40, (45-31), (45-12), 4); 
             level2 = false;
             
 
@@ -159,7 +159,7 @@ public class Collision {
             
                 }
             
-                if (layer.getCell((int) xpos, (int) ypos).getTile().getProperties().containsKey("blocked")) { 
+                else if (layer.getCell((int) xpos, (int) ypos).getTile().getProperties().containsKey("blocked")) { 
                     
                     return true;
                 }

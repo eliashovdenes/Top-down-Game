@@ -30,11 +30,11 @@ public class Player extends GameObject {
         super.draw(batch);
     }
 
-    public void setmap(TiledMap tileMap, Controller controller){
-        this.map = tileMap;
-        collision.setMap(tileMap);
-        this.controller = controller;
-    }
+    // public void setmap(TiledMap tileMap, Controller controller){
+    //     this.map = tileMap;
+    //     collision.setMap(tileMap);
+    //     this.controller = controller;
+    // }
 
 
     private void update(float deltaTime) {
