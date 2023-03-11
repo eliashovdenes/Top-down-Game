@@ -113,7 +113,7 @@ public class Collision {
         //House portal
         if (housePortal){
             entity.setOldXNdY(18*16, 42*16);
-            view.changeMap(Maps.House.source, 18, 42, 21, 33, 38, 47, 1);
+            view.changeMap(Maps.House.source, 18, 42, 13, 30, 42, 54, 1);
             housePortal = false;
             
         }

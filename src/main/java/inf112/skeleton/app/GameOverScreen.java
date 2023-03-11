@@ -31,7 +31,7 @@ public class GameOverScreen extends ScreenAdapter {
         // Draw the "Game Over" message
         batch.begin();
         font.getData().setScale(2);
-        font.draw(batch, "Game Over!", 10, 750);
+        font.draw(batch, "Game Over, you died!", 10, 750);
         font.getData().setScale(1);
         font.draw(batch, "Press space to move to main menu", 10, 700);
         batch.end();
