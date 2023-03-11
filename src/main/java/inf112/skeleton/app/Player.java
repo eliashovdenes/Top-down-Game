@@ -138,7 +138,7 @@ public class Player extends GameObject {
                 setScale((float) 1.8,(float) 1.8); 
             }
             
-            System.out.println(lastPlayerPics);
+            // System.out.println(lastPlayerPics);
         
         
             

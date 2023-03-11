@@ -145,13 +145,13 @@ public class Collision {
                     // System.out.println("portal tile");
                     
                     if (layer.getCell((int) xpos, (int) ypos).getTile().getProperties().containsKey("house")) {
-                        System.out.println("house portal");
+                        // System.out.println("house portal");
                         housePortal = true;
                         return housePortal;
                     }
 
                     if (layer.getCell((int) xpos, (int) ypos).getTile().getProperties().containsKey("level2")) {
-                        System.out.println("level2");
+                        // System.out.println("level2");
                         level2 = true;
                         return level2;
                     }

@@ -2,6 +2,7 @@ package inf112.skeleton.app;
 
 import java.awt.Color;
 
+import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
@@ -16,6 +17,9 @@ import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.math.Rectangle;
+
+import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.Random;
 import java.util.random.*;
 
@@ -27,7 +31,6 @@ public class View implements Screen {
     private OrthogonalTiledMapRenderer renderer;
     private OrthographicCamera camera;
     private Player player;
-    private Enemy enemy;
     private Controller controller = new Controller();
     public RectangleMapObject playerRect;
     public RectangleMapObject enemyRect;
@@ -36,6 +39,7 @@ public class View implements Screen {
     private int points = 0;
     private BitmapFont font = new BitmapFont();
     private Zelda game;
+    private HashMap<GameObject, Rectangle> enemies;
 
    
     public View(Zelda game) {
@@ -52,8 +56,10 @@ public class View implements Screen {
         camera = new OrthographicCamera();
         player = new Player(new Sprite(new Texture(PlayerPics.DOWN.source)), 500, 500, ID.Player, controller, map, this, PlayerPics.DOWN.source );
         playerRect = new RectangleMapObject(player.getX(), player.getY(), player.getWidth(), player.getHeight());
-        enemy = new Enemy(15*16, 20*16, ID.Enemy, new Sprite(new Texture(PlayerPics.ENEMYDOWN.source)),controller, map, this);
-        enemyRect = new RectangleMapObject(enemy.getX(), enemy.getY(), enemy.getWidth(), enemy.getHeight());
+
+        enemies = generateEnemies();
+
+
         Gdx.input.setInputProcessor(controller);
         enemyexists = true;
     }
@@ -73,18 +79,34 @@ public class View implements Screen {
         renderer.setView(camera);
         renderer.render();
 
-        checkSpriteCollision();
         renderer.getBatch().begin();
+        for (GameObject enemi : enemies.keySet()) {
+            enemi.draw(renderer.getBatch());
+            enemies.get(enemi).setPosition(enemi.x, enemi.y);
+            checkSpriteCollision(enemi, enemies.get(enemi));
+        }
 
         font.draw(renderer.getBatch(), "score: " + points, 230, 570);
 
-        enemyRect.getRectangle().setPosition(enemy.x, enemy.y);
-        enemy.draw(renderer.getBatch());
         playerRect.getRectangle().setPosition(player.x, player.y);
         player.draw(renderer.getBatch());
         
 
         renderer.getBatch().end();
+    }
+
+    public HashMap<GameObject, Rectangle> generateEnemies() {
+        HashMap<GameObject, Rectangle> enemies = new HashMap<>();
+        int amountOfEnemies = 3;
+        
+        
+        Random rand = new Random();
+        for (int i = 0; i < amountOfEnemies; i++) {
+            GameObject entity = new Enemy((rand.nextInt(23, 41))*16, (rand.nextInt(14, 33))*16, ID.Enemy, new Sprite(new Texture(PlayerPics.ENEMYDOWN.source)), controller, map, this);
+            Rectangle rect = new Rectangle(entity.getX(), entity.getY(), entity.getWidth(), entity.getHeight());
+            enemies.put(entity, rect);
+        }
+        return enemies;
     }
 
     
@@ -115,14 +137,14 @@ public class View implements Screen {
      * avslutter foreløpig programmet.
      * instansierer en gameoverscreen.
      */
-    public void checkSpriteCollision() {
+    public void checkSpriteCollision(GameObject entity, Rectangle rect) {
         
-        if (playerRect.getRectangle().overlaps(enemyRect.getRectangle())) {
+        if (playerRect.getRectangle().overlaps(rect)) {
             if (controller.isAttack()) {
                 points ++;
-                int x = random.nextInt(23*16, 41*16), y = random.nextInt(17*16, 34*16);
-                enemy.x = x;
-                enemy.y = y;
+                int x = random.nextInt(23*16, 41*16), y = random.nextInt(14*16, 33*16);
+                entity.x = x;
+                entity.y = y;
             }
             else game.setScreen(new GameOverScreen(game));
             
