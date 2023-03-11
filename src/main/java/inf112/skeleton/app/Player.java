@@ -30,11 +30,10 @@ public class Player extends GameObject {
         super.draw(batch);
     }
 
-    // public void setmap(TiledMap tileMap, Controller controller){
-    //     this.map = tileMap;
-    //     collision.setMap(tileMap);
-    //     this.controller = controller;
-    // }
+    public void setmap(TiledMap tileMap){
+        this.map = tileMap;
+        collision = new Collision(tileMap, this, view);
+    }
 
 
     private void update(float deltaTime) {
@@ -104,11 +103,8 @@ public class Player extends GameObject {
         setX(getX() + velX * deltaTime);
 
         if (collision.chechXDirection(velX, oldX)) { 
-            
              x = oldX;
-            // System.out.println(oldX);
             velX = 0;
-            // System.out.println(oldX);
         }
 
         setY(getY() + velY * deltaTime);
@@ -116,7 +112,6 @@ public class Player extends GameObject {
         if (collision.chechYDirection(velY, oldY)) {
             y = oldY;
             velY = 0;
-            // System.out.println("y");
         }
 
 
@@ -158,8 +153,8 @@ public class Player extends GameObject {
 
     @Override
     public void setOldXNdY(float oldX, float oldY) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'setOldXNdY'");
+        this.oldX = oldX;
+        this.oldY = oldY;
     }
 
     public void takeDamage(float damage) {

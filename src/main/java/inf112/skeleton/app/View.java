@@ -135,13 +135,16 @@ public class View implements Screen {
         // Load the new map from file
         TmxMapLoader mapLoader = new TmxMapLoader();
         TiledMap newMap = mapLoader.load(mapFilename);
-
+        player.setX(playerX*16);
+        player.setY(playerY*16);
         // generates new enemies according to the new map rules.
         enemies.clear();
         generateEnemies(amountOfEnemies, newMap);
     
         // Create a new instance of Player with the new map
-        Player newPlayer = new Player(new Sprite(new Texture(PlayerPics.DOWN.source)), playerX*16, playerY*16, ID.Player, this.controller, newMap,this, PlayerPics.DOWN.source);
+        player.setmap(newMap);
+        
+        // Player newPlayer = new Player(new Sprite(new Texture(PlayerPics.DOWN.source)), playerX*16, playerY*16, ID.Player, this.controller, newMap,this, PlayerPics.DOWN.source);
 
         // Dispose of the old instance of Player
         player.getTexture().dispose();
@@ -149,7 +152,7 @@ public class View implements Screen {
     
         //Change the local values of map and player to the new ones
         this.map = newMap;
-        this.player = newPlayer;
+        // this.player = newPlayer;
 
 
         //render the new map 

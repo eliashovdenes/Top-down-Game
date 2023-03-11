@@ -10,12 +10,10 @@ import com.badlogic.gdx.maps.tiled.TiledMap;
 public class Enemy extends GameObject {
 
     private Collision collision;
-    private Controller controller;
 
     public Enemy(float x, float y, ID id, Sprite sprite, TiledMap map, View view) {
         super(x, y, id, sprite, map, view);
         collision = new Collision(map, this, view);
-        this.controller = controller;
         velX = 1;
         velY = 0;
     }

@@ -1,5 +1,7 @@
 package inf112.skeleton.app;
 
+import javax.swing.text.html.parser.Entity;
+
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 
@@ -110,6 +112,7 @@ public class Collision {
 
         //House portal
         if (housePortal){
+            entity.setOldXNdY(23*16, 30*16);
             view.changeMap(Maps.House.source, 23, 30, 21, 33, 38, 47, 1);
             housePortal = false;
             
@@ -118,6 +121,7 @@ public class Collision {
 
         //Level 2 portal
         if (level2){
+            entity.setOldXNdY(12*16, 25*16);
             view.changeMap(Maps.Level2.source, 12, 25, 23, 40, (45-31), (45-12), 4); 
             level2 = false;
             
@@ -147,14 +151,16 @@ public class Collision {
                     if (layer.getCell((int) xpos, (int) ypos).getTile().getProperties().containsKey("house")) {
                         // System.out.println("house portal");
                         housePortal = true;
-                        return housePortal;
+                        return false;
                     }
 
                     if (layer.getCell((int) xpos, (int) ypos).getTile().getProperties().containsKey("level2")) {
                         // System.out.println("level2");
                         level2 = true;
-                        return level2;
+                        return false;
                     }
+
+                    return false;
                     
             
                 }
@@ -162,6 +168,7 @@ public class Collision {
                 else if (layer.getCell((int) xpos, (int) ypos).getTile().getProperties().containsKey("blocked")) { 
                     
                     return true;
+                    
                 }
             } catch (Exception e) {
                 continue;
