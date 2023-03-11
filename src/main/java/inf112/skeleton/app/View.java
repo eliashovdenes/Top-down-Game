@@ -112,8 +112,9 @@ public class View implements Screen {
         Random rand = new Random();
 
         for (int i = 0; i < amountOfEnemies; i++) {
-            GameObject entity = new Enemy((rand.nextInt(fromX, toX))*16, (rand.nextInt(fromY, toY))*16, ID.Enemy, new Sprite(new Texture(PlayerPics.ENEMYDOWN.source)), enemyMap, this);
+            Enemy entity = new Enemy((rand.nextInt(fromX, toX))*16, (rand.nextInt(fromY, toY))*16, ID.Enemy, new Sprite(new Texture(PlayerPics.ENEMYDOWN.source)), enemyMap, this);
             Rectangle rect = new Rectangle(entity.getX(), entity.getY(), entity.getWidth(), entity.getHeight());
+            entity.newDeirection();
             enemies.put(entity, rect);
         }
 
