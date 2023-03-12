@@ -79,17 +79,16 @@ public class View implements Screen {
         Gdx.gl.glClearColor(0, 0, 0, 0);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         // camera.position.set(320, 500, 0);
-        renderer.getBatch().setProjectionMatrix(camera.combined);
         
-
-        
-        //setter position på spiller;
+    
+        //setter kamera position på spiller;
         camera.position.set(player.getX() + player.getWidth() / 2, player.getY() + player.getHeight() / 2, 0);
         camera.update();
         renderer.setView(camera);
         renderer.render();
 
         renderer.getBatch().begin();
+
         for (GameObject enemi : enemies.keySet()) {
             enemi.draw(renderer.getBatch());
             enemies.get(enemi).setPosition(enemi.x, enemi.y);
@@ -101,8 +100,9 @@ public class View implements Screen {
 
         playerRect.getRectangle().setPosition(player.x, player.y);
         player.draw(renderer.getBatch());
-        
 
+        // renderer.getBatch().setProjectionMatrix(camera.combined);
+        
         renderer.getBatch().end();
     }
 
@@ -148,7 +148,7 @@ public class View implements Screen {
         // Player newPlayer = new Player(new Sprite(new Texture(PlayerPics.DOWN.source)), playerX*16, playerY*16, ID.Player, this.controller, newMap,this, PlayerPics.DOWN.source);
 
         // Dispose of the old instance of Player
-        player.getTexture().dispose();
+        // player.getTexture().dispose();
         map.dispose();
     
         //Change the local values of map and player to the new ones
@@ -187,8 +187,8 @@ public class View implements Screen {
 
     @Override
     public void resize(int width, int height) {
-        camera.viewportWidth = width;
-        camera.viewportHeight = height;
+        camera.viewportWidth = width / 1.5f;
+        camera.viewportHeight = height / 1.5f;
     }
 
     @Override
@@ -207,7 +207,7 @@ public class View implements Screen {
     }
 
     @Override
-    public void dispose() {
+    public void dispose() {;
        map.dispose();
        renderer.dispose();
        player.getTexture().dispose();

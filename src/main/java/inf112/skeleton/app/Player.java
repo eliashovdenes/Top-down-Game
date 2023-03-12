@@ -4,6 +4,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.Sprite;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 
 public class Player extends GameObject {
@@ -12,6 +13,8 @@ public class Player extends GameObject {
     private Collision collision;
     private String  lastPlayerPics;
     public float lives;
+    private Animation playerAnimation;
+    // private Texture texture;
 
 
     
@@ -22,6 +25,10 @@ public class Player extends GameObject {
         this.lastPlayerPics = lastPLayerPics;
         collision = new Collision(map, this, view); 
         lives = 3;
+
+        // texture = new Texture("src/main/java/inf112/skeleton/app/assets/playerPics/animationDOWN.png");
+        // playerAnimation = new Animation(new TextureRegion(texture), 12, 0.5f);
+
     }
 
     @Override
@@ -37,7 +44,7 @@ public class Player extends GameObject {
 
 
     private void update(float deltaTime) {
-       
+        
         x += velX;
         y += velY;
 
@@ -45,12 +52,15 @@ public class Player extends GameObject {
         //save recent position
         oldX = getX();
         oldY = getY();
-        
+
+
+        //////////// Controll handling
 
         if (controller.isUp()){ 
             velY = speed;
-            setTexture(new Texture(PlayerPics.UP.source));
-            lastPlayerPics = PlayerPics.UP.source;
+            animate(PlayerAnimation.UP.animation, deltaTime);
+                    
+            // lastPlayerPics = PlayerPics.UP.source;
            
         }
         else if (!controller.isDown()) {
@@ -59,13 +69,14 @@ public class Player extends GameObject {
         
         if(!controller.isAttack()){
             setScale(1); 
-            setTexture(new Texture(lastPlayerPics));
+            // setTexture(new Texture(lastPlayerPics));
         }
 
         if (controller.isDown()) {
             velY = - speed;
-            setTexture(new Texture(PlayerPics.DOWN.source));
-            lastPlayerPics = PlayerPics.DOWN.source;
+            animate(PlayerAnimation.DOWN.animation, deltaTime);
+
+            // lastPlayerPics = PlayerPics.DOWN.source;
             
         }
         else if (!controller.isUp()) {
@@ -75,8 +86,9 @@ public class Player extends GameObject {
 
         if (controller.isRight()) {
             velX = speed;
-            setTexture(new Texture(PlayerPics.RIGHT.source));
-            lastPlayerPics = PlayerPics.RIGHT.source;
+            animate(PlayerAnimation.RIGHT.animation, deltaTime);
+
+            // lastPlayerPics = PlayerPics.RIGHT.source;
         }
         else if (!controller.isLeft()) {
             velX = 0;
@@ -85,8 +97,8 @@ public class Player extends GameObject {
 
         if (controller.isLeft()) {
             velX = -speed;
-            setTexture(new Texture(PlayerPics.LEFT.source));
-            lastPlayerPics = PlayerPics.LEFT.source;
+            animate(PlayerAnimation.LEFT.animation, deltaTime);
+            // lastPlayerPics = PlayerPics.LEFT.source;
         }
         else if (!controller.isRight()) {
             velX = 0;
@@ -94,12 +106,57 @@ public class Player extends GameObject {
 
         if (controller.isFast()) {
             speed = 2;
+            try {
+            if (controller.isUp()) animate(PlayerAnimation.RUNUP.animation, deltaTime);
+            else if (controller.isDown()) animate(PlayerAnimation.RUNDOWN.animation, deltaTime);
+            if (controller.isLeft()) animate(PlayerAnimation.RUNLEFT.animation, deltaTime);
+            else if (controller.isRight()) animate(PlayerAnimation.RUNRIGHT.animation, deltaTime);
+            playerAnimation.setCycleTime(0.1f);
+        } catch (Exception e) {
+            // TODO: handle exception
         }
-        else 
-        speed = 1;
+        }
+        else if (!controller.isFast()) {
+            speed = 1;
+            try {
+                playerAnimation.setCycleTime(0.5f);
+            } catch (Exception e) {
+                // TODO: handle exception
+            }
+    }
 
+    if (controller.isAttack()) {
+        if(playerAnimation == PlayerAnimation.DOWN.animation){
+            setRegion(new Texture(PlayerPics.ATTACKDOWN.source));
+            setScale((float) 1.8,(float) 1.8); 
+        }
+        if(playerAnimation == PlayerAnimation.UP.animation){
+            setRegion(new Texture(PlayerPics.ATTACKUP.source));
+            setScale((float) 1.3,( float) 1.3); 
+        }
+        if(playerAnimation == PlayerAnimation.LEFT.animation){
+            setRegion(new Texture(PlayerPics.ATTACKLEFT.source));
+            setScale((float) 1.8,(float) 1.8); 
+        }
+        if(playerAnimation == PlayerAnimation.RIGHT.animation){
+            setRegion(new Texture(PlayerPics.ATTACKRIGHT.source));
+            setScale((float) 1.8,(float) 1.8); 
+        }
+        
+    }
+    
+    if (!controller.isAttack()) {
+        try {
+            setRegion(playerAnimation.getFrame());
+        } catch (Exception e) {
+            // TODO: handle exception
+        }
+    }
+
+    //////////// Controll handling ^^^^^^^^^
         
 
+        ////////////// Collision detection 
         setX(getX() + velX * deltaTime);
 
         if (collision.chechXDirection(velX, oldX)) { 
@@ -114,32 +171,8 @@ public class Player extends GameObject {
             velY = 0;
         }
 
+        ////////////// Collision detection ^^^^^^^^
 
-        
-        if (controller.isAttack()) {
-            if(lastPlayerPics==PlayerPics.DOWN.source){
-                setTexture(new Texture(PlayerPics.ATTACKDOWN.source));
-                setScale((float) 1.8,(float) 1.8); 
-            }
-            if(lastPlayerPics==PlayerPics.UP.source){
-                setTexture(new Texture(PlayerPics.ATTACKUP.source));
-                setScale((float) 1.3,( float) 1.3); 
-            }
-            if(lastPlayerPics==PlayerPics.LEFT.source){
-                setTexture(new Texture(PlayerPics.ATTACKLEFT.source));
-                setScale((float) 1.8,(float) 1.8); 
-            }
-            if(lastPlayerPics==PlayerPics.RIGHT.source){
-                setTexture(new Texture(PlayerPics.ATTACKRIGHT.source));
-                setScale((float) 1.8,(float) 1.8); 
-            }
-            
-            // System.out.println(lastPlayerPics);
-        
-        
-            
-        }
-        // TODO må skrive en funskjon som holder følge på hvilke retning spilleren sist beveget seg
     }
 
     //trenger ikke disse?
@@ -171,6 +204,13 @@ public class Player extends GameObject {
 
     public ID getId() {
         return id;
+    }
+
+    // changes the textureregion and initialises the animation, also updates the frame.
+    private void animate(Animation animation, float dt) {
+        playerAnimation = animation;
+        setRegion(playerAnimation.getFrame());
+        playerAnimation.update(dt); 
     }
     
 }
