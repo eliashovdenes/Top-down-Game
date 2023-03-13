@@ -11,7 +11,9 @@ public class Player extends GameObject {
     private Controller controller;
     private Collision collision;
     private String  lastPlayerPics;
-    public float lives;
+    public int lives;
+    public int maxHitPoints;
+    public int currentHitPoints;
 
 
     
@@ -21,7 +23,9 @@ public class Player extends GameObject {
         this.controller = controller;
         this.lastPlayerPics = lastPLayerPics;
         collision = new Collision(map, this, view); 
-        lives = 3;
+        this.lives = 3;
+        this.maxHitPoints = 100;
+        this.currentHitPoints = 100;
     }
 
     @Override
@@ -156,17 +160,41 @@ public class Player extends GameObject {
         this.oldX = oldX;
         this.oldY = oldY;
     }
-
-    public void takeDamage(float damage) {
-        lives -= damage;
+    
+    public int getCurrentHitPoints() {
+        return this.currentHitPoints;
     }
 
-    public void heal(float healnes) {
-        lives += healnes;
+    public void setCurrentHitPoints(int newHitPoints) {
+        if (newHitPoints > this.maxHitPoints) {
+            this.currentHitPoints = maxHitPoints;
+        }
+        else if (newHitPoints < 0) {
+            this.currentHitPoints = 0;
+        }
+        else {
+            this.currentHitPoints = newHitPoints;
+        }
     }
 
-    public float getLives() {
-        return lives;
+    public void takeDamage(int damage) {
+        this.setCurrentHitPoints(this.currentHitPoints - damage);
+    }
+
+    public boolean isDead() {
+        return getCurrentHitPoints() <= 0;
+    } 
+
+    public void heal(int healing) {
+        this.setCurrentHitPoints(this.currentHitPoints + healing);
+    }
+
+    public int getLives() {
+        return this.lives;
+    }
+
+    public int getMaxHitPoints() {
+        return this.maxHitPoints;
     }
 
     public ID getId() {
