@@ -192,6 +192,15 @@ public class Player extends GameObject {
     public int getLives() {
         return this.lives;
     }
+    
+    public void setLives(int newLives) {
+        if (newLives < 0) {
+            this.lives = 0;
+        }
+        else {
+            this.lives = newLives;
+        }
+    }
 
     public int getMaxHitPoints() {
         return this.maxHitPoints;

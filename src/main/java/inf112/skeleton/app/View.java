@@ -175,10 +175,14 @@ public class View implements Screen {
                 entity.y = y;
             }
             else {
-                    player.x = startX*16;
-                    player.y = startY*16;
-                    player.takeDamage(1);
+                player.x = startX*16;
+                player.y = startY*16;
+                player.takeDamage(25);
 
+                if (player.isDead()) {
+                    player.setLives(player.getLives() - 1);
+                    player.setCurrentHitPoints(player.getMaxHitPoints());
+                }
                 if (player.getLives() <= 0) game.setScreen(new GameOverScreen(game, controller));
             }
             
