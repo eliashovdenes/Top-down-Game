@@ -97,7 +97,8 @@ public class View implements Screen {
         }
 
         pointText.draw(renderer.getBatch(), "score: " + points, 19*16, 33*16);
-        lifeText.draw(renderer.getBatch(), "Lives: " + (int) player.getLives(), player.x - 12, player.y + player.getHeight() + 15);
+        lifeText.draw(renderer.getBatch(), "Lives: " + (int) player.getLives(), player.x - 12, player.y + player.getHeight() + 30);
+        lifeText.draw(renderer.getBatch(), "HP: " + (int) player.getCurrentHitPoints(), player.x - 12, player.y + player.getHeight() + 15);
 
         playerRect.getRectangle().setPosition(player.x, player.y);
         player.draw(renderer.getBatch());
