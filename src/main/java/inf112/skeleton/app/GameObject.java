@@ -25,8 +25,6 @@ public abstract class GameObject extends Sprite {
         this.y = y;
         this.id = id;
         this.view = view;
-        // this.maxHitPoints = 100;
-        // this.currentHitPoints = 100;
         setPosition(x, y);
     }
 
@@ -76,6 +74,39 @@ public abstract class GameObject extends Sprite {
         this.id = id;
     }
 
+    public int getCurrentHitPoints() {
+        return this.currentHitPoints;
+    }
+
+    public void setCurrentHitPoints(int newHitPoints) {
+        if (newHitPoints > this.maxHitPoints) {
+            this.currentHitPoints = maxHitPoints;
+        }
+        else if (newHitPoints < 0) {
+            this.currentHitPoints = 0;
+        }
+        else {
+            this.currentHitPoints = newHitPoints;
+        }
+    }
+
+    public void takeDamage(int damage) {
+        this.setCurrentHitPoints(this.currentHitPoints - damage);
+    }
+
+    public boolean isDead() {
+        return getCurrentHitPoints() <= 0;
+    } 
+
+    public void heal(int healing) {
+        this.setCurrentHitPoints(this.currentHitPoints + healing);
+    }
+
+    
+
+    public int getMaxHitPoints() {
+        return this.maxHitPoints;
+    }
     
     
 }

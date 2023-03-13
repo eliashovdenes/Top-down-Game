@@ -157,37 +157,6 @@ public class Player extends GameObject {
         this.oldY = oldY;
     }
     
-    public int getCurrentHitPoints() {
-        return this.currentHitPoints;
-    }
-
-    public void setCurrentHitPoints(int newHitPoints) {
-        if (newHitPoints > this.maxHitPoints) {
-            this.currentHitPoints = maxHitPoints;
-        }
-        else if (newHitPoints < 0) {
-            this.currentHitPoints = 0;
-        }
-        else {
-            this.currentHitPoints = newHitPoints;
-        }
-    }
-
-    public void takeDamage(int damage) {
-        this.setCurrentHitPoints(this.currentHitPoints - damage);
-        if (this.isDead()) {
-            this.setLives(this.getLives() - 1);
-        }
-    }
-
-    public boolean isDead() {
-        return getCurrentHitPoints() <= 0;
-    } 
-
-    public void heal(int healing) {
-        this.setCurrentHitPoints(this.currentHitPoints + healing);
-    }
-
     public int getLives() {
         return this.lives;
     }
@@ -203,8 +172,12 @@ public class Player extends GameObject {
         }
     }
 
-    public int getMaxHitPoints() {
-        return this.maxHitPoints;
+    @Override
+    public void takeDamage(int damage) {
+        this.setCurrentHitPoints(this.currentHitPoints - damage);
+        if (this.isDead()) {
+            this.setLives(this.getLives() - 1);
+        }
     }
 
     public ID getId() {
