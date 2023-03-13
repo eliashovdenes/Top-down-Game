@@ -68,8 +68,26 @@ public class PlayerTest {
         Assertions.assertEquals("src/main/java/inf112/skeleton/app/assets/playerPics/playerR.png", PlayerPics.RIGHT.source);
         controller.keyDown(Keys.W);
         Assertions.assertEquals("src/main/java/inf112/skeleton/app/assets/playerPics/playerUP.png", PlayerPics.UP.source);
-
     }
+
+    @Test 
+    void testPlayerHitPoints(){
+        
+        // Check that starting hit points is 100 and 3 lives
+        Assertions.assertEquals(100, player.getCurrentHitPoints());
+        Assertions.assertEquals(3, player.getLives());
+        
+        // Simulate player damage and check that hit points updates correctly
+        player.takeDamage(25);
+        Assertions.assertEquals(75, player.getCurrentHitPoints());
+        player.takeDamage(50);
+        Assertions.assertEquals(25, player.getCurrentHitPoints());
+        
+        // Overkill should set the player hit points to 0
+        player.takeDamage(50);
+        Assertions.assertEquals(0, player.getCurrentHitPoints()); 
+        Assertions.assertTrue(player.isDead());
+    }   
     
 
     
