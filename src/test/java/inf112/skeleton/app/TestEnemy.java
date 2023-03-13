@@ -19,7 +19,6 @@ public class TestEnemy {
     
     private HeadlessApplication app;
     private Enemy enemy;
-    private Controller controller;
     private View view;
     TmxMapLoader mapLoader;
     TiledMap map; 
@@ -34,13 +33,24 @@ public class TestEnemy {
         Gdx.gl20 = mock(GL20.class);
         //Gdx.graphics = mock(Graphics.class);
         
-        controller = new Controller();
         mapLoader = new TmxMapLoader();
         map = mapLoader.load("src/main/java/inf112/skeleton/app/assets/Level 1.tmx");
 
         enemy = new Enemy(12*16, 25*16, ID.Enemy, new Sprite(new Texture(PlayerPics.ENEMYDOWN.source)),map, view);
         
     }
+
+    @Test
+    void testEnemyImage(){
+        
+        // Test start image
+        Assertions.assertEquals("src/main/java/inf112/skeleton/app/assets/enemyPics/enemyDown.png", PlayerPics.ENEMYDOWN.source);
+        
+        // Change the player's direction and check that the image was updated correctly
+        // TODO: add tests for correct image when Enemy changes direction
+        
+    }
+
     @Test 
     void testEnemyHitPoints(){
         
