@@ -173,8 +173,12 @@ public class View implements Screen {
             if (controller.isAttack()) {
                 points ++;
                 int x = random.nextInt(fromX*16, toX*16), y = random.nextInt(fromY*16, toY*16);
-                entity.x = x;
-                entity.y = y;
+                entity.takeDamage(1);
+                if (entity.isDead()) {
+                    entity.x = x;
+                    entity.y = y;
+                    entity.setCurrentHitPoints(entity.getMaxHitPoints());
+                }    
             }
             else {
                 player.x = startX*16;
