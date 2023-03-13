@@ -179,6 +179,9 @@ public class Player extends GameObject {
 
     public void takeDamage(int damage) {
         this.setCurrentHitPoints(this.currentHitPoints - damage);
+        if (this.isDead()) {
+            this.setLives(this.getLives() - 1);
+        }
     }
 
     public boolean isDead() {
@@ -193,12 +196,14 @@ public class Player extends GameObject {
         return this.lives;
     }
     
+
     public void setLives(int newLives) {
         if (newLives < 0) {
             this.lives = 0;
         }
         else {
             this.lives = newLives;
+            this.setCurrentHitPoints(this.maxHitPoints);
         }
     }
 
