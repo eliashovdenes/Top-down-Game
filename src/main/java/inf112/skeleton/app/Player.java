@@ -12,10 +12,6 @@ public class Player extends GameObject {
     private Collision collision;
     private String  lastPlayerPics;
     public int lives;
-    public int maxHitPoints;
-    public int currentHitPoints;
-
-
     
 
     public Player(Sprite sprite, float x, float y, ID id, Controller controller, TiledMap map, View view, String lastPLayerPics) {

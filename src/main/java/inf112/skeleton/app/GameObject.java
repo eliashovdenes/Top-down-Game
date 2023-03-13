@@ -14,7 +14,9 @@ public abstract class GameObject extends Sprite {
     protected float speed = 1;
     protected Collision collision;
     protected View view;
-    protected float oldX, oldY; 
+    protected float oldX, oldY;
+    protected int maxHitPoints;
+    protected int currentHitPoints;
 
     public GameObject(float x, float y, ID id, Sprite sprite, TiledMap map, View view) {
         super(sprite);
@@ -23,6 +25,8 @@ public abstract class GameObject extends Sprite {
         this.y = y;
         this.id = id;
         this.view = view;
+        // this.maxHitPoints = 100;
+        // this.currentHitPoints = 100;
         setPosition(x, y);
     }
 
