@@ -18,6 +18,7 @@ import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.graphics.Color;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.Random;
@@ -46,7 +47,7 @@ public class View implements Screen {
     private float startX = 51;
     private float startY = 19;
     private int fromX = 23, toX = 40, fromY = (45-31), toY = (45-12);
-
+    public ArrayList<Projectile> projectileList = new ArrayList<Projectile>();
    
     public View(Zelda game, Controller controller) {
         this.game = game;
@@ -63,6 +64,7 @@ public class View implements Screen {
         camera = new OrthographicCamera();
         player = new Player(new Sprite(new Texture(PlayerPics.DOWN.source)), startX*16, startY*16, ID.Player, controller, map, this, PlayerPics.DOWN.source );
         playerRect = new RectangleMapObject(player.getX(), player.getY(), player.getWidth(), player.getHeight());
+        
 
         generateEnemies(10, map);
         // enemies.clear();
@@ -81,7 +83,7 @@ public class View implements Screen {
         // camera.position.set(320, 500, 0);
         renderer.getBatch().setProjectionMatrix(camera.combined);
         
-
+        
         
         //setter position på spiller;
         camera.position.set(player.getX() + player.getWidth() / 2, player.getY() + player.getHeight() / 2, 0);
@@ -90,17 +92,28 @@ public class View implements Screen {
         renderer.render();
 
         renderer.getBatch().begin();
+
+        //tegne fiender og sjekke kollisjon
         for (GameObject enemi : enemies.keySet()) {
             enemi.draw(renderer.getBatch());
             enemies.get(enemi).setPosition(enemi.x, enemi.y);
             checkSpriteCollision(enemi, enemies.get(enemi));
         }
+        
+
 
         pointText.draw(renderer.getBatch(), "score: " + points, 19*16, 33*16);
         lifeText.draw(renderer.getBatch(), "Lives: " + (int) player.getLives(), player.x - 12, player.y + player.getHeight() + 15);
 
         playerRect.getRectangle().setPosition(player.x, player.y);
         player.draw(renderer.getBatch());
+
+        //tegne prosjektiler
+        for(Projectile projectile : projectileList){
+            projectile.draw(renderer.getBatch());
+            System.out.println(projectile.y);
+            
+        }
         
 
         renderer.getBatch().end();

@@ -9,8 +9,8 @@ import com.badlogic.gdx.backends.lwjgl3.Lwjgl3ApplicationConfiguration;
 
 
 public class Main {
-    public static final int screenWidth = 1920;
-    public static final int screenHeight = 1080;
+    public static final int screenWidth = 800;
+    public static final int screenHeight = 600;
     public static void main(String[] args) {
         Lwjgl3ApplicationConfiguration cfg = new Lwjgl3ApplicationConfiguration();
         cfg.setTitle("South game");

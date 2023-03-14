@@ -17,6 +17,7 @@ public class Player extends GameObject {
     private String  lastPlayerPics;
     public float lives;
     public ArrayList<Projectile> projectiles;
+    private Sprite projectile;
 
     
 
@@ -24,6 +25,7 @@ public class Player extends GameObject {
         super(x, y, id, sprite, map, view);
         this.controller = controller;
         this.lastPlayerPics = lastPLayerPics;
+        //this.projectile = new Projectile(x, y, id, sprite, map, view);
         collision = new Collision(map, this, view); 
         lives = 3;
         projectiles = new ArrayList<Projectile>();
@@ -33,6 +35,7 @@ public class Player extends GameObject {
     public void draw(Batch batch) {
         update(Gdx.graphics.getDeltaTime());
         super.draw(batch);
+
     }
 
     public void setmap(TiledMap tileMap){
@@ -142,21 +145,33 @@ public class Player extends GameObject {
             
         }
         if (Gdx.input.isKeyJustPressed(Input.Keys.E)) {
-            Vector2 projectilePosition = new Vector2(x, y);
-            Vector2 ProjectileDirection = new Vector2(0, 1); //endres 
-            Projectile projectile = new Projectile(projectilePosition, ProjectileDirection, 300, 16, 16);
-            projectiles.add(projectile);
-        }
+            fireProjectile();
+            //Vector2 projectilePosition = new Vector2(x, y);
+            //Vector2 ProjectileDirection = new Vector2(0, 1); //endres 
+            
+            
+        }/* 
         // Update the position of each fireball
-        for (Projectile projectile : projectiles) {
+        for (Projectile projectile : view.projectileList) {
             projectile.update(deltaTime);
         }
-        
+        /*
         // Remove any fireballs that have gone off-screen
         projectiles.removeIf(projectile -> projectile.getPosition().y > 600);
         // TODO må skrive en funskjon som holder følge på hvilke retning spilleren sist beveget seg
-
+ */
     }
+    private void fireProjectile(){
+        Projectile proj = new Projectile(this.x, this.y, ID.Player, new Sprite(new Texture(PlayerPics.ENEMYUP.source)), map, view);
+        view.projectileList.add(proj);
+        
+        System.out.println("kommer vi her til");
+        System.out.println(view.projectileList.size());
+        
+    }
+
+    
+
 
     //trenger ikke disse?
 
