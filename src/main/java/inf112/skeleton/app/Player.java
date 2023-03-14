@@ -1,10 +1,14 @@
 package inf112.skeleton.app;
 
+import java.util.ArrayList;
+
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.maps.tiled.TiledMap;
+import com.badlogic.gdx.math.Vector2;
 
 public class Player extends GameObject {
 
@@ -12,7 +16,7 @@ public class Player extends GameObject {
     private Collision collision;
     private String  lastPlayerPics;
     public float lives;
-
+    public ArrayList<Projectile> projectiles;
 
     
 
@@ -22,6 +26,7 @@ public class Player extends GameObject {
         this.lastPlayerPics = lastPLayerPics;
         collision = new Collision(map, this, view); 
         lives = 3;
+        projectiles = new ArrayList<Projectile>();
     }
 
     @Override
@@ -34,7 +39,6 @@ public class Player extends GameObject {
         this.map = tileMap;
         collision = new Collision(tileMap, this, view);
     }
-
 
     private void update(float deltaTime) {
        
@@ -71,7 +75,6 @@ public class Player extends GameObject {
         else if (!controller.isUp()) {
             velY = 0;
         }
-
 
         if (controller.isRight()) {
             velX = speed;
@@ -114,7 +117,6 @@ public class Player extends GameObject {
             velY = 0;
         }
 
-
         
         if (controller.isAttack()) {
             if(lastPlayerPics==PlayerPics.DOWN.source){
@@ -139,7 +141,21 @@ public class Player extends GameObject {
         
             
         }
+        if (Gdx.input.isKeyJustPressed(Input.Keys.E)) {
+            Vector2 projectilePosition = new Vector2(x, y);
+            Vector2 ProjectileDirection = new Vector2(0, 1); //endres 
+            Projectile projectile = new Projectile(projectilePosition, ProjectileDirection, 300, 16, 16);
+            projectiles.add(projectile);
+        }
+        // Update the position of each fireball
+        for (Projectile projectile : projectiles) {
+            projectile.update(deltaTime);
+        }
+        
+        // Remove any fireballs that have gone off-screen
+        projectiles.removeIf(projectile -> projectile.getPosition().y > 600);
         // TODO må skrive en funskjon som holder følge på hvilke retning spilleren sist beveget seg
+
     }
 
     //trenger ikke disse?
