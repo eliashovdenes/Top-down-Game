@@ -13,24 +13,20 @@ public class Projectile extends GameObject{
     public Texture projTexture;
     float velX;
     float velY;
-/*
-    public Projectile(Vector2 projectilePosition, Vector2 projectileDirection, float x, float y,float speed) {
-        projectilePosition = new Vector2(x,y);
-        velocity.set(projectileDirection).scl(speed);
-    } */
+    
 
-    public Projectile(float x, float y, ID id, Sprite sprite, TiledMap map, View view) {
+    public Projectile(float directionX,float directionY,float x, float y, ID id, Sprite sprite, TiledMap map, View view) {
         super(x, y, id, sprite, map, view);
-        //setTexture(sprite.getTexture());
-        velX=0;
-        velY=1;
+      
+        this.velX=directionX;
+        this.velY=directionY;
         collision = new Collision(map, this, view);
         
     }
     public void update(float deltaTime) {
         x+=velX;
         y+=velY;
-        setY(getY() +velY*deltaTime);
+        setY(getY()+velY*deltaTime);
         setX(getX()+velX*deltaTime);
     }
 

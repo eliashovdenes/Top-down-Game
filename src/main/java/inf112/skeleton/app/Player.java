@@ -17,7 +17,8 @@ public class Player extends GameObject {
     private String  lastPlayerPics;
     public float lives;
     public ArrayList<Projectile> projectiles;
-    private Sprite projectile;
+    float projVelX = 0;
+    float projVelY = 5;
 
     
 
@@ -55,6 +56,8 @@ public class Player extends GameObject {
         
 
         if (controller.isUp()){ 
+            projVelX=0;
+            projVelY=5;
             velY = speed;
             setTexture(new Texture(PlayerPics.UP.source));
             lastPlayerPics = PlayerPics.UP.source;
@@ -70,6 +73,8 @@ public class Player extends GameObject {
         }
 
         if (controller.isDown()) {
+            projVelX=0;
+            projVelY=-5;
             velY = - speed;
             setTexture(new Texture(PlayerPics.DOWN.source));
             lastPlayerPics = PlayerPics.DOWN.source;
@@ -80,6 +85,8 @@ public class Player extends GameObject {
         }
 
         if (controller.isRight()) {
+            projVelX=5;
+            projVelY=0;
             velX = speed;
             setTexture(new Texture(PlayerPics.RIGHT.source));
             lastPlayerPics = PlayerPics.RIGHT.source;
@@ -90,6 +97,8 @@ public class Player extends GameObject {
         }
 
         if (controller.isLeft()) {
+            projVelX=-5;
+            projVelY=0;
             velX = -speed;
             setTexture(new Texture(PlayerPics.LEFT.source));
             lastPlayerPics = PlayerPics.LEFT.source;
@@ -139,34 +148,21 @@ public class Player extends GameObject {
                 setScale((float) 1.8,(float) 1.8); 
             }
             
-            // System.out.println(lastPlayerPics);
-        
         
             
         }
         if (Gdx.input.isKeyJustPressed(Input.Keys.E)) {
             fireProjectile();
-            //Vector2 projectilePosition = new Vector2(x, y);
-            //Vector2 ProjectileDirection = new Vector2(0, 1); //endres 
             
-            
-        }/* 
-        // Update the position of each fireball
-        for (Projectile projectile : view.projectileList) {
-            projectile.update(deltaTime);
-        }
-        /*
-        // Remove any fireballs that have gone off-screen
-        projectiles.removeIf(projectile -> projectile.getPosition().y > 600);
         // TODO må skrive en funskjon som holder følge på hvilke retning spilleren sist beveget seg
- */
+        }
     }
     private void fireProjectile(){
-        Projectile proj = new Projectile(this.x, this.y, ID.Player, new Sprite(new Texture(PlayerPics.ENEMYUP.source)), map, view);
+        
+
+        Projectile proj = new Projectile(projVelX,projVelY,this.x, this.y, ID.Player, new Sprite(new Texture(PlayerPics.ENEMYUP.source)), map, view);
         view.projectileList.add(proj);
         
-        System.out.println("kommer vi her til");
-        System.out.println(view.projectileList.size());
         
     }
 

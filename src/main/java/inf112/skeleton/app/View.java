@@ -100,6 +100,30 @@ public class View implements Screen {
             checkSpriteCollision(enemi, enemies.get(enemi));
         }
         
+        //tegne prosjektiler
+        for(Projectile projectile : projectileList){
+            ArrayList<GameObject> listToBeRemoved = new ArrayList<>();
+            projectile.draw(renderer.getBatch());  
+            Rectangle rect = new Rectangle(projectile.getX(), projectile.getY(), projectile.getWidth(), projectile.getHeight());
+            
+            for (GameObject enemy : enemies.keySet()){
+                Rectangle recta = new Rectangle(enemy.getX(), enemy.getY(), enemy.getWidth(), enemy.getHeight());
+                if (didYouHitMonster(recta, rect)){
+                    listToBeRemoved.add(enemy);
+                    
+                } 
+            }
+            for (GameObject enemy : listToBeRemoved){
+                enemies.remove(enemy);
+            }
+            
+        }
+        //fjerne fra list hvis når langt utenfor skjerm
+        projectileList.removeIf(projectile -> projectile.getX() > 2000);
+        projectileList.removeIf(projectile -> projectile.getY() > 2000);
+        
+        
+        
 
 
         pointText.draw(renderer.getBatch(), "score: " + points, 19*16, 33*16);
@@ -108,16 +132,21 @@ public class View implements Screen {
         playerRect.getRectangle().setPosition(player.x, player.y);
         player.draw(renderer.getBatch());
 
-        //tegne prosjektiler
-        for(Projectile projectile : projectileList){
-            projectile.draw(renderer.getBatch());
-            System.out.println(projectile.y);
-            
-        }
-        
 
         renderer.getBatch().end();
     }
+
+
+
+    private boolean didYouHitMonster(Rectangle recta, Rectangle rect) {
+        
+        
+        if (recta.overlaps(rect)) {
+            return true;
+        }
+        else return false;
+    }
+
 
 
 
