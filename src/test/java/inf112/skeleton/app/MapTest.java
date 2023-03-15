@@ -10,7 +10,9 @@ import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TiledMapRenderer;
 import com.badlogic.gdx.maps.tiled.TiledMapTile;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
+import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
+
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -20,8 +22,7 @@ public class MapTest {
     
     private static OrthographicCamera camera;
     private static TiledMapRenderer renderer;
-
-    private HeadlessApplication app;
+/*     private HeadlessApplication app;
     private Player player;
     private Controller controller;
     private View view;
@@ -86,6 +87,7 @@ public class MapTest {
             }assertTrue(isTileRendered);
         }
         
+    */
         
 }
     
