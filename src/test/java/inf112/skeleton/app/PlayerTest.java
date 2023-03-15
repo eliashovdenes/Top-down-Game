@@ -84,8 +84,9 @@ public class PlayerTest {
         Assertions.assertEquals(25, player.getCurrentHitPoints());
         
         // Overkill should set the player hit points to 0
-        player.takeDamage(50);
-        Assertions.assertEquals(0, player.getCurrentHitPoints()); 
+        player.setLives(1);
+        player.takeDamage(150);
+        Assertions.assertEquals(player.maxHitPoints, player.getCurrentHitPoints()); 
         Assertions.assertTrue(player.isDead());
     }   
     

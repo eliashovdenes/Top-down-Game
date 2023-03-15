@@ -89,7 +89,7 @@ public abstract class GameObject extends Sprite {
             this.currentHitPoints = newHitPoints;
         }
     }
-
+    
     public void takeDamage(int damage) {
         this.setCurrentHitPoints(this.currentHitPoints - damage);
     }
