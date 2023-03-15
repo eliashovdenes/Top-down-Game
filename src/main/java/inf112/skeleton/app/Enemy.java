@@ -19,6 +19,8 @@ public class Enemy extends GameObject {
         collision = new Collision(map, this, view);
         velX = 1;
         velY = 0;
+        this.maxHitPoints = 25;
+        this.currentHitPoints = 25;
     }
 
     @Override

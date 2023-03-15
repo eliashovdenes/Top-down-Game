@@ -93,10 +93,13 @@ public class View implements Screen {
             enemi.draw(renderer.getBatch());
             enemies.get(enemi).setPosition(enemi.x, enemi.y);
             checkSpriteCollision(enemi, enemies.get(enemi));
+            lifeText.draw(renderer.getBatch(), "HP: " + enemi.getCurrentHitPoints(), enemi.x - 12, enemi.y + enemi.getHeight() + 15);
+
         }
 
         pointText.draw(renderer.getBatch(), "score: " + points, 19*16, 33*16);
-        lifeText.draw(renderer.getBatch(), "Lives: " + (int) player.getLives(), player.x - 12, player.y + player.getHeight() + 15);
+        lifeText.draw(renderer.getBatch(), "Lives: " + player.getLives(), player.x - 12, player.y + player.getHeight() + 30);
+        lifeText.draw(renderer.getBatch(), "HP: " + player.getCurrentHitPoints(), player.x - 12, player.y + player.getHeight() + 15);
 
         playerRect.getRectangle().setPosition(player.x, player.y);
         player.draw(renderer.getBatch());
@@ -171,13 +174,17 @@ public class View implements Screen {
             if (controller.isAttack()) {
                 points ++;
                 int x = random.nextInt(fromX*16, toX*16), y = random.nextInt(fromY*16, toY*16);
-                entity.x = x;
-                entity.y = y;
+                entity.takeDamage(1);
+                if (entity.isDead()) {
+                    entity.x = x;
+                    entity.y = y;
+                    entity.setCurrentHitPoints(entity.getMaxHitPoints());
+                }    
             }
             else {
-                    player.x = startX*16;
-                    player.y = startY*16;
-                    player.takeDamage(1);
+                player.x = startX*16;
+                player.y = startY*16;
+                player.takeDamage(25);
 
                 if (player.getLives() <= 0) game.setScreen(new GameOverScreen(game, controller));
             }

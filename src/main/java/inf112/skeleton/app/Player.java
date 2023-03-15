@@ -25,11 +25,9 @@ public class Player extends GameObject {
         this.controller = controller;
         this.lastPlayerPics = lastPLayerPics;
         collision = new Collision(map, this, view); 
-        lives = 3;
-
-        // texture = new Texture("src/main/java/inf112/skeleton/app/assets/playerPics/animationDOWN.png");
-        // playerAnimation = new Animation(new TextureRegion(texture), 12, 0.5f);
-
+        this.lives = 3;
+        this.maxHitPoints = 100;
+        this.currentHitPoints = 100;
     }
 
     @Override
@@ -193,17 +191,28 @@ public class Player extends GameObject {
         this.oldX = oldX;
         this.oldY = oldY;
     }
+    
+    public int getLives() {
+        return this.lives;
+    }
+    
 
-    public void takeDamage(float damage) {
-        lives -= damage;
+    public void setLives(int newLives) {
+        if (newLives < 0) {
+            this.lives = 0;
+        }
+        else {
+            this.lives = newLives;
+            this.setCurrentHitPoints(this.maxHitPoints);
+        }
     }
 
-    public void heal(float healnes) {
-        lives += healnes;
-    }
-
-    public float getLives() {
-        return lives;
+    @Override
+    public void takeDamage(int damage) {
+        this.setCurrentHitPoints(this.currentHitPoints - damage);
+        if (this.isDead()) {
+            this.setLives(this.getLives() - 1);
+        }
     }
 
     public ID getId() {
