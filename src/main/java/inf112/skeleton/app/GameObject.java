@@ -14,7 +14,9 @@ public abstract class GameObject extends Sprite {
     protected float speed = 1;
     protected Collision collision;
     protected View view;
-    protected float oldX, oldY; 
+    protected float oldX, oldY;
+    protected int maxHitPoints;
+    protected int currentHitPoints;
 
     public GameObject(float x, float y, ID id, Sprite sprite, TiledMap map, View view) {
         super(sprite);
@@ -72,6 +74,39 @@ public abstract class GameObject extends Sprite {
         this.id = id;
     }
 
+    public int getCurrentHitPoints() {
+        return this.currentHitPoints;
+    }
+
+    public void setCurrentHitPoints(int newHitPoints) {
+        if (newHitPoints > this.maxHitPoints) {
+            this.currentHitPoints = maxHitPoints;
+        }
+        else if (newHitPoints < 0) {
+            this.currentHitPoints = 0;
+        }
+        else {
+            this.currentHitPoints = newHitPoints;
+        }
+    }
+    
+    public void takeDamage(int damage) {
+        this.setCurrentHitPoints(this.currentHitPoints - damage);
+    }
+
+    public boolean isDead() {
+        return getCurrentHitPoints() <= 0;
+    } 
+
+    public void heal(int healing) {
+        this.setCurrentHitPoints(this.currentHitPoints + healing);
+    }
+
+    
+
+    public int getMaxHitPoints() {
+        return this.maxHitPoints;
+    }
     
     
 }

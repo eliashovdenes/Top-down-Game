@@ -20,6 +20,8 @@ public class Enemy extends GameObject {
         collision = new Collision(map, this, view);
         velX = 1;
         velY = 0;
+        this.maxHitPoints = 25;
+        this.currentHitPoints = 25;
     }
 
     @Override
@@ -72,7 +74,7 @@ public class Enemy extends GameObject {
 
     }
 
-    private void newDeirection() {
+    public void newDeirection() {
         int dir = rand.nextInt(1,9);
         //System.out.println(dir);
         if (dir == 1) {velX = speed; velY = 0;}
