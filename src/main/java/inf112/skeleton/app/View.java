@@ -187,8 +187,8 @@ public class View implements Screen {
 
     @Override
     public void resize(int width, int height) {
-        camera.viewportWidth = width / 1.5f;
-        camera.viewportHeight = height / 1.5f;
+        camera.viewportWidth = width / 2f;
+        camera.viewportHeight = height / 2f;
     }
 
     @Override

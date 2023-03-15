@@ -14,6 +14,7 @@ public class Player extends GameObject {
     private String  lastPlayerPics;
     public float lives;
     private Animation playerAnimation;
+    private float timer = 0;
     // private Texture texture;
 
 
@@ -67,10 +68,6 @@ public class Player extends GameObject {
             velY = 0;
         }
         
-        if(!controller.isAttack()){
-            setScale(1); 
-            // setTexture(new Texture(lastPlayerPics));
-        }
 
         if (controller.isDown()) {
             velY = - speed;
@@ -111,41 +108,48 @@ public class Player extends GameObject {
             else if (controller.isDown()) animate(PlayerAnimation.RUNDOWN.animation, deltaTime);
             if (controller.isLeft()) animate(PlayerAnimation.RUNLEFT.animation, deltaTime);
             else if (controller.isRight()) animate(PlayerAnimation.RUNRIGHT.animation, deltaTime);
-            playerAnimation.setCycleTime(0.1f);
-        } catch (Exception e) {
-            // TODO: handle exception
-        }
+            // playerAnimation.setCycleTime(0.1f);
+        } catch (Exception e) {}
+        
         }
         else if (!controller.isFast()) {
             speed = 1;
-            try {
-                playerAnimation.setCycleTime(0.5f);
-            } catch (Exception e) {
-                // TODO: handle exception
-            }
     }
 
     if (controller.isAttack()) {
-        if(playerAnimation == PlayerAnimation.DOWN.animation){
-            setRegion(new Texture(PlayerPics.ATTACKDOWN.source));
-            setScale((float) 1.8,(float) 1.8); 
+        
+        if (timer < 1) {
+        if(playerAnimation == PlayerAnimation.DOWN.animation || playerAnimation == PlayerAnimation.RUNDOWN.animation){
+            animate(PlayerAnimation.ATTACKDOWN.animation, deltaTime);
+            // setRegion(new Texture(PlayerPics.ATTACKDOWN.source));
+            setScale(2.5f, 2);
+            playerAnimation.setCycleTime((1));
+             
         }
-        if(playerAnimation == PlayerAnimation.UP.animation){
+        if(playerAnimation == PlayerAnimation.UP.animation || playerAnimation == PlayerAnimation.RUNUP.animation){
             setRegion(new Texture(PlayerPics.ATTACKUP.source));
             setScale((float) 1.3,( float) 1.3); 
         }
-        if(playerAnimation == PlayerAnimation.LEFT.animation){
-            setRegion(new Texture(PlayerPics.ATTACKLEFT.source));
-            setScale((float) 1.8,(float) 1.8); 
+        if(playerAnimation == PlayerAnimation.LEFT.animation || playerAnimation == PlayerAnimation.RUNLEFT.animation){
+            animate(PlayerAnimation.ATTACKLEFT.animation, deltaTime);
+            
+            // setScale((float) 1.8,(float) 1.8); 
         }
-        if(playerAnimation == PlayerAnimation.RIGHT.animation){
+        if(playerAnimation == PlayerAnimation.RIGHT.animation || playerAnimation == PlayerAnimation.RUNRIGHT.animation){
             setRegion(new Texture(PlayerPics.ATTACKRIGHT.source));
             setScale((float) 1.8,(float) 1.8); 
         }
+        timer += deltaTime;
+    }
+    else {
+        controller.setAttack(false);
+        timer = 0;
+    }
         
     }
     
     if (!controller.isAttack()) {
+        setScale(1); 
         try {
             setRegion(playerAnimation.getFrame());
         } catch (Exception e) {
@@ -153,7 +157,7 @@ public class Player extends GameObject {
         }
     }
 
-    //////////// Controll handling ^^^^^^^^^
+        //////////// Controll handling ^^^^^^^^^
         
 
         ////////////// Collision detection 
