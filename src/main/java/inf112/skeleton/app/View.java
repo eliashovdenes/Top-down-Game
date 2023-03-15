@@ -46,6 +46,7 @@ public class View implements Screen {
     private float startX = 51;
     private float startY = 19;
     private int fromX = 23, toX = 40, fromY = (45-31), toY = (45-12);
+    private float timer;
 
    
     public View(Zelda game, Controller controller) {
@@ -92,9 +93,12 @@ public class View implements Screen {
         for (GameObject enemi : enemies.keySet()) {
             enemi.draw(renderer.getBatch());
             enemies.get(enemi).setPosition(enemi.x, enemi.y);
-            checkSpriteCollision(enemi, enemies.get(enemi));
+            checkSpriteCollision(enemi, enemies.get(enemi), delta);
             lifeText.draw(renderer.getBatch(), "HP: " + enemi.getCurrentHitPoints(), enemi.x - 12, enemi.y + enemi.getHeight() + 15);
-
+        }
+        if (player.isVisible() == false) {
+            timer -= delta;
+            if (timer <= 0) player.setVisible(true);
         }
 
         pointText.draw(renderer.getBatch(), "score: " + points, 19*16, 33*16);
@@ -168,9 +172,11 @@ public class View implements Screen {
      * avslutter foreløpig programmet.
      * instansierer en gameoverscreen.
      */
-    public void checkSpriteCollision(GameObject entity, Rectangle rect) {
+    public void checkSpriteCollision(GameObject entity, Rectangle rect, float dt) {
         
         if (playerRect.getRectangle().overlaps(rect)) {
+            if (player.isVisible()) {
+
             if (controller.isAttack()) {
                 points ++;
                 int x = random.nextInt(fromX*16, toX*16), y = random.nextInt(fromY*16, toY*16);
@@ -182,15 +188,19 @@ public class View implements Screen {
                 }    
             }
             else {
-                player.x = startX*16;
-                player.y = startY*16;
                 player.takeDamage(25);
-
                 if (player.getLives() <= 0) game.setScreen(new GameOverScreen(game, controller));
+                player.setVisible(false);
+                timer = 0.5f;
+                // player.x = startX*16;
+                // player.y = startY*16;
+                
             }
+        }
+        }
             
         }
-    }
+    
 
     @Override
     public void resize(int width, int height) {

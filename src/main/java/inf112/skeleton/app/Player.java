@@ -12,13 +12,15 @@ public class Player extends GameObject {
     private Controller controller;
     private Collision collision;
     private String  lastPlayerPics;
-    public float lives;
+    public int lives;
     private Animation playerAnimation;
     private float timer = 0;
+    private boolean visible;
     // private Texture texture;
 
 
     
+
 
     public Player(Sprite sprite, float x, float y, ID id, Controller controller, TiledMap map, View view, String lastPLayerPics) {
         super(x, y, id, sprite, map, view);
@@ -28,6 +30,7 @@ public class Player extends GameObject {
         this.lives = 3;
         this.maxHitPoints = 100;
         this.currentHitPoints = 100;
+        visible = true;
     }
 
     @Override
@@ -224,6 +227,15 @@ public class Player extends GameObject {
         playerAnimation = animation;
         setRegion(playerAnimation.getFrame());
         playerAnimation.update(dt); 
+    }
+
+    
+    public boolean isVisible() {
+        return visible;
+    }
+
+    public void setVisible(boolean visible) {
+        this.visible = visible;
     }
     
 }
