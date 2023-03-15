@@ -66,6 +66,7 @@ public class View implements Screen {
         camera = new OrthographicCamera();
         player = new Player(new Sprite(new Texture(PlayerPics.DOWN.source)), startX*16, startY*16, ID.Player, controller, map, this, PlayerPics.DOWN.source );
         playerRect = new RectangleMapObject(player.getX(), player.getY(), player.getWidth(), player.getHeight());
+        
 
         generateEnemies(10, map);
         // enemies.clear();
@@ -92,6 +93,7 @@ public class View implements Screen {
 
         renderer.getBatch().begin();
 
+        //tegne fiender og sjekke kollisjon
         for (GameObject enemi : enemies.keySet()) {
             enemi.draw(renderer.getBatch());
             enemies.get(enemi).setPosition(enemi.x, enemi.y);
@@ -102,6 +104,32 @@ public class View implements Screen {
             timer -= delta;
             if (timer <= 0) player.setVisible(true);
         }
+        
+        //tegne prosjektiler
+        for(Projectile projectile : projectileList){
+            ArrayList<GameObject> listToBeRemoved = new ArrayList<>();
+            projectile.draw(renderer.getBatch());  
+            Rectangle rect = new Rectangle(projectile.getX(), projectile.getY(), projectile.getWidth(), projectile.getHeight());
+            
+            for (GameObject enemy : enemies.keySet()){
+                Rectangle recta = new Rectangle(enemy.getX(), enemy.getY(), enemy.getWidth(), enemy.getHeight());
+                if (didYouHitMonster(recta, rect)){
+                    listToBeRemoved.add(enemy);
+                    
+                } 
+            }
+            for (GameObject enemy : listToBeRemoved){
+                enemies.remove(enemy);
+            }
+            
+        }
+        //fjerne fra list hvis når langt utenfor skjerm
+        projectileList.removeIf(projectile -> projectile.getX() > 2000);
+        projectileList.removeIf(projectile -> projectile.getY() > 2000);
+        
+        
+        
+
 
         pointText.draw(renderer.getBatch(), "score: " + points, 19*16, 33*16);
         lifeText.draw(renderer.getBatch(), "Lives: " + player.getLives(), player.x - 12, player.y + player.getHeight() + 30);
@@ -110,10 +138,23 @@ public class View implements Screen {
         playerRect.getRectangle().setPosition(player.x, player.y);
         player.draw(renderer.getBatch());
 
+
         // renderer.getBatch().setProjectionMatrix(camera.combined);
         
         renderer.getBatch().end();
     }
+
+
+
+    private boolean didYouHitMonster(Rectangle recta, Rectangle rect) {
+        
+        
+        if (recta.overlaps(rect)) {
+            return true;
+        }
+        else return false;
+    }
+
 
 
 

@@ -3,11 +3,13 @@ package inf112.skeleton.app;
 import java.util.ArrayList;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.maps.tiled.TiledMap;
+import com.badlogic.gdx.math.Vector2;
 
 public class Player extends GameObject {
 
@@ -32,6 +34,7 @@ public class Player extends GameObject {
         super(x, y, id, sprite, map, view);
         this.controller = controller;
         this.lastPlayerPics = lastPLayerPics;
+        //this.projectile = new Projectile(x, y, id, sprite, map, view);
         collision = new Collision(map, this, view); 
         this.lives = 3;
         this.maxHitPoints = 100;
@@ -44,13 +47,13 @@ public class Player extends GameObject {
     public void draw(Batch batch) {
         update(Gdx.graphics.getDeltaTime());
         super.draw(batch);
+
     }
 
     public void setmap(TiledMap tileMap){
         this.map = tileMap;
         collision = new Collision(tileMap, this, view);
     }
-
 
     private void update(float deltaTime) {
         
@@ -66,6 +69,8 @@ public class Player extends GameObject {
         //////////// Controll handling
 
         if (controller.isUp()){ 
+            projVelX=0;
+            projVelY=5;
             velY = speed;
             animate(PlayerAnimation.UP.animation, deltaTime);
                     
@@ -78,6 +83,8 @@ public class Player extends GameObject {
         
 
         if (controller.isDown()) {
+            projVelX=0;
+            projVelY=-5;
             velY = - speed;
             animate(PlayerAnimation.DOWN.animation, deltaTime);
 
@@ -88,8 +95,9 @@ public class Player extends GameObject {
             velY = 0;
         }
 
-
         if (controller.isRight()) {
+            projVelX=5;
+            projVelY=0;
             velX = speed;
             animate(PlayerAnimation.RIGHT.animation, deltaTime);
 
@@ -101,6 +109,8 @@ public class Player extends GameObject {
         }
 
         if (controller.isLeft()) {
+            projVelX=-5;
+            projVelY=0;
             velX = -speed;
             animate(PlayerAnimation.LEFT.animation, deltaTime);
             // lastPlayerPics = PlayerPics.LEFT.source;
@@ -183,9 +193,45 @@ public class Player extends GameObject {
             velY = 0;
         }
 
-        ////////////// Collision detection ^^^^^^^^
-
+        
+        if (controller.isAttack()) {
+            if(lastPlayerPics==PlayerPics.DOWN.source){
+                setTexture(new Texture(PlayerPics.ATTACKDOWN.source));
+                setScale((float) 1.8,(float) 1.8); 
+            }
+            if(lastPlayerPics==PlayerPics.UP.source){
+                setTexture(new Texture(PlayerPics.ATTACKUP.source));
+                setScale((float) 1.3,( float) 1.3); 
+            }
+            if(lastPlayerPics==PlayerPics.LEFT.source){
+                setTexture(new Texture(PlayerPics.ATTACKLEFT.source));
+                setScale((float) 1.8,(float) 1.8); 
+            }
+            if(lastPlayerPics==PlayerPics.RIGHT.source){
+                setTexture(new Texture(PlayerPics.ATTACKRIGHT.source));
+                setScale((float) 1.8,(float) 1.8); 
+            }
+            
+        
+            
+        }
+        if (Gdx.input.isKeyJustPressed(Input.Keys.E)) {
+            fireProjectile();
+            
+        // TODO må skrive en funskjon som holder følge på hvilke retning spilleren sist beveget seg
+        }
     }
+    private void fireProjectile(){
+        
+
+        Projectile proj = new Projectile(projVelX,projVelY,this.x, this.y, ID.Player, new Sprite(new Texture(PlayerPics.ENEMYUP.source)), map, view);
+        view.projectileList.add(proj);
+        
+        
+    }
+
+    
+
 
     //trenger ikke disse?
 

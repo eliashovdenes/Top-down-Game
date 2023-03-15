@@ -12,6 +12,7 @@ import com.badlogic.gdx.maps.tiled.TiledMap;
 public class Enemy extends GameObject {
 
     private Collision collision;
+    
     private Random rand = new Random();
 
     public Enemy(float x, float y, ID id, Sprite sprite, TiledMap map, View view) {
@@ -28,8 +29,6 @@ public class Enemy extends GameObject {
         update(Gdx.graphics.getDeltaTime());
         super.draw(batch);
     }
-
-    
 
     public void update(float deltaTime) {
         x += velX;
@@ -77,7 +76,7 @@ public class Enemy extends GameObject {
 
     public void newDeirection() {
         int dir = rand.nextInt(1,9);
-        System.out.println(dir);
+        //System.out.println(dir);
         if (dir == 1) {velX = speed; velY = 0;}
         if (dir == 2) {velX = -speed; velY = 0;}
         if (dir == 3) {velY = speed; velX = 0;}
