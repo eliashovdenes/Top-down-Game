@@ -17,17 +17,45 @@ import static org.junit.jupiter.api.Assertions.*;
 public class MapTest {
 
 
-    /* 
-    private static TiledMap map;
+    
     private static OrthographicCamera camera;
     private static TiledMapRenderer renderer;
-    @BeforeAll
-    static void setUpbeforeAll(){
-    //greier ikke laste inn map..    
-    map = new TideMapLoader().load("TOP-DOWN-SQUAD/src/main/java/inf112/skeleton/app/assets/mapet.tmx");
-    camera = new OrthographicCamera();
-    renderer = new OrthogonalTiledMapRenderer(map);
-}
+
+    private HeadlessApplication app;
+    private Player player;
+    private Controller controller;
+    private View view;
+    TmxMapLoader mapLoader;
+    TiledMap map; 
+
+    public void setup() {
+        
+        // Create a HeadlessApplication with the mock Application object
+        HeadlessApplicationConfiguration config = new HeadlessApplicationConfiguration();
+        app = new HeadlessApplication(new Zelda(), config);
+        Gdx.gl = mock(GL20.class);
+        Gdx.gl20 = mock(GL20.class);
+        //Gdx.graphics = mock(Graphics.class);
+        
+        //controller = new Controller();
+        mapLoader = new TmxMapLoader();
+        map = mapLoader.load("src/main/java/inf112/skeleton/app/assets/Level 1.tmx");
+
+        player = new Player(new Sprite(new Texture(PlayerPics.DOWN.source)), 12*16, 25*16, ID.Player, this.controller, map, view, PlayerPics.DOWN.source);
+        
+    }
+
+   
+    @Test
+    public void testLoadObject(){
+
+        MapObject playerObject = map.getLayers().get("objects").getObjects().get("player");
+        //sjekk at den har forventede egenskaper
+        assertEquals("player",playerObject.getName());
+        //assertEquals(andre egenskaper)
+
+    }
+
     
     @Test
     public void testRenderTile() {
@@ -56,17 +84,9 @@ public class MapTest {
                 }
 
             }assertTrue(isTileRendered);
-        }   
-        
-
-        @Test
-        public void testLoadObject(){
-
-            MapObject playerObject = map.getLayers().get("objects").getObjects().get("player");
-            //sjekk at den har forventede egenskaper
-            assertEquals("player",playerObject.getName());
-            //assertEquals(andre egenskaper)
-
         }
-        */
+        
+        
 }
+    
+    
