@@ -73,7 +73,7 @@ public class Enemy extends GameObject {
 
     }
 
-    private void newDeirection() {
+    public void newDeirection() {
         int dir = rand.nextInt(1,9);
         System.out.println(dir);
         if (dir == 1) {velX = speed; velY = 0;}

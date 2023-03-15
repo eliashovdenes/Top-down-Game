@@ -9,22 +9,38 @@
     "file.lastUsedOpenFilter": "All Files (*)",
     "fileStates": {
         "House.tmx": {
-            "scale": 0.6106,
-            "selectedLayer": 2,
+            "scale": 0.83,
+            "selectedLayer": 0,
             "viewCenter": {
-                "x": 633.8028169014084,
-                "y": 564.1991483786439
+                "x": 959.0361445783134,
+                "y": 353.61445783132535
+            }
+        },
+        "Level 1.tmx": {
+            "scale": 1,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 560,
+                "y": 359.5
             }
         },
         "Level 2.tmx": {
-            "scale": 0.7311607142857143,
+            "scale": 0.73,
             "selectedLayer": 0,
             "viewCenter": {
-                "x": 559.3845402369031,
-                "y": 360.38588350225916
+                "x": 438.35616438356163,
+                "y": 360.95890410958896
             }
         },
+        "Pokemon retro.tsx": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
         "pokemon1.tsx": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "pokemonIndoor.tsx": {
             "scaleInDock": 1,
             "scaleInEditor": 1
         },
@@ -47,6 +63,10 @@
     ],
     "project": "untitled.tiled-project",
     "recentFiles": [
+        "Level 2.tmx",
+        "pokemonIndoor.tsx",
+        "Pokemon retro.tsx",
+        "House.tmx",
         "stormappet.tmx",
         "pokemon1.tsx"
     ],
