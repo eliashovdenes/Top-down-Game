@@ -18,6 +18,7 @@ import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.graphics.Color;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.Random;
@@ -47,6 +48,7 @@ public class View implements Screen {
     private float startY = 19;
     private int fromX = 23, toX = 40, fromY = (45-31), toY = (45-12);
     private float timer;
+    public ArrayList<Projectile> projectileList = new ArrayList<Projectile>();
 
    
     public View(Zelda game, Controller controller) {

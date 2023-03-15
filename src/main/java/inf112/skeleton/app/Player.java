@@ -1,5 +1,7 @@
 package inf112.skeleton.app;
 
+import java.util.ArrayList;
+
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
@@ -13,9 +15,13 @@ public class Player extends GameObject {
     private Collision collision;
     private String  lastPlayerPics;
     public int lives;
+    
     private Animation playerAnimation;
     private float timer = 0;
     private boolean visible;
+    public ArrayList<Projectile> projectiles;
+    float projVelX = 0;
+    float projVelY = 5;
     // private Texture texture;
 
 
@@ -31,6 +37,7 @@ public class Player extends GameObject {
         this.maxHitPoints = 100;
         this.currentHitPoints = 100;
         visible = true;
+        projectiles = new ArrayList<Projectile>();
     }
 
     @Override
@@ -229,7 +236,7 @@ public class Player extends GameObject {
         playerAnimation.update(dt); 
     }
 
-    
+
     public boolean isVisible() {
         return visible;
     }
