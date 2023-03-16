@@ -215,11 +215,14 @@ public class Player extends GameObject {
         
             
         }
+        if (controller.isShoot()){
+            fireProjectile();
+        }/*
         if (Gdx.input.isKeyJustPressed(Input.Keys.E)) {
             fireProjectile();
-            
+         } */ 
         // TODO må skrive en funskjon som holder følge på hvilke retning spilleren sist beveget seg
-        }
+        
     }
     private void fireProjectile(){
         

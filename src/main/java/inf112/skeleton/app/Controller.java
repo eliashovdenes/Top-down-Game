@@ -13,7 +13,8 @@ public class Controller implements InputProcessor{
     mapShift = false,
     isAttack = false,
     isSpace = false,
-    enter = false;
+    enter = false,
+    shoot = false;
 
 
     
@@ -42,6 +43,7 @@ public class Controller implements InputProcessor{
         if (keycode == Keys.P) isAttack = true;
         if (keycode == Keys.SPACE) isSpace = true;
         if (keycode == Keys.ENTER) enter = true;
+        if (keycode == Keys.E) shoot = true;
         // if (keycode == Keys.Q) mapShift = true;
         return true;
     }
@@ -55,6 +57,7 @@ public class Controller implements InputProcessor{
         if (keycode == Keys.P) isAttack = false;
         if (keycode == Keys.SPACE) isSpace = false;
         if (keycode == Keys.ENTER) enter = false;
+        if (keycode == Keys.E) shoot = false;
         // if (keycode == Keys.Q) mapShift = false;
         return true;
     }
@@ -120,7 +123,12 @@ public class Controller implements InputProcessor{
         return isAttack;
     }
 
-
+    public void setShoot(boolean shoot){
+        this.shoot = shoot;
+    }
+    public boolean isShoot(){
+        return shoot;
+    }
 
     
 }
