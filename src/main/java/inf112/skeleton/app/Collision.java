@@ -127,7 +127,7 @@ public class Collision {
 
         if (cave){
             entity.setOldXNdY(23*16, 28*16);
-            view.changeMap(Maps.Cave.source, 23, 28, 19, 20, 21, 28, 1); 
+            view.changeMap(Maps.Cave.source, 23, 28, 19, 20, 21, 28, 10); 
             level2 = false;
         }
 
