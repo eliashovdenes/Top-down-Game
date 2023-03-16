@@ -20,6 +20,7 @@ public class Player extends GameObject {
     
     private Animation playerAnimation;
     private float timer = 0;
+    private float shootTimer = 0;
     private boolean visible;
     public ArrayList<Projectile> projectiles;
     float projVelX = 0;
@@ -215,12 +216,13 @@ public class Player extends GameObject {
         
             
         }
+        System.out.println(shootTimer);
         if (controller.isShoot()){
-            fireProjectile();
-        }/*
-        if (Gdx.input.isKeyJustPressed(Input.Keys.E)) {
-            fireProjectile();
-         } */ 
+            if (shootTimer<=0){
+            fireProjectile();}
+            
+        }else {if (shootTimer>0){shootTimer-=deltaTime;}}
+
         // TODO må skrive en funskjon som holder følge på hvilke retning spilleren sist beveget seg
         
     }
@@ -229,6 +231,7 @@ public class Player extends GameObject {
 
         Projectile proj = new Projectile(projVelX,projVelY,this.x, this.y, ID.Player, new Sprite(new Texture(PlayerPics.ENEMYUP.source)), map, view);
         view.projectileList.add(proj);
+        shootTimer+=2;
         
         
     }
