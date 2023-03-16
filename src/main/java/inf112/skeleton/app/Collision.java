@@ -121,7 +121,7 @@ public class Collision {
         //Level 2 portal
         if (level2){
             entity.setOldXNdY(114*16, 73*16);
-            view.changeMap(Maps.Level2.source, 114, 73, 23, 40, (45-31), (45-12), 0); 
+            view.changeMap(Maps.Level2.source, 114, 73, 23, 40, (45-31), (45-12), 10); 
             level2 = false;
         }
 

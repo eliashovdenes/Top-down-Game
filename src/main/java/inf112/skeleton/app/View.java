@@ -39,7 +39,7 @@ public class View implements Screen {
     public HashMap<GameObject, Rectangle> enemies = new HashMap<>();
     private float startX = 122;
     private float startY = 70;
-    private int fromX = 23, toX = 40, fromY = (45-31), toY = (45-12);
+    private int fromX = 23, toX = 1500, fromY = 200, toY = (800);
     private float timer;
     
     public ArrayList<Projectile> projectileList = new ArrayList<Projectile>();
@@ -105,8 +105,8 @@ public class View implements Screen {
         for (GameObject enemi : enemies.keySet()) {
             enemi.draw(batch);
 
-            //setter enemy x og y til de samme x og y?
-            //enemies.get(enemi).setPosition(enemi.x, enemi.y);
+            //setter riktig rektangel for hver enemy8
+            enemies.get(enemi).setPosition(enemi.x, enemi.y);
             
             lifeText.draw(batch, "HP: " + enemi.getCurrentHitPoints(), enemi.x - 12, enemi.y + enemi.getHeight() + 15);
             checkSpriteCollision(enemi, enemies.get(enemi), delta);
