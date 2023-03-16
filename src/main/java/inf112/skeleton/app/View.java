@@ -1,7 +1,6 @@
 package inf112.skeleton.app;
 
 
-import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
@@ -9,10 +8,9 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.Sprite;
-import com.badlogic.gdx.maps.MapLayer;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.maps.objects.RectangleMapObject;
 import com.badlogic.gdx.maps.tiled.TiledMap;
-import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.math.Rectangle;
@@ -20,13 +18,9 @@ import com.badlogic.gdx.graphics.Color;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.LinkedList;
 import java.util.Random;
-import java.util.random.*;
 
-import javax.xml.catalog.Catalog;
-
-import org.lwjgl.system.linux.Stat;
+import org.lwjgl.opengl.GL;
 
 public class View implements Screen {
 
@@ -49,6 +43,10 @@ public class View implements Screen {
     private int fromX = 23, toX = 40, fromY = (45-31), toY = (45-12);
     private float timer;
     public ArrayList<Projectile> projectileList = new ArrayList<Projectile>();
+    private ArrayList ListofOBjectsInGame;
+    SpriteBatch batch;
+    Player2 testplayer;
+    
 
    
     public View(Zelda game, Controller controller) {
@@ -67,6 +65,11 @@ public class View implements Screen {
         player = new Player(new Sprite(new Texture(PlayerPics.DOWN.source)), startX*16, startY*16, ID.Player, controller, map, this, PlayerPics.DOWN.source );
         playerRect = new RectangleMapObject(player.getX(), player.getY(), player.getWidth(), player.getHeight());
         
+        batch = new SpriteBatch();
+
+
+        
+        testplayer = new Player2(startX*16,startY*16,0,0,ID.Player);
 
         generateEnemies(10, map);
         // enemies.clear();
@@ -80,6 +83,14 @@ public class View implements Screen {
 
     @Override
     public void render(float delta) {
+
+
+        
+
+        
+        
+            
+        
         Gdx.gl.glClearColor(0, 0, 0, 0);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         // camera.position.set(320, 500, 0);
@@ -88,18 +99,28 @@ public class View implements Screen {
         //setter kamera position på spiller;
         camera.position.set(player.getX() + player.getWidth() / 2, player.getY() + player.getHeight() / 2, 0);
         camera.update();
+        
+        batch.setProjectionMatrix(camera.combined);
+
+
+        //render map
         renderer.setView(camera);
         renderer.render();
+   
+        //render player / enemies / evt projectiles
+        batch.begin();
 
-        renderer.getBatch().begin();
-
-        //tegne fiender og sjekke kollisjon
+        //for hver fiende, tegne fiende, tegne health points og sjekke kollisjon
         for (GameObject enemi : enemies.keySet()) {
-            enemi.draw(renderer.getBatch());
-            enemies.get(enemi).setPosition(enemi.x, enemi.y);
+            enemi.draw(batch);
+
+            //setter enemy x og y til de samme x og y?
+            //enemies.get(enemi).setPosition(enemi.x, enemi.y);
+            
+            lifeText.draw(batch, "HP: " + enemi.getCurrentHitPoints(), enemi.x - 12, enemi.y + enemi.getHeight() + 15);
             checkSpriteCollision(enemi, enemies.get(enemi), delta);
-            lifeText.draw(renderer.getBatch(), "HP: " + enemi.getCurrentHitPoints(), enemi.x - 12, enemi.y + enemi.getHeight() + 15);
         }
+
         if (player.isVisible() == false) {
             timer -= delta;
             if (timer <= 0) player.setVisible(true);
@@ -108,7 +129,7 @@ public class View implements Screen {
         //tegne prosjektiler
         for(Projectile projectile : projectileList){
             ArrayList<GameObject> listToBeRemoved = new ArrayList<>();
-            projectile.draw(renderer.getBatch());  
+            projectile.draw(batch);  
             Rectangle rect = new Rectangle(projectile.getX(), projectile.getY(), projectile.getWidth(), projectile.getHeight());
             
             //sjekker overlap mellom prosjektil og enemy. hvis overlap mister enemy liv og evt. dør
@@ -123,6 +144,7 @@ public class View implements Screen {
                     
                 } 
             }
+            //fjerne enemy fra enemyliste hvis en er 'dø'
             for (GameObject enemy : listToBeRemoved){
                 enemies.remove(enemy);
             }
@@ -134,19 +156,21 @@ public class View implements Screen {
         
         
         
+        //spilleren med score, liv og health points.
+        player.draw(batch);
+        pointText.draw(batch, "score: " + points, 19*16, 33*16);
+        lifeText.draw(batch, "Lives: " + player.getLives(), player.x - 12, player.y + player.getHeight() + 30);
+        lifeText.draw(batch, "HP: " + player.getCurrentHitPoints(), player.x - 12, player.y + player.getHeight() + 15);
 
-
-        pointText.draw(renderer.getBatch(), "score: " + points, 19*16, 33*16);
-        lifeText.draw(renderer.getBatch(), "Lives: " + player.getLives(), player.x - 12, player.y + player.getHeight() + 30);
-        lifeText.draw(renderer.getBatch(), "HP: " + player.getCurrentHitPoints(), player.x - 12, player.y + player.getHeight() + 15);
-
+        //henter rectangle SHAPE fra rectangle OBJECT? og setter posisjon til player
         playerRect.getRectangle().setPosition(player.x, player.y);
-        player.draw(renderer.getBatch());
-
+        
 
         // renderer.getBatch().setProjectionMatrix(camera.combined);
-        
-        renderer.getBatch().end();
+        CollisionTest collision = new CollisionTest(map, testplayer, this);
+        testplayer.update(delta);
+        testplayer.render(batch);
+        batch.end();
     }
 
 
