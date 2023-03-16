@@ -8,6 +8,7 @@ import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g3d.shaders.BaseShader.Setter;
 import com.badlogic.gdx.maps.tiled.TiledMap;
+import com.badlogic.gdx.math.Rectangle;
 
 public class Enemy extends GameObject {
 
@@ -108,6 +109,7 @@ public class Enemy extends GameObject {
         return id;
     }
 
+
     
-    
+
 }

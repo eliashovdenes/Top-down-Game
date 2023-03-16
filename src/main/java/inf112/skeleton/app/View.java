@@ -36,11 +36,12 @@ public class View implements Screen {
     private BitmapFont pointText = new BitmapFont();
     private BitmapFont lifeText = new BitmapFont();
     private Zelda game;
-    private HashMap<GameObject, Rectangle> enemies = new HashMap<>();
+    public HashMap<GameObject, Rectangle> enemies = new HashMap<>();
     private float startX = 122;
     private float startY = 70;
     private int fromX = 23, toX = 40, fromY = (45-31), toY = (45-12);
     private float timer;
+    Map mappie;
     public ArrayList<Projectile> projectileList = new ArrayList<Projectile>();
     
     SpriteBatch batch;
@@ -57,6 +58,7 @@ public class View implements Screen {
 
     @Override
     public void show() {
+        //map = new Map(Maps.Level1.source);
         map = new TmxMapLoader().load(Maps.Level1.source);
         renderer = new OrthogonalTiledMapRenderer(map);
         camera = new OrthographicCamera();
@@ -158,6 +160,8 @@ public class View implements Screen {
         // renderer.getBatch().setProjectionMatrix(camera.combined);
         
         batch.end();
+
+        System.out.println();
     }
 
 
