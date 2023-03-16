@@ -20,7 +20,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Random;
 
-import org.lwjgl.opengl.GL;
 
 public class View implements Screen {
 
@@ -43,9 +42,8 @@ public class View implements Screen {
     private int fromX = 23, toX = 40, fromY = (45-31), toY = (45-12);
     private float timer;
     public ArrayList<Projectile> projectileList = new ArrayList<Projectile>();
-    private ArrayList ListofOBjectsInGame;
+    
     SpriteBatch batch;
-    Player2 testplayer;
     
 
    
@@ -68,11 +66,10 @@ public class View implements Screen {
         batch = new SpriteBatch();
 
 
-        
-        testplayer = new Player2(startX*16,startY*16,0,0,ID.Player);
+       
 
         generateEnemies(10, map);
-        // enemies.clear();
+        
 
 
         enemyexists = true;
@@ -83,17 +80,9 @@ public class View implements Screen {
 
     @Override
     public void render(float delta) {
-
-
-        
-
-        
-        
-            
         
         Gdx.gl.glClearColor(0, 0, 0, 0);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-        // camera.position.set(320, 500, 0);
         
     
         //setter kamera position på spiller;
@@ -167,9 +156,7 @@ public class View implements Screen {
         
 
         // renderer.getBatch().setProjectionMatrix(camera.combined);
-        CollisionTest collision = new CollisionTest(map, testplayer, this);
-        testplayer.update(delta);
-        testplayer.render(batch);
+        
         batch.end();
     }
 
