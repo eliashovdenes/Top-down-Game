@@ -44,8 +44,8 @@ public class View implements Screen {
     private BitmapFont lifeText = new BitmapFont();
     private Zelda game;
     private HashMap<GameObject, Rectangle> enemies = new HashMap<>();
-    private float startX = 51;
-    private float startY = 19;
+    private float startX = 122;
+    private float startY = 70;
     private int fromX = 23, toX = 40, fromY = (45-31), toY = (45-12);
     private float timer;
     public ArrayList<Projectile> projectileList = new ArrayList<Projectile>();
@@ -253,8 +253,8 @@ public class View implements Screen {
 
     @Override
     public void resize(int width, int height) {
-        camera.viewportWidth = width / 2f;
-        camera.viewportHeight = height / 2f;
+        camera.viewportWidth = width / 3f;
+        camera.viewportHeight = height / 3f;
     }
 
     @Override

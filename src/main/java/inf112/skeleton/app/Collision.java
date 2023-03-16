@@ -8,7 +8,7 @@ import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 public class Collision {
 
 
-    private boolean housePortal = false, level2 = false;
+    private boolean housePortal = false, level2 = false, cave = false;
     
     private TiledMap map;
     public TiledMap getMap() {
@@ -112,21 +112,23 @@ public class Collision {
 
         //House portal
         if (housePortal){
-            entity.setOldXNdY(18*16, 42*16);
-            view.changeMap(Maps.House.source, 18, 42, 13, 30, 42, 54, 1);
+            entity.setOldXNdY(18*16, 18*16);
+            view.changeMap(Maps.House.source, 18, 18, 13, 30, 42, 54, 0);
             housePortal = false;
-            
         }
 
 
         //Level 2 portal
         if (level2){
-            entity.setOldXNdY(12*16, 23*16);
-            view.changeMap(Maps.Level2.source, 12, 23, 23, 40, (45-31), (45-12), 4); 
+            entity.setOldXNdY(114*16, 73*16);
+            view.changeMap(Maps.Level2.source, 114, 73, 23, 40, (45-31), (45-12), 0); 
             level2 = false;
-            
+        }
 
-            
+        if (cave){
+            entity.setOldXNdY(23*16, 28*16);
+            view.changeMap(Maps.Cave.source, 23, 28, 19, 20, 21, 28, 1); 
+            level2 = false;
         }
 
         if (collisionY) return true;
@@ -155,11 +157,17 @@ public class Collision {
                         return false;
                     }
 
-                    if (layer.getCell((int) xpos, (int) ypos).getTile().getProperties().containsKey("level2")) {
+                    if (layer.getCell((int) xpos, (int) ypos).getTile().getProperties().containsKey("level 2")) {
                         // System.out.println("level2");
                         level2 = true;
                         return false;
                     }
+                    if (layer.getCell((int) xpos, (int) ypos).getTile().getProperties().containsKey("cave")) {
+                        // System.out.println("level2");
+                        cave = true;
+                        return false;
+                    }
+
 
                     
             

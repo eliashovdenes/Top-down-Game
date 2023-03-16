@@ -42,6 +42,7 @@ public class Player extends GameObject {
         this.currentHitPoints = 100;
         visible = true;
         projectiles = new ArrayList<Projectile>();
+        setSize(12, 17);
     }
 
     @Override
