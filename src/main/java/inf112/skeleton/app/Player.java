@@ -3,13 +3,11 @@ package inf112.skeleton.app;
 import java.util.ArrayList;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.Sprite;
-import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.maps.tiled.TiledMap;
-import com.badlogic.gdx.math.Vector2;
 
 public class Player extends GameObject {
 
@@ -18,16 +16,15 @@ public class Player extends GameObject {
     private String  lastPlayerPics;
     public int lives;
     
+    private BitmapFont lifeText = new BitmapFont();
     private Animation playerAnimation;
     private float timer = 0;
     private float shootTimer = 0;
     private boolean visible;
+    private Projectile projectile;
     public ArrayList<Projectile> projectiles;
     float projVelX = 0;
     float projVelY = 5;
-    // private Texture texture;
-
-
     
 
 
@@ -35,14 +32,17 @@ public class Player extends GameObject {
         super(x, y, id, sprite, map, view);
         this.controller = controller;
         this.lastPlayerPics = lastPLayerPics;
-        //this.projectile = new Projectile(x, y, id, sprite, map, view);
         collision = new Collision(map, this, view); 
         this.lives = 3;
         this.maxHitPoints = 100;
         this.currentHitPoints = 100;
         visible = true;
+        //projectile = new Projectile(x, y, x, y, id, sprite, map, view);
         projectiles = new ArrayList<Projectile>();
+
+        
         setSize(12, 17);
+
     }
 
     @Override
@@ -217,25 +217,22 @@ public class Player extends GameObject {
         
             
         }
-        System.out.println(shootTimer);
         if (controller.isShoot()){
             if (shootTimer<=0){
-            fireProjectile();}
+                Projectile proj = new Projectile(projVelX,projVelY,this.getX(),this.getY(), id, new Sprite(new Texture(PlayerPics.ENEMYDOWN.source)), map, view);
+                view.projectileList.add(proj);
+                shootTimer+=2;
+            } else {if (shootTimer>0){shootTimer-=deltaTime;
+            }
             
-        }else {if (shootTimer>0){shootTimer-=deltaTime;}}
+    }
+}
 
         // TODO må skrive en funskjon som holder følge på hvilke retning spilleren sist beveget seg
         
     }
-    private void fireProjectile(){
         
-
-        Projectile proj = new Projectile(projVelX,projVelY,this.x, this.y, ID.Player, new Sprite(new Texture(PlayerPics.ENEMYUP.source)), map, view);
-        view.projectileList.add(proj);
-        shootTimer+=2;
-        
-        
-    }
+    
 
     
 
