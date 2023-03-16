@@ -111,10 +111,15 @@ public class View implements Screen {
             projectile.draw(renderer.getBatch());  
             Rectangle rect = new Rectangle(projectile.getX(), projectile.getY(), projectile.getWidth(), projectile.getHeight());
             
+            //sjekker overlap mellom prosjektil og enemy. hvis overlap mister enemy liv og evt. dør
             for (GameObject enemy : enemies.keySet()){
                 Rectangle recta = new Rectangle(enemy.getX(), enemy.getY(), enemy.getWidth(), enemy.getHeight());
                 if (didYouHitMonster(recta, rect)){
-                    listToBeRemoved.add(enemy);
+                    enemy.takeDamage(1);
+                    if(enemy.isDead()){
+                        points ++;
+                        listToBeRemoved.add(enemy);
+                    }
                     
                 } 
             }
@@ -221,10 +226,11 @@ public class View implements Screen {
             if (player.isVisible()) {
 
             if (controller.isAttack()) {
-                points ++;
+                
                 int x = random.nextInt(fromX*16, toX*16), y = random.nextInt(fromY*16, toY*16);
                 entity.takeDamage(1);
                 if (entity.isDead()) {
+                    points ++;
                     entity.x = x;
                     entity.y = y;
                     entity.setCurrentHitPoints(entity.getMaxHitPoints());
