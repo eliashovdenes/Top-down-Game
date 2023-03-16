@@ -41,7 +41,7 @@ public class View implements Screen {
     private float startY = 70;
     private int fromX = 23, toX = 40, fromY = (45-31), toY = (45-12);
     private float timer;
-    Map mappie;
+    
     public ArrayList<Projectile> projectileList = new ArrayList<Projectile>();
     
     SpriteBatch batch;
