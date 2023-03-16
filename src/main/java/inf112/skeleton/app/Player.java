@@ -24,7 +24,7 @@ public class Player extends GameObject {
     private Projectile projectile;
     public ArrayList<Projectile> projectiles;
     float projVelX = 0;
-    float projVelY = 5;
+    float projVelY = 3;
     
 
 
@@ -72,7 +72,7 @@ public class Player extends GameObject {
 
         if (controller.isUp()){ 
             projVelX=0;
-            projVelY=5;
+            projVelY=3;
             velY = speed;
             animate(PlayerAnimation.UP.animation, deltaTime);
                     
@@ -86,7 +86,7 @@ public class Player extends GameObject {
 
         if (controller.isDown()) {
             projVelX=0;
-            projVelY=-5;
+            projVelY=-3;
             velY = - speed;
             animate(PlayerAnimation.DOWN.animation, deltaTime);
 
@@ -98,7 +98,7 @@ public class Player extends GameObject {
         }
 
         if (controller.isRight()) {
-            projVelX=5;
+            projVelX=3;
             projVelY=0;
             velX = speed;
             animate(PlayerAnimation.RIGHT.animation, deltaTime);
@@ -111,7 +111,7 @@ public class Player extends GameObject {
         }
 
         if (controller.isLeft()) {
-            projVelX=-5;
+            projVelX=-3;
             projVelY=0;
             velX = -speed;
             animate(PlayerAnimation.LEFT.animation, deltaTime);
@@ -219,14 +219,22 @@ public class Player extends GameObject {
         }
         if (controller.isShoot()){
             if (shootTimer<=0){
-                Projectile proj = new Projectile(projVelX,projVelY,this.getX(),this.getY(), id, new Sprite(new Texture(PlayerPics.ENEMYDOWN.source)), map, view);
+                Texture texture = new Texture(PlayerPics.UPARROW.source);
+                if (projVelX>0 && projVelY==0){texture = new Texture(PlayerPics.RIGHTARROW.source);}
+                if (projVelX<0 && projVelY ==0){texture = new Texture(PlayerPics.LEFTARROW.source);}
+                if (projVelX==0 && projVelY >0){texture = new Texture(PlayerPics.UPARROW.source);}
+                if (projVelX==0 && projVelY <0){texture = new Texture(PlayerPics.DOWNARROW.source);}
+                
+                
+                Sprite sprite = new Sprite(texture);
+                Projectile proj = new Projectile(projVelX,projVelY,this.getX(),this.getY(), id, sprite, map, view);
                 view.projectileList.add(proj);
-                shootTimer+=2;
-            } else {if (shootTimer>0){shootTimer-=deltaTime;
+                shootTimer+=0.5;
+            } 
             }
-            
+           if (shootTimer>0){shootTimer-=deltaTime;
     }
-}
+
 
         // TODO må skrive en funskjon som holder følge på hvilke retning spilleren sist beveget seg
         
