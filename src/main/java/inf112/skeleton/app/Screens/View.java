@@ -117,12 +117,10 @@ public class View implements Screen {
         batch.begin();
         //draw player
         playerI.getSprite().draw(batch);
-        //batch.draw(player.getSprite().getTexture(),player.getSprite().getVertices(),0,20);
 
         //draw arrows
         for (AbstractProjectile projectile : playerI.getArrows()){
             projectile.getSprite().draw(batch);
-            //batch.draw(projectile.getSprite(), projectile.getPosition().x,projectile.getPosition().y);
             
         }
 
@@ -142,8 +140,8 @@ public class View implements Screen {
 
     @Override
     public void resize(int width, int height) {
-        camera.viewportWidth = width/5f;
-        camera.viewportHeight = height/5f;
+        camera.viewportWidth = width/3f;
+        camera.viewportHeight = height/3f;
         
     }
 
