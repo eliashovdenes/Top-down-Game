@@ -2,13 +2,13 @@ package inf112.skeleton.app.Screens;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.ScreenAdapter;
+import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
-import inf112.skeleton.app.Controller;
-import inf112.skeleton.app.View;
 import inf112.skeleton.app.Zelda;
+
 
 
 public class MainMenuScreen extends ScreenAdapter {
@@ -16,13 +16,11 @@ public class MainMenuScreen extends ScreenAdapter {
     private SpriteBatch batch;
     private Zelda game;
     private BitmapFont font;
-    private Controller controller;
 
-    public MainMenuScreen(Zelda southGame, Controller controller) {
+    public MainMenuScreen(Zelda southGame) {
         this.game = southGame;
         batch = new SpriteBatch();
         font = new BitmapFont();
-        this.controller = controller;
     }
 
 
@@ -43,8 +41,9 @@ public class MainMenuScreen extends ScreenAdapter {
         font.draw(batch, "Credits", 10, 550);
         batch.end();
 
-        if (controller.isEnter()) {
-            game.setScreen(new View(game, controller));
+        
+        if (Gdx.input.isTouched()){
+            game.setScreen(new View(game));
         }
     }
 

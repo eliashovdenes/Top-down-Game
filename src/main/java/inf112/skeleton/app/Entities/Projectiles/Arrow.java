@@ -1,0 +1,95 @@
+package inf112.skeleton.app.Entities.Projectiles;
+
+
+import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.Sprite;
+import com.badlogic.gdx.maps.tiled.TiledMap;
+import com.badlogic.gdx.math.Vector2;
+
+import inf112.skeleton.app.Entities.AbstractProjectile;
+import inf112.skeleton.app.Entities.PlayerInterface;
+import inf112.skeleton.app.Entities.Enums.DirectionEnum;
+import inf112.skeleton.app.Entities.Enums.PlayerPics;
+
+public class Arrow extends AbstractProjectile {
+
+    protected float speed = 2;
+    protected Sprite sprite;
+    protected PlayerInterface player;
+    protected TiledMap map;
+    protected Vector2 velocity;
+    
+    
+    
+
+    public Arrow(Vector2 position, TiledMap map, PlayerInterface player) {
+        super(position, map);
+        this.map = map;
+        this.player = player;
+        velocity = setArrowVelocity();
+        setCorrectSprite();
+        sprite.setSize(7,7);
+        
+       
+    }
+    private Vector2 setArrowVelocity() {
+        Vector2  veloVector = new Vector2();
+        DirectionEnum direction = player.getPlayerDirection();
+        if (direction == DirectionEnum.NORTH){veloVector = new Vector2(0*speed,1*speed);}
+        if (direction == DirectionEnum.SOUTH){veloVector = new Vector2(0*speed,-1*speed);}
+        if (direction == DirectionEnum.WEST){veloVector = new Vector2(-1*speed,0*speed);}
+        if (direction == DirectionEnum.EAST){veloVector = new Vector2(1*speed,0*speed);}
+        return veloVector;
+    }
+    @Override
+    public void update(float delta) {
+
+        if (velocity.x == 0 && velocity.y==0){
+            velocity.y = -1;
+        }
+        
+        position.x+=velocity.x;
+        position.y+=velocity.y;
+        
+        sprite.setPosition(position.x,position.y);
+    }
+
+   
+   
+    @Override
+    public void setSprite(String string) {
+        sprite = new Sprite(new Texture(string));
+    }
+
+    @Override
+    public Sprite getSprite() {
+        return sprite;
+    }
+
+    @Override
+    public void setMovementSpeed(float speed) {
+        this.speed = speed;
+    }
+
+    @Override
+    public float getWidth() {
+        return sprite.getWidth();
+    }
+
+    @Override
+    public float getHeight() {
+        return sprite.getHeight();
+    }
+    
+    private void setCorrectSprite(){
+
+    String sprite = "";
+    if (player.getPlayerDirection()==DirectionEnum.EAST) sprite = PlayerPics.RIGHTARROW.source;
+    if (player.getPlayerDirection()==DirectionEnum.NORTH)  sprite = PlayerPics.UPARROW.source;
+    if (player.getPlayerDirection()==DirectionEnum.WEST) sprite = PlayerPics.LEFTARROW.source;
+    if (player.getPlayerDirection()==DirectionEnum.SOUTH)  sprite = PlayerPics.DOWNARROW.source;
+   
+    setSprite(sprite);
+    }
+  
+}

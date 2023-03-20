@@ -1,7 +1,9 @@
-package inf112.skeleton.app;
+package inf112.skeleton.app.Entities.Enums;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+
+import inf112.skeleton.app.Animation;
 
 public enum PlayerAnimation {
 
@@ -22,7 +24,7 @@ public enum PlayerAnimation {
     ATTACKLEFT(new Animation(new TextureRegion(new Texture("src/main/java/inf112/skeleton/app/assets/playerPics/attackLeft.png")), 12, 0.1f));
 
 
-    Animation animation;
+    public Animation animation;
 
     PlayerAnimation(Animation animation) {
         this.animation = animation;

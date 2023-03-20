@@ -4,12 +4,10 @@ import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 
-import inf112.skeleton.app.Maps;
-
 public class Level1 extends TiledMap implements MapInterface {
     private int enemies = 10;
-    private float PlayerSpawnX = 18;
-    private float PlayerSpawnY = 18;
+    private float PlayerSpawnX = 122;
+    private float PlayerSpawnY = 70;
     private int EnemyBoundsfromX = 0;
     private int EnemyBoundsToX = 10;
     private int EnemyBoundsFromY = 10;

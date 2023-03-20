@@ -2,14 +2,16 @@ package inf112.skeleton.app.Screens;
 
 
 
+import java.lang.ModuleLayer.Controller;
+
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.ScreenAdapter;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
-import inf112.skeleton.app.Controller;
 import inf112.skeleton.app.Zelda;
+
 
 
 public class GameOverScreen extends ScreenAdapter {
@@ -40,10 +42,9 @@ public class GameOverScreen extends ScreenAdapter {
         batch.end();
 
         // Draw the "Restart" button
-        if (controller.isSpace()) {
-            game.setScreen(new MainMenuScreen(game, controller));
+       
         }
-    }
+    
     @Override
     public void dispose(){
         batch.dispose();

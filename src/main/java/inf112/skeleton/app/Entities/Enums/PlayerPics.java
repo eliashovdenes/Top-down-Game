@@ -1,4 +1,4 @@
-package inf112.skeleton.app;
+package inf112.skeleton.app.Entities.Enums;
 
 public enum PlayerPics {
     RIGHT("src/main/java/inf112/skeleton/app/assets/playerPics/playerR.png"),
@@ -21,7 +21,7 @@ public enum PlayerPics {
 
     
 
-    String source;
+    public String source;
 
     PlayerPics(String source) {
         this.source = source;

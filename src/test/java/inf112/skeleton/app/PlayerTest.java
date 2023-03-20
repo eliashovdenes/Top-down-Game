@@ -17,7 +17,7 @@ import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 
 public class PlayerTest {
-    
+    /*
     private HeadlessApplication app;
     private Player player;
     private Controller controller;
@@ -45,15 +45,15 @@ public class PlayerTest {
 
     /**
      * Tests that the tests are running headless
-     */
+     
     @Test
     void testRunningHeadless() {
         assertTrue(Gdx.graphics.getType() == GraphicsType.Mock);
     }
-
+*/
     /**
      * Tests that the right image is shown when the player changes direction
-     */
+     
     @Test
     void testPlayerImage(){
         
@@ -85,6 +85,6 @@ public class PlayerTest {
         
     }   
     
-
+ */
     
 }

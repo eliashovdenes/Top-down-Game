@@ -1,4 +1,4 @@
-package inf112.skeleton.app;
+package inf112.skeleton.app.Mapfolder;
 
 public enum Maps {
     Level1("src/main/java/inf112/skeleton/app/assets/maps/Level 1.tmx"),

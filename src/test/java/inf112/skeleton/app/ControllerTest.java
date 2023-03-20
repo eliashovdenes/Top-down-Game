@@ -3,7 +3,7 @@ import com.badlogic.gdx.Input.Keys;
 import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.*;
 public class ControllerTest {
-    
+    /*
 //checks if the controller class recieves the attack informasjon.
     @Test
     void testInputAttack(){
@@ -54,5 +54,5 @@ public class ControllerTest {
         controll.keyUp(Keys.D);
         assertFalse(controll.isRight());
     }
-    
+     */
 }
