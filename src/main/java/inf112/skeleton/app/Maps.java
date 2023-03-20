@@ -7,7 +7,7 @@ public enum Maps {
     Cave("src/main/java/inf112/skeleton/app/assets/maps/Cave.tmx");
     
 
-    String source;
+    public String source;
 
     Maps(String source) {
         this.source = source;

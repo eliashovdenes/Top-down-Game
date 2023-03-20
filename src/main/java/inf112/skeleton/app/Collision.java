@@ -1,14 +1,13 @@
 package inf112.skeleton.app;
 
-import javax.swing.text.html.parser.Entity;
-
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
+
 
 public class Collision {
 
 
-    private boolean housePortal = false, level2 = false, cave = false;
+    public boolean housePortal = false, level2 = false, cave = false;
     
     private TiledMap map;
     public TiledMap getMap() {
@@ -26,12 +25,12 @@ public class Collision {
     private float tileHeight;
     private View view;
 
-    public Collision(TiledMap map, GameObject entity, View view) {
+    public Collision(TiledMap currMap, GameObject entity, View view) {
         this.view = view;
-        this.map = map;
+        this.map = currMap;
         this.entity = entity;
-        tileWidth = ((TiledMapTileLayer) map.getLayers().get(0)).getTileWidth();
-        tileHeight = ((TiledMapTileLayer) map.getLayers().get(0)).getTileWidth();
+        tileWidth = ((TiledMapTileLayer) currMap.getLayers().get(0)).getTileWidth();
+        tileHeight = ((TiledMapTileLayer) currMap.getLayers().get(0)).getTileWidth();
     }
 
     public boolean chechXDirection(float velX, float oldX) {
@@ -113,7 +112,9 @@ public class Collision {
         //House portal
         if (housePortal){
             entity.setOldXNdY(18*16, 18*16);
-            view.changeMap(Maps.House.source, 18, 18, 13, 30, 42, 54, 0);
+            view.changeMap(Maps.House.source,30, 4, 5, 6, 7, 8, 0);
+            //view.enterHouse();
+            
             housePortal = false;
         }
 
@@ -122,12 +123,14 @@ public class Collision {
         if (level2){
             entity.setOldXNdY(114*16, 73*16);
             view.changeMap(Maps.Level2.source, 114, 73, 23, 40, (45-31), (45-12), 10); 
+            //view.enterLevel2();
             level2 = false;
         }
 
         if (cave){
             entity.setOldXNdY(23*16, 28*16);
             view.changeMap(Maps.Cave.source, 23, 28, 19, 20, 21, 28, 10); 
+            //view.enterCave();
             level2 = false;
         }
 
@@ -168,9 +171,6 @@ public class Collision {
                         return false;
                     }
 
-
-                    
-            
                 }
             }
             

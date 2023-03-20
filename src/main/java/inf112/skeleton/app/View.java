@@ -14,6 +14,14 @@ import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.math.Rectangle;
+
+import inf112.skeleton.app.Mapfolder.Cave;
+import inf112.skeleton.app.Mapfolder.House;
+import inf112.skeleton.app.Mapfolder.Level1;
+import inf112.skeleton.app.Mapfolder.Level2;
+import inf112.skeleton.app.Mapfolder.MapInterface;
+import inf112.skeleton.app.Screens.GameOverScreen;
+
 import com.badlogic.gdx.graphics.Color;
 
 import java.util.ArrayList;
@@ -41,8 +49,11 @@ public class View implements Screen {
     private float startY = 70;
     private int fromX = 23, toX = 1500, fromY = 200, toY = (800);
     private float timer;
-    
+    MapInterface mapI = new Level1();
+    OrthogonalTiledMapRenderer nyRend;
+    TiledMap nyMap;
     public ArrayList<Projectile> projectileList = new ArrayList<Projectile>();
+    
     
     SpriteBatch batch;
     
@@ -51,6 +62,7 @@ public class View implements Screen {
     public View(Zelda game, Controller controller) {
         this.game = game;
         this.controller = controller;
+        
     }   
 
     
@@ -58,16 +70,21 @@ public class View implements Screen {
 
     @Override
     public void show() {
+        
+        map = mapI.getMap();
+        renderer = mapI.getRenderer();
+
         //map = new Map(Maps.Level1.source);
-        map = new TmxMapLoader().load(Maps.Level1.source);
-        renderer = new OrthogonalTiledMapRenderer(map);
+        //map = new TmxMapLoader().load(Maps.Level1.source);
+        //renderer = new OrthogonalTiledMapRenderer(map);
         camera = new OrthographicCamera();
         player = new Player(new Sprite(new Texture(PlayerPics.DOWN.source)), startX*16, startY*16, ID.Player, controller, map, this, PlayerPics.DOWN.source );
         playerRect = new RectangleMapObject(player.getX(), player.getY(), player.getWidth(), player.getHeight());
         
         batch = new SpriteBatch();
 
-
+        
+    
        
 
         generateEnemies(10, map);
@@ -90,6 +107,7 @@ public class View implements Screen {
         //setter kamera position på spiller;
         camera.position.set(player.getX() + player.getWidth() / 2, player.getY() + player.getHeight() / 2, 0);
         camera.update();
+        
         
         batch.setProjectionMatrix(camera.combined);
 
@@ -156,12 +174,8 @@ public class View implements Screen {
         //henter rectangle SHAPE fra rectangle OBJECT? og setter posisjon til player
         playerRect.getRectangle().setPosition(player.x, player.y);
         
-
-        // renderer.getBatch().setProjectionMatrix(camera.combined);
-        
         batch.end();
 
-        System.out.println();
     }
 
 
@@ -292,6 +306,77 @@ public class View implements Screen {
        map.dispose();
        renderer.dispose();
        player.getTexture().dispose();
+    }
+
+
+
+
+    public void enterHouse() {
+        map.dispose();
+        mapI = new House();
+        map = mapI.getMap();
+        player.setX(mapI.getPlayerSpawnX()*16);
+        player.setY(mapI.getEnemyBoundsFromY()*16);
+        player.setmap(map);
+        renderer.setMap(map);
+
+        this.toX = mapI.getEnemyBoundsToX();
+        this.fromX = mapI.getEnemyBoundsFromX();
+        this.toY = mapI.getEnemyBoundsToY();
+        this.fromY = mapI.getEnemyBoundsFromY();
+
+        generateEnemies(mapI.getEnemies(), nyMap);
+
+    }
+    public void enterLevel1(){
+        map.dispose();
+        mapI = new Level1(); 
+        map = mapI.getMap();
+        player.setX(mapI.getPlayerSpawnX()*16);
+        player.setY(mapI.getEnemyBoundsFromY()*16);
+        player.setmap(map);
+        renderer.setMap(map);
+
+        this.toX = mapI.getEnemyBoundsToX();
+        this.fromX = mapI.getEnemyBoundsFromX();
+        this.toY = mapI.getEnemyBoundsToY();
+        this.fromY = mapI.getEnemyBoundsFromY();
+
+        generateEnemies(mapI.getEnemies(), nyMap);
+
+    }
+    public void enterLevel2(){
+        map.dispose();
+        mapI = new Level2(); 
+        map = mapI.getMap();
+        player.setX(mapI.getPlayerSpawnX()*16);
+        player.setY(mapI.getEnemyBoundsFromY()*16);
+        player.setmap(map);
+        renderer.setMap(map);
+
+        this.toX = mapI.getEnemyBoundsToX();
+        this.fromX = mapI.getEnemyBoundsFromX();
+        this.toY = mapI.getEnemyBoundsToY();
+        this.fromY = mapI.getEnemyBoundsFromY();
+
+        generateEnemies(mapI.getEnemies(), nyMap);
+
+    }
+    public void enterCave(){
+        map.dispose();
+        mapI = new Cave(); 
+        map = mapI.getMap();
+        player.setX(mapI.getPlayerSpawnX()*16);
+        player.setY(mapI.getEnemyBoundsFromY()*16);
+        player.setmap(map);
+        renderer.setMap(map);
+
+        this.toX = mapI.getEnemyBoundsToX();
+        this.fromX = mapI.getEnemyBoundsFromX();
+        this.toY = mapI.getEnemyBoundsToY();
+        this.fromY = mapI.getEnemyBoundsFromY();
+
+        generateEnemies(mapI.getEnemies(), nyMap);
     }
     
 }

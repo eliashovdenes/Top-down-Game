@@ -3,6 +3,8 @@ package inf112.skeleton.app;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 
+import inf112.skeleton.app.Screens.MainMenuScreen;
+
 public class Zelda extends Game{
 
     private Controller controller = new Controller();
