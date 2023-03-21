@@ -6,7 +6,7 @@ import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 
 public class Level2 extends TiledMap implements MapInterface {
 
-    private int enemies = 10;
+    private int enemies = 3;
     private float PlayerSpawnX = 114;
     private float PlayerSpawnY = 73;
     private int EnemyBoundsfromX = 200;

@@ -23,14 +23,14 @@ public class Player extends AbstractGameObject implements PlayerInterface {
     private Sprite sprite;
     private float speed = 1;
     public Arrow arrow;
-    private TiledMap map;
+    private MapInterface map;
     public ArrayList<AbstractProjectile> projectileList;
     private int shootTimer;
     DirectionEnum direction;
     public MapInterface nextMap;
     public boolean onPortal;
 
-    public Player(Vector2 position, TiledMap map) {
+    public Player(Vector2 position, MapInterface map) {
         super(position, map);
         this.playerAnimation = PlayerAnimation.DOWN.animation;
         this.map = map;
@@ -164,6 +164,8 @@ public class Player extends AbstractGameObject implements PlayerInterface {
     public DirectionEnum getPlayerDirection(){
         return this.direction;
     }
+
+
     //Overrides method from AbstractGameObject to check for portal collision in Y-direction
     @Override 
     public boolean yCollision(){
@@ -171,8 +173,8 @@ public class Player extends AbstractGameObject implements PlayerInterface {
         if (collision.isCellAPortal()){
             onPortal = true;
             nextMap = collision.nextMap;
-            this.map = nextMap.getMap();
-            collision = new Collision(map,this);
+            this.map = nextMap;
+            collision = new Collision(map.getMap(),this);
             spawn(nextMap.getPlayerSpawnX()*16,nextMap.getPlayerSpawnY()*16);
             return false;
         }
@@ -198,5 +200,8 @@ public class Player extends AbstractGameObject implements PlayerInterface {
 
     public Vector2 getPosition() {
         return super.getPosition();
+    }
+    public void setOffPortal(){
+        onPortal = false;
     }
 }

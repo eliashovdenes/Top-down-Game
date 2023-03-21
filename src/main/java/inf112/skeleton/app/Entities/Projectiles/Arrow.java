@@ -10,6 +10,7 @@ import inf112.skeleton.app.Entities.AbstractProjectile;
 import inf112.skeleton.app.Entities.PlayerInterface;
 import inf112.skeleton.app.Entities.Enums.DirectionEnum;
 import inf112.skeleton.app.Entities.Enums.PlayerPics;
+import inf112.skeleton.app.Mapfolder.MapInterface;
 
 public class Arrow extends AbstractProjectile {
 
@@ -22,9 +23,9 @@ public class Arrow extends AbstractProjectile {
     
     
 
-    public Arrow(Vector2 position, TiledMap map, PlayerInterface player) {
+    public Arrow(Vector2 position, MapInterface map, PlayerInterface player) {
         super(position, map);
-        this.map = map;
+        this.map = map.getMap();
         this.player = player;
         velocity = setArrowVelocity();
         setCorrectSprite();

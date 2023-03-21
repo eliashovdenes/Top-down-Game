@@ -18,9 +18,10 @@ import com.badlogic.gdx.math.Vector2;
 
 import inf112.skeleton.app.Entities.AbstractGameObject;
 import inf112.skeleton.app.Entities.AbstractProjectile;
+import inf112.skeleton.app.Entities.MonsterInterface;
 import inf112.skeleton.app.Entities.Player;
 import inf112.skeleton.app.Entities.PlayerInterface;
-
+import inf112.skeleton.app.Entities.Enemies.BlueEnemy;
 import inf112.skeleton.app.Mapfolder.Level1;
 import inf112.skeleton.app.Mapfolder.MapInterface;
 import inf112.skeleton.app.Zelda;
@@ -44,6 +45,7 @@ public class View implements Screen {
     private BitmapFont pointText = new BitmapFont();
     private BitmapFont lifeText = new BitmapFont();
     private Zelda game;
+    private MonsterInterface monsterI;
     public HashMap<AbstractGameObject, Rectangle> enemies = new HashMap<>();
     
     MapInterface mapI = new Level1();
@@ -69,9 +71,11 @@ public class View implements Screen {
         
         map = mapI.getMap();
         renderer = mapI.getRenderer();
-        playerI = new Player(new Vector2(0,0),map);
+        playerI = new Player(new Vector2(0,0),mapI);
+        monsterI = new BlueEnemy(mapI);
+        monsterI.spawn();
         playerI.spawn(mapI.getPlayerSpawnX()*16,mapI.getPlayerSpawnY()*16);
-      
+        
         camera = new OrthographicCamera();
         
         batch = new SpriteBatch();
@@ -103,7 +107,9 @@ public class View implements Screen {
             this.mapI=playerI.nextMap();
             
             renderer.setMap(mapI.getMap());
-            
+            monsterI = new BlueEnemy(mapI);
+            monsterI.spawn();
+            playerI.setOffPortal();
         }
         
         
@@ -115,13 +121,17 @@ public class View implements Screen {
         
         //render player / enemies / projectiles
         batch.begin();
+
         //draw player
         playerI.getSprite().draw(batch);
 
         //draw arrows
         for (AbstractProjectile projectile : playerI.getArrows()){
             projectile.getSprite().draw(batch);
-            
+        }
+        //draw monsters
+        for (MonsterInterface monsterI : monsterI.getMonsters()){
+            monsterI.getSprite().draw(batch);      
         }
 
         lifeText.draw(batch, "Lives: " + 10, playerI.getPosition().x - 12, playerI.getPosition().y + playerI.getHeight() + 30);

@@ -4,10 +4,12 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.math.Vector2;
 
+import inf112.skeleton.app.Mapfolder.MapInterface;
+
 
 public abstract class AbstractProjectile extends AbstractGameObject{
 
-    public AbstractProjectile(Vector2 position,TiledMap map) {
+    public AbstractProjectile(Vector2 position, MapInterface map) {
         super(position, map);
     }
 

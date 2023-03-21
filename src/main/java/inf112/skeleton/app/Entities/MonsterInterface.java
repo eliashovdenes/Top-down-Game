@@ -1,5 +1,7 @@
 package inf112.skeleton.app.Entities;
 
+import java.util.ArrayList;
+
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.math.Vector2;
 
@@ -19,17 +21,17 @@ public interface MonsterInterface {
 
     float getHeight();
 
-    void setMonsterDirection(DirectionEnum direction);
+    void setDirection(DirectionEnum direction);
 
-    DirectionEnum getPlayerDirection();
+    DirectionEnum getDirection();
 
-    //Overrides method from AbstractGameObject to check for portal collision in Y-direction
-    boolean yCollision();
+    
 
-    void spawn(float x, float y);
+    void spawn();
 
-    boolean onPortal();
+    void setXYFromSpawnBounds();
 
     Vector2 getPosition();
     
+    ArrayList<MonsterInterface> getMonsters();
 }

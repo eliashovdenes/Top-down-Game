@@ -38,6 +38,8 @@ public interface PlayerInterface  {
     MapInterface nextMap();
 
     Vector2 getPosition();
+
+    void setOffPortal();
     
 
 }

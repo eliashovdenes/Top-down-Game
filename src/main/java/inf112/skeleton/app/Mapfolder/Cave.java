@@ -6,13 +6,13 @@ import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 
 public class Cave extends TiledMap implements MapInterface{
     
-    private int enemies = 10;
+    private int enemies = 2;
     private float PlayerSpawnX = 120;
     private float PlayerSpawnY = 77;
-    private int EnemyBoundsfromX = 19;
-    private int EnemyBoundsToX = 20;
-    private int EnemyBoundsFromY = 21;
-    private int EnemyBoundsToY = 28;
+    private int EnemyBoundsfromX = 122;
+    private int EnemyBoundsToX = 123;
+    private int EnemyBoundsFromY = 63;
+    private int EnemyBoundsToY = 70;
 
     private TiledMap tiledMap;
     private OrthogonalTiledMapRenderer renderer;

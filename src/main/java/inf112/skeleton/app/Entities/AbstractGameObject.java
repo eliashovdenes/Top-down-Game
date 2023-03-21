@@ -5,6 +5,7 @@ import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.math.Vector2;
 
 import inf112.skeleton.app.Collision;
+import inf112.skeleton.app.Mapfolder.MapInterface;
 
 public abstract class AbstractGameObject {
     protected Vector2 recentPosition;
@@ -12,10 +13,11 @@ public abstract class AbstractGameObject {
     protected Vector2 velocity;
     protected Collision collision;
     
-    public AbstractGameObject(Vector2 position, TiledMap map) {
+    public AbstractGameObject(Vector2 position, MapInterface map) {
         
         this.position = position;
-        this.collision = new Collision(map, this);
+        TiledMap tiledMap = map.getMap();
+        this.collision = new Collision(tiledMap, this);
         this.velocity = new Vector2();
         this.recentPosition = new Vector2(position);
         
@@ -30,11 +32,6 @@ public abstract class AbstractGameObject {
         handleCollision();
         position.x += velocity.x;     
         position.y += velocity.y;
-
-        
-
-        
-        
     }   
     
     
