@@ -49,7 +49,7 @@ public class Collision {
         // when moving to the left
         if (velX < 0) {
             // top left tile
-            collisionX = isCellBlocked((int) (posX+velX / tileSize), (int) ((posY +entity.getHeight()) / tileSize));
+            collisionX = isCellBlocked((int) (posX+velX / tileSize), (int) ((posY + entity.getHeight() - (entity.getHeight() / 4)) / tileSize));
 
             // middle left tile
             if (!collisionX)
@@ -57,7 +57,7 @@ public class Collision {
 
             // bottom left tile
             if (!collisionX)
-                collisionX = isCellBlocked((int) (posX+velX/ tileSize), (int) ((posY / tileSize)));
+                collisionX = isCellBlocked((int) (posX+velX/ tileSize), (int) (((posY + entity.getHeight() / 4) / tileSize)));
 
             
         }
@@ -65,7 +65,7 @@ public class Collision {
         // when moving to the right
         else if (velX > 0) {
             // top right tile
-            collisionX = isCellBlocked((int) ((posX+velX + entity.getWidth())/tileSize), (int) ((posY + entity.getHeight())/tileSize));
+            collisionX = isCellBlocked((int) ((posX+velX + entity.getWidth())/tileSize), (int) ((posY + entity.getHeight() - (entity.getHeight() / 4))/tileSize));
 
             //middle right tile
             if (!collisionX)
@@ -73,7 +73,7 @@ public class Collision {
 
             //bottom right
             if (!collisionX)
-                collisionX = isCellBlocked((int) ((posX+velX + entity.getWidth())/tileSize), (int) ((posY)/tileSize));
+                collisionX = isCellBlocked((int) ((posX+velX + entity.getWidth())/tileSize), (int) ((posY + entity.getHeight() / 4)/tileSize));
             }
 
 
@@ -88,7 +88,7 @@ public class Collision {
         // when moving downwards
         if (velY < 0) {
             // bottom left
-            collisionY = isCellBlocked((int) ((posX) / tileSize), (int) ((posY+velY)/ tileSize));
+            collisionY = isCellBlocked((int) ((posX + entity.getWidth() - (entity.getWidth() / 4)) / tileSize), (int) ((posY+velY)/ tileSize));
 
             // bottom middle
             if (!collisionY)
@@ -96,21 +96,21 @@ public class Collision {
 
             //bottom right
             if (!collisionY)
-                collisionY =  isCellBlocked((int) ((posX + entity.getWidth() ) / tileSize), (int) ((posY+velY)/ tileSize));
+                collisionY =  isCellBlocked((int) ((posX + entity.getWidth() / 4 ) / tileSize), (int) ((posY+velY)/ tileSize));
                 
         }
         // moving upwards
         else if (velY > 0) {
 
             // top left
-            collisionY = isCellBlocked((int) ((posX) / tileSize), (int) ((posY+velY+ entity.getHeight()) / tileSize));
+            collisionY = isCellBlocked((int) ((posX + entity.getWidth() - (entity.getWidth() / 4)) / tileSize), (int) ((posY+velY+ entity.getHeight()) / tileSize));
 
             //top middle
             if (!collisionY)
                 collisionY = isCellBlocked((int) ((posX + (entity.getWidth()/2)) / tileSize), (int) ((posY+velY+ entity.getHeight()) / tileSize));
             //top right
             if (!collisionY)
-                collisionY = isCellBlocked((int) ((posX+ entity.getWidth() ) / tileSize), (int) ((posY+velY+entity.getHeight()) / tileSize));
+                collisionY = isCellBlocked((int) ((posX+ entity.getWidth() / 4 ) / tileSize), (int) ((posY+velY+entity.getHeight()) / tileSize));
         }
         if (collisionY) return true;
         return false;
@@ -144,8 +144,8 @@ public class Collision {
             int size = map.getLayers().size();
 
 
-            float entityX = entity.getPosition().x/tileSize;
-            float entityY =  (entity.getPosition().y+entity.getHeight()/2)/tileSize;
+            float entityX = (entity.getPosition().x + entity.getWidth() / 2 )/tileSize;
+            float entityY =  (entity.getPosition().y+entity.getHeight()/ 2)/tileSize;
 
             
 
@@ -157,7 +157,7 @@ public class Collision {
                 
                 if(entityCell != null && entityCell.getTile().getProperties().containsKey("portal")) {
                     
-                    if (entityCell.getTile().getProperties().containsKey("house")){nextMap =  new House();}
+                    if (entityCell.getTile().getProperties().containsKey("house")){nextMap =  new House(); System.out.println("hus");}
                     if (entityCell.getTile().getProperties().containsKey("level 1")){nextMap = new Level1();}
                     if (entityCell.getTile().getProperties().containsKey("level 2")){nextMap = new Level2();}
                     if (entityCell.getTile().getProperties().containsKey("cave")){nextMap = new Cave();}

@@ -25,6 +25,7 @@ import inf112.skeleton.app.Entities.Enemies.BlueEnemy;
 import inf112.skeleton.app.Mapfolder.Level1;
 import inf112.skeleton.app.Mapfolder.MapInterface;
 import inf112.skeleton.app.Zelda;
+import inf112.skeleton.app.Controller.Controller;
 
 import com.badlogic.gdx.graphics.Color;
 
@@ -46,6 +47,7 @@ public class View implements Screen {
     private BitmapFont lifeText = new BitmapFont();
     private Zelda game;
     private MonsterInterface monsterI;
+    private Controller controller;
     public HashMap<AbstractGameObject, Rectangle> enemies = new HashMap<>();
     
     MapInterface mapI = new Level1();
@@ -55,10 +57,12 @@ public class View implements Screen {
     
     SpriteBatch batch;
     
+    
 
    
-    public View(Zelda game) {
+    public View(Zelda game, Controller controller) {
         this.game = game;
+        this.controller = controller;
         
         
     }   
@@ -71,7 +75,7 @@ public class View implements Screen {
         
         map = mapI.getMap();
         renderer = mapI.getRenderer();
-        playerI = new Player(new Vector2(0,0),mapI);
+        playerI = new Player(new Vector2(0,0),mapI, controller);
         monsterI = new BlueEnemy(mapI);
         monsterI.spawn();
         playerI.spawn(mapI.getPlayerSpawnX()*16,mapI.getPlayerSpawnY()*16);

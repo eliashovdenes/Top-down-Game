@@ -28,8 +28,6 @@ public class BlueEnemy extends AbstractGameObject implements MonsterInterface  {
         setSprite(PlayerPics.ENEMYDOWN.source);
         setXYFromSpawnBounds();
         
-        
-        
     }
 
     @Override

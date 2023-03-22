@@ -26,7 +26,6 @@ public abstract class AbstractGameObject {
     public abstract void update(float delta);
     
     public void ApplyMovement() {
-
         
         recentPosition.set(position);
         handleCollision();

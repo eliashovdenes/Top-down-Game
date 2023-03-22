@@ -12,6 +12,7 @@ import com.badlogic.gdx.math.Vector2;
 
 import inf112.skeleton.app.Animation;
 import inf112.skeleton.app.Collision;
+import inf112.skeleton.app.Controller.Controller;
 import inf112.skeleton.app.Entities.Enums.DirectionEnum;
 import inf112.skeleton.app.Entities.Enums.PlayerAnimation;
 import inf112.skeleton.app.Entities.Enums.PlayerPics;
@@ -29,16 +30,18 @@ public class Player extends AbstractGameObject implements PlayerInterface {
     DirectionEnum direction;
     public MapInterface nextMap;
     public boolean onPortal;
+    private Controller controller;
 
-    public Player(Vector2 position, MapInterface map) {
+    public Player(Vector2 position, MapInterface map, Controller controller) {
         super(position, map);
         this.playerAnimation = PlayerAnimation.DOWN.animation;
         this.map = map;
+        this.controller = controller;
         setSprite(PlayerPics.ATTACKDOWN.source);
         sprite.setPosition(position.x,position.y);
         
         //sprite.setScale(0.1f);
-        sprite.setSize(12,17);
+        sprite.setSize(16,16);
 
         projectileList = new ArrayList<AbstractProjectile>();
         shootTimer = 0;
@@ -52,33 +55,33 @@ public class Player extends AbstractGameObject implements PlayerInterface {
         //maybe make a controller class
 
         // Movement in x-direction
-        if (Gdx.input.isKeyPressed(Keys.A)) {
+        if (controller.isLeft()) {
             velocity.x = -speed;
             setPlayerDirection(DirectionEnum.WEST);
-        } else if (Gdx.input.isKeyPressed(Keys.D)) {
+        } else if (controller.isRight()) {
             velocity.x = +speed;
             setPlayerDirection(DirectionEnum.EAST);
         } else
             velocity.x = 0;
 
         // Movement in y-direction
-        if (Gdx.input.isKeyPressed(Keys.S)) {
+        if (controller.isDown()) {
             velocity.y = -speed;
             setPlayerDirection(DirectionEnum.SOUTH);
-        } else if (Gdx.input.isKeyPressed(Keys.W)) {
+        } else if (controller.isUp()) {
             setPlayerDirection(DirectionEnum.NORTH);
             velocity.y = +speed;
         } else
             velocity.y = 0;
 
-        if (Gdx.input.isKeyPressed(Keys.SHIFT_LEFT)) {
+        if (controller.isFast()) {
             
             setMovementSpeed(2);
         } else
             setMovementSpeed(1);
             
 
-        if (Gdx.input.isKeyJustPressed(Keys.E)){
+        if (controller.isSpace()){
             if (shootTimer <= 0){
                 shootArrow();
             }

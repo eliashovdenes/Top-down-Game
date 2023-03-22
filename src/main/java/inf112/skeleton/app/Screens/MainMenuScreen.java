@@ -8,6 +8,7 @@ import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 import inf112.skeleton.app.Zelda;
+import inf112.skeleton.app.Controller.Controller;
 
 
 
@@ -16,9 +17,11 @@ public class MainMenuScreen extends ScreenAdapter {
     private SpriteBatch batch;
     private Zelda game;
     private BitmapFont font;
+    private Controller controller;
 
-    public MainMenuScreen(Zelda southGame) {
+    public MainMenuScreen(Zelda southGame, Controller controller) {
         this.game = southGame;
+        this.controller = controller;
         batch = new SpriteBatch();
         font = new BitmapFont();
     }
@@ -43,7 +46,7 @@ public class MainMenuScreen extends ScreenAdapter {
 
         
         if (Gdx.input.isTouched()){
-            game.setScreen(new View(game));
+            game.setScreen(new View(game, controller));
         }
     }
 
