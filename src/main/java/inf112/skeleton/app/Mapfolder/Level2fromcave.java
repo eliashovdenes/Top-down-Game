@@ -17,10 +17,10 @@ public class Level2fromcave extends TiledMap implements MapInterface {
 
     private float PlayerSpawnX = 155;
     private float PlayerSpawnY = 66;
-    private int EnemyBoundsfromX = 200;
-    private int EnemyBoundsToX = 800;
-    private int EnemyBoundsFromY = 200;
-    private int EnemyBoundsToY = 800;
+    private int EnemyBoundsfromX = 121;
+    private int EnemyBoundsToX = 122;
+    private int EnemyBoundsFromY = 69;
+    private int EnemyBoundsToY = 70;
 
     private TiledMap tiledMap;
     private OrthogonalTiledMapRenderer renderer;

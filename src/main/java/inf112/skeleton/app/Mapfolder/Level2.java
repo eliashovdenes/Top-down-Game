@@ -17,10 +17,10 @@ public class Level2 extends TiledMap implements MapInterface {
 
     private float PlayerSpawnX = 114;
     private float PlayerSpawnY = 73;
-    private int EnemyBoundsfromX = 200;
-    private int EnemyBoundsToX = 800;
-    private int EnemyBoundsFromY = 200;
-    private int EnemyBoundsToY = 800;
+    private int EnemyBoundsfromX = 121;
+    private int EnemyBoundsToX = 122;
+    private int EnemyBoundsFromY = 69;
+    private int EnemyBoundsToY = 70;
 
     private TiledMap tiledMap;
     private OrthogonalTiledMapRenderer renderer;
@@ -36,7 +36,7 @@ public class Level2 extends TiledMap implements MapInterface {
     public void setup() {
         MonsterFactory blueEnemyFactory = BlueEnemy.getFactory();
         monsterFactories.put(blueEnemyFactory.name(), blueEnemyFactory);
-        enemyList = new ArrayList<>(Arrays.asList("BlueEnemy", "BlueEnemy"));
+        enemyList = new ArrayList<>(Arrays.asList("BlueEnemy", "BlueEnemy", "BlueEnemy"));
         setup();
         this.spawn(enemyList);
     }
