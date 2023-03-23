@@ -28,13 +28,13 @@ public class Arrow extends AbstractGameObject implements ProjectileInterface  {
         super(position, map);
         this.map = map.getMap();
         this.player = player;
-        velocity = setArrowVelocity();
+        velocity = setVelocity();
         setCorrectSprite();
         sprite.setSize(7,7);
         
        
     }
-    private Vector2 setArrowVelocity() {
+    public Vector2 setVelocity() {
         Vector2  veloVector = new Vector2();
         DirectionEnum direction = player.getPlayerDirection();
         if (direction == DirectionEnum.NORTH){veloVector = new Vector2(0*speed,1*speed);}

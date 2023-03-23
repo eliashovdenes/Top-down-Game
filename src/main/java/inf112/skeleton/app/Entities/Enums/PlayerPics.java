@@ -16,8 +16,8 @@ public enum PlayerPics {
     RIGHTARROW ("src/main/java/inf112/skeleton/app/assets/projectilePics/RightArrow.png"),
     LEFTARROW ("src/main/java/inf112/skeleton/app/assets/projectilePics/LeftArrow.png"),
     UPARROW ("src/main/java/inf112/skeleton/app/assets/projectilePics/UpArrow.png"),
-    DOWNARROW ("src/main/java/inf112/skeleton/app/assets/projectilePics/DownArrow.png");
-
+    DOWNARROW ("src/main/java/inf112/skeleton/app/assets/projectilePics/DownArrow.png"),
+    LIGHTNING ("src/main/java/inf112/skeleton/app/assets/projectilePics/lightning.png");
 
     
 
