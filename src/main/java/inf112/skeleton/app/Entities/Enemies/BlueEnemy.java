@@ -86,10 +86,6 @@ public class BlueEnemy extends AbstractGameObject implements MonsterInterface  {
     }
 
     @Override
-    public void spawn() {
-    }
-
-    @Override
     public void setXYFromSpawnBounds(){
 
         System.out.println("hvor eller ");

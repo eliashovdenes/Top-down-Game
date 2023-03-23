@@ -22,8 +22,6 @@ public interface MonsterInterface {
 
     DirectionEnum getDirection();
 
-    void spawn();
-
     void setXYFromSpawnBounds();
 
     Vector2 getPosition();

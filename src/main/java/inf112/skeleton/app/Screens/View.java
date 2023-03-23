@@ -62,7 +62,6 @@ public class View implements Screen {
         renderer = mapI.getRenderer();
         playerI = new Player(new Vector2(0,0),mapI, controller);
         monsterI = new BlueEnemy(mapI);
-        monsterI.spawn();
         playerI.spawn(mapI.getPlayerSpawnX()*16,mapI.getPlayerSpawnY()*16);
         
         camera = new OrthographicCamera();
@@ -96,8 +95,6 @@ public class View implements Screen {
             this.mapI=playerI.nextMap();
             
             renderer.setMap(mapI.getMap());
-            monsterI = new BlueEnemy(mapI);
-            monsterI.spawn();
             playerI.setOffPortal();
         }
         
