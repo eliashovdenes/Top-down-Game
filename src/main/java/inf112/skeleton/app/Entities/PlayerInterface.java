@@ -50,7 +50,7 @@ public interface PlayerInterface  {
      * 
      * @return List of arrows
      */
-    ArrayList<AbstractProjectile> getArrows();
+    ArrayList<ProjectileInterface> getArrows();
 
     /**
      * Set the direction the player should face

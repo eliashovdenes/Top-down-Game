@@ -25,7 +25,7 @@ public class Player extends AbstractGameObject implements PlayerInterface {
     private float speed = 1;
     public Arrow arrow;
     private MapInterface map;
-    public ArrayList<AbstractProjectile> projectileList;
+    public ArrayList<ProjectileInterface> projectileList;
     private int shootTimer;
     DirectionEnum direction;
     public MapInterface nextMap;
@@ -43,7 +43,7 @@ public class Player extends AbstractGameObject implements PlayerInterface {
         //sprite.setScale(0.1f);
         sprite.setSize(16,16);
 
-        projectileList = new ArrayList<AbstractProjectile>();
+        projectileList = new ArrayList<ProjectileInterface>();
         shootTimer = 0;
         direction = DirectionEnum.SOUTH;
 
@@ -88,7 +88,7 @@ public class Player extends AbstractGameObject implements PlayerInterface {
         }
         if (shootTimer >0){shootTimer -=delta;}
 
-        for (AbstractProjectile arrow : projectileList){
+        for (ProjectileInterface arrow : projectileList){
             arrow.update(delta);
         }
 
@@ -154,7 +154,7 @@ public class Player extends AbstractGameObject implements PlayerInterface {
         
     
     @Override
-    public ArrayList<AbstractProjectile> getArrows(){
+    public ArrayList<ProjectileInterface> getArrows(){
         return projectileList;
     }   
 

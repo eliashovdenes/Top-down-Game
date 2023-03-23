@@ -6,13 +6,14 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.math.Vector2;
 
-import inf112.skeleton.app.Entities.AbstractProjectile;
+import inf112.skeleton.app.Entities.AbstractGameObject;
+import inf112.skeleton.app.Entities.ProjectileInterface;
 import inf112.skeleton.app.Entities.PlayerInterface;
 import inf112.skeleton.app.Entities.Enums.DirectionEnum;
 import inf112.skeleton.app.Entities.Enums.PlayerPics;
 import inf112.skeleton.app.Mapfolder.MapInterface;
 
-public class Arrow extends AbstractProjectile {
+public class Arrow extends AbstractGameObject implements ProjectileInterface  {
 
     protected float speed = 2;
     protected Sprite sprite;

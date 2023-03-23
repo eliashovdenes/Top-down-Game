@@ -17,7 +17,7 @@ import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 
 import inf112.skeleton.app.Entities.AbstractGameObject;
-import inf112.skeleton.app.Entities.AbstractProjectile;
+import inf112.skeleton.app.Entities.ProjectileInterface;
 import inf112.skeleton.app.Entities.MonsterInterface;
 import inf112.skeleton.app.Entities.Player;
 import inf112.skeleton.app.Entities.PlayerInterface;
@@ -130,7 +130,7 @@ public class View implements Screen {
         playerI.getSprite().draw(batch);
 
         //draw arrows
-        for (AbstractProjectile projectile : playerI.getArrows()){
+        for (ProjectileInterface projectile : playerI.getArrows()){
             projectile.getSprite().draw(batch);
         }
         //draw monsters

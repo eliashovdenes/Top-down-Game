@@ -73,7 +73,6 @@ public class BlueEnemy extends AbstractGameObject implements MonsterInterface  {
 
     @Override
     public void spawn() {
-        System.out.println("hvor ofte");
 
         for (int i=0; i<map.getEnemies();i++){
             monsterList.add(new BlueEnemy(map));
