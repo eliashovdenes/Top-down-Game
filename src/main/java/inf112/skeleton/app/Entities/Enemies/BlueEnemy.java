@@ -27,6 +27,8 @@ public class BlueEnemy extends AbstractGameObject implements MonsterInterface  {
         this.map = map;
         setSprite(PlayerPics.ENEMYDOWN.source);
         setXYFromSpawnBounds();
+        this.velocity.x = speed;
+        this.velocity.y = speed;
         
     }
 
