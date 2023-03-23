@@ -31,14 +31,14 @@ public class Level2 extends TiledMap implements MapInterface {
     public Level2(){
         tiledMap = new TmxMapLoader().load(Maps.Level2.source);
         renderer = new OrthogonalTiledMapRenderer(tiledMap);
+        setup();
+        this.spawn(enemyList);
     }
 
     public void setup() {
         MonsterFactory blueEnemyFactory = BlueEnemy.getFactory();
         monsterFactories.put(blueEnemyFactory.name(), blueEnemyFactory);
         enemyList = new ArrayList<>(Arrays.asList("BlueEnemy", "BlueEnemy", "BlueEnemy"));
-        setup();
-        this.spawn(enemyList);
     }
     
     public void spawn(ArrayList<String> enemyList) {
