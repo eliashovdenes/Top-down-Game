@@ -12,6 +12,7 @@ import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import inf112.skeleton.app.Entities.MonsterFactory;
 import inf112.skeleton.app.Entities.MonsterInterface;
 import inf112.skeleton.app.Entities.Enemies.BlueEnemy;
+import inf112.skeleton.app.Entities.Enemies.RedEnemy;
 
 public class Cave extends TiledMap implements MapInterface{
     
@@ -37,8 +38,10 @@ public class Cave extends TiledMap implements MapInterface{
     
     public void setup() {
         MonsterFactory blueEnemyFactory = BlueEnemy.getFactory();
+        MonsterFactory redEnemyFactory = RedEnemy.getFactory();
         monsterFactories.put(blueEnemyFactory.name(), blueEnemyFactory);
-        enemyList = new ArrayList<>(Arrays.asList("BlueEnemy", "BlueEnemy"));
+        monsterFactories.put(redEnemyFactory.name(), redEnemyFactory);
+        enemyList = new ArrayList<>(Arrays.asList("BlueEnemy", "RedEnemy", "RedEnemy"));
     }
     
     public void spawn(ArrayList<String> enemyList) {
