@@ -1,6 +1,5 @@
 package inf112.skeleton.app.Entities.Enemies;
 
-import java.util.ArrayList;
 import java.util.Random;
 
 import com.badlogic.gdx.graphics.Texture;
@@ -8,6 +7,7 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.math.Vector2;
 
 import inf112.skeleton.app.Entities.AbstractGameObject;
+import inf112.skeleton.app.Entities.MonsterFactory;
 import inf112.skeleton.app.Entities.MonsterInterface;
 import inf112.skeleton.app.Entities.Enums.DirectionEnum;
 import inf112.skeleton.app.Entities.Enums.PlayerPics;
@@ -20,15 +20,29 @@ public class BlueEnemy extends AbstractGameObject implements MonsterInterface  {
     float speed = 1 ;
     private DirectionEnum direction;
     MapInterface map;
-    ArrayList<MonsterInterface> monsterList = new ArrayList<>();
 
     public BlueEnemy(MapInterface map) {
         super(new Vector2(0,0), map);
         this.map = map;
         setSprite(PlayerPics.ENEMYDOWN.source);
-        setXYFromSpawnBounds();
-        
+        setXYFromSpawnBounds();       
     }
+
+    public static MonsterFactory getFactory() {
+		
+		return new MonsterFactory() {
+
+			@Override
+			public String name() {
+				return "BlueEnemy";
+			}
+
+			@Override
+			public MonsterInterface create(MapInterface map) {
+				return new BlueEnemy(map);
+			}
+		};
+	}
 
     @Override
     public void update(float delta) {
@@ -73,12 +87,6 @@ public class BlueEnemy extends AbstractGameObject implements MonsterInterface  {
 
     @Override
     public void spawn() {
-        System.out.println("hvor ofte");
-
-        for (int i=0; i<map.getEnemies();i++){
-            monsterList.add(new BlueEnemy(map));
-
-        }
     }
 
     @Override
@@ -97,11 +105,6 @@ public class BlueEnemy extends AbstractGameObject implements MonsterInterface  {
     @Override
     public Vector2 getPosition() {
         return position;
-    }
-
-    @Override
-    public ArrayList<MonsterInterface> getMonsters() {
-        return monsterList;
     }
     
 }
