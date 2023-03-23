@@ -1,10 +1,7 @@
 package inf112.skeleton.app.Entities;
 
-import java.util.ArrayList;
-
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.math.Vector2;
-
 import inf112.skeleton.app.Entities.Enums.DirectionEnum;
 
 public interface MonsterInterface {
@@ -25,13 +22,10 @@ public interface MonsterInterface {
 
     DirectionEnum getDirection();
 
-    
-
     void spawn();
 
     void setXYFromSpawnBounds();
 
     Vector2 getPosition();
-    
-    ArrayList<MonsterInterface> getMonsters();
+
 }
