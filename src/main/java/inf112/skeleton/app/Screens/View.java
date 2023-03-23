@@ -5,13 +5,10 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
-import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.maps.objects.RectangleMapObject;
 import com.badlogic.gdx.maps.tiled.TiledMap;
-import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
@@ -29,9 +26,7 @@ import inf112.skeleton.app.Controller.Controller;
 
 import com.badlogic.gdx.graphics.Color;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Random;
 
 
 public class View implements Screen {
@@ -53,22 +48,12 @@ public class View implements Screen {
     MapInterface mapI = new Level1();
     OrthogonalTiledMapRenderer nyRend;
     TiledMap nyMap;
-    
-    
     SpriteBatch batch;
     
-    
-
-   
     public View(Zelda game, Controller controller) {
         this.game = game;
-        this.controller = controller;
-        
-        
+        this.controller = controller;    
     }   
-
-    
-
 
     @Override
     public void show() {
@@ -134,7 +119,7 @@ public class View implements Screen {
             projectile.getSprite().draw(batch);
         }
         //draw monsters
-        for (MonsterInterface monsterI : monsterI.getMonsters()){
+        for (MonsterInterface monsterI : mapI.getMonsters()){
             monsterI.getSprite().draw(batch);      
         }
 
