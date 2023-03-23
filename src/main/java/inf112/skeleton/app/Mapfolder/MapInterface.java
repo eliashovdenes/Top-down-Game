@@ -10,6 +10,10 @@ import inf112.skeleton.app.Entities.MonsterInterface;
 
 public interface MapInterface {
 
+    public void setup();
+
+    public void spawn(ArrayList<String> enemyList);
+
     public TiledMap getMap();
 
     public OrthogonalTiledMapRenderer getRenderer();

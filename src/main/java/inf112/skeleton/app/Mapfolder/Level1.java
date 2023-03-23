@@ -28,6 +28,18 @@ public class Level1 extends TiledMap implements MapInterface {
     }
 
     @Override
+    public void setup() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'setup'");
+    }
+
+    @Override
+    public void spawn(ArrayList<String> enemyList) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'spawn'");
+    }
+
+    @Override
     public TiledMap getMap() {
         return tiledMap;
     }
