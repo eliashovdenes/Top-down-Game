@@ -1,13 +1,8 @@
 package inf112.skeleton.app.Entities;
 
 import java.util.ArrayList;
-
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
-import com.badlogic.gdx.maps.tiled.TiledMap;
-import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.math.Vector2;
 
 import inf112.skeleton.app.Animation;
@@ -17,6 +12,7 @@ import inf112.skeleton.app.Entities.Enums.DirectionEnum;
 import inf112.skeleton.app.Entities.Enums.PlayerAnimation;
 import inf112.skeleton.app.Entities.Enums.PlayerPics;
 import inf112.skeleton.app.Entities.Projectiles.Arrow;
+import inf112.skeleton.app.Entities.Projectiles.Lightning;
 import inf112.skeleton.app.Mapfolder.MapInterface;
 
 public class Player extends AbstractGameObject implements PlayerInterface {
@@ -24,6 +20,7 @@ public class Player extends AbstractGameObject implements PlayerInterface {
     private Sprite sprite;
     private float speed = 1;
     public Arrow arrow;
+    public Lightning lightning;
     private MapInterface map;
     public ArrayList<ProjectileInterface> projectileList;
     private int shootTimer;
@@ -80,16 +77,19 @@ public class Player extends AbstractGameObject implements PlayerInterface {
         } else
             setMovementSpeed(1);
             
-
         if (controller.isSpace()){
-            if (shootTimer <= 0){
-                shootArrow();
-            }
+            shootArrow();
+        }
+        if (controller.isEnter()){
+            
+            shootLightning();
+                
+            
         }
         if (shootTimer >0){shootTimer -=delta;}
 
-        for (ProjectileInterface arrow : projectileList){
-            arrow.update(delta);
+        for (ProjectileInterface projectile : projectileList){
+            projectile.update(delta);
         }
 
         animate(delta);
@@ -145,13 +145,22 @@ public class Player extends AbstractGameObject implements PlayerInterface {
     }
 
     private void shootArrow(){
-        
-        Vector2 arrowPos = new Vector2(position.x,position.y);
-        this.arrow = new Arrow(arrowPos, map,this);
-        projectileList.add(this.arrow);
-        shootTimer+=7;
+            if (shootTimer<=0){
+            Vector2 arrowPos = new Vector2(position.x,position.y);
+            this.arrow = new Arrow(arrowPos, map,this);
+            projectileList.add(this.arrow);
+            shootTimer=15;
         }
-        
+    }
+
+    private void shootLightning(){
+        if (shootTimer<=0){
+            Vector2 lightningPos = new Vector2(position.x,position.y);
+            this.lightning = new Lightning(lightningPos, map,this);
+            projectileList.add(this.lightning);
+            shootTimer=15;
+        }
+    }    
     
     @Override
     public ArrayList<ProjectileInterface> getArrows(){
