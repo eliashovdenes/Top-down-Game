@@ -9,7 +9,7 @@ import inf112.skeleton.app.Entities.AbstractGameObject;
 import inf112.skeleton.app.Entities.MonsterFactory;
 import inf112.skeleton.app.Entities.MonsterInterface;
 import inf112.skeleton.app.Entities.Enums.DirectionEnum;
-import inf112.skeleton.app.Entities.Enums.PlayerPics;
+import inf112.skeleton.app.Entities.Enums.RedEnemyPics;
 import inf112.skeleton.app.Mapfolder.MapInterface;
 
 public class RedEnemy extends AbstractGameObject implements MonsterInterface  {
@@ -23,7 +23,7 @@ public class RedEnemy extends AbstractGameObject implements MonsterInterface  {
     public RedEnemy(MapInterface map) {
         super(new Vector2(0,0), map);
         this.map = map;
-        setSprite(PlayerPics.ENEMYDOWN.source);
+        setSprite(RedEnemyPics.ENEMYDOWN.source);
         setXYFromSpawnBounds();       
     }
 
