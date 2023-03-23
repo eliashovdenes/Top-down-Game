@@ -1,11 +1,14 @@
 package inf112.skeleton.app.Mapfolder;
 
+import java.util.ArrayList;
+
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 
+import inf112.skeleton.app.Entities.MonsterInterface;
+
 public class House extends TiledMap implements MapInterface {
-    private int enemies = 0;
     private float PlayerSpawnX = 18;
     private float PlayerSpawnY = 18;
     private int EnemyBoundsfromX = 13;
@@ -15,14 +18,11 @@ public class House extends TiledMap implements MapInterface {
 
     private TiledMap tiledMap;
     private OrthogonalTiledMapRenderer renderer;
+    private ArrayList<MonsterInterface> monsterList = new ArrayList<>();
 
     public House(){
         tiledMap = new TmxMapLoader().load(Maps.House.source);
         renderer = new OrthogonalTiledMapRenderer(tiledMap);
-    }
-    @Override
-    public int getEnemies() {
-        return enemies;
     }
 
     @Override
@@ -34,8 +34,7 @@ public class House extends TiledMap implements MapInterface {
     public OrthogonalTiledMapRenderer getRenderer() {
         return renderer;
     }
-
-    
+   
     @Override
     public float getPlayerSpawnX() {
         return PlayerSpawnX;
@@ -49,17 +48,25 @@ public class House extends TiledMap implements MapInterface {
     public int getEnemyBoundsFromX() {
         return EnemyBoundsfromX;
     }
+
     @Override
     public int getEnemyBoundsToX() {
         return EnemyBoundsToX;
     }
+
     @Override
     public int getEnemyBoundsFromY() {
         return EnemyBoundsFromY;
     }
+
     @Override
     public int getEnemyBoundsToY() {
         return EnemyBoundsToY;
+    }
+    
+    @Override
+    public ArrayList<MonsterInterface> getMonsters() {
+        return monsterList;
     }
     
 }
