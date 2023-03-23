@@ -163,19 +163,21 @@ public class Player extends AbstractGameObject implements PlayerInterface {
         }
     }    
     private void lightningMultiShot(){
+        if (shootTimer<=0){
 
-        ProjectileInterface northLightning =  new Lightning(new Vector2(position.x,position.y),map,new Vector2(0,1));
-        ProjectileInterface southLightning =  new Lightning(new Vector2(position.x,position.y),map,new Vector2(0,-1));
-        ProjectileInterface eastLightning =  new Lightning(new Vector2(position.x,position.y),map,new Vector2(1,0));
-        ProjectileInterface westLightning =  new Lightning(new Vector2(position.x,position.y),map,new Vector2(-1,0));
+            ProjectileInterface northLightning =  new Lightning(new Vector2(position.x,position.y),map,new Vector2(0,1));
+            ProjectileInterface southLightning =  new Lightning(new Vector2(position.x,position.y),map,new Vector2(0,-1));
+            ProjectileInterface eastLightning =  new Lightning(new Vector2(position.x,position.y),map,new Vector2(1,0));
+            ProjectileInterface westLightning =  new Lightning(new Vector2(position.x,position.y),map,new Vector2(-1,0));
 
-        
-        projectileList.add(westLightning);
-        projectileList.add(northLightning);
-        projectileList.add(southLightning);
-        projectileList.add(eastLightning);
+            
+            projectileList.add(westLightning);
+            projectileList.add(northLightning);
+            projectileList.add(southLightning);
+            projectileList.add(eastLightning);
 
-        
+            shootTimer = 15;
+        }
     }
     
     @Override
