@@ -1,12 +1,17 @@
 package inf112.skeleton.app.Mapfolder;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
 
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 
+import inf112.skeleton.app.Entities.MonsterFactory;
 import inf112.skeleton.app.Entities.MonsterInterface;
+import inf112.skeleton.app.Entities.Enemies.BlueEnemy;
 
 public class Level1 extends TiledMap implements MapInterface {
     
@@ -20,23 +25,30 @@ public class Level1 extends TiledMap implements MapInterface {
     private TiledMap tiledMap;
     private OrthogonalTiledMapRenderer renderer;
     private ArrayList<MonsterInterface> monsterList = new ArrayList<>();
-
+    private Map<String, MonsterFactory> monsterFactories = new HashMap<>();
+    private ArrayList<String> enemyList;
 
     public Level1(){
         tiledMap = new TmxMapLoader().load(Maps.Level1.source);
-        renderer = new OrthogonalTiledMapRenderer(tiledMap);   
+        renderer = new OrthogonalTiledMapRenderer(tiledMap);
+        setup();
+        this.spawn(enemyList);
     }
 
-    @Override
     public void setup() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'setup'");
+        MonsterFactory blueEnemyFactory = BlueEnemy.getFactory();
+        monsterFactories.put(blueEnemyFactory.name(), blueEnemyFactory);
+        enemyList = new ArrayList<>(Arrays.asList("BlueEnemy", "BlueEnemy", "BlueEnemy", "BlueEnemy"));
     }
-
-    @Override
+    
     public void spawn(ArrayList<String> enemyList) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'spawn'");
+
+        for (int i=0; i < enemyList.size(); i++){
+            MonsterFactory monsterFactory = monsterFactories.get(enemyList.get(i));
+            MonsterInterface monster = monsterFactory.create(this);
+            monsterList.add(monster);
+
+        }
     }
 
     @Override

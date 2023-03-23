@@ -15,7 +15,6 @@ import inf112.skeleton.app.Entities.Enemies.BlueEnemy;
 
 public class Cave extends TiledMap implements MapInterface{
     
-    private ArrayList<String> enemyList;
     private float PlayerSpawnX = 120;
     private float PlayerSpawnY = 77;
     private int EnemyBoundsfromX = 122;
@@ -27,6 +26,7 @@ public class Cave extends TiledMap implements MapInterface{
     private OrthogonalTiledMapRenderer renderer;
     private ArrayList<MonsterInterface> monsterList = new ArrayList<>();
     private Map<String, MonsterFactory> monsterFactories = new HashMap<>();
+    private ArrayList<String> enemyList;
 
     public Cave(){
         tiledMap = new TmxMapLoader().load(Maps.Cave.source);
@@ -38,7 +38,7 @@ public class Cave extends TiledMap implements MapInterface{
     public void setup() {
         MonsterFactory blueEnemyFactory = BlueEnemy.getFactory();
         monsterFactories.put(blueEnemyFactory.name(), blueEnemyFactory);
-        enemyList =new ArrayList<>(Arrays.asList("BlueEnemy", "BlueEnemy"));
+        enemyList = new ArrayList<>(Arrays.asList("BlueEnemy", "BlueEnemy"));
     }
     
     public void spawn(ArrayList<String> enemyList) {
@@ -47,7 +47,6 @@ public class Cave extends TiledMap implements MapInterface{
             MonsterFactory monsterFactory = monsterFactories.get(enemyList.get(i));
             MonsterInterface monster = monsterFactory.create(this);
             monsterList.add(monster);
-
         }
     }
 
