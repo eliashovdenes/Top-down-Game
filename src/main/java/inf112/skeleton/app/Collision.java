@@ -5,10 +5,12 @@ import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import inf112.skeleton.app.Entities.AbstractGameObject;
 import inf112.skeleton.app.Entities.Player;
 import inf112.skeleton.app.Mapfolder.Cave;
+import inf112.skeleton.app.Mapfolder.Grass;
 import inf112.skeleton.app.Mapfolder.House;
 import inf112.skeleton.app.Mapfolder.Level1;
 import inf112.skeleton.app.Mapfolder.Level2;
 import inf112.skeleton.app.Mapfolder.Level2fromcave;
+import inf112.skeleton.app.Mapfolder.Level3;
 import inf112.skeleton.app.Mapfolder.MapInterface;
 
 
@@ -145,7 +147,7 @@ public class Collision {
 
 
             float entityX = (entity.getPosition().x + entity.getWidth() / 2 )/tileSize;
-            float entityY =  (entity.getPosition().y+entity.getHeight()/ 2)/tileSize;
+            float entityY =  (entity.getPosition().y + entity.getHeight()/ 2)/tileSize;
 
             
 
@@ -162,6 +164,9 @@ public class Collision {
                     if (entityCell.getTile().getProperties().containsKey("level 2")){nextMap = new Level2();}
                     if (entityCell.getTile().getProperties().containsKey("cave")){nextMap = new Cave();}
                     if (entityCell.getTile().getProperties().containsKey("level 2 from cave")){nextMap = new Level2fromcave();}
+
+                    if (entityCell.getTile().getProperties().containsKey("level 3")){nextMap = new Level3();}
+                    if (entityCell.getTile().getProperties().containsKey("grass")){nextMap = new Grass();}
                 return true;
                 }
             } 
