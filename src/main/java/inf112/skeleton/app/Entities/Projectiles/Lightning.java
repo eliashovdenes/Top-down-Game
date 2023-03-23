@@ -1,5 +1,7 @@
 package inf112.skeleton.app.Entities.Projectiles;
 
+import java.util.ArrayList;
+
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.maps.tiled.TiledMap;
@@ -17,19 +19,27 @@ public class Lightning extends AbstractGameObject implements ProjectileInterface
     protected float speed = 1;
     protected Sprite sprite;
     protected PlayerInterface player;
-    protected TiledMap map;
+    protected MapInterface map;
+
     protected Vector2 velocity;
     private float rotationSpeed = 200;
     private float rotation = 0;
     
     public Lightning(Vector2 position, MapInterface map, PlayerInterface player) {
         super(position, map);
-        this.map = map.getMap();
         this.player = player;
         velocity = setVelocity();
         setSprite(PlayerPics.LIGHTNING.source);
         sprite.setSize(15,15);
 
+    }
+    //lager en ny konstruktør for å gjøre det mulig med multishot.
+    public Lightning(Vector2 position, MapInterface map, Vector2 velocity){
+        super(position,map);
+        this.map = map;
+        this.velocity = velocity;
+        setSprite(PlayerPics.LIGHTNING.source);
+        sprite.setSize(15, 15);
     }
        
     @Override
@@ -39,12 +49,17 @@ public class Lightning extends AbstractGameObject implements ProjectileInterface
         position.y+=velocity.y;
         
         sprite.setPosition(this.position.x,this.position.y);
-        sprite.setOrigin(this.getWidth()/2,this.getHeight()/2);
+        
+        //setter origin for sprite før rotering for at den skal spinne rundt egen akse.
+        //kanskje litt kult hvis den ikke stemmer?
+        
+        sprite.setOrigin(this.getWidth()/2,this.getHeight()*2);
         rotation += rotationSpeed*delta;
         if (rotation>= 360){
             rotation -= 360;
         }
         sprite.setRotation(rotation);
+         
     }
 
     @Override
@@ -83,5 +98,6 @@ public class Lightning extends AbstractGameObject implements ProjectileInterface
         return veloVector;
     }
 
+    
     
 }

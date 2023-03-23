@@ -80,11 +80,12 @@ public class Player extends AbstractGameObject implements PlayerInterface {
         if (controller.isSpace()){
             shootArrow();
         }
-        if (controller.isEnter()){
-            
+        /*if (controller.isEnter()){
             shootLightning();
-                
-            
+        }
+        */
+        if (controller.isEnter()){
+            lightningMultiShot();
         }
         if (shootTimer >0){shootTimer -=delta;}
 
@@ -161,6 +162,21 @@ public class Player extends AbstractGameObject implements PlayerInterface {
             shootTimer=15;
         }
     }    
+    private void lightningMultiShot(){
+
+        ProjectileInterface northLightning =  new Lightning(new Vector2(position.x,position.y),map,new Vector2(0,1));
+        ProjectileInterface southLightning =  new Lightning(new Vector2(position.x,position.y),map,new Vector2(0,-1));
+        ProjectileInterface eastLightning =  new Lightning(new Vector2(position.x,position.y),map,new Vector2(1,0));
+        ProjectileInterface westLightning =  new Lightning(new Vector2(position.x,position.y),map,new Vector2(-1,0));
+
+        
+        projectileList.add(westLightning);
+        projectileList.add(northLightning);
+        projectileList.add(southLightning);
+        projectileList.add(eastLightning);
+
+        
+    }
     
     @Override
     public ArrayList<ProjectileInterface> getArrows(){
