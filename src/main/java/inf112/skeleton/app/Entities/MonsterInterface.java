@@ -54,13 +54,6 @@ public interface MonsterInterface {
      */
     DirectionEnum getDirection();
 
-    
-    /**
-     * Create amount of enemies (based of variable found in map object). 
-     * Put into a list.
-     */
-    // void spawn();
-
     /**
      * Sets the X and Y coordinates of monster based on bounds found in map object. 
      * Randomizes within bounds. 
@@ -79,5 +72,5 @@ public interface MonsterInterface {
      * @return list of Monster created in Spawn() method.
      * 
      */
-    // ArrayList<MonsterInterface> getMonsters();
+    
 }

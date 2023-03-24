@@ -99,5 +99,3 @@ public class Cave extends TiledMap implements MapInterface{
     }
     
 }
-    
-

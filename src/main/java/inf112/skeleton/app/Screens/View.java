@@ -117,7 +117,7 @@ public class View implements Screen {
             projectile.getSprite().draw(batch);
         }
         //draw monsters
-        for (MonsterInterface monsterI : monsterI.getMonsters()){
+        for (MonsterInterface monsterI : mapI.getMonsters()){
             monsterI.update(delta);
             monsterI.getSprite().draw(batch);      
         }

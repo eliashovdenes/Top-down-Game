@@ -88,15 +88,6 @@ public class BlueEnemy extends AbstractGameObject implements MonsterInterface  {
         return direction;
     }
 
-    // @Override
-    // public void spawn() {
-
-    //     for (int i=0; i<map.getEnemies();i++){
-    //         monsterList.add(new BlueEnemy(map));
-
-    //     }
-    // }
-
     @Override
     public void setXYFromSpawnBounds(){
 
