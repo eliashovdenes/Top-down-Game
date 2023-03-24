@@ -6,13 +6,14 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.math.Vector2;
 
-import inf112.skeleton.app.Entities.AbstractProjectile;
+import inf112.skeleton.app.Entities.AbstractGameObject;
+import inf112.skeleton.app.Entities.ProjectileInterface;
 import inf112.skeleton.app.Entities.PlayerInterface;
 import inf112.skeleton.app.Entities.Enums.DirectionEnum;
 import inf112.skeleton.app.Entities.Enums.PlayerPics;
 import inf112.skeleton.app.Mapfolder.MapInterface;
 
-public class Arrow extends AbstractProjectile {
+public class Arrow extends AbstractGameObject implements ProjectileInterface  {
 
     protected float speed = 2;
     protected Sprite sprite;
@@ -27,13 +28,13 @@ public class Arrow extends AbstractProjectile {
         super(position, map);
         this.map = map.getMap();
         this.player = player;
-        velocity = setArrowVelocity();
+        velocity = setVelocity();
         setCorrectSprite();
         sprite.setSize(7,7);
         
        
     }
-    private Vector2 setArrowVelocity() {
+    public Vector2 setVelocity() {
         Vector2  veloVector = new Vector2();
         DirectionEnum direction = player.getPlayerDirection();
         if (direction == DirectionEnum.NORTH){veloVector = new Vector2(0*speed,1*speed);}

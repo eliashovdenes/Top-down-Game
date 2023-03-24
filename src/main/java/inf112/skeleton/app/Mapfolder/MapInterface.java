@@ -9,26 +9,55 @@ import inf112.skeleton.app.Entities.MonsterInterface;
 
 
 public interface MapInterface {
+    /**
+     * 
+     * @return an integer that represent amount of enemies to be spawned at map
+     */
+    public int getEnemies();
 
-    public void setup();
-
-    public void spawn(ArrayList<String> enemyList);
-
+    /**
+     * 
+     * @return TiledMap object associated with the map.
+     */
     public TiledMap getMap();
 
+    /**
+     * 
+     * @return OrthogonalTiledMapRenderer object associated with the map.
+     */
     public OrthogonalTiledMapRenderer getRenderer();
-    
+
+    /**
+     * @return  x-coordinate spawn point
+     */
     public float getPlayerSpawnX();
-    
+
+    /**
+     * @return y-coordinate spawn point
+     */
     public float getPlayerSpawnY();
-    
+
+    /**
+     * 
+     * @return from X coordinate bounds for spawn location
+     */
     public int getEnemyBoundsFromX();
-    
+
+    /**
+     * 
+     * @return to X coordinate bounds for spawn location
+     */
     public int getEnemyBoundsToX();
-    
+
+    /**
+     * 
+     * @return from Y coordinate bounds for spawn location
+     */
     public int getEnemyBoundsFromY();
-    
-    public int getEnemyBoundsToY();
-    
-    public ArrayList<MonsterInterface> getMonsters();
+
+    /**
+     * 
+     * @return to Y coordinate bounds for spawn location.
+     */
+    public int getEnemyBoundsToY();    
 }

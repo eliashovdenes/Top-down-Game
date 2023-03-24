@@ -25,7 +25,10 @@ public class BlueEnemy extends AbstractGameObject implements MonsterInterface  {
         super(new Vector2(0,0), map);
         this.map = map;
         setSprite(PlayerPics.ENEMYDOWN.source);
-        setXYFromSpawnBounds();       
+        setXYFromSpawnBounds();
+        this.velocity.x = speed;
+        this.velocity.y = speed;
+        
     }
 
     public static MonsterFactory getFactory() {
@@ -83,6 +86,15 @@ public class BlueEnemy extends AbstractGameObject implements MonsterInterface  {
     @Override
     public DirectionEnum getDirection() {
         return direction;
+    }
+
+    @Override
+    public void spawn() {
+
+        for (int i=0; i<map.getEnemies();i++){
+            monsterList.add(new BlueEnemy(map));
+
+        }
     }
 
     @Override
