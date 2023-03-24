@@ -59,7 +59,7 @@ public interface MonsterInterface {
      * Create amount of enemies (based of variable found in map object). 
      * Put into a list.
      */
-    void spawn();
+    // void spawn();
 
     /**
      * Sets the X and Y coordinates of monster based on bounds found in map object. 
@@ -79,5 +79,5 @@ public interface MonsterInterface {
      * @return list of Monster created in Spawn() method.
      * 
      */
-    ArrayList<MonsterInterface> getMonsters();
+    // ArrayList<MonsterInterface> getMonsters();
 }

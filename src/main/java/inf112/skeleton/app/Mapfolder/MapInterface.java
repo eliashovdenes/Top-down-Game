@@ -1,11 +1,7 @@
 package inf112.skeleton.app.Mapfolder;
 
-import java.util.ArrayList;
-
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
-
-import inf112.skeleton.app.Entities.MonsterInterface;
 
 
 public interface MapInterface {
