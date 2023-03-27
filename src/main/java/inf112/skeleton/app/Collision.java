@@ -17,8 +17,8 @@ import inf112.skeleton.app.Mapfolder.MapInterface;
 
 public class Collision {
 
-
-    public boolean housePortal = false, level2 = false, cave = false;
+    
+    // public boolean housePortal = false, level2 = false, cave = false;
     public MapInterface nextMap;    
     private TiledMap map;
     public TiledMap getMap() {
@@ -138,6 +138,9 @@ public class Collision {
     } 
 
 
+    private boolean enteredLevel3 = false;
+
+
     public boolean isCellAPortal() {
 
         if (entity instanceof Player){
@@ -159,14 +162,38 @@ public class Collision {
                 
                 if(entityCell != null && entityCell.getTile().getProperties().containsKey("portal")) {
                     
-                    if (entityCell.getTile().getProperties().containsKey("house")){nextMap =  new House(); System.out.println("hus");}
-                    if (entityCell.getTile().getProperties().containsKey("level 1")){nextMap = new Level1();}
-                    if (entityCell.getTile().getProperties().containsKey("level 2")){nextMap = new Level2();}
-                    if (entityCell.getTile().getProperties().containsKey("cave")){nextMap = new Cave();}
-                    if (entityCell.getTile().getProperties().containsKey("level 2 from cave")){nextMap = new Level2fromcave();}
+                    if (entityCell.getTile().getProperties().containsKey("level 1")){nextMap = new Level1();}    
+                    if (entityCell.getTile().getProperties().containsKey("house")){nextMap =  new House();}
+                    
+                    if (entityCell.getTile().getProperties().containsKey("level 2")){
+                        if (this.enteredLevel3){
+                            nextMap = new Level3(114, 73);
+                        }else{
+                            nextMap = new Level2(114,73);
 
-                    if (entityCell.getTile().getProperties().containsKey("level 3")){nextMap = new Level3();}
+                        }
+                        
+                    }
+
+                    if (entityCell.getTile().getProperties().containsKey("cave")){nextMap = new Cave();}
+
+                    if (entityCell.getTile().getProperties().containsKey("level 2 from cave")){
+                        if (this.enteredLevel3){
+                            nextMap = new Level3(155,66 );
+                        } else{
+                            nextMap = new Level2(155,66);}
+
+                        }
+                        
+                    if (entityCell.getTile().getProperties().containsKey("level 3")){
+                        this.enteredLevel3 = true;
+                        nextMap = new Level3(123,87);
+                    }
+
                     if (entityCell.getTile().getProperties().containsKey("grass")){nextMap = new Grass();}
+
+                    System.out.println(nextMap);
+                    System.out.println(this.enteredLevel3);
                 return true;
                 }
             } 

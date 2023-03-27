@@ -17,7 +17,9 @@ public class Level2 extends TiledMap implements MapInterface {
     private TiledMap tiledMap;
     private OrthogonalTiledMapRenderer renderer;
 
-    public Level2(){
+    public Level2(float playerSpawnX, float playerSpawnY) {
+        PlayerSpawnX = playerSpawnX;
+        PlayerSpawnY = playerSpawnY;
         tiledMap = new TmxMapLoader().load(Maps.Level2.source);
         renderer = new OrthogonalTiledMapRenderer(tiledMap);
     }

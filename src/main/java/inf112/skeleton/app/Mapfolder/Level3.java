@@ -9,6 +9,7 @@ public class Level3 extends TiledMap implements MapInterface {
     private int enemies = 3;
     private float PlayerSpawnX = 123;
     private float PlayerSpawnY = 87;
+
     private int EnemyBoundsfromX = 200;
     private int EnemyBoundsToX = 800;
     private int EnemyBoundsFromY = 200;
@@ -17,10 +18,15 @@ public class Level3 extends TiledMap implements MapInterface {
     private TiledMap tiledMap;
     private OrthogonalTiledMapRenderer renderer;
 
-    public Level3(){
+
+    public Level3(float playerSpawnX, float playerSpawnY) {
+        PlayerSpawnX = playerSpawnX;
+        PlayerSpawnY = playerSpawnY;
         tiledMap = new TmxMapLoader().load(Maps.Level3.source);
         renderer = new OrthogonalTiledMapRenderer(tiledMap);
     }
+
+    
 
     @Override
     public int getEnemies() {
