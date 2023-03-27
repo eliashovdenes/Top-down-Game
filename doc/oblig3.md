@@ -1,0 +1,208 @@
+# PROSJEKTRAPPORT
+
+### Hvordan fungerer rollene i teamet? 
+
+
+#### Magnus: TEAMLEAD og GitMaster 
+
+	
+#### Casper: Kommunikasjonsansvarlig 
+
+#### Bjørn: Dokumentasjonsansvarlig
+	
+#### Hans-Chr: Testansvarlig, trelloMaster	
+
+#### Elias: Produktutvikler, Mapdesigner
+
+### Trenger vi andre roller?
+
+### Har vi erfaringer team-messig eller mtp prosjektmetodikk som er verdt å nevne? 	
+
+### Prosjektverktøy: 
+
+### Liker vi valgene vi har tatt underveis?
+
+### Hvordan er gruppedynamikken? Uenigheter?
+
+### Hvordan har kommunikasjon fungert for oss?
+
+### Kort retrospektiv om hva som er bra og hva som kan forbedres. Hva har vi fått til det nå? 
+
+### Bli enige om maks 3 forbedringspunkter som skal følges opp.
+1. 
+2.  
+3. 
+
+
+
+
+## Brukerhistorier, akseptansekriterier og arbeidsoppgaver til MVP (som vi har jobbet med)
+
+**1. Som spiller ønsker jeg en MainMenuScreen og en GameOverScreen, slik at jeg kan starte spillet, velge nytt spill og når jeg vinner/taper i spillet så kommer jeg meg tilbake til main menu.**
+
+* Akseptansekriterier:
+	1. Vi har en startmeny hvor spilleren kan starte et nytt spill.
+	2. Vi har en Active Game skjerm, som er skjermen der spillet kjører.
+	3. Når spilleren dør, kommer han til Game Over skjermen og kan starte spillet på nytt.
+	
+* Arbeidsoppgaver:
+	1. Alle 3 skjermene skal vises forskjellig på skjermen, hvor Active Game inneholder selvet spillet.
+	2. Lage en Startmeny
+	3. Ha en keyListener som registrerer når spilleren trykker på start
+	4. Lage en metode som registrerer når spilleren er død/har null hit points.
+		
+**2. Som spiller ønsker jeg å se spillbrettet på skjermen slik at jeg kan se hvor jeg kan bevege karakteren min.** 
+* Akseptansekriterier:
+	1. Spillet starter og viser spillbrettet
+		
+* Arbeidsoppgaver:
+	1. Vi må lage et brett i Tiled
+	2. Brettet må vises på skjermen
+	
+		
+**3. Som spiller ønsker jeg å se karakteren min på skjermen slik at jeg kan se hvor jeg er**
+* Akseptansekriterier:
+	1. Spilleren skal vises på spillbrettet
+	
+* Arbeidsoppgaver:
+	1. Vi må ha en spiller-klasse
+	2. Karakteren må ha en posisjon
+	3. Karakteren må tegnes på skjermen
+		
+**4. Som spiller ønsker jeg at jeg kan bevege karakteren min ved å trykke på tastene slik at jeg kan unngå at fiender skader meg.**
+* Akseptansekriterier:
+	1. Spilleren skal kunne bevege seg på skjermen i åtte retninger ved å bruke tastene "w", "a", "s", "d"
+	
+* Arbeidsoppgaver:
+	1. Vi må ha en actionListener som registrerer tastetrykk
+	2. Vi må sette opp controller slik at spilleren beveger seg nord, vest, sør og øst ved å trykke på henholdsvis "w", "a", "s", "d".
+	3. Kombinasjoner av tastetrykkene må bevege spilleren diagonalt
+	4. Modellen må oppdateres med den nye posisjonen
+	5. Vi må tegne karakteren i den nye posisjonen
+		
+**5. Som spiller ønsker jeg at det er lett å skille områdene spilleren kan bevege seg på fra hindringer og vegger slik at det er lett å se hvor jeg kan bevege meg på brettet**
+* Akseptansekriterier:
+	1. Brettet skal vises med vegger og hindringer
+	2. Karakteren skal ikke kunne passere vegger og hindringer
+	
+* Arbeidsoppgaver:
+	1. Spillbrettet må vise ulike tiles
+	2. Vi må skille mellom tiles karakteren kan bevege seg over og tiles som karakteren ikke kan passere
+	3. Karakteren, vegger og hindringer må ha kollisjonsbokser
+	4. Vi må sørge for at karakteren har lov til å flytte seg i riktig retning.
+	5. Modellen må ha informasjon om de ulike tiles-ene og hvor de er.
+	6. View må vite hva som skal tegnes hvor og hvordan tiles ser ut
+
+**6. Som spiller ønsker jeg at spillet har fiender, slik at det er noe som skjer i spillet som er underholdende for spilleren.**
+* Akseptansekriterier:
+	1. Spillet må ha en fiende som vises på skjermen
+	
+
+* Arbeidsoppgaver:
+	1. Vi må ha et interface for fiender
+	2. Vi må ha en abstrakt klasse som utvider interfacet og implementerer alle metodene som er felles for alle fiendene
+	3. Vi må ha en(eller flere) fiende klasse(r) 
+	4. En fiende må ha en startposisjon
+	5. En fiende må ha en hitbox
+	6. Fienden må ha en oppførsel/bevegelsesmønster
+	7. Fienden må tegnes på skjermen
+
+**7. Som spiller ønsker jeg å kunne angripe fiendene slik at jeg kan overvinne dem.**
+
+* Akseptansekriterier:
+	1. Splilleren på kunne drepe fienden
+	2. Fienden skal forsvinne fra brettet når han dør
+
+* Arbeidsoppgaver:
+	1. Spillkarakteren må ha en metode som gjør at han skyter eller slår en fiende med et våpen eller på en annen måte skade fienden
+	2. Det må være en knapp spilleren kan trykke på for å angripe
+	3. Det må registreres når spilleren treffer fienden med våpenet
+	4. En fiende må ha hitpoints
+	5. Fienden må miste hit points når den blir truffet
+	6. Fienden må dø og forsvinne når den ikke har flere hit points
+
+
+# Krav og spesifikasjon
+
+Vi har prioritert å lage et MVP. Kriteriene for å oppnå dette spesifiserte vi i oblig1.md. Dette var:
+
+1. Vise spillbrettet
+2. Vise spilleren på spillbrettet
+3. Kunne bruke tastene til å flytte spilleren
+4. En enkel fiende spilleren kan bekjempe
+5. Spilleren må ha hit points
+6. Spilleren må kunne ta skade og dø
+7. Spilleren må kunne gå til et nytt rom
+8. En teller som viser hvilket nivå/rom nummer(level) spilleren er på
+9. Startskjerm når spillet kjøres
+10. Game Over skjerm
+11. Mulighet til å starte på nytt
+
+Vi har oppfylt det aller meste av dette. Vi har brukt Tiled til å lage spillbrettet og spillkarakteren vises og kan beveges i åtte retninger. Spillet har en startmeny, active game og game over meny. Når spillet er over, kan du starte på nytt. Hvis fienden treffer spilleren, dør han og spillet er over. Vi har laget en attack-animasjon in fire rettninger som du bruker ved å trykke på "x". For å skade og drepe fienden må du holde inne "x" og treffe fienden med sverdet. I spillet kan du gå inn og ut av huset og dermed gå fra et map til neste. Her starter spilleren på level1, går inn i huset og kommer ut igjen til level2 (level1 og level2 er veldig like utseende messig). Vi har en score på skjermen som skal oppdateres hver gang du dreper en fiende. Spilleren og fiendene har foreløpig ikke hit points, spilleren dør hvis han blir truffet og fienden dør når den blir truffet av sverdet. Spilleren kan også gå raskere ved å trykke på "shift"
+
+### Bugs
+* Inne i huset går fiendene ut av av brettet. Dette er fordi fiendene sjekker kollison i hovedbrettet og ikke inne i huset ennå. * Fiender kan også spawne inne i trærne slik at de ikke kan bevege seg.
+* Vi har lagt til SpotBugs Maven Plugin i pom.xml for å hjelpe oss til å finne bugs
+
+
+### Prioriteringer framover
+
+Nå som vi har fått et MVP, vil vi bruke tiden framover til å videreutvikle spillet. Vi vil legge til flere fiender, flere maps og skalere fiendene slik at de blir vanskligere å bekjempe jo lenger ut i spillet du kommer.Spilleren og fiendene skal ha hit points og de ulike fiendene skal gjøre ulik skade. Videre må vi refaktorere koden slik at stukturen blir bedre. Noe av refaktoreringen vi vil gjøre er å skille modellen fra view bedre og lage en MonsterFactory som kan lage nye fiender. Det har gått med mye tid på å bli kjent med libGDX og Tiled, dette har gjort at vi måtte prioritere å få laget et MVP til denne innleveringen, noe som har gått på bekostning av å skrive tester. Vi har noen JUnit tester samt noen manuelle tester som er beskrevet i neste del. I neste del av prosjektet vil vi legge til flere tester slik av vi testene har større dekningsgrad. Framover vil vi gå over til mer testdrevet utvikling hvor vi skriver testene parallelt med koden.
+
+### Brukerhistorier, akseptansekriterier og arbeidsoppgaver til neste innlevering (foreløpig liste)
+
+**1. Som spiller ønsker jeg at spillkarakteren har hit points slik at jeg ikke dør med en gang jeg tar skade**
+
+* Akseptansekriterier:
+	1. Spilleren skal ha hitpoints og antall hitpoints skal vises på skjermen
+	2. Hitpoints skal oppdateres når spilleren tar skade
+	3. Spilleren skal dø når hitpoints er mindre eller lik null
+	
+* Arbeidsoppgaver:
+	1. Vi må legge til hitpoints i spillerklassen
+	2. Current hitpoints skal vises på skjermen
+	3. Hvis hitpoints er mindre enn null, skal det settes til null og spilleren dør
+	4. Skrive en metode som oppdaterer hitpoints
+	5. Skrive en metode som gjør at spilleren ikke kan ta skade i x-antall sekunder etter han tok skade for å unngå at spilleren tar kontinuerlig skade når han for eksempel går på en fiende
+
+**2. Som spiller ønsker jeg at fiendene har hit points slik at noen fiender tåler mer enn andre og spillet blir mer utfordrende**
+
+* Akseptansekriterier:
+	1. Fiender skal ha hitpoints
+	2. Hitpoints skal oppdateres når fienden tar skade
+	3. Fiender skal dø når hitpoints er mindre eller lik null
+	
+* Arbeidsoppgaver:
+	1. Vi må legge til hitpoints i fiende interfacet 
+	2. Hvis hitpoints er mindre enn null, skal hitpoints settes til null og fienden dør
+	3. Skrive en metode som oppdaterer hitpoints for fiender
+
+**3. Som fiende ønsker jeg å bli sterkere i løpet av spillet slik at spillern ikke dreper meg hver gang**
+
+* Akseptansekriterier:
+	1. Fiender skal skalere og få mer hitpoints og gjøre mer skade utover i spillet
+	
+* Arbeidsoppgaver:
+	1. Vi implementere en måte å skalere hitpoints og skade til fiendene
+
+
+### Hvordan styre karateren i spillet
+* Du styrer karateren med "w", "a", "s", "d"
+* Angriper ved å holde inne "x"
+* Løper raskere ved å holde inne "shift"
+
+## Produkt og kode:
+Dette har vi fikset siden sist:
+* Spilleren kan bevege seg "behagelig" i åtte retninger.
+* Collision detection er i orden mellom GameObject(spiller, fiende) og kart. Vi kan nå enkelt besteme hvor spilleren kan gå og ikke.
+* Det finnes nå en fiende og collision detection mellom fienden og spilleren. Man kan både drepe fienden eller bli drept av fienden avhengig av om man bruker sverdet eller ikke i det man kolliderer med fienden.
+* Vi har lagt til sverd animasjon for fire retninger.
+* Vi har lagt til en start meny.
+* Vi har lagt til en game over meny når man dør.
+* Vi har lagt til tre forskjellige maps som spiller kan flytte seg gjennom.
+
+manuell testing og brukermanualer ligger i readme.md filen.
+
+## Bildet på klassediagrammet
+![image.png](./Klassediagram.png)
+
