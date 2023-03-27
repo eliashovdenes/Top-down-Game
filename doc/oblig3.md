@@ -1,10 +1,9 @@
 # PROSJEKTRAPPORT
 
 ### Hvordan fungerer rollene i teamet? 
-
+Kanskje hver enkelt kan skrive litt om hvordan de synes selv det har gått med sin egen rolle?
 
 #### Magnus: TEAMLEAD og GitMaster 
-
 	
 #### Casper: Kommunikasjonsansvarlig 
 
@@ -204,5 +203,4 @@ Dette har vi fikset siden sist:
 manuell testing og brukermanualer ligger i readme.md filen.
 
 ## Bildet på klassediagrammet
-![image.png](./Klassediagram.png)
 
