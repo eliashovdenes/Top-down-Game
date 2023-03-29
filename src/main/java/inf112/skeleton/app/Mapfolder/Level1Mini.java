@@ -19,10 +19,10 @@ public class Level1Mini extends TiledMap implements MapInterface {
     private float PlayerSpawnX = 123;
     private float PlayerSpawnY = 76;
 
-    private int EnemyBoundsfromX = 104;
-    private int EnemyBoundsToX = 103;
-    private int EnemyBoundsFromY = 56;
-    private int EnemyBoundsToY = 85;
+    private int EnemyBoundsfromX = 200;
+    private int EnemyBoundsToX = 800;
+    private int EnemyBoundsFromY = 200;
+    private int EnemyBoundsToY = 800;
 
     
 
@@ -45,7 +45,7 @@ public class Level1Mini extends TiledMap implements MapInterface {
     public void setup() {
         MonsterFactory blueEnemyFactory = BlueEnemy.getFactory();
         monsterFactories.put(blueEnemyFactory.name(), blueEnemyFactory);
-        enemyList = new ArrayList<>(Arrays.asList("BlueEnemy", "BlueEnemy", "BlueEnemy", "BlueEnemy","RedEnemy", "RedEnemy","RedEnemy","RedEnemy"));
+        enemyList = new ArrayList<>(Arrays.asList("BlueEnemy", "BlueEnemy", "BlueEnemy"));
     }
     
     public void spawn(ArrayList<String> enemyList) {
