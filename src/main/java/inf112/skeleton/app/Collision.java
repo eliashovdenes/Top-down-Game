@@ -5,18 +5,18 @@ import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import inf112.skeleton.app.Entities.AbstractGameObject;
 import inf112.skeleton.app.Entities.Player;
 import inf112.skeleton.app.Mapfolder.Cave;
+import inf112.skeleton.app.Mapfolder.Grass;
 import inf112.skeleton.app.Mapfolder.House;
 import inf112.skeleton.app.Mapfolder.Level1;
 import inf112.skeleton.app.Mapfolder.Level2;
 import inf112.skeleton.app.Mapfolder.Level2fromcave;
+import inf112.skeleton.app.Mapfolder.Level3;
 import inf112.skeleton.app.Mapfolder.MapInterface;
 
 
 
 public class Collision {
 
-
-    public boolean housePortal = false, level2 = false, cave = false;
     public MapInterface nextMap;    
     private TiledMap map;
     public TiledMap getMap() {
@@ -32,6 +32,8 @@ public class Collision {
 
     private float tileSize;
     private float posX,posY;
+
+    private boolean killedAllEnemies = true;
 
     public Collision(TiledMap currMap, AbstractGameObject entity) {
         
@@ -136,6 +138,9 @@ public class Collision {
     } 
 
 
+    
+
+
     public boolean isCellAPortal() {
 
         if (entity instanceof Player){
@@ -145,7 +150,7 @@ public class Collision {
 
 
             float entityX = (entity.getPosition().x + entity.getWidth() / 2 )/tileSize;
-            float entityY =  (entity.getPosition().y+entity.getHeight()/ 2)/tileSize;
+            float entityY =  (entity.getPosition().y + entity.getHeight()/ 2)/tileSize;
 
             
 
@@ -157,11 +162,44 @@ public class Collision {
                 
                 if(entityCell != null && entityCell.getTile().getProperties().containsKey("portal")) {
                     
-                    if (entityCell.getTile().getProperties().containsKey("house")){nextMap =  new House(); System.out.println("hus");}
-                    if (entityCell.getTile().getProperties().containsKey("level 1")){nextMap = new Level1();}
-                    if (entityCell.getTile().getProperties().containsKey("level 2")){nextMap = new Level2();}
+                    if (entityCell.getTile().getProperties().containsKey("level 1")){nextMap = new Level1();}    
+                    if (entityCell.getTile().getProperties().containsKey("house")){nextMap =  new House();}
+                    
+                    if (entityCell.getTile().getProperties().containsKey("level 2")){
+                        
+                        if (entity.isEnteredLevel3()){
+                            nextMap = new Level3(114, 73);
+                        }else{
+                            nextMap = new Level2(114,73);
+
+                        }
+                        
+                    }
+
                     if (entityCell.getTile().getProperties().containsKey("cave")){nextMap = new Cave();}
-                    if (entityCell.getTile().getProperties().containsKey("level 2 from cave")){nextMap = new Level2fromcave();}
+
+                    if (entityCell.getTile().getProperties().containsKey("level 2 from cave")){
+                        if (entity.isEnteredLevel3()){
+                            nextMap = new Level3(155,66 );
+                        } else{
+                            nextMap = new Level2(155,66);}
+                        }
+                        
+                    if (entityCell.getTile().getProperties().containsKey("level 3") ){
+                        if (killedAllEnemies == true){
+                            entity.setEnteredLevel3(true);
+                            nextMap = new Level3(123,87);
+                        } else {
+                            return false;
+                        }
+                    
+                        
+                    } 
+
+                    if (entityCell.getTile().getProperties().containsKey("grass")){nextMap = new Grass();}
+
+                    System.out.println(nextMap);
+                    
                 return true;
                 }
             } 

@@ -12,7 +12,18 @@ public abstract class AbstractGameObject {
     protected Vector2 position;
     protected Vector2 velocity;
     protected Collision collision;
+
+    public boolean enteredLevel3 = false;
     
+    
+    public boolean isEnteredLevel3() {
+        return enteredLevel3;
+    }
+
+    public void setEnteredLevel3(boolean enteredLevel3) {
+        this.enteredLevel3 = enteredLevel3;
+    }
+
     public AbstractGameObject(Vector2 position, MapInterface map) {
         
         this.position = position;
