@@ -15,8 +15,8 @@ import inf112.skeleton.app.Entities.Enemies.BlueEnemy;
 
 public class Level2 extends TiledMap implements MapInterface {
 
-    private float PlayerSpawnX = 114;
-    private float PlayerSpawnY = 73;
+    private float playerSpawnX = 114;
+    private float playerSpawnY = 73;
     private int EnemyBoundsfromX = 121;
     private int EnemyBoundsToX = 122;
     private int EnemyBoundsFromY = 69;
@@ -28,7 +28,10 @@ public class Level2 extends TiledMap implements MapInterface {
     private Map<String, MonsterFactory> monsterFactories = new HashMap<>();
     private ArrayList<String> enemyList;
     
-    public Level2(){
+    public Level2(float  playerSpawnX, float playerSpawnY){
+
+        this.playerSpawnX = playerSpawnX;
+        this.playerSpawnY = playerSpawnY;
         tiledMap = new TmxMapLoader().load(Maps.Level2.source);
         renderer = new OrthogonalTiledMapRenderer(tiledMap);
         setup();
@@ -62,12 +65,12 @@ public class Level2 extends TiledMap implements MapInterface {
 
     @Override
     public float getPlayerSpawnX() {
-        return PlayerSpawnX;
+        return playerSpawnX;
     }
 
     @Override
     public float getPlayerSpawnY() {
-        return PlayerSpawnY;
+        return playerSpawnY;
     }
 
     @Override
