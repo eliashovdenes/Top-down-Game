@@ -83,4 +83,7 @@ public interface MapInterface {
      * @return to Y coordinate bounds for spawn location.
      */
     public int getEnemyBoundsToY();    
+
+
+    public ArrayList<MonsterInterface> getMonsterList();
 }

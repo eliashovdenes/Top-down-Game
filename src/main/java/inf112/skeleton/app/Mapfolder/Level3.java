@@ -38,6 +38,8 @@ public class Level3 extends TiledMap implements MapInterface {
         PlayerSpawnY = playerSpawnY;
         tiledMap = new TmxMapLoader().load(Maps.Level3.source);
         renderer = new OrthogonalTiledMapRenderer(tiledMap);
+        setup();
+        this.spawn(enemyList);
     }
 
     public void setup() {
@@ -100,6 +102,12 @@ public class Level3 extends TiledMap implements MapInterface {
     @Override
     public int getEnemyBoundsToY() {
         return EnemyBoundsToY;
+    }
+
+    @Override
+    public ArrayList<MonsterInterface> getMonsterList() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'getMonsterList'");
     }
     
 }

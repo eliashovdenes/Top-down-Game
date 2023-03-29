@@ -28,7 +28,7 @@ public abstract class AbstractGameObject {
         
         this.position = position;
         TiledMap tiledMap = map.getMap();
-        this.collision = new Collision(tiledMap, this);
+        this.collision = new Collision(map, this);
         this.velocity = new Vector2();
         this.recentPosition = new Vector2(position);
         

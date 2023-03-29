@@ -98,6 +98,12 @@ public class Level1 extends TiledMap implements MapInterface {
     public ArrayList<MonsterInterface> getMonsters() {
         return monsterList;
     }
+
+    @Override
+    public ArrayList<MonsterInterface> getMonsterList() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'getMonsterList'");
+    }
     
 }
 

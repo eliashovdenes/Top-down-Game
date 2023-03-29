@@ -207,7 +207,7 @@ public class Player extends AbstractGameObject implements PlayerInterface {
             onPortal = true;
             nextMap = collision.nextMap;
             this.map = nextMap;
-            collision = new Collision(map.getMap(),this);
+            collision = new Collision(map,this);
             spawn(nextMap.getPlayerSpawnX()*16,nextMap.getPlayerSpawnY()*16);
             return false;
         }

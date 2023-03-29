@@ -17,7 +17,8 @@ import inf112.skeleton.app.Mapfolder.MapInterface;
 
 public class Collision {
 
-    public MapInterface nextMap;    
+    public MapInterface nextMap; 
+    public MapInterface currMap;   
     private TiledMap map;
     public TiledMap getMap() {
         return map;
@@ -35,11 +36,11 @@ public class Collision {
 
     private boolean killedAllEnemies = true;
 
-    public Collision(TiledMap currMap, AbstractGameObject entity) {
-        
-        this.map = currMap;
+    public Collision(MapInterface currMap, AbstractGameObject entity) {
+        this.currMap = currMap;
+        this.map = currMap.getMap();
         this.entity = entity;
-        tileSize = ((TiledMapTileLayer) currMap.getLayers().get(0)).getTileWidth();
+        tileSize = ((TiledMapTileLayer) this.map.getLayers().get(0)).getTileWidth();
     }
 
     public boolean checkXDirection(float velX) {
@@ -186,7 +187,7 @@ public class Collision {
                         }
                         
                     if (entityCell.getTile().getProperties().containsKey("level 3") ){
-                        if (killedAllEnemies == true){
+                        if (currMap.getMonsters().isEmpty()){
                             entity.setEnteredLevel3(true);
                             nextMap = new Level3(123,87);
                         } else {

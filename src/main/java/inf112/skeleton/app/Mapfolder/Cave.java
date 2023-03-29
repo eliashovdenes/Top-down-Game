@@ -97,5 +97,11 @@ public class Cave extends TiledMap implements MapInterface{
     public int getEnemyBoundsToY() {
         return EnemyBoundsToY;
     }
+
+    @Override
+    public ArrayList<MonsterInterface> getMonsterList() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'getMonsterList'");
+    }
     
 }
