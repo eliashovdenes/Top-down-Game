@@ -35,6 +35,10 @@ public class Collision {
     private float tileSize;
     private float posX,posY;
 
+    private boolean enteredLevel3 = false;
+
+    private boolean killedAllEnemies = false;
+
     public Collision(TiledMap currMap, AbstractGameObject entity) {
         
         this.map = currMap;
@@ -138,7 +142,7 @@ public class Collision {
     } 
 
 
-    private boolean enteredLevel3 = false;
+    
 
 
     public boolean isCellAPortal() {
@@ -185,15 +189,23 @@ public class Collision {
 
                         }
                         
-                    if (entityCell.getTile().getProperties().containsKey("level 3")){
-                        this.enteredLevel3 = true;
-                        nextMap = new Level3(123,87);
-                    }
+                    if (entityCell.getTile().getProperties().containsKey("level 3") ){
+                        if (killedAllEnemies == true){
+                            this.enteredLevel3 = true;
+                            nextMap = new Level3(123,87);
+                        } else {
+                            return false;
+                        }
+                        
+                        
+                        
+                    } 
 
                     if (entityCell.getTile().getProperties().containsKey("grass")){nextMap = new Grass();}
 
                     System.out.println(nextMap);
                     System.out.println(this.enteredLevel3);
+
                 return true;
                 }
             } 
