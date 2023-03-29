@@ -19,12 +19,14 @@ public class RedEnemy extends AbstractGameObject implements MonsterInterface  {
     float speed = 1 ;
     private DirectionEnum direction;
     MapInterface map;
+    Integer RedEnemyHP =75;
 
     public RedEnemy(MapInterface map) {
         super(new Vector2(0,0), map);
         this.map = map;
         setSprite(RedEnemyPics.ENEMYDOWN.source);
-        setXYFromSpawnBounds();       
+        setXYFromSpawnBounds();  
+        setHP(RedEnemyHP);     
     }
 
     public static MonsterFactory getFactory() {

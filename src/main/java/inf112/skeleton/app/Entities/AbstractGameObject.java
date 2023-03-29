@@ -12,7 +12,7 @@ public abstract class AbstractGameObject {
     protected Vector2 position;
     protected Vector2 velocity;
     protected Collision collision;
-
+    protected Integer currentHPInteger;
     public boolean enteredLevel3 = false;
     
     
@@ -72,6 +72,15 @@ public abstract class AbstractGameObject {
     }
     public float getVeloY(){
         return velocity.y;
+    }
+
+     //setter and getter for Currenthealth
+     public Integer getHP(){
+        return currentHPInteger;
+    }
+    public void setHP(Integer hp){
+            currentHPInteger = hp;
+
     }
    
     public Vector2 getPosition() {

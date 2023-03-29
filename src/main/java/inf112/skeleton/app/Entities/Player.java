@@ -28,6 +28,7 @@ public class Player extends AbstractGameObject implements PlayerInterface {
     public MapInterface nextMap;
     public boolean onPortal;
     private Controller controller;
+    private Integer playerHP = 100;
     
     
 
@@ -39,6 +40,7 @@ public class Player extends AbstractGameObject implements PlayerInterface {
         this.controller = controller;
         setSprite(PlayerPics.ATTACKDOWN.source);
         sprite.setPosition(position.x,position.y);
+        setHP(playerHP);
         
         //sprite.setScale(0.1f);
         sprite.setSize(16,16);
