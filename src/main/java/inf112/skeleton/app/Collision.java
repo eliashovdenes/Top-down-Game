@@ -17,8 +17,6 @@ import inf112.skeleton.app.Mapfolder.MapInterface;
 
 public class Collision {
 
-    
-    // public boolean housePortal = false, level2 = false, cave = false;
     public MapInterface nextMap;    
     private TiledMap map;
     public TiledMap getMap() {
@@ -35,9 +33,7 @@ public class Collision {
     private float tileSize;
     private float posX,posY;
 
-    private boolean enteredLevel3 = false;
-
-    private boolean killedAllEnemies = false;
+    private boolean killedAllEnemies = true;
 
     public Collision(TiledMap currMap, AbstractGameObject entity) {
         
@@ -170,7 +166,8 @@ public class Collision {
                     if (entityCell.getTile().getProperties().containsKey("house")){nextMap =  new House();}
                     
                     if (entityCell.getTile().getProperties().containsKey("level 2")){
-                        if (this.enteredLevel3){
+                        
+                        if (entity.isEnteredLevel3()){
                             nextMap = new Level3(114, 73);
                         }else{
                             nextMap = new Level2(114,73);
@@ -182,30 +179,27 @@ public class Collision {
                     if (entityCell.getTile().getProperties().containsKey("cave")){nextMap = new Cave();}
 
                     if (entityCell.getTile().getProperties().containsKey("level 2 from cave")){
-                        if (this.enteredLevel3){
+                        if (entity.isEnteredLevel3()){
                             nextMap = new Level3(155,66 );
                         } else{
                             nextMap = new Level2(155,66);}
-
                         }
                         
                     if (entityCell.getTile().getProperties().containsKey("level 3") ){
                         if (killedAllEnemies == true){
-                            this.enteredLevel3 = true;
+                            entity.setEnteredLevel3(true);
                             nextMap = new Level3(123,87);
                         } else {
                             return false;
                         }
-                        
-                        
+                    
                         
                     } 
 
                     if (entityCell.getTile().getProperties().containsKey("grass")){nextMap = new Grass();}
 
                     System.out.println(nextMap);
-                    System.out.println(this.enteredLevel3);
-
+                    
                 return true;
                 }
             } 

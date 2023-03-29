@@ -28,6 +28,9 @@ public class Player extends AbstractGameObject implements PlayerInterface {
     public MapInterface nextMap;
     public boolean onPortal;
     private Controller controller;
+    
+    
+
 
     public Player(Vector2 position, MapInterface map, Controller controller) {
         super(position, map);
