@@ -6,10 +6,12 @@ import inf112.skeleton.app.Entities.AbstractGameObject;
 import inf112.skeleton.app.Entities.Player;
 import inf112.skeleton.app.Mapfolder.Cave;
 import inf112.skeleton.app.Mapfolder.Grass;
+import inf112.skeleton.app.Mapfolder.GrassMini;
 import inf112.skeleton.app.Mapfolder.House;
 import inf112.skeleton.app.Mapfolder.Level1;
+import inf112.skeleton.app.Mapfolder.Level1Mini;
 import inf112.skeleton.app.Mapfolder.Level2;
-import inf112.skeleton.app.Mapfolder.Level2fromcave;
+// import inf112.skeleton.app.Mapfolder.Level2fromcave;
 import inf112.skeleton.app.Mapfolder.Level3;
 import inf112.skeleton.app.Mapfolder.MapInterface;
 
@@ -163,43 +165,63 @@ public class Collision {
                 
                 if(entityCell != null && entityCell.getTile().getProperties().containsKey("portal")) {
                     
-                    if (entityCell.getTile().getProperties().containsKey("level 1")){nextMap = new Level1();}    
-                    if (entityCell.getTile().getProperties().containsKey("house")){nextMap =  new House();}
-                    
-                    if (entityCell.getTile().getProperties().containsKey("level 2")){
-                        
-                        if (entity.isEnteredLevel3()){
-                            nextMap = new Level3(114, 73);
-                        }else{
-                            nextMap = new Level2(114,73);
 
+                    //This is for multiple maps (including cave map, and updating maps) cycle:
+                    // if (entityCell.getTile().getProperties().containsKey("level 1")){nextMap = new Level1();}    
+                    // if (entityCell.getTile().getProperties().containsKey("house")){nextMap =  new House();}
+                    
+                    // if (entityCell.getTile().getProperties().containsKey("level 2")){
+                        
+                    //     if (entity.isEnteredLevel3()){
+                    //         nextMap = new Level3(114, 73);
+                    //     }else{
+                    //         nextMap = new Level2(114,73);
+
+                    //     }
+                        
+                    // }
+
+                    // if (entityCell.getTile().getProperties().containsKey("cave")){nextMap = new Cave();}
+
+                    // if (entityCell.getTile().getProperties().containsKey("level 2 from cave")){
+                    //     if (entity.isEnteredLevel3()){
+                    //         nextMap = new Level3(155,66 );
+                    //     } else{
+                    //         nextMap = new Level2(155,66);}
+                    //     }
+                        
+                    // if (entityCell.getTile().getProperties().containsKey("level 3") ){
+                    //     if (currMap.getMonsters().isEmpty()){
+                    //         entity.setEnteredLevel3(true);
+                    //         nextMap = new Level3(123,87);
+                    //     } else {
+                    //         return false;
+                    //     }
+                    
+                        
+                    // } 
+
+                    // if (entityCell.getTile().getProperties().containsKey("grass")){nextMap = new Grass();}
+
+
+                    //This is for mini cycle, better suited for testing:
+                    if (entityCell.getTile().getProperties().containsKey("house")){nextMap =  new House();}
+
+                    if (entityCell.getTile().getProperties().containsKey("level 2")){nextMap = new Level1Mini(113, 75);}
+
+                    if (entityCell.getTile().getProperties().containsKey("grass")){nextMap = new GrassMini(119,52);}
+
+                    if (entityCell.getTile().getProperties().containsKey("mini level 1")){
+                        
+                        if(currMap.getMonsters().isEmpty()){
+                            nextMap = new Level1Mini(139,70);
+                        } else{
+                            return false;
                         }
                         
                     }
 
-                    if (entityCell.getTile().getProperties().containsKey("cave")){nextMap = new Cave();}
-
-                    if (entityCell.getTile().getProperties().containsKey("level 2 from cave")){
-                        if (entity.isEnteredLevel3()){
-                            nextMap = new Level3(155,66 );
-                        } else{
-                            nextMap = new Level2(155,66);}
-                        }
-                        
-                    if (entityCell.getTile().getProperties().containsKey("level 3") ){
-                        if (currMap.getMonsters().isEmpty()){
-                            entity.setEnteredLevel3(true);
-                            nextMap = new Level3(123,87);
-                        } else {
-                            return false;
-                        }
                     
-                        
-                    } 
-
-                    if (entityCell.getTile().getProperties().containsKey("grass")){nextMap = new Grass();}
-
-                    System.out.println(nextMap);
                     
                 return true;
                 }

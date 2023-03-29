@@ -13,14 +13,18 @@ import inf112.skeleton.app.Entities.MonsterFactory;
 import inf112.skeleton.app.Entities.MonsterInterface;
 import inf112.skeleton.app.Entities.Enemies.BlueEnemy;
 
-public class Level2fromcave extends TiledMap implements MapInterface {
+public class GrassMini extends TiledMap implements MapInterface {
 
-    private float PlayerSpawnX = 155;
-    private float PlayerSpawnY = 66;
-    private int EnemyBoundsfromX = 121;
-    private int EnemyBoundsToX = 122;
-    private int EnemyBoundsFromY = 69;
-    private int EnemyBoundsToY = 70;
+    private int enemies = 3;
+    private float PlayerSpawnX = 123;
+    private float PlayerSpawnY = 87;
+
+    private int EnemyBoundsfromX = 200;
+    private int EnemyBoundsToX = 800;
+    private int EnemyBoundsFromY = 200;
+    private int EnemyBoundsToY = 800;
+
+    
 
     private TiledMap tiledMap;
     private OrthogonalTiledMapRenderer renderer;
@@ -28,8 +32,11 @@ public class Level2fromcave extends TiledMap implements MapInterface {
     private Map<String, MonsterFactory> monsterFactories = new HashMap<>();
     private ArrayList<String> enemyList;
 
-    public Level2fromcave(){
-        tiledMap = new TmxMapLoader().load(Maps.Level2.source);
+
+    public GrassMini(float playerSpawnX, float playerSpawnY) {
+        PlayerSpawnX = playerSpawnX;
+        PlayerSpawnY = playerSpawnY;
+        tiledMap = new TmxMapLoader().load(Maps.GrassMini.source);
         renderer = new OrthogonalTiledMapRenderer(tiledMap);
         setup();
         this.spawn(enemyList);
@@ -38,7 +45,7 @@ public class Level2fromcave extends TiledMap implements MapInterface {
     public void setup() {
         MonsterFactory blueEnemyFactory = BlueEnemy.getFactory();
         monsterFactories.put(blueEnemyFactory.name(), blueEnemyFactory);
-        enemyList = new ArrayList<>(Arrays.asList("BlueEnemy", "BlueEnemy"));
+        enemyList = new ArrayList<>(Arrays.asList("BlueEnemy", "BlueEnemy", "BlueEnemy"));
     }
     
     public void spawn(ArrayList<String> enemyList) {
@@ -48,6 +55,13 @@ public class Level2fromcave extends TiledMap implements MapInterface {
             MonsterInterface monster = monsterFactory.create(this);
             monsterList.add(monster);
         }
+    }
+
+    
+
+    @Override
+    public ArrayList<MonsterInterface> getMonsters() {
+        return monsterList;
     }
 
     @Override
@@ -88,11 +102,6 @@ public class Level2fromcave extends TiledMap implements MapInterface {
     @Override
     public int getEnemyBoundsToY() {
         return EnemyBoundsToY;
-    }
-    
-    @Override
-    public ArrayList<MonsterInterface> getMonsters() {
-        return monsterList;
     }
 
     @Override
