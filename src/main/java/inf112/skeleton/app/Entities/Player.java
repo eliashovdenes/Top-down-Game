@@ -181,7 +181,7 @@ public class Player extends AbstractGameObject implements PlayerInterface {
             projectileList.add(southLightning);
             projectileList.add(eastLightning);
 
-            shootTimer = 15;
+            shootTimer = 0;
         }
     }
     
