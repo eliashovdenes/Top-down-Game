@@ -21,6 +21,7 @@ import inf112.skeleton.app.Entities.Player;
 import inf112.skeleton.app.Entities.PlayerInterface;
 import inf112.skeleton.app.Entities.Enemies.BlueEnemy;
 import inf112.skeleton.app.Mapfolder.Level1;
+import inf112.skeleton.app.Mapfolder.Level1Mini;
 import inf112.skeleton.app.Mapfolder.MapInterface;
 import inf112.skeleton.app.Zelda;
 import inf112.skeleton.app.Controller.Controller;
@@ -46,7 +47,7 @@ public class View implements Screen {
     private Controller controller;
     public HashMap<AbstractGameObject, Rectangle> enemies = new HashMap<>();
     
-    MapInterface mapI = new Level1();
+    MapInterface mapI = new Level1Mini(123,76);
     OrthogonalTiledMapRenderer nyRend;
     TiledMap nyMap;
     SpriteBatch batch;

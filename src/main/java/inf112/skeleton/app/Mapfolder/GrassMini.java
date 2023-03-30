@@ -12,15 +12,22 @@ import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import inf112.skeleton.app.Entities.MonsterFactory;
 import inf112.skeleton.app.Entities.MonsterInterface;
 import inf112.skeleton.app.Entities.Enemies.BlueEnemy;
+import inf112.skeleton.app.Entities.Enemies.RedEnemy;
 
-public class Level2fromcave extends TiledMap implements MapInterface {
+public class GrassMini extends TiledMap implements MapInterface {
 
-    private float PlayerSpawnX = 155;
-    private float PlayerSpawnY = 66;
-    private int EnemyBoundsfromX = 121;
-    private int EnemyBoundsToX = 122;
-    private int EnemyBoundsFromY = 69;
-    private int EnemyBoundsToY = 70;
+    private int enemies = 3;
+    private float PlayerSpawnX = 123;
+    private float PlayerSpawnY = 87;
+
+    private int EnemyBoundsfromX = 104;
+    private int EnemyBoundsToX = 133;
+    private int EnemyBoundsFromY = 56;
+    private int EnemyBoundsToY = 85;
+
+    
+
+    
 
     private TiledMap tiledMap;
     private OrthogonalTiledMapRenderer renderer;
@@ -28,8 +35,11 @@ public class Level2fromcave extends TiledMap implements MapInterface {
     private Map<String, MonsterFactory> monsterFactories = new HashMap<>();
     private ArrayList<String> enemyList;
 
-    public Level2fromcave(){
-        tiledMap = new TmxMapLoader().load(Maps.Level2.source);
+
+    public GrassMini(float playerSpawnX, float playerSpawnY) {
+        PlayerSpawnX = playerSpawnX;
+        PlayerSpawnY = playerSpawnY;
+        tiledMap = new TmxMapLoader().load(Maps.GrassMini.source);
         renderer = new OrthogonalTiledMapRenderer(tiledMap);
         setup();
         this.spawn(enemyList);
@@ -37,8 +47,11 @@ public class Level2fromcave extends TiledMap implements MapInterface {
 
     public void setup() {
         MonsterFactory blueEnemyFactory = BlueEnemy.getFactory();
+        MonsterFactory redEnemyFactory = RedEnemy.getFactory();
         monsterFactories.put(blueEnemyFactory.name(), blueEnemyFactory);
-        enemyList = new ArrayList<>(Arrays.asList("BlueEnemy", "BlueEnemy"));
+        monsterFactories.put(redEnemyFactory.name(), redEnemyFactory);
+        enemyList = new ArrayList<>(Arrays.asList("BlueEnemy", "RedEnemy", "RedEnemy", "BlueEnemy", "BlueEnemy", "RedEnemy", "RedEnemy", 
+        "BlueEnemy", "BlueEnemy", "RedEnemy", "RedEnemy", "BlueEnemy" , "BlueEnemy", "RedEnemy", "RedEnemy", "BlueEnemy" , "BlueEnemy", "RedEnemy", "RedEnemy", "BlueEnemy"));
     }
     
     public void spawn(ArrayList<String> enemyList) {
@@ -48,6 +61,13 @@ public class Level2fromcave extends TiledMap implements MapInterface {
             MonsterInterface monster = monsterFactory.create(this);
             monsterList.add(monster);
         }
+    }
+
+    
+
+    @Override
+    public ArrayList<MonsterInterface> getMonsters() {
+        return monsterList;
     }
 
     @Override
@@ -88,11 +108,6 @@ public class Level2fromcave extends TiledMap implements MapInterface {
     @Override
     public int getEnemyBoundsToY() {
         return EnemyBoundsToY;
-    }
-    
-    @Override
-    public ArrayList<MonsterInterface> getMonsters() {
-        return monsterList;
     }
 
     @Override
