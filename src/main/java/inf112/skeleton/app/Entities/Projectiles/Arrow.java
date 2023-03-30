@@ -21,8 +21,6 @@ public class Arrow extends AbstractGameObject implements ProjectileInterface  {
     protected TiledMap map;
     protected Vector2 velocity;
     
-    
-    
 
     public Arrow(Vector2 position, MapInterface map, PlayerInterface player) {
         super(position, map);
@@ -34,6 +32,8 @@ public class Arrow extends AbstractGameObject implements ProjectileInterface  {
         
        
     }
+
+    //* setVelocity() is a method that returns a Vector2 with the correct velocity for the arrow. */
     public Vector2 setVelocity() {
         Vector2  veloVector = new Vector2();
         DirectionEnum direction = player.getPlayerDirection();
@@ -43,7 +43,9 @@ public class Arrow extends AbstractGameObject implements ProjectileInterface  {
         if (direction == DirectionEnum.EAST){veloVector = new Vector2(1*speed,0*speed);}
         return veloVector;
     }
+
     @Override
+    // update() is a method that updates the position of the arrow. */
     public void update(float delta) {
 
         if (velocity.x == 0 && velocity.y==0){
@@ -57,7 +59,7 @@ public class Arrow extends AbstractGameObject implements ProjectileInterface  {
     }
 
    
-   
+   //Setters and getters ->>>>>>>>>>>>
     @Override
     public void setSprite(String string) {
         sprite = new Sprite(new Texture(string));
@@ -84,14 +86,13 @@ public class Arrow extends AbstractGameObject implements ProjectileInterface  {
     }
     
     private void setCorrectSprite(){
-
-    String sprite = "";
-    if (player.getPlayerDirection()==DirectionEnum.EAST) sprite = PlayerPics.RIGHTARROW.source;
-    if (player.getPlayerDirection()==DirectionEnum.NORTH)  sprite = PlayerPics.UPARROW.source;
-    if (player.getPlayerDirection()==DirectionEnum.WEST) sprite = PlayerPics.LEFTARROW.source;
-    if (player.getPlayerDirection()==DirectionEnum.SOUTH)  sprite = PlayerPics.DOWNARROW.source;
+        String sprite = "";
+        if (player.getPlayerDirection()==DirectionEnum.EAST) sprite = PlayerPics.RIGHTARROW.source;
+        if (player.getPlayerDirection()==DirectionEnum.NORTH)  sprite = PlayerPics.UPARROW.source;
+        if (player.getPlayerDirection()==DirectionEnum.WEST) sprite = PlayerPics.LEFTARROW.source;
+        if (player.getPlayerDirection()==DirectionEnum.SOUTH)  sprite = PlayerPics.DOWNARROW.source;
    
-    setSprite(sprite);
+        setSprite(sprite);
     }
   
 }

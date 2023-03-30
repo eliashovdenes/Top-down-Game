@@ -15,8 +15,9 @@ public class Controller implements InputProcessor{
     isPaused = false;
     private boolean wasEscJustPressed;
 
-   
+    
     @Override
+    //*This method is called when a key is pressed */
     public boolean keyDown(int keycode) {
         if (keycode == Keys.W) isUp = true;
         if (keycode == Keys.S) isDown = true;
@@ -39,7 +40,10 @@ public class Controller implements InputProcessor{
             }
         return true;
     }
+
+
     @Override
+    //*This method is called when a key is released */
     public boolean keyUp(int keycode) {
         if (keycode == Keys.W) isUp = false;
         if (keycode == Keys.S) isDown = false;
@@ -56,26 +60,33 @@ public class Controller implements InputProcessor{
 
     
     @Override
+    //*This method is called when a key is typed, we do not use this method*/
     public boolean keyTyped(char character) {
         return false;
     }
+
     @Override
+    //*This method is called when the mouse is clicked, we do not use this method*/
     public boolean touchDown(int screenX, int screenY, int pointer, int button) {
         return true;
     }
     @Override
+    //*This method is called when the mouse is released, we do not use this method*/
     public boolean touchUp(int screenX, int screenY, int pointer, int button) {
         return false;
     }
     @Override
+    //*This method is called when the mouse is dragged, we do not use this method*/
     public boolean touchDragged(int screenX, int screenY, int pointer) {
         return false;
     }
     @Override
+    //*This method is called when the mouse is moved, we do not use this method*/
     public boolean mouseMoved(int screenX, int screenY) {
         return false;
     }
     @Override
+    //*This method is called when the mouse is scrolled, we do not use this method*/
     public boolean scrolled(float amountX, float amountY) {
         return false;
     }
@@ -112,7 +123,6 @@ public class Controller implements InputProcessor{
     public void setLeft(boolean isLeft) {
         this.isLeft = isLeft;
     }
-
     public void setAttack(boolean isAttack){
         this.isAttack = isAttack;
     }
@@ -128,6 +138,9 @@ public class Controller implements InputProcessor{
     }
     public boolean isSpace() {
         return isSpace;
+    }
+    public void setSpace(boolean isSpace) {
+        this.isSpace = isSpace;
     }
     public boolean isFast() {
         return fast;

@@ -19,7 +19,7 @@ public enum PlayerAnimation {
     RUNRIGHT(new Animation(new TextureRegion(new Texture("src/main/java/inf112/skeleton/app/assets/playerPics/animationRUNRIGHT.png")), 12, 0.5f)),
     RUNLEFT(new Animation(new TextureRegion(new Texture("src/main/java/inf112/skeleton/app/assets/playerPics/animationRUNLEFT.png")), 12, 0.5f)),
 
-
+    // ATTACK ANIMATION
     ATTACKDOWN(new Animation(new TextureRegion(new Texture("src/main/java/inf112/skeleton/app/assets/playerPics/attackDown.png")), 8, 0.1f)),
     ATTACKLEFT(new Animation(new TextureRegion(new Texture("src/main/java/inf112/skeleton/app/assets/playerPics/attackLeft.png")), 12, 0.1f));
 

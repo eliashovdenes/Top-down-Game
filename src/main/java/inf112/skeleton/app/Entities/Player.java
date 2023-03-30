@@ -54,9 +54,8 @@ public class Player extends AbstractGameObject implements PlayerInterface {
     }
 
     @Override
+    //**Updates the player's position and animation. */
     public void update(float delta) {
-
-        //maybe make a controller class
 
         // Movement in x-direction
         if (controller.isLeft()) {
@@ -106,6 +105,8 @@ public class Player extends AbstractGameObject implements PlayerInterface {
         
     }
 
+
+    //**Getters and setters for Sprite */
     @Override
     public void setSprite(String string) {
         sprite = new Sprite(new Texture(string));
@@ -116,11 +117,14 @@ public class Player extends AbstractGameObject implements PlayerInterface {
         return sprite;
     }
 
+    //**Setter for movement speed */
     @Override
     public void setMovementSpeed(float speed) {
         this.speed = speed;
     }
 
+
+    //**Getters for width and height */
     @Override
     public float getWidth() {
         return sprite.getWidth();
@@ -128,10 +132,10 @@ public class Player extends AbstractGameObject implements PlayerInterface {
 
     @Override
     public float getHeight() {
-        
         return sprite.getHeight();
     }
 
+    //**animate does the animation of the player */
     private void animate(float delta) {
         if (speed ==1){
         if (direction == DirectionEnum.NORTH)      this.playerAnimation = PlayerAnimation.UP.animation;
@@ -152,6 +156,7 @@ public class Player extends AbstractGameObject implements PlayerInterface {
         playerAnimation.update(delta);
     }
 
+    //**shootArrow creates a new arrow and adds it to the projectileList */
     private void shootArrow(){
             if (shootTimer<=0){
             Vector2 arrowPos = new Vector2(position.x,position.y);
@@ -164,6 +169,7 @@ public class Player extends AbstractGameObject implements PlayerInterface {
         }
     }
 
+    //**shootLightning creates a new lightning and adds it to the projectileList */
     private void shootLightning(){
         if (shootTimer<=0){
             Vector2 lightningPos = new Vector2(position.x,position.y);
@@ -172,6 +178,8 @@ public class Player extends AbstractGameObject implements PlayerInterface {
             shootTimer=15;
         }
     }    
+
+    //**lightningMultiShot creates 4 new lightnings in each direction and adds them to the projectileList */
     private void lightningMultiShot(){
         if (shootTimer<=0){
 
@@ -190,12 +198,15 @@ public class Player extends AbstractGameObject implements PlayerInterface {
             SM.lightningMultiShotSound.play();
         }
     }
-    
+
+
+    //*Getter for projectilelist/arrows*/
     @Override
     public ArrayList<ProjectileInterface> getArrows(){
         return projectileList;
     }   
 
+    //**Setter and getter for player direction */
     @Override
     public void setPlayerDirection(DirectionEnum direction){
         this.direction = direction;
@@ -207,8 +218,9 @@ public class Player extends AbstractGameObject implements PlayerInterface {
     }
 
 
-    //Overrides method from AbstractGameObject to check for portal collision in Y-direction
+    
     @Override 
+    //**Overrides method from AbstractGameObject to check for portal collision in Y-direction */
     public boolean yCollision(){
         
         if (collision.isCellAPortal()){
@@ -223,26 +235,33 @@ public class Player extends AbstractGameObject implements PlayerInterface {
     }
     
     @Override
+    // Overrides method from AbstractGameObject to spawn player at a certain position
     public void spawn(float x,float y){
         position.x=x;
         position.y=y;
     }
 
     @Override 
+    //**Overrides method from AbstractGameObject to check if the player is on a portal */
     public boolean onPortal(){
         return onPortal;
     }
-    @Override
-    public MapInterface nextMap(){
-        return nextMap;
-    }
-    @Override
-    
 
-    public Vector2 getPosition() {
-        return super.getPosition();
-    }
+    //**Sets onPortal to false */
     public void setOffPortal(){
         onPortal = false;
     }
+
+    @Override
+    //**Overrides method from AbstractGameObject to get the next map */
+    public MapInterface nextMap(){
+        return nextMap;
+    }
+    
+    @Override
+    //**Overrides method from AbstractGameObject to get the position of the player */
+    public Vector2 getPosition() {
+        return super.getPosition();
+    }
+    
 }

@@ -43,6 +43,7 @@ public class Lightning extends AbstractGameObject implements ProjectileInterface
     }
        
     @Override
+    // update() is a method that updates the position of the lightning */
     public void update(float delta) {
         
         position.x+=velocity.x;
@@ -62,6 +63,7 @@ public class Lightning extends AbstractGameObject implements ProjectileInterface
          
     }
 
+    //Setters and getters -->>>>
     @Override
     public Sprite getSprite() {
         return sprite;
@@ -98,6 +100,5 @@ public class Lightning extends AbstractGameObject implements ProjectileInterface
         return veloVector;
     }
 
-    
     
 }

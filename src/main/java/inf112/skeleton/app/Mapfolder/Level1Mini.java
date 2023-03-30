@@ -42,12 +42,14 @@ public class Level1Mini extends TiledMap implements MapInterface {
         this.spawn(enemyList);
     }
 
+    @Override
     public void setup() {
         MonsterFactory blueEnemyFactory = BlueEnemy.getFactory();
         monsterFactories.put(blueEnemyFactory.name(), blueEnemyFactory);
         enemyList = new ArrayList<>(Arrays.asList("BlueEnemy", "BlueEnemy", "BlueEnemy"));
     }
     
+    @Override
     public void spawn(ArrayList<String> enemyList) {
 
         for (int i=0; i < enemyList.size(); i++){

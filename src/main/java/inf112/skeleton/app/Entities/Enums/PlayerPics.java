@@ -1,5 +1,6 @@
 package inf112.skeleton.app.Entities.Enums;
 
+//*PlayerPics is used to determine what picture the player and enemies should have*/
 public enum PlayerPics {
     RIGHT("src/main/java/inf112/skeleton/app/assets/playerPics/playerR.png"),
     LEFT("src/main/java/inf112/skeleton/app/assets/playerPics/playerL.png"),

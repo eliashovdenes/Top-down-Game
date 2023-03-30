@@ -97,7 +97,8 @@ public interface PlayerInterface  {
      * set Boolean for player to FALSE to indicate that player is not on portal anymore.
      */
     void setOffPortal();
-
+    
+    //TODO write javadoc
     public Integer getHP();
     
 

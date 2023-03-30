@@ -36,6 +36,7 @@ public class Level1 extends TiledMap implements MapInterface {
         this.spawn(enemyList);
     }
 
+    @Override
     public void setup() {
         MonsterFactory blueEnemyFactory = BlueEnemy.getFactory();
         MonsterFactory redEnemyFactory = RedEnemy.getFactory();
@@ -44,6 +45,7 @@ public class Level1 extends TiledMap implements MapInterface {
         enemyList = new ArrayList<>(Arrays.asList("BlueEnemy", "RedEnemy", "RedEnemy", "BlueEnemy"));
     }
     
+    @Override
     public void spawn(ArrayList<String> enemyList) {
 
         for (int i=0; i < enemyList.size(); i++){
