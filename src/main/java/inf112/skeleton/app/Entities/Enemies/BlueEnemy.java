@@ -92,7 +92,6 @@ public class BlueEnemy extends AbstractGameObject implements MonsterInterface  {
     @Override
     public void setXYFromSpawnBounds(){
 
-        System.out.println("hvor eller ");
         Random rand = new Random();
         fromX = map.getEnemyBoundsFromX()*16;
         fromY = map.getEnemyBoundsFromY()*16;
