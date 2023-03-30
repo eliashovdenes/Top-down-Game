@@ -44,6 +44,7 @@ public class View implements Screen {
     private BitmapFont lifeText = new BitmapFont();
     private Zelda game;
     private MonsterInterface monsterI;
+    private boolean paused = false;
     private Controller controller;
     public HashMap<AbstractGameObject, Rectangle> enemies = new HashMap<>();
     
@@ -78,6 +79,11 @@ public class View implements Screen {
 
     @Override
     public void render(float delta) {
+
+        if(controller.isPaused()){pause();}
+        if(!controller.isPaused()){resume();}
+        if (paused) {return;}
+        
         
         Gdx.gl.glClearColor(0, 0, 0, 0);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
@@ -147,15 +153,13 @@ public class View implements Screen {
 
     @Override
     public void pause() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'pause'");
+        paused = true;
     }
 
-
+/* */
     @Override
     public void resume() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'resume'");
+        paused = false;
     }
 
 

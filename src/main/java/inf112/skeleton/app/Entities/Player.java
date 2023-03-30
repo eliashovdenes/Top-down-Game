@@ -14,6 +14,8 @@ import inf112.skeleton.app.Entities.Enums.PlayerPics;
 import inf112.skeleton.app.Entities.Projectiles.Arrow;
 import inf112.skeleton.app.Entities.Projectiles.Lightning;
 import inf112.skeleton.app.Mapfolder.MapInterface;
+import inf112.skeleton.app.Sound.SoundManager;
+import inf112.skeleton.app.Sound.aSound;
 
 public class Player extends AbstractGameObject implements PlayerInterface {
     private Animation playerAnimation;
@@ -29,6 +31,7 @@ public class Player extends AbstractGameObject implements PlayerInterface {
     public boolean onPortal;
     private Controller controller;
     private Integer playerHP = 100;
+    private SoundManager SM;
     
     
 
@@ -41,8 +44,7 @@ public class Player extends AbstractGameObject implements PlayerInterface {
         setSprite(PlayerPics.ATTACKDOWN.source);
         sprite.setPosition(position.x,position.y);
         setHP(playerHP);
-        
-        //sprite.setScale(0.1f);
+        this.SM = new SoundManager();
         sprite.setSize(16,16);
 
         projectileList = new ArrayList<ProjectileInterface>();
@@ -160,7 +162,10 @@ public class Player extends AbstractGameObject implements PlayerInterface {
             Vector2 arrowPos = new Vector2(position.x,position.y);
             this.arrow = new Arrow(arrowPos, map,this);
             projectileList.add(this.arrow);
+            
+            
             shootTimer=15;
+            SM.arrowSound.play();
         }
     }
 
@@ -189,7 +194,8 @@ public class Player extends AbstractGameObject implements PlayerInterface {
             projectileList.add(southLightning);
             projectileList.add(eastLightning);
 
-            shootTimer = 15;
+            shootTimer = 30;
+            SM.lightningMultiShotSound.play();
         }
     }
 

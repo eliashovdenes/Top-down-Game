@@ -11,7 +11,9 @@ public class Controller implements InputProcessor{
     fast = false,
     isAttack = false,
     isSpace = false,
-    enter = false;
+    enter = false,
+    isPaused = false;
+    private boolean wasEscJustPressed;
 
     
     @Override
@@ -25,6 +27,17 @@ public class Controller implements InputProcessor{
         if (keycode == Keys.P) isAttack = true;
         if (keycode == Keys.SPACE) isSpace = true;
         if (keycode == Keys.ENTER) enter = true;
+        if (keycode == Keys.ESCAPE) {
+            if(!wasEscJustPressed){
+                wasEscJustPressed = true;
+                if (isPaused){
+                    isPaused = false;
+                    }
+                    else {
+                        isPaused = true;
+                    }
+                }
+            }
         return true;
     }
 
@@ -40,6 +53,8 @@ public class Controller implements InputProcessor{
         if (keycode == Keys.P) isAttack = false;
         if (keycode == Keys.SPACE) isSpace = false;
         if (keycode == Keys.ENTER) enter = false;
+        if (keycode == Keys.ESCAPE) wasEscJustPressed = false;
+        
         return true;
     }
 
@@ -77,7 +92,13 @@ public class Controller implements InputProcessor{
     }
 
 
-    // Getters and setters ----->>>>>>>>>>>>
+    // Getters and setters ----->>>>
+    public boolean isPaused(){
+        return isPaused;
+    }
+    public void setPaused(boolean isPaused){
+        this.isPaused = isPaused;
+    }
     public boolean isUp() {
         return isUp;
     }

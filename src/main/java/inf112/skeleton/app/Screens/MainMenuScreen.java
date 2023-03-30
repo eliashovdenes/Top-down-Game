@@ -9,6 +9,8 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 import inf112.skeleton.app.Zelda;
 import inf112.skeleton.app.Controller.Controller;
+import inf112.skeleton.app.Sound.SoundManager;
+import inf112.skeleton.app.Sound.aSound;
 
 
 
@@ -18,12 +20,16 @@ public class MainMenuScreen extends ScreenAdapter {
     private Zelda game;
     private BitmapFont font;
     private Controller controller;
+    private SoundManager SM;
+  
 
     public MainMenuScreen(Zelda southGame, Controller controller) {
         this.game = southGame;
         this.controller = controller;
         batch = new SpriteBatch();
         font = new BitmapFont();
+        this.SM = new SoundManager();
+        SM.mainMenuMusic.play();
     }
 
 
@@ -47,11 +53,15 @@ public class MainMenuScreen extends ScreenAdapter {
         
         if (Gdx.input.isTouched()){
             game.setScreen(new View(game, controller));
+            
+            SM.mainMenuMusic.stop();
+            SM.mainMenuMusic.dispose();
         }
     }
 
     @Override
     public void dispose() {
+        
         batch.dispose();
     }
 }
