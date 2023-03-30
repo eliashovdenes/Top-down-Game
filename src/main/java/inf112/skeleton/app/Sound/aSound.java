@@ -6,8 +6,8 @@ import com.badlogic.gdx.audio.Sound;
 public class aSound {
     private Sound sound;
 
-    public aSound(String asdf){
-        sound = Gdx.audio.newSound(Gdx.files.internal(asdf));
+    public aSound(String soundString){
+        sound = Gdx.audio.newSound(Gdx.files.internal(soundString));
     }
     public void play(){
         sound.play();
