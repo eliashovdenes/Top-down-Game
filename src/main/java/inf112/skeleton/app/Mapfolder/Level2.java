@@ -9,9 +9,9 @@ import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 
-import inf112.skeleton.app.Entities.MonsterFactory;
-import inf112.skeleton.app.Entities.MonsterInterface;
 import inf112.skeleton.app.Entities.Enemies.BlueEnemy;
+import inf112.skeleton.app.Entities.Enemies.MonsterFactory;
+import inf112.skeleton.app.Entities.Enemies.MonsterInterface;
 
 public class Level2 extends TiledMap implements MapInterface {
 

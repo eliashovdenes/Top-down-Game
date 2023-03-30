@@ -6,7 +6,7 @@ import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 
-import inf112.skeleton.app.Entities.MonsterInterface;
+import inf112.skeleton.app.Entities.Enemies.MonsterInterface;
 
 public class House extends TiledMap implements MapInterface {
     private float PlayerSpawnX = 18;

@@ -15,11 +15,11 @@ import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 
 import inf112.skeleton.app.Entities.AbstractGameObject;
-import inf112.skeleton.app.Entities.ProjectileInterface;
-import inf112.skeleton.app.Entities.MonsterInterface;
-import inf112.skeleton.app.Entities.Player;
-import inf112.skeleton.app.Entities.PlayerInterface;
 import inf112.skeleton.app.Entities.Enemies.BlueEnemy;
+import inf112.skeleton.app.Entities.Enemies.MonsterInterface;
+import inf112.skeleton.app.Entities.Player.Player;
+import inf112.skeleton.app.Entities.Player.PlayerInterface;
+import inf112.skeleton.app.Entities.Projectiles.ProjectileInterface;
 import inf112.skeleton.app.Mapfolder.Level1;
 import inf112.skeleton.app.Mapfolder.Level1Mini;
 import inf112.skeleton.app.Mapfolder.MapInterface;

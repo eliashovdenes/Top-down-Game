@@ -1,4 +1,4 @@
-package inf112.skeleton.app.Entities;
+package inf112.skeleton.app.Entities.Player;
 
 import java.util.ArrayList;
 
@@ -6,6 +6,7 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.math.Vector2;
 
 import inf112.skeleton.app.Entities.Enums.DirectionEnum;
+import inf112.skeleton.app.Entities.Projectiles.ProjectileInterface;
 import inf112.skeleton.app.Mapfolder.MapInterface;
 
 public interface PlayerInterface  {

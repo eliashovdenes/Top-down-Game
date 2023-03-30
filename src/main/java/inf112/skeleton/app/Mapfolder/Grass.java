@@ -9,10 +9,9 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
-
-import inf112.skeleton.app.Entities.MonsterFactory;
-import inf112.skeleton.app.Entities.MonsterInterface;
 import inf112.skeleton.app.Entities.Enemies.BlueEnemy;
+import inf112.skeleton.app.Entities.Enemies.MonsterFactory;
+import inf112.skeleton.app.Entities.Enemies.MonsterInterface;
 import inf112.skeleton.app.Entities.Enemies.RedEnemy;
 
 public class Grass extends TiledMap implements MapInterface {

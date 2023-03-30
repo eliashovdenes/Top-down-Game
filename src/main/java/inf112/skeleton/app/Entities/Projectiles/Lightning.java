@@ -8,10 +8,9 @@ import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.math.Vector2;
 
 import inf112.skeleton.app.Entities.AbstractGameObject;
-import inf112.skeleton.app.Entities.PlayerInterface;
-import inf112.skeleton.app.Entities.ProjectileInterface;
 import inf112.skeleton.app.Entities.Enums.DirectionEnum;
 import inf112.skeleton.app.Entities.Enums.PlayerPics;
+import inf112.skeleton.app.Entities.Player.PlayerInterface;
 import inf112.skeleton.app.Mapfolder.MapInterface;
 
 public class Lightning extends AbstractGameObject implements ProjectileInterface {
@@ -20,7 +19,6 @@ public class Lightning extends AbstractGameObject implements ProjectileInterface
     protected Sprite sprite;
     protected PlayerInterface player;
     protected MapInterface map;
-
     protected Vector2 velocity;
     private float rotationSpeed = 200;
     private float rotation = 0;
@@ -99,6 +97,7 @@ public class Lightning extends AbstractGameObject implements ProjectileInterface
         if (direction == DirectionEnum.EAST){veloVector = new Vector2(1*speed,0*speed);}
         return veloVector;
     }
+  
 
     
 }

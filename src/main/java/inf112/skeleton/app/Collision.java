@@ -3,7 +3,7 @@ import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 
 import inf112.skeleton.app.Entities.AbstractGameObject;
-import inf112.skeleton.app.Entities.Player;
+import inf112.skeleton.app.Entities.Player.Player;
 import inf112.skeleton.app.Mapfolder.Cave;
 import inf112.skeleton.app.Mapfolder.Grass;
 import inf112.skeleton.app.Mapfolder.GrassMini;

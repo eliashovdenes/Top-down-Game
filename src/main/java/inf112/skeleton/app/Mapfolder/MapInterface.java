@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 
-import inf112.skeleton.app.Entities.MonsterInterface;
+import inf112.skeleton.app.Entities.Enemies.MonsterInterface;
 
 
 public interface MapInterface {

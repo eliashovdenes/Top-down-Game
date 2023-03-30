@@ -1,4 +1,4 @@
-package inf112.skeleton.app.Entities;
+package inf112.skeleton.app.Entities.Projectiles;
 
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.math.Vector2;
