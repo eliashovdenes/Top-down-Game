@@ -20,13 +20,12 @@ import inf112.skeleton.app.Entities.Projectiles.ProjectileInterface;
 import inf112.skeleton.app.Mapfolder.MapInterface;
 import inf112.skeleton.app.Sound.SoundManager;
 
-
 public class Player extends AbstractGameObject implements PlayerInterface {
     private Animation playerAnimation;
     private Sprite sprite;
     private float speed = 1;
     public Arrow arrow;
-    private int ArrowAbilityLevel = 4;
+    private int ArrowAbilityLevel = 1;
     public Lightning lightning;
     private int lightningAbilityLevel = 1;
     private MapInterface map;
@@ -38,9 +37,7 @@ public class Player extends AbstractGameObject implements PlayerInterface {
     private Controller controller;
     private Integer playerHP = 100;
     private SoundManager SM;
-    private Random rand= new Random();
-    
-
+    private Random rand = new Random();
 
     public Player(Vector2 position, MapInterface map, Controller controller) {
         super(position, map);
@@ -48,10 +45,10 @@ public class Player extends AbstractGameObject implements PlayerInterface {
         this.map = map;
         this.controller = controller;
         setSprite(PlayerPics.ATTACKDOWN.source);
-        sprite.setPosition(position.x,position.y);
+        sprite.setPosition(position.x, position.y);
         setHP(playerHP);
         this.SM = new SoundManager();
-        sprite.setSize(16,16);
+        sprite.setSize(16, 16);
 
         projectileList = new ArrayList<ProjectileInterface>();
         shootTimer = 0;
@@ -60,7 +57,7 @@ public class Player extends AbstractGameObject implements PlayerInterface {
     }
 
     @Override
-    //**Updates the player's position and animation. */
+    // **Updates the player's position and animation. */
     public void update(float delta) {
 
         // Movement in x-direction
@@ -84,35 +81,33 @@ public class Player extends AbstractGameObject implements PlayerInterface {
             velocity.y = 0;
 
         if (controller.isFast()) {
-            
+
             setMovementSpeed(2);
         } else
             setMovementSpeed(1);
-            
-        if (controller.isSpace()){
+
+        if (controller.isSpace()) {
             shootArrow();
         }
-        /*if (controller.isEnter()){
+
+        if (controller.isEnter()) {
             shootLightning();
         }
-        */
-        if (controller.isEnter()){
-            lightningMultiShot();
+        if (shootTimer > 0) {
+            shootTimer -= delta;
         }
-        if (shootTimer >0){shootTimer -=delta;}
 
-        for (ProjectileInterface projectile : projectileList){
+        for (ProjectileInterface projectile : projectileList) {
             projectile.update(delta);
         }
 
         animate(delta);
         ApplyMovement();
         sprite.setPosition(position.x, position.y);
-        
+
     }
 
-
-    //**Getters and setters for Sprite */
+    // **Getters and setters for Sprite */
     @Override
     public void setSprite(String string) {
         sprite = new Sprite(new Texture(string));
@@ -123,14 +118,13 @@ public class Player extends AbstractGameObject implements PlayerInterface {
         return sprite;
     }
 
-    //**Setter for movement speed */
+    // **Setter for movement speed */
     @Override
     public void setMovementSpeed(float speed) {
         this.speed = speed;
     }
 
-
-    //**Getters for width and height */
+    // **Getters for width and height */
     @Override
     public float getWidth() {
         return sprite.getWidth();
@@ -141,178 +135,178 @@ public class Player extends AbstractGameObject implements PlayerInterface {
         return sprite.getHeight();
     }
 
-    //**animate does the animation of the player */
+    // **animate does the animation of the player */
     private void animate(float delta) {
-        if (speed ==1){
-        if (direction == DirectionEnum.NORTH)      this.playerAnimation = PlayerAnimation.UP.animation;
-        if (direction == DirectionEnum.EAST)     this.playerAnimation = PlayerAnimation.RIGHT.animation;
-        if (direction == DirectionEnum.WEST)    this.playerAnimation = PlayerAnimation.LEFT.animation;
-        if (direction == DirectionEnum.SOUTH)    this.playerAnimation = PlayerAnimation.DOWN.animation;
+        if (speed == 1) {
+            if (direction == DirectionEnum.NORTH)
+                this.playerAnimation = PlayerAnimation.UP.animation;
+            if (direction == DirectionEnum.EAST)
+                this.playerAnimation = PlayerAnimation.RIGHT.animation;
+            if (direction == DirectionEnum.WEST)
+                this.playerAnimation = PlayerAnimation.LEFT.animation;
+            if (direction == DirectionEnum.SOUTH)
+                this.playerAnimation = PlayerAnimation.DOWN.animation;
         }
-        //running
-        if (speed == 2){
-            if (direction == DirectionEnum.NORTH)       this.playerAnimation = PlayerAnimation.RUNUP.animation;
-            if (direction == DirectionEnum.EAST)     this.playerAnimation = PlayerAnimation.RUNRIGHT.animation;
-            if (direction == DirectionEnum.WEST)    this.playerAnimation = PlayerAnimation.RUNLEFT.animation;
-            if (direction == DirectionEnum.SOUTH)    this.playerAnimation = PlayerAnimation.RUNDOWN.animation;
-            
+        // running
+        if (speed == 2) {
+            if (direction == DirectionEnum.NORTH)
+                this.playerAnimation = PlayerAnimation.RUNUP.animation;
+            if (direction == DirectionEnum.EAST)
+                this.playerAnimation = PlayerAnimation.RUNRIGHT.animation;
+            if (direction == DirectionEnum.WEST)
+                this.playerAnimation = PlayerAnimation.RUNLEFT.animation;
+            if (direction == DirectionEnum.SOUTH)
+                this.playerAnimation = PlayerAnimation.RUNDOWN.animation;
+
         }
 
         sprite.setRegion(playerAnimation.getFrame());
         playerAnimation.update(delta);
     }
 
-    //**shootArrow creates a new arrow and adds it to the projectileList */
-    private void shootArrow(){
+    // **shootArrow creates a new arrow and adds it to the projectileList */
+    private void shootArrow() {
 
-            if (shootTimer<=0){
+        if (shootTimer <= 0) {
 
-                //set velocity based on player direction.
-                Vector2 velocity = new Vector2();
-                if (this.direction == DirectionEnum.NORTH) velocity.set(0,1);
-                if (this.direction == DirectionEnum.EAST) velocity.set(1,0);
-                if (this.direction == DirectionEnum.WEST) velocity.set(-1,0);
-                if (this.direction == DirectionEnum.SOUTH) velocity.set(0,-1);
+            // set velocity based on player direction.
+            Vector2 velocity = new Vector2();
+            if (this.direction == DirectionEnum.NORTH)
+                velocity.set(0, 1);
+            if (this.direction == DirectionEnum.EAST)
+                velocity.set(1, 0);
+            if (this.direction == DirectionEnum.WEST)
+                velocity.set(-1, 0);
+            if (this.direction == DirectionEnum.SOUTH)
+                velocity.set(0, -1);
 
-                //first arrow created and added.
-                Vector2 arrowPos = new Vector2(position.x,position.y);
-                Arrow arrow1 = new Arrow(arrowPos, map, velocity,this);
-                projectileList.add(arrow1);
-                
+            // first arrow created and added.
+            Vector2 arrowPos = new Vector2(position.x, position.y);
+            Arrow arrow1 = new Arrow(arrowPos, map, velocity, this);
+            projectileList.add(arrow1);
 
-            
+            // for every arrowAbilityLevel beyond 1, create a new arrow at a randomized
+            // angle between -30,30 in the same direction.
+            for (int i = 1; i < ArrowAbilityLevel; i++) {
+                Vector2 newAngleVelocity = new Vector2(velocity).rotateDeg(rand.nextInt(-30, 30));
+                Vector2 newArrowPos = new Vector2(arrowPos);
+                Arrow extraArrow = new Arrow(newArrowPos, map, newAngleVelocity, this);
+                projectileList.add(extraArrow);
+                velocity = newAngleVelocity;
+            }
 
-                for (int i = 1; i<ArrowAbilityLevel;i++){
-                    Vector2 newAngleVelocity = new Vector2(velocity).rotateDeg(rand.nextInt(-30,30));    
-                    Vector2 newArrowPos = new Vector2(arrowPos);
-                    Arrow extraArrow = new Arrow(newArrowPos, map,newAngleVelocity,this);
-                    projectileList.add(extraArrow);
-                    velocity = newAngleVelocity;
-                } 
-            
-            shootTimer=15;
-            SM.arrowSound.play();
-        }
-    }
-    //**arrowMultiShot creates 4 new lightnings in each direction and adds them to the projectileList */
-    private void arrowMultiShot(){
-        if (shootTimer<=0){
-
-            ProjectileInterface northArrow =  new Lightning(new Vector2(position.x,position.y),map,new Vector2(0,1));
-            ProjectileInterface southArrow =  new Lightning(new Vector2(position.x,position.y),map,new Vector2(0,-1));
-            ProjectileInterface eastArrow =  new Lightning(new Vector2(position.x,position.y),map,new Vector2(1,0));
-            ProjectileInterface westArrow =  new Lightning(new Vector2(position.x,position.y),map,new Vector2(-1,0));
-
-            
-            projectileList.add(westArrow);
-            projectileList.add(northArrow);
-            projectileList.add(southArrow);
-            projectileList.add(eastArrow);
-
-            shootTimer = 30;
+            shootTimer = 15;
             SM.arrowSound.play();
         }
     }
 
-    //**shootLightning creates a new lightning and adds it to the projectileList */
-    private void shootLightning(){
-        if (shootTimer<=0){
-            Vector2 lightningPos = new Vector2(position.x,position.y);
-            this.lightning = new Lightning(lightningPos, map,this);
-            projectileList.add(this.lightning);
-            shootTimer=15;
-        }
-    }    
+    // **shootLightning creates a new lightning and adds it to the projectileList */
+    private void shootLightning() {
 
-    //**lightningMultiShot creates 4 new lightnings in each direction and adds them to the projectileList */
-    private void lightningMultiShot(){
-        if (shootTimer<=0){
+        if (shootTimer <= 0) {
 
-            ProjectileInterface northLightning =  new Lightning(new Vector2(position.x,position.y),map,new Vector2(0,1));
-            ProjectileInterface southLightning =  new Lightning(new Vector2(position.x,position.y),map,new Vector2(0,-1));
-            ProjectileInterface eastLightning =  new Lightning(new Vector2(position.x,position.y),map,new Vector2(1,0));
-            ProjectileInterface westLightning =  new Lightning(new Vector2(position.x,position.y),map,new Vector2(-1,0));
+            // set velocity based on player direction.
+            Vector2 velocity = new Vector2();
+            if (this.direction == DirectionEnum.NORTH)
+                velocity.set(0, 1);
+            if (this.direction == DirectionEnum.EAST)
+                velocity.set(1, 0);
+            if (this.direction == DirectionEnum.WEST)
+                velocity.set(-1, 0);
+            if (this.direction == DirectionEnum.SOUTH)
+                velocity.set(0, -1);
 
-            
-            projectileList.add(westLightning);
-            projectileList.add(northLightning);
-            projectileList.add(southLightning);
-            projectileList.add(eastLightning);
+            // first lightning created and added.
+            Vector2 lightningPos = new Vector2(position.x, position.y);
+            Lightning lightning1 = new Lightning(lightningPos, map, velocity);
+            projectileList.add(lightning1);
 
-            shootTimer = 30;
+            // for every arrowAbilityLevel beyond 1, create a new arrow at a randomized
+            // angle between -30,30 in the same direction.
+            for (int i = 1; i < lightningAbilityLevel; i++) {
+                Vector2 newAngleVelocity = new Vector2(velocity).rotateDeg(rand.nextInt(-30, 30));
+                Vector2 newLightningPos = new Vector2(lightningPos);
+                Lightning extraLightning = new Lightning(newLightningPos, map, newAngleVelocity);
+                projectileList.add(extraLightning);
+                velocity = newAngleVelocity;
+            }
+
+            shootTimer = 15;
             SM.lightningMultiShotSound.play();
         }
     }
 
-
-    //*Getter for projectilelist/arrows*/
+    // *Getter for projectilelist/arrows*/
     @Override
-    public ArrayList<ProjectileInterface> getArrows(){
+    public ArrayList<ProjectileInterface> getArrows() {
         return projectileList;
-    }   
+    }
 
-    //**Setter and getter for player direction */
+    // **Setter and getter for player direction */
     @Override
-    public void setPlayerDirection(DirectionEnum direction){
+    public void setPlayerDirection(DirectionEnum direction) {
         this.direction = direction;
     }
 
     @Override
-    public DirectionEnum getPlayerDirection(){
+    public DirectionEnum getPlayerDirection() {
         return this.direction;
     }
 
-    public int getShootTimer(){
+    public int getShootTimer() {
         return shootTimer;
     }
 
-    
-    @Override 
-    //**Overrides method from AbstractGameObject to check for portal collision in Y-direction */
-    public boolean yCollision(){
-        
-        if (collision.isCellAPortal()){
+    @Override
+    // **Overrides method from AbstractGameObject to check for portal collision in
+    // Y-direction */
+    public boolean yCollision() {
+
+        if (collision.isCellAPortal()) {
             onPortal = true;
             nextMap = collision.nextMap;
             this.map = nextMap;
-            collision = new Collision(map,this);
-            spawn(nextMap.getPlayerSpawnX()*16,nextMap.getPlayerSpawnY()*16);
+            collision = new Collision(map, this);
+            spawn(nextMap.getPlayerSpawnX() * 16, nextMap.getPlayerSpawnY() * 16);
             return false;
         }
         return collision.checkYDirection(velocity.y);
     }
-    
+
     @Override
-    // Overrides method from AbstractGameObject to spawn player at a certain position
-    public void spawn(float x,float y){
-        position.x=x;
-        position.y=y;
+    // Overrides method from AbstractGameObject to spawn player at a certain
+    // position
+    public void spawn(float x, float y) {
+        position.x = x;
+        position.y = y;
     }
 
-    @Override 
-    //**Overrides method from AbstractGameObject to check if the player is on a portal */
-    public boolean onPortal(){
+    @Override
+    // **Overrides method from AbstractGameObject to check if the player is on a
+    // portal */
+    public boolean onPortal() {
         return onPortal;
     }
 
-    //**Sets onPortal to false */
-    public void setOffPortal(){
+    // **Sets onPortal to false */
+    public void setOffPortal() {
         onPortal = false;
     }
 
     @Override
-    //**Overrides method from AbstractGameObject to get the next map */
-    public MapInterface nextMap(){
+    // **Overrides method from AbstractGameObject to get the next map */
+    public MapInterface nextMap() {
         return nextMap;
     }
-    
+
     @Override
-    //**Overrides method from AbstractGameObject to get the position of the player */
+    // **Overrides method from AbstractGameObject to get the position of the player
+    // */
     public Vector2 getPosition() {
         return super.getPosition();
     }
 
     public void setShootTimer(int i) {
     }
-    
+
 }

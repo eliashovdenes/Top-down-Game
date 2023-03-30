@@ -23,15 +23,6 @@ public class Lightning extends AbstractGameObject implements ProjectileInterface
     private float rotationSpeed = 200;
     private float rotation = 0;
     
-    public Lightning(Vector2 position, MapInterface map, PlayerInterface player) {
-        super(position, map);
-        this.player = player;
-        velocity = setVelocity();
-        setSprite(PlayerPics.LIGHTNING.source);
-        sprite.setSize(15,15);
-
-    }
-    //lager en ny konstruktør for å gjøre det mulig med multishot.
     public Lightning(Vector2 position, MapInterface map, Vector2 velocity){
         super(position,map);
         this.map = map;
@@ -89,15 +80,8 @@ public class Lightning extends AbstractGameObject implements ProjectileInterface
     }
 
     public Vector2 setVelocity() {
-        Vector2  veloVector = new Vector2();
-        DirectionEnum direction = player.getPlayerDirection();
-        if (direction == DirectionEnum.NORTH){veloVector = new Vector2(0*speed,1*speed);}
-        if (direction == DirectionEnum.SOUTH){veloVector = new Vector2(0*speed,-1*speed);}
-        if (direction == DirectionEnum.WEST){veloVector = new Vector2(-1*speed,0*speed);}
-        if (direction == DirectionEnum.EAST){veloVector = new Vector2(1*speed,0*speed);}
-        return veloVector;
-    }
+        return null;
   
 
-    
+    }
 }
