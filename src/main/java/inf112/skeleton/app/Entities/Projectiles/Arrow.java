@@ -9,7 +9,6 @@ import com.badlogic.gdx.math.Vector2;
 import inf112.skeleton.app.Entities.AbstractGameObject;
 import inf112.skeleton.app.Entities.Enums.DirectionEnum;
 import inf112.skeleton.app.Entities.Enums.PlayerPics;
-import inf112.skeleton.app.Entities.Player.Player;
 import inf112.skeleton.app.Entities.Player.PlayerInterface;
 import inf112.skeleton.app.Mapfolder.MapInterface;
 
@@ -19,10 +18,10 @@ public class Arrow extends AbstractGameObject implements ProjectileInterface  {
     protected Sprite sprite;
     protected TiledMap map;
     protected Vector2 velocity;
-    private Player player;
+    private PlayerInterface player;
     
 
-    public Arrow(Vector2 position, MapInterface map, Vector2 velocity, Player player) {
+    public Arrow(Vector2 position, MapInterface map, Vector2 velocity, PlayerInterface player) {
         super(position, map);
         this.map = map.getMap();
         this.player = player;
