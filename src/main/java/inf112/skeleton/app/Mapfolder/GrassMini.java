@@ -45,6 +45,7 @@ public class GrassMini extends TiledMap implements MapInterface {
         this.spawn(enemyList);
     }
 
+    @Override
     public void setup() {
         MonsterFactory blueEnemyFactory = BlueEnemy.getFactory();
         MonsterFactory redEnemyFactory = RedEnemy.getFactory();
@@ -54,6 +55,7 @@ public class GrassMini extends TiledMap implements MapInterface {
         "BlueEnemy", "BlueEnemy", "RedEnemy", "RedEnemy", "BlueEnemy" , "BlueEnemy", "RedEnemy", "RedEnemy", "BlueEnemy" , "BlueEnemy", "RedEnemy", "RedEnemy", "BlueEnemy"));
     }
     
+    @Override
     public void spawn(ArrayList<String> enemyList) {
 
         for (int i=0; i < enemyList.size(); i++){

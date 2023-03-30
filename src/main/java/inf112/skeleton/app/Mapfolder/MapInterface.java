@@ -84,6 +84,9 @@ public interface MapInterface {
      */
     public int getEnemyBoundsToY();    
 
-
+    /**
+     * 
+     * @return ArrayList containing the monster objects for the map
+     */
     public ArrayList<MonsterInterface> getMonsterList();
 }

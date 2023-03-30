@@ -28,15 +28,6 @@ public class Grass extends TiledMap implements MapInterface {
     private TiledMap tiledMap;
     private OrthogonalTiledMapRenderer renderer;
     private ArrayList<MonsterInterface> monsterList = new ArrayList<>();
-    
-    public ArrayList<MonsterInterface> getMonsterList() {
-        return monsterList;
-    }
-
-    public void setMonsterList(ArrayList<MonsterInterface> monsterList) {
-        this.monsterList = monsterList;
-    }
-
     private Map<String, MonsterFactory> monsterFactories = new HashMap<>();
     private ArrayList<String> enemyList;
 
@@ -46,7 +37,8 @@ public class Grass extends TiledMap implements MapInterface {
         setup();
         this.spawn(enemyList);
     }
-
+    
+    @Override
     public void setup() {
         MonsterFactory blueEnemyFactory = BlueEnemy.getFactory();
         MonsterFactory redEnemyFactory = RedEnemy.getFactory();
@@ -55,6 +47,7 @@ public class Grass extends TiledMap implements MapInterface {
         enemyList = new ArrayList<>(Arrays.asList("BlueEnemy", "RedEnemy", "RedEnemy"));
     }
     
+    @Override
     public void spawn(ArrayList<String> enemyList) {
 
         for (int i=0; i < enemyList.size(); i++){
@@ -107,6 +100,16 @@ public class Grass extends TiledMap implements MapInterface {
     @Override
     public int getEnemyBoundsToY() {
         return EnemyBoundsToY;
+    }
+
+    @Override
+    public ArrayList<MonsterInterface> getMonsterList() {
+        return monsterList;
+    }
+
+    
+    public void setMonsterList(ArrayList<MonsterInterface> monsterList) {
+        this.monsterList = monsterList;
     }
     
 }
