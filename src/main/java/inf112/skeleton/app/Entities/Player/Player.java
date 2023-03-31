@@ -24,9 +24,7 @@ public class Player extends AbstractGameObject implements PlayerInterface {
     private Animation playerAnimation;
     private Sprite sprite;
     private float speed = 1;
-    public Arrow arrow;
     private int ArrowAbilityLevel = 1;
-    public Lightning lightning;
     private int lightningAbilityLevel = 1;
     private MapInterface map;
     public ArrayList<ProjectileInterface> projectileList;
@@ -310,5 +308,15 @@ public class Player extends AbstractGameObject implements PlayerInterface {
     }
     public MapInterface returnMap(){
         return map;
+    }
+
+    @Override
+    public void upgradeLightning() {
+        lightningAbilityLevel+=1;
+    }
+
+    @Override
+    public void upgradeArrow() {
+        ArrowAbilityLevel+=1;
     }
 }

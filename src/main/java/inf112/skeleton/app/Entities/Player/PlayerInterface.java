@@ -103,5 +103,7 @@ public interface PlayerInterface  {
     public Integer getHP();
     public MapInterface returnMap();
     
+    void upgradeLightning();
+    void upgradeArrow();
 
 }

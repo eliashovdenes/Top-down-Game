@@ -12,7 +12,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 import inf112.skeleton.app.Zelda;
 
-
+//TODO denne klassen må tittes på når vi har mulighet til å dø igjen.
 
 public class GameOverScreen extends ScreenAdapter {
     private SpriteBatch batch;

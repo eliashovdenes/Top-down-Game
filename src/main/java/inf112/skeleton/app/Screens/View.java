@@ -45,6 +45,7 @@ public class View implements Screen {
     private Controller controller;
     public HashMap<AbstractGameObject, Rectangle> enemies = new HashMap<>();
     
+    //MapInterface mapI = new Level1Mini(123,76);
     MapInterface mapI;
     OrthogonalTiledMapRenderer nyRend;
     TiledMap nyMap;
