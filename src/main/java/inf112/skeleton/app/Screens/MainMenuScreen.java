@@ -6,9 +6,13 @@ import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.math.Vector2;
 
 import inf112.skeleton.app.Zelda;
 import inf112.skeleton.app.Controller.Controller;
+import inf112.skeleton.app.Entities.Player.Player;
+import inf112.skeleton.app.Mapfolder.Level1Mini;
+import inf112.skeleton.app.Mapfolder.MapInterface;
 import inf112.skeleton.app.Sound.SoundManager;
 import inf112.skeleton.app.Sound.aSound;
 
@@ -21,6 +25,7 @@ public class MainMenuScreen extends ScreenAdapter {
     private BitmapFont font;
     private Controller controller;
     private SoundManager SM;
+    MapInterface mapI = new Level1Mini(123,76);
   
 
     public MainMenuScreen(Zelda southGame, Controller controller) {
@@ -30,6 +35,7 @@ public class MainMenuScreen extends ScreenAdapter {
         font = new BitmapFont();
         this.SM = new SoundManager();
         SM.mainMenuMusic.play();
+        
     }
 
 
@@ -52,7 +58,7 @@ public class MainMenuScreen extends ScreenAdapter {
 
         
         if (Gdx.input.isTouched()){
-            game.setScreen(new View(game, controller));
+            game.setScreen(new View(game, controller, new Player(new Vector2(0,0),mapI, controller)));
             
             SM.mainMenuMusic.stop();
             SM.mainMenuMusic.dispose();

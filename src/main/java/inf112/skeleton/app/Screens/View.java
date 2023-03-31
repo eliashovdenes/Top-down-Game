@@ -48,14 +48,20 @@ public class View implements Screen {
     private Controller controller;
     public HashMap<AbstractGameObject, Rectangle> enemies = new HashMap<>();
     
-    MapInterface mapI = new Level1Mini(123,76);
+    //MapInterface mapI = new Level1Mini(123,76);
+    MapInterface mapI;
     OrthogonalTiledMapRenderer nyRend;
     TiledMap nyMap;
     SpriteBatch batch;
     
-    public View(Zelda game, Controller controller) {
+    public View(Zelda game, Controller controller, PlayerInterface playerI) {
         this.game = game;
         this.controller = controller;    
+        this.playerI = playerI;
+        this.mapI=playerI.returnMap();
+        playerI.spawn(mapI.getPlayerSpawnX()*16,mapI.getPlayerSpawnY()*16);
+        
+        System.out.println("Hvor ofte");
     }   
 
     @Override
@@ -63,9 +69,8 @@ public class View implements Screen {
         
         map = mapI.getMap();
         renderer = mapI.getRenderer();
-        playerI = new Player(new Vector2(0,0),mapI, controller);
+        //playerI = new Player(new Vector2(0,0),mapI, controller);
         monsterI = new BlueEnemy(mapI);
-        playerI.spawn(mapI.getPlayerSpawnX()*16,mapI.getPlayerSpawnY()*16);
         
         camera = new OrthographicCamera();
         
@@ -128,7 +133,14 @@ public class View implements Screen {
             monsterI.update(delta);
             monsterI.getSprite().draw(batch);      
         }
+        // må lage drit i controller...
+        if(controller.isAttack()){
+            System.out.println("skjer dette");
+            game.setScreen(new Shop(game,controller,playerI));
+             
 
+        }
+        
         lifeText.draw(batch, "Lives: " + 10, playerI.getPosition().x - 12, playerI.getPosition().y + playerI.getHeight() + 30);
         lifeText.draw(batch, "HP: " + playerI.getHP(), playerI.getPosition().x - 12, playerI.getPosition().y + playerI.getHeight() + 15);
         lifeText.draw(batch,".",playerI.getPosition().x+11,playerI.getPosition().y+18);
@@ -165,8 +177,6 @@ public class View implements Screen {
 
     @Override
     public void hide() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'hide'");
     }
 
 

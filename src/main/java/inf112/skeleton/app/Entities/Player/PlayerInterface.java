@@ -101,6 +101,7 @@ public interface PlayerInterface  {
     
     //TODO write javadoc
     public Integer getHP();
+    public MapInterface returnMap();
     
 
 }

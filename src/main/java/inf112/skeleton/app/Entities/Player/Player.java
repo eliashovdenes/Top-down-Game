@@ -308,5 +308,7 @@ public class Player extends AbstractGameObject implements PlayerInterface {
 
     public void setShootTimer(int i) {
     }
-
+    public MapInterface returnMap(){
+        return map;
+    }
 }
