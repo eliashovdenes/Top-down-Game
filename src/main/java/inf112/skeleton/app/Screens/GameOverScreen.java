@@ -42,7 +42,6 @@ public class GameOverScreen extends ScreenAdapter {
         batch.end();
 
         // Draw the "Restart" button
-       
         }
     
     @Override

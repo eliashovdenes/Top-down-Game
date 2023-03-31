@@ -25,7 +25,7 @@ import inf112.skeleton.app.Sound.aSound;
 
 
 
-public class MainMenuScreen extends ScreenAdapter {
+public class InstructionScreen extends ScreenAdapter {
     
     private SpriteBatch batch;
     private Zelda game;
@@ -34,23 +34,20 @@ public class MainMenuScreen extends ScreenAdapter {
     private SoundManager SM;
     MapInterface mapI = new Level1Mini(123,76);
     ShapeRenderer shape;
-    Rectangle newGameRect,instructionsRect,quitRect,creditsRect;
+    Rectangle rect;
     OrthographicCamera camera;
 
 
-    public MainMenuScreen(Zelda southGame, Controller controller) {
+    public InstructionScreen(Zelda southGame, Controller controller) {
         this.game = southGame;
         this.controller = controller;
         batch = new SpriteBatch();
         font = new BitmapFont();
         this.SM = new SoundManager();
-        SM.mainMenuMusic.play();
+        //SM.mainMenuMusic.play();
         this.shape = new ShapeRenderer();
 
-        newGameRect = new Rectangle(8,730,80, 25);
-        instructionsRect = new Rectangle(8,680,80, 25);
-        creditsRect = new Rectangle(8,630,80, 25);
-        quitRect = new Rectangle(8,580,80, 25);
+        rect = new Rectangle(8,730,80, 25);
 
         // Create the camera and set its position to the center of the screen
         camera = new OrthographicCamera();
@@ -71,6 +68,7 @@ public class MainMenuScreen extends ScreenAdapter {
         shape.begin(ShapeRenderer.ShapeType.Filled);
         
         shape.rect(8,730,80,25);
+        
         shape.rect(8, 680, 80,25);
         shape.rect(8, 630, 80,25);
         shape.rect(8, 580, 80,25);
@@ -79,43 +77,27 @@ public class MainMenuScreen extends ScreenAdapter {
         // Draw the title
         batch.begin();
         font.getData().setScale(2);
-        font.draw(batch, "Welcome to SouthGame", 10, 850);
+        font.draw(batch, "Welcome to Instructions", 10, 850);
         
 
         font.getData().setScale(1);
-        font.draw(batch, "New Game", 10, 750);
-        font.draw(batch, "Instructions", 10,  700);
-        font.draw(batch, "Credits", 10, 650);
-        font.draw(batch, "Quit",10,600);
+        font.draw(batch, "Kill Monsters", 10, 750);
+        font.draw(batch, "Get EXP", 10,  700);
+        font.draw(batch, "Get sick", 10, 650);
+        font.draw(batch, "hei",10,600);
         batch.end();
 
+        System.out.println(controller.getMenuClick().x);
 
 
 
         
         if (controller.getJustTouched()){
             
-            Vector3 hei = new Vector3(controller.getMenuClick(),0);
-            camera.unproject(hei);
-
-
-            if (newGameRect.contains(hei.x, hei.y)){
-                game.setScreen(new View(game, controller, new Player(new Vector2(0,0),mapI, controller)));
-                SM.mainMenuMusic.stop();
-                SM.mainMenuMusic.dispose();
-            }
-            if (instructionsRect.contains(hei.x,hei.y)){
-                game.setScreen(new InstructionScreen(game, controller));
-            }
-
-            if (creditsRect.contains(hei.x,hei.y)){
-                game.setScreen(new CreditScreen(game, controller));
-            }
-            if (quitRect.contains(hei.x,hei.y)){
-                Gdx.app.exit();
+            game.setScreen(new MainMenuScreen(game, controller));
             }
             
-        }
+        
     }
 
     @Override

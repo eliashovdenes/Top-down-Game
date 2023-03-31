@@ -27,7 +27,6 @@ public class Shop extends ScreenAdapter {
         batch = new SpriteBatch();
         font = new BitmapFont();
         this.SM = new SoundManager();
-        SM.mainMenuMusic.play();
         this.playerI = playerI;
     }
 
@@ -50,11 +49,10 @@ public class Shop extends ScreenAdapter {
         batch.end();
 
         
-        if (Gdx.input.isTouched()){
-            game.setScreen(new View(game, controller, playerI));
+        if (!controller.isShop()){
+            game.setScreen(new View(game, controller, playerI,0,0));
             
-            SM.mainMenuMusic.stop();
-            SM.mainMenuMusic.dispose();
+           
         }
     }
 

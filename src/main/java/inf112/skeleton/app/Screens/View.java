@@ -12,16 +12,13 @@ import com.badlogic.gdx.maps.objects.RectangleMapObject;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.math.Rectangle;
-import com.badlogic.gdx.math.Vector2;
 
 import inf112.skeleton.app.Entities.AbstractGameObject;
 import inf112.skeleton.app.Entities.Enemies.BlueEnemy;
 import inf112.skeleton.app.Entities.Enemies.MonsterInterface;
-import inf112.skeleton.app.Entities.Player.Player;
+
 import inf112.skeleton.app.Entities.Player.PlayerInterface;
 import inf112.skeleton.app.Entities.Projectiles.ProjectileInterface;
-import inf112.skeleton.app.Mapfolder.Level1;
-import inf112.skeleton.app.Mapfolder.Level1Mini;
 import inf112.skeleton.app.Mapfolder.MapInterface;
 import inf112.skeleton.app.Zelda;
 import inf112.skeleton.app.Controller.Controller;
@@ -48,7 +45,6 @@ public class View implements Screen {
     private Controller controller;
     public HashMap<AbstractGameObject, Rectangle> enemies = new HashMap<>();
     
-    //MapInterface mapI = new Level1Mini(123,76);
     MapInterface mapI;
     OrthogonalTiledMapRenderer nyRend;
     TiledMap nyMap;
@@ -61,19 +57,21 @@ public class View implements Screen {
         this.mapI=playerI.returnMap();
         playerI.spawn(mapI.getPlayerSpawnX()*16,mapI.getPlayerSpawnY()*16);
         
-        System.out.println("Hvor ofte");
     }   
+    public View(Zelda game, Controller controller, PlayerInterface playerI, float x,float y){
+        this.game = game;
+        this.controller = controller;    
+        this.playerI = playerI;
+        this.mapI=playerI.returnMap();
 
+    }
     @Override
     public void show() {
         
         map = mapI.getMap();
         renderer = mapI.getRenderer();
-        //playerI = new Player(new Vector2(0,0),mapI, controller);
         monsterI = new BlueEnemy(mapI);
-        
-        camera = new OrthographicCamera();
-        
+        camera = new OrthographicCamera();        
         batch = new SpriteBatch();
 
         
@@ -133,9 +131,8 @@ public class View implements Screen {
             monsterI.update(delta);
             monsterI.getSprite().draw(batch);      
         }
-        // må lage drit i controller...
-        if(controller.isAttack()){
-            System.out.println("skjer dette");
+        //open store (bound to K)
+        if(controller.isShop()){
             game.setScreen(new Shop(game,controller,playerI));
              
 

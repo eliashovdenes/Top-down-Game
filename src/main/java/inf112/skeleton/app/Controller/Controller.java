@@ -1,6 +1,7 @@
 package inf112.skeleton.app.Controller;
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.Input.Keys;
+import com.badlogic.gdx.math.Vector2;
 
 public class Controller implements InputProcessor{
 
@@ -12,9 +13,13 @@ public class Controller implements InputProcessor{
     isAttack = false,
     isSpace = false,
     enter = false,
-    isPaused = false;
-    private boolean wasEscJustPressed;
+    isPaused = false,
+    wasEscJustPressed,
+    wasKjustPressed,
+    isShop,
+    justTouched = false;
 
+    private Vector2 menuClick = new Vector2(0,0);
     
     @Override
     //*This method is called when a key is pressed */
@@ -38,6 +43,17 @@ public class Controller implements InputProcessor{
                     }
                 }
             }
+        if(keycode == Keys.K){
+            if(!wasKjustPressed){
+                wasKjustPressed = true;
+                if (isShop){
+                    isShop = false;
+                }
+                else{
+                    isShop = true;
+                }
+            }
+        }
         return true;
     }
 
@@ -54,6 +70,7 @@ public class Controller implements InputProcessor{
         if (keycode == Keys.SPACE) isSpace = false;
         if (keycode == Keys.ENTER) enter = false;
         if (keycode == Keys.ESCAPE) wasEscJustPressed = false;
+        if (keycode == Keys.K) wasKjustPressed = false;
         
         return true;
     }
@@ -66,13 +83,15 @@ public class Controller implements InputProcessor{
     }
 
     @Override
-    //*This method is called when the mouse is clicked, we do not use this method*/
     public boolean touchDown(int screenX, int screenY, int pointer, int button) {
+        menuClick = new Vector2(screenX,screenY);
+        justTouched = true;
         return true;
     }
     @Override
     //*This method is called when the mouse is released, we do not use this method*/
     public boolean touchUp(int screenX, int screenY, int pointer, int button) {
+        justTouched = false;
         return false;
     }
     @Override
@@ -91,6 +110,9 @@ public class Controller implements InputProcessor{
         return false;
     }
 
+    public boolean getJustTouched(){
+        return justTouched;
+    }
 
     // Getters and setters ----->>>>
     public boolean isPaused(){
@@ -149,6 +171,16 @@ public class Controller implements InputProcessor{
         this.fast = fast;
     }
 
-    
+
+    public boolean isShop() {
+        return isShop;
+    }
+    public void setShop(boolean isShop){
+        this.isShop = isShop;
+    }
+
+    public Vector2 getMenuClick(){
+        return menuClick;
+    }
 }
 
