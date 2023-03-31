@@ -37,6 +37,7 @@ public class CreditScreen extends ScreenAdapter {
     Rectangle rect;
     OrthographicCamera camera;
 
+    Rectangle EliasRect,BjornRect,CasperRect,MagnusRect,HansCRect;
 
     public CreditScreen(Zelda southGame, Controller controller) {
         this.game = southGame;
@@ -47,7 +48,22 @@ public class CreditScreen extends ScreenAdapter {
         //SM.mainMenuMusic.play();
         this.shape = new ShapeRenderer();
 
-        rect = new Rectangle(8,730,80, 25);
+            //creating rectangles based on app graphics
+
+        float screenWidth = Gdx.graphics.getWidth();
+        float screenHeight = Gdx.graphics.getHeight();
+        float rectangleWidth = screenWidth*0.2f;
+        float rectangleHeight = screenHeight*0.03f;
+        float spaceBetweenRetangles = screenHeight*0.02f;
+        float rectangleY = screenHeight * 0.7f;
+
+        
+        MagnusRect = new Rectangle(screenWidth * 0.05f, rectangleY, rectangleWidth, rectangleHeight);
+        EliasRect = new Rectangle(screenWidth * 0.05f, rectangleY - rectangleHeight - spaceBetweenRetangles, rectangleWidth, rectangleHeight);
+        HansCRect = new Rectangle(screenWidth * 0.05f, rectangleY - 2 * (rectangleHeight + spaceBetweenRetangles), rectangleWidth, rectangleHeight);
+        CasperRect = new Rectangle(screenWidth * 0.05f, rectangleY - 3 * (rectangleHeight + spaceBetweenRetangles), rectangleWidth, rectangleHeight);
+        BjornRect = new Rectangle(screenWidth * 0.05f, rectangleY - 4 * (rectangleHeight + spaceBetweenRetangles), rectangleWidth, rectangleHeight);
+
 
         // Create the camera and set its position to the center of the screen
         camera = new OrthographicCamera();
@@ -59,36 +75,39 @@ public class CreditScreen extends ScreenAdapter {
 
     @Override
     public void render(float delta) {
+   
+   
         // Clear the screen with a solid color
         Gdx.gl.glClearColor(0, 0, 0, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
         //draw boxes
-        shape.setColor(Color.RED);
+        shape.setColor(Color.BLUE);
         shape.begin(ShapeRenderer.ShapeType.Filled);
+
+        shape.rect(MagnusRect.x,MagnusRect.y,MagnusRect.width,MagnusRect.height);
+        shape.rect(EliasRect.x,EliasRect.y,EliasRect.width,EliasRect.height);
+        shape.rect(HansCRect.x,HansCRect.y,HansCRect.width,HansCRect.height);
+        shape.rect(CasperRect.x,CasperRect.y,CasperRect.width,CasperRect.height);
+        shape.rect(BjornRect.x,BjornRect.y,BjornRect.width,BjornRect.height);
+
         
-        shape.rect(8,730,80,25);
-        
-        shape.rect(8, 680, 80,25);
-        shape.rect(8, 630, 80,25);
-        shape.rect(8, 580, 80,25);
-        shape.end();
+        shape.end(); 
 
         // Draw the title
         batch.begin();
         font.getData().setScale(2);
-        font.draw(batch, "The people behind SouthGame", 10, 850);
+        font.draw(batch, "Welcome to SouthGame", 10, 850);
         
-
+        //draw text on buttons
         font.getData().setScale(1);
-        font.draw(batch, "Magnus", 10, 750);
-        font.draw(batch, "Casper", 10,  700);
-        font.draw(batch, "Hans Christian", 10, 650);
-        font.draw(batch, "Elias",10,600);
-        font.draw(batch,"Bjørn",10,550);
+        font.draw(batch, "Magnus", MagnusRect.x+MagnusRect.width*0.05f, MagnusRect.y+MagnusRect.height*0.75f);
+        font.draw(batch, "Elias", EliasRect.x+EliasRect.width*0.05f,EliasRect.y+EliasRect.height*0.75f);
+        font.draw(batch, "Hans Christian", HansCRect.x+HansCRect.width*0.05f,HansCRect.y+HansCRect.height*0.75f);
+        font.draw(batch, "Casper",CasperRect.x+CasperRect.width*0.05f,CasperRect.y+CasperRect.height*0.75f);
+        font.draw(batch,"Bjørn",BjornRect.x+BjornRect.width*0.05f,BjornRect.y+BjornRect.height*0.75f);
         batch.end();
 
-        System.out.println(controller.getMenuClick().x);
 
 
 

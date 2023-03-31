@@ -47,10 +47,20 @@ public class MainMenuScreen extends ScreenAdapter {
         SM.mainMenuMusic.play();
         this.shape = new ShapeRenderer();
 
-        newGameRect = new Rectangle(8,730,80, 25);
-        instructionsRect = new Rectangle(8,680,80, 25);
-        creditsRect = new Rectangle(8,630,80, 25);
-        quitRect = new Rectangle(8,580,80, 25);
+        //creating rectangles based on app graphics
+
+        float screenWidth = Gdx.graphics.getWidth();
+        float screenHeight = Gdx.graphics.getHeight();
+        float rectangleWidth = screenWidth*0.2f;
+        float rectangleHeight = screenHeight*0.03f;
+        float spaceBetweenRetangles = screenHeight*0.02f;
+        float rectangleY = screenHeight * 0.7f;
+
+        
+        newGameRect = new Rectangle(screenWidth * 0.05f, rectangleY, rectangleWidth, rectangleHeight);
+        instructionsRect = new Rectangle(screenWidth * 0.05f, rectangleY - rectangleHeight - spaceBetweenRetangles, rectangleWidth, rectangleHeight);
+        creditsRect = new Rectangle(screenWidth * 0.05f, rectangleY - 2 * (rectangleHeight + spaceBetweenRetangles), rectangleWidth, rectangleHeight);
+        quitRect = new Rectangle(screenWidth * 0.05f, rectangleY - 3 * (rectangleHeight + spaceBetweenRetangles), rectangleWidth, rectangleHeight);
 
         // Create the camera and set its position to the center of the screen
         camera = new OrthographicCamera();
@@ -62,6 +72,7 @@ public class MainMenuScreen extends ScreenAdapter {
 
     @Override
     public void render(float delta) {
+        
         // Clear the screen with a solid color
         Gdx.gl.glClearColor(0, 0, 0, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
@@ -69,24 +80,26 @@ public class MainMenuScreen extends ScreenAdapter {
         //draw boxes
         shape.setColor(Color.RED);
         shape.begin(ShapeRenderer.ShapeType.Filled);
+
+        shape.rect(newGameRect.x,newGameRect.y,newGameRect.width,newGameRect.height);
+        shape.rect(instructionsRect.x,instructionsRect.y,instructionsRect.width,instructionsRect.height);
+        shape.rect(creditsRect.x,creditsRect.y,creditsRect.width,creditsRect.height);
+        shape.rect(quitRect.x,quitRect.y,quitRect.width,quitRect.height);
+
         
-        shape.rect(8,730,80,25);
-        shape.rect(8, 680, 80,25);
-        shape.rect(8, 630, 80,25);
-        shape.rect(8, 580, 80,25);
-        shape.end();
+        shape.end(); 
 
         // Draw the title
         batch.begin();
         font.getData().setScale(2);
         font.draw(batch, "Welcome to SouthGame", 10, 850);
         
-
+        //draw text on buttons
         font.getData().setScale(1);
-        font.draw(batch, "New Game", 10, 750);
-        font.draw(batch, "Instructions", 10,  700);
-        font.draw(batch, "Credits", 10, 650);
-        font.draw(batch, "Quit",10,600);
+        font.draw(batch, "New Game", newGameRect.x+newGameRect.width*0.05f, newGameRect.y+newGameRect.height*0.75f);
+        font.draw(batch, "Instructions", instructionsRect.x+instructionsRect.width*0.05f,instructionsRect.y+instructionsRect.height*0.75f);
+        font.draw(batch, "Credits", creditsRect.x+creditsRect.width*0.05f,creditsRect.y+creditsRect.height*0.75f);
+        font.draw(batch, "Quit",quitRect.x+creditsRect.width*0.05f,quitRect.y+quitRect.height*0.75f);
         batch.end();
 
 

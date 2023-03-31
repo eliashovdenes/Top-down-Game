@@ -5,11 +5,14 @@ import com.badlogic.gdx.ScreenAdapter;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.math.Rectangle;
 
 import inf112.skeleton.app.Zelda;
 import inf112.skeleton.app.Controller.Controller;
 import inf112.skeleton.app.Entities.Player.PlayerInterface;
 import inf112.skeleton.app.Sound.SoundManager;
+
+
 
 public class Shop extends ScreenAdapter {
      
@@ -19,6 +22,8 @@ public class Shop extends ScreenAdapter {
     private Controller controller;
     private SoundManager SM;
     private PlayerInterface playerI;
+    
+    Rectangle newGameRect,instructionsRect,quitRect,creditsRect;
   
 
     public Shop(Zelda southGame, Controller controller,PlayerInterface playerI) {
