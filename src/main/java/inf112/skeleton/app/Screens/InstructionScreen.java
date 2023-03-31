@@ -1,10 +1,7 @@
 package inf112.skeleton.app.Screens;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Graphics;
 import com.badlogic.gdx.ScreenAdapter;
-import com.badlogic.gdx.Input.Keys;
-import com.badlogic.gdx.graphics.Camera;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
@@ -12,16 +9,12 @@ import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.Rectangle;
-import com.badlogic.gdx.math.Vector2;
-import com.badlogic.gdx.math.Vector3;
 
 import inf112.skeleton.app.Zelda;
 import inf112.skeleton.app.Controller.Controller;
-import inf112.skeleton.app.Entities.Player.Player;
 import inf112.skeleton.app.Mapfolder.Level1Mini;
 import inf112.skeleton.app.Mapfolder.MapInterface;
 import inf112.skeleton.app.Sound.SoundManager;
-import inf112.skeleton.app.Sound.aSound;
 
 
 
@@ -31,7 +24,6 @@ public class InstructionScreen extends ScreenAdapter {
     private Zelda game;
     private BitmapFont font;
     private Controller controller;
-    private SoundManager SM;
     MapInterface mapI = new Level1Mini(123,76);
     ShapeRenderer shape;
     Rectangle rect;
@@ -44,8 +36,6 @@ public class InstructionScreen extends ScreenAdapter {
         this.controller = controller;
         batch = new SpriteBatch();
         font = new BitmapFont();
-        this.SM = new SoundManager();
-        //SM.mainMenuMusic.play();
         this.shape = new ShapeRenderer();
 
          //creating rectangles based on app graphics

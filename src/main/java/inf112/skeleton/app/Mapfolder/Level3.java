@@ -15,7 +15,6 @@ import inf112.skeleton.app.Entities.Enemies.MonsterInterface;
 
 public class Level3 extends TiledMap implements MapInterface {
 
-    private int enemies = 3;
     private float PlayerSpawnX = 123;
     private float PlayerSpawnY = 87;
 

@@ -16,7 +16,6 @@ import inf112.skeleton.app.Entities.Enemies.RedEnemy;
 
 public class GrassMini extends TiledMap implements MapInterface {
 
-    private int enemies = 3;
     private float PlayerSpawnX = 123;
     private float PlayerSpawnY = 87;
 
