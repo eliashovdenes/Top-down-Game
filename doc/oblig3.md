@@ -202,5 +202,19 @@ Dette har vi fikset siden sist:
 
 manuell testing og brukermanualer ligger i readme.md filen.
 
+### Hva har dere gjort bra, hva hadde dere gjort annerledes hvis dere begynte på nytt?
+
+Vi har vært gode til å bli enige om hva det er vi ønsker å lage. Vi brukte en del tid til å lære hva vi skulle gjøre og hvordan vi skulle gjøre det før vi i det hele tatt begynte med prosjektet. 
+
+Når vi har fordelt oppgaver så har folk tatt ansvar på de oppgavene og gjort det som må gjøres. Det er såklart vært noen ganger hvor ting ikke har blitt gjort til akkuratt tid det ble satt, men blir alltid gjort CA til den tiden. 
+
+Vi har vært flinke med å begrense kreativiteten vår for å fokusere på oppgaven: Altså vi stoppet oss selv fra å bare kode kode kode og heller refakturerte/gjorde ting klart til obligen.
+
+## Hva vi hadde gjort annerledes hvis vi begynte på nytt?
+
+Endret fremgangen de første dagene. Kanskje droppet å sitte foran pcen, men heller kjørt noe bli kjent aktiviteter. Derretter sette av at én person lager første "skjelettet". Opplevde at det ble lite framgang når vi ventet på skjelettet.
+
+Blitt enige om kommentarer til git tidligere, ikke blande språk.
+
 ## Bildet på klassediagrammet
 
