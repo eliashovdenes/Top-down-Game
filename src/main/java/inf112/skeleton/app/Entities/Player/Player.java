@@ -327,7 +327,7 @@ public class Player extends AbstractGameObject implements PlayerInterface {
     }
 
     public void setLives(int newLives) {
-        if (newLives < 0) {
+        if (newLives <= 0) {
             this.lives = 0;
         }
         else {
