@@ -36,8 +36,8 @@ public class Player extends AbstractGameObject implements PlayerInterface {
     private Integer playerHP = 100;
     private SoundManager SM;
     private Random rand = new Random();
-    private Integer currentHitpoints;
-    private Integer maxHitpoints;
+    // private Integer currentHitpoints;
+    // private Integer maxHitpoints;
     private Integer lives;
 
     public Player(Vector2 position, MapInterface map, Controller controller) {
@@ -47,12 +47,12 @@ public class Player extends AbstractGameObject implements PlayerInterface {
         this.controller = controller;
         setSprite(PlayerPics.ATTACKDOWN.source);
         sprite.setPosition(position.x, position.y);
-        setHP(playerHP);
+        // setHP(playerHP);
         this.SM = new SoundManager();
         sprite.setSize(16, 16);
         this.lives = 3;
-        this.maxHitpoints = 100;
-        this.currentHitpoints = this.getMaxHitpoints();
+        this.setCurrentHitPoints(100);
+        this.setMaxhitpoints(this.getCurrentHitpoints());
 
         projectileList = new ArrayList<ProjectileInterface>();
         shootTimer = 0;
@@ -340,11 +340,12 @@ public class Player extends AbstractGameObject implements PlayerInterface {
         return this.lives;
     }
 
-    
+    @Override
     public void takeDamage(int damage) {
         this.setCurrentHitPoints(this.getCurrentHitpoints() - damage);
         if (this.isDead()) {
             this.setLives(this.getLives() - 1);
         }
     }
+
 }
