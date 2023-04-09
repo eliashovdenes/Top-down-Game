@@ -27,8 +27,8 @@ public class BlueEnemy extends AbstractGameObject implements MonsterInterface  {
         setXYFromSpawnBounds();
         this.velocity.x = speed;
         this.velocity.y = speed;
-        this.setCurrentHitPoints(50);
-        this.setMaxhitpoints(this.getCurrentHitpoints());
+        this.setMaxhitpoints(50);
+        this.setCurrentHitPoints(this.getMaxHitpoints());
         // setHP(BlueEnemy);
     }
 

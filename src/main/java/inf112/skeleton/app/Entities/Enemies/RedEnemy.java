@@ -24,8 +24,8 @@ public class RedEnemy extends AbstractGameObject implements MonsterInterface  {
         this.map = map;
         setSprite(RedEnemyPics.ENEMYDOWN.source);
         setXYFromSpawnBounds();  
-        this.setCurrentHitPoints(75);
-        this.setMaxhitpoints(this.getCurrentHitpoints());  
+        this.setMaxhitpoints(75);
+        this.setCurrentHitPoints(this.getMaxHitpoints()); 
     }
 
     public static MonsterFactory getFactory() {

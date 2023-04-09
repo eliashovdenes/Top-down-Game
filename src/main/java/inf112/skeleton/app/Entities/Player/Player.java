@@ -51,8 +51,8 @@ public class Player extends AbstractGameObject implements PlayerInterface {
         this.SM = new SoundManager();
         sprite.setSize(16, 16);
         this.lives = 3;
-        this.setCurrentHitPoints(100);
-        this.setMaxhitpoints(this.getCurrentHitpoints());
+        this.setMaxhitpoints(100);
+        this.setCurrentHitPoints(this.getMaxHitpoints());
 
         projectileList = new ArrayList<ProjectileInterface>();
         shootTimer = 0;
