@@ -18,7 +18,7 @@ public class BlueEnemy extends AbstractGameObject implements MonsterInterface  {
     float speed = 1 ;
     private DirectionEnum direction;
     MapInterface map;
-    Integer BlueEnemy = 50;
+    // Integer BlueEnemy = 50;
 
     public BlueEnemy(MapInterface map) {
         super(new Vector2(0,0), map);
@@ -27,7 +27,9 @@ public class BlueEnemy extends AbstractGameObject implements MonsterInterface  {
         setXYFromSpawnBounds();
         this.velocity.x = speed;
         this.velocity.y = speed;
-        setHP(BlueEnemy);
+        this.setCurrentHitPoints(50);
+        this.setMaxhitpoints(this.getCurrentHitpoints());
+        // setHP(BlueEnemy);
     }
 
     public static MonsterFactory getFactory() {
