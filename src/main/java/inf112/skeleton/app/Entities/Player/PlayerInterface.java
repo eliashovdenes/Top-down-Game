@@ -100,7 +100,7 @@ public interface PlayerInterface  {
     void setOffPortal();
     
     //TODO write javadoc
-    public Integer getHP();
+    
     public MapInterface returnMap();
     
     void upgradeLightning();
