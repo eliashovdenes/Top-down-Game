@@ -106,4 +106,18 @@ public interface PlayerInterface  {
     void upgradeLightning();
     void upgradeArrow();
 
+    public void setLives(int newLives);
+
+    public Integer getLives();
+
+    public void takeDamage(int damage);
+    
+    public Integer getCurrentHitpoints();
+    
+    public void setCurrentHitPoints(int newHitpoints);
+
+    public Integer getMaxHitpoints();
+
+    public void setMaxhitpoints(Integer newMaxHitpoints);
+
 }
