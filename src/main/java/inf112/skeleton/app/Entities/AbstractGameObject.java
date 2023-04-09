@@ -12,7 +12,8 @@ public abstract class AbstractGameObject {
     protected Vector2 position;
     protected Vector2 velocity;
     protected Collision collision;
-    protected Integer currentHPInteger;
+    private Integer currentHitpoints;
+    private Integer maxHitpoints;
     public boolean enteredLevel3 = false;
     
     
@@ -72,13 +73,39 @@ public abstract class AbstractGameObject {
     }
 
     //**setter and getter for Currenthealth */
-    public Integer getHP(){
-        return currentHPInteger;
+    public Integer getCurrentHitpoints(){
+        return this.currentHitpoints;
     }
-    public void setHP(Integer hp){
-            currentHPInteger = hp;
+    
+    public void setCurrentHitPoints(int newHitpoints) {
+        if (newHitpoints > this.maxHitpoints) {
+            this.currentHitpoints = maxHitpoints;
+        }
+        else if (newHitpoints < 0) {
+            this.currentHitpoints = 0;
+        }
+        else {
+            this.currentHitpoints = newHitpoints;
+        }
+    }
 
+    public Integer getMaxHitpoints(){
+        return this.maxHitpoints;
     }
+
+    public void setMaxhitpoints(Integer newMaxHitpoints) {
+        if (newMaxHitpoints > 0) {
+            this.maxHitpoints = newMaxHitpoints;   
+        }
+    }
+
+    public void takeDamage(int damage) {
+        this.setCurrentHitPoints(this.getCurrentHitpoints() - damage);
+    }
+
+    public boolean isDead() {
+        return getCurrentHitpoints() <= 0;
+    } 
    
     //**getters for position */
     public Vector2 getPosition() {
