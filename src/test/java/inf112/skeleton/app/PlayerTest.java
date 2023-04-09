@@ -2,6 +2,10 @@ package inf112.skeleton.app;
 
 import org.junit.jupiter.api.*;
 import org.mockito.Mockito;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.Mockito.*;
 
 import com.badlogic.gdx.maps.tiled.TiledMap;
@@ -54,6 +58,30 @@ public class PlayerTest {
         
     }   
     
-    
+    @Test
+    void testPlayerIsDead() {
+        // Mock Player
+        Player player = mock(Player.class, Mockito.CALLS_REAL_METHODS);
+        
+        // Set lives and hitpoints
+        player.setMaxhitpoints(100);
+        player.setCurrentHitPoints(player.getMaxHitpoints());
+        player.setLives(2);
+
+        // Test if player is dead
+        assertFalse(player.isDead());
+
+        // Player dies and respawn, life should be reduced by 1, HP should be equal to MaxHP
+        player.takeDamage(100);
+        assertFalse(player.isDead());
+        assertEquals(100, player.getCurrentHitpoints());
+        assertEquals(1, player.getLives());
+
+        // Test player is dead when lives = 0
+        player.takeDamage(200);
+        assertTrue(player.isDead());
+        assertEquals(0, player.getCurrentHitpoints());
+        assertEquals(0, player.getLives());
+    }
     
 }
