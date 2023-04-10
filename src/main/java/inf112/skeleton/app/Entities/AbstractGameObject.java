@@ -72,11 +72,22 @@ public abstract class AbstractGameObject {
         return velocity.y;
     }
 
-    //**setter and getter for Currenthealth */
+    /**
+     * Get the currentHitpoints of the Entity
+     * 
+     * @return Integer - currentHitpoints
+     */
     public Integer getCurrentHitpoints(){
         return this.currentHitpoints;
     }
     
+    /**
+     * Set the Entity's currentHitpoints to a new value
+     * Also makes sure currentHitpoints cannot be set higher then maxHitpoints
+     * or below zero.
+     * 
+     * @param newHitpoints
+     */
     public void setCurrentHitPoints(int newHitpoints) {
         if (newHitpoints > this.maxHitpoints) {
             this.currentHitpoints = maxHitpoints;
@@ -89,20 +100,42 @@ public abstract class AbstractGameObject {
         }
     }
 
+    /**
+     * Get the maxHitpoints of the Entity
+     * 
+     * @return Integer - maxHitpoints
+     */
     public Integer getMaxHitpoints(){
         return this.maxHitpoints;
     }
 
+    /**
+     * Get the maxHitpoints of the Entity
+     * 
+     * @return Integer - maxHitpoints
+     */
     public void setMaxhitpoints(Integer newMaxHitpoints) {
         if (newMaxHitpoints > 0) {
             this.maxHitpoints = newMaxHitpoints;   
         }
     }
 
+    /**
+     * Reduces the Entity's hitpoints by a given amount 
+     * 
+     * @param damage
+     */
     public void takeDamage(int damage) {
         this.setCurrentHitPoints(this.getCurrentHitpoints() - damage);
     }
 
+    /**
+     * Checks if the Entity is dead
+     * True - if Entity is dead
+     * False - otherwise
+     * 
+     * @return boolean
+     */
     public boolean isDead() {
         return getCurrentHitpoints() <= 0;
     } 
