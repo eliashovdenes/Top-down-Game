@@ -8,10 +8,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.Mockito.*;
 
-import com.badlogic.gdx.maps.tiled.TiledMap;
-import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import inf112.skeleton.app.Entities.Player.Player;
-import inf112.skeleton.app.Mapfolder.MapInterface;
 
 public class PlayerTest {
 
@@ -23,9 +20,7 @@ public class PlayerTest {
         // Gdx.files = mock(Files.class);
         // Gdx.gl = mock(GL20.class);       
         // Gdx.gl20 = mock(GL20.class);
-        // Gdx.graphics = mock(Graphics.class);
-        
-        
+        // Gdx.graphics = mock(Graphics.class);   
 	}
 
 	/**
