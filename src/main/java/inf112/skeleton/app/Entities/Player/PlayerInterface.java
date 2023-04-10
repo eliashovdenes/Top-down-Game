@@ -120,4 +120,6 @@ public interface PlayerInterface  {
 
     public void setMaxhitpoints(Integer newMaxHitpoints);
 
+    public boolean isDead();
+
 }
