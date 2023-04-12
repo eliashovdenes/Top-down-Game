@@ -169,4 +169,6 @@ public interface PlayerInterface  {
      */
     public boolean isDead();
 
+    Rectangle getRect();
+
 }
