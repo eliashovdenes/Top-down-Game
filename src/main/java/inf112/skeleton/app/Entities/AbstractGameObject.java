@@ -2,6 +2,7 @@ package inf112.skeleton.app.Entities;
 
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.maps.tiled.TiledMap;
+import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 
 import inf112.skeleton.app.Collision;
@@ -14,10 +15,10 @@ public abstract class AbstractGameObject {
     protected Collision collision;
     protected Integer currentHPInteger;
     public boolean enteredLevel3 = false;
+    protected Rectangle rectangle;
     
     
     public AbstractGameObject(Vector2 position, MapInterface map) {
-        
         this.position = position;
         TiledMap tiledMap = map.getMap();
         this.collision = new Collision(map, this);
@@ -35,6 +36,7 @@ public abstract class AbstractGameObject {
         handleCollision();
         position.x += velocity.x;     
         position.y += velocity.y;
+        rectangle.setPosition(position);
     }   
     
     
@@ -53,6 +55,10 @@ public abstract class AbstractGameObject {
             
         }
         
+    }
+
+    public Rectangle getRect() {
+        return rectangle;
     }
 
     //**checks if the object is colliding in x and y direction->>>> */

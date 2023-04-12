@@ -8,20 +8,16 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.maps.objects.RectangleMapObject;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.math.Rectangle;
-import com.badlogic.gdx.math.Vector2;
 
 import inf112.skeleton.app.Entities.AbstractGameObject;
-import inf112.skeleton.app.Entities.ProjectileInterface;
-import inf112.skeleton.app.Entities.MonsterInterface;
-import inf112.skeleton.app.Entities.Player;
-import inf112.skeleton.app.Entities.PlayerInterface;
 import inf112.skeleton.app.Entities.Enemies.BlueEnemy;
-import inf112.skeleton.app.Mapfolder.Level1;
-import inf112.skeleton.app.Mapfolder.Level1Mini;
+import inf112.skeleton.app.Entities.Enemies.MonsterInterface;
+
+import inf112.skeleton.app.Entities.Player.PlayerInterface;
+import inf112.skeleton.app.Entities.Projectiles.ProjectileInterface;
 import inf112.skeleton.app.Mapfolder.MapInterface;
 import inf112.skeleton.app.Zelda;
 import inf112.skeleton.app.Controller.Controller;
@@ -37,10 +33,6 @@ public class View implements Screen {
     private OrthogonalTiledMapRenderer renderer;
     private OrthographicCamera camera;
     private PlayerInterface playerI;
-    public RectangleMapObject playerRect;
-    public RectangleMapObject enemyRect;
-    public boolean enemyexists;
-    private BitmapFont pointText = new BitmapFont();
     private BitmapFont lifeText = new BitmapFont();
     private Zelda game;
     private MonsterInterface monsterI;
@@ -48,38 +40,45 @@ public class View implements Screen {
     private Controller controller;
     public HashMap<AbstractGameObject, Rectangle> enemies = new HashMap<>();
     
-    MapInterface mapI = new Level1Mini(123,76);
+    //MapInterface mapI = new Level1Mini(123,76);
+    MapInterface mapI;
     OrthogonalTiledMapRenderer nyRend;
     TiledMap nyMap;
     SpriteBatch batch;
     
-    public View(Zelda game, Controller controller) {
+    public View(Zelda game, Controller controller, PlayerInterface playerI) {
         this.game = game;
         this.controller = controller;    
+        this.playerI = playerI;
+        this.mapI=playerI.returnMap();
+        playerI.spawn(mapI.getPlayerSpawnX()*16,mapI.getPlayerSpawnY()*16);
+        
     }   
+    public View(Zelda game, Controller controller, PlayerInterface playerI, float x,float y){
+        this.game = game;
+        this.controller = controller;    
+        this.playerI = playerI;
+        this.mapI=playerI.returnMap();
 
+    }
     @Override
     public void show() {
         
         map = mapI.getMap();
         renderer = mapI.getRenderer();
-        playerI = new Player(new Vector2(0,0),mapI, controller);
         monsterI = new BlueEnemy(mapI);
-        playerI.spawn(mapI.getPlayerSpawnX()*16,mapI.getPlayerSpawnY()*16);
-        
-        camera = new OrthographicCamera();
-        
+        camera = new OrthographicCamera();        
         batch = new SpriteBatch();
 
         
-        lifeText.getData().setScale(1);
+        lifeText.getData().setScale(0.7f);
         lifeText.setColor(Color.RED);
 
     }
 
     @Override
     public void render(float delta) {
-
+        playerI.getRect().setSize(playerI.getWidth(), playerI.getHeight());
         if(controller.isPaused()){pause();}
         if(!controller.isPaused()){resume();}
         if (paused) {return;}
@@ -122,15 +121,30 @@ public class View implements Screen {
         //draw arrows
         for (ProjectileInterface projectile : playerI.getArrows()){
             projectile.getSprite().draw(batch);
+            for (MonsterInterface monsterI : mapI.getMonsters()) {
+            if (projectile.getRect().overlaps(monsterI.getRect())) { mapI.removeMonster(monsterI); break; }
+            }
         }
         //draw monsters
         for (MonsterInterface monsterI : mapI.getMonsters()){
             monsterI.update(delta);
-            monsterI.getSprite().draw(batch);      
+            monsterI.getSprite().draw(batch);   
+            if (monsterI.getRect().overlaps(playerI.getRect())) {
+                System.out.println("collision");
+                mapI.removeMonster(monsterI);
+                break;
+             
+        }   
         }
+        //open store (bound to K)
+        if(controller.isShop()){
+            game.setScreen(new Shop(game,controller,playerI));
+             
 
-        lifeText.draw(batch, "Lives: " + 10, playerI.getPosition().x - 12, playerI.getPosition().y + playerI.getHeight() + 30);
-        lifeText.draw(batch, "HP: " + playerI.getHP(), playerI.getPosition().x - 12, playerI.getPosition().y + playerI.getHeight() + 15);
+        }
+        
+        lifeText.draw(batch, "Lives: " + 10, playerI.getPosition().x - 12, playerI.getPosition().y + playerI.getHeight() + 20);
+        lifeText.draw(batch, "HP: " + playerI.getHP(), playerI.getPosition().x - 12, playerI.getPosition().y + playerI.getHeight() + 10);
         lifeText.draw(batch,".",playerI.getPosition().x+11,playerI.getPosition().y+18);
         
         batch.end();
@@ -165,8 +179,6 @@ public class View implements Screen {
 
     @Override
     public void hide() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'hide'");
     }
 
 

@@ -4,31 +4,32 @@ package inf112.skeleton.app.Entities.Projectiles;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.maps.tiled.TiledMap;
+import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 
 import inf112.skeleton.app.Entities.AbstractGameObject;
-import inf112.skeleton.app.Entities.ProjectileInterface;
-import inf112.skeleton.app.Entities.PlayerInterface;
 import inf112.skeleton.app.Entities.Enums.DirectionEnum;
 import inf112.skeleton.app.Entities.Enums.PlayerPics;
+import inf112.skeleton.app.Entities.Player.PlayerInterface;
 import inf112.skeleton.app.Mapfolder.MapInterface;
 
 public class Arrow extends AbstractGameObject implements ProjectileInterface  {
 
     protected float speed = 2;
     protected Sprite sprite;
-    protected PlayerInterface player;
     protected TiledMap map;
     protected Vector2 velocity;
+    private PlayerInterface player;
     
 
-    public Arrow(Vector2 position, MapInterface map, PlayerInterface player) {
+    public Arrow(Vector2 position, MapInterface map, Vector2 velocity, PlayerInterface player) {
         super(position, map);
         this.map = map.getMap();
         this.player = player;
-        velocity = setVelocity();
+        this.velocity = velocity;
         setCorrectSprite();
-        sprite.setSize(7,7);
+        sprite.setSize(10,10);
+        rectangle = new Rectangle(position.x, position.y, getWidth(), getHeight());
         
        
     }
@@ -36,11 +37,11 @@ public class Arrow extends AbstractGameObject implements ProjectileInterface  {
     //* setVelocity() is a method that returns a Vector2 with the correct velocity for the arrow. */
     public Vector2 setVelocity() {
         Vector2  veloVector = new Vector2();
-        DirectionEnum direction = player.getPlayerDirection();
-        if (direction == DirectionEnum.NORTH){veloVector = new Vector2(0*speed,1*speed);}
-        if (direction == DirectionEnum.SOUTH){veloVector = new Vector2(0*speed,-1*speed);}
-        if (direction == DirectionEnum.WEST){veloVector = new Vector2(-1*speed,0*speed);}
-        if (direction == DirectionEnum.EAST){veloVector = new Vector2(1*speed,0*speed);}
+        //DirectionEnum direction = player.getPlayerDirection();
+       // if (direction == DirectionEnum.NORTH){veloVector = new Vector2(0*speed,1*speed);}
+       // if (direction == DirectionEnum.SOUTH){veloVector = new Vector2(0*speed,-1*speed);}
+      //  if (direction == DirectionEnum.WEST){veloVector = new Vector2(-1*speed,0*speed);}
+      //  if (direction == DirectionEnum.EAST){veloVector = new Vector2(1*speed,0*speed);}
         return veloVector;
     }
 
@@ -56,6 +57,7 @@ public class Arrow extends AbstractGameObject implements ProjectileInterface  {
         position.y+=velocity.y;
         
         sprite.setPosition(position.x,position.y);
+        ApplyMovement();
     }
 
    
@@ -87,12 +89,11 @@ public class Arrow extends AbstractGameObject implements ProjectileInterface  {
     
     private void setCorrectSprite(){
         String sprite = "";
-        if (player.getPlayerDirection()==DirectionEnum.EAST) sprite = PlayerPics.RIGHTARROW.source;
         if (player.getPlayerDirection()==DirectionEnum.NORTH)  sprite = PlayerPics.UPARROW.source;
+        if (player.getPlayerDirection()==DirectionEnum.EAST) sprite = PlayerPics.RIGHTARROW.source; 
         if (player.getPlayerDirection()==DirectionEnum.WEST) sprite = PlayerPics.LEFTARROW.source;
         if (player.getPlayerDirection()==DirectionEnum.SOUTH)  sprite = PlayerPics.DOWNARROW.source;
    
         setSprite(sprite);
     }
-  
 }

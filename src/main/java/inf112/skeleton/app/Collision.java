@@ -3,16 +3,10 @@ import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 
 import inf112.skeleton.app.Entities.AbstractGameObject;
-import inf112.skeleton.app.Entities.Player;
-import inf112.skeleton.app.Mapfolder.Cave;
-import inf112.skeleton.app.Mapfolder.Grass;
+import inf112.skeleton.app.Entities.Player.Player;
 import inf112.skeleton.app.Mapfolder.GrassMini;
 import inf112.skeleton.app.Mapfolder.House;
-import inf112.skeleton.app.Mapfolder.Level1;
 import inf112.skeleton.app.Mapfolder.Level1Mini;
-import inf112.skeleton.app.Mapfolder.Level2;
-// import inf112.skeleton.app.Mapfolder.Level2fromcave;
-import inf112.skeleton.app.Mapfolder.Level3;
 import inf112.skeleton.app.Mapfolder.MapInterface;
 
 

@@ -1,17 +1,13 @@
 package inf112.skeleton.app.Entities.Projectiles;
 
-import java.util.ArrayList;
-
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
-import com.badlogic.gdx.maps.tiled.TiledMap;
+import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 
 import inf112.skeleton.app.Entities.AbstractGameObject;
-import inf112.skeleton.app.Entities.PlayerInterface;
-import inf112.skeleton.app.Entities.ProjectileInterface;
-import inf112.skeleton.app.Entities.Enums.DirectionEnum;
 import inf112.skeleton.app.Entities.Enums.PlayerPics;
+import inf112.skeleton.app.Entities.Player.PlayerInterface;
 import inf112.skeleton.app.Mapfolder.MapInterface;
 
 public class Lightning extends AbstractGameObject implements ProjectileInterface {
@@ -20,26 +16,17 @@ public class Lightning extends AbstractGameObject implements ProjectileInterface
     protected Sprite sprite;
     protected PlayerInterface player;
     protected MapInterface map;
-
     protected Vector2 velocity;
     private float rotationSpeed = 200;
     private float rotation = 0;
     
-    public Lightning(Vector2 position, MapInterface map, PlayerInterface player) {
-        super(position, map);
-        this.player = player;
-        velocity = setVelocity();
-        setSprite(PlayerPics.LIGHTNING.source);
-        sprite.setSize(15,15);
-
-    }
-    //lager en ny konstruktør for å gjøre det mulig med multishot.
     public Lightning(Vector2 position, MapInterface map, Vector2 velocity){
         super(position,map);
         this.map = map;
         this.velocity = velocity;
         setSprite(PlayerPics.LIGHTNING.source);
         sprite.setSize(15, 15);
+        rectangle = new Rectangle(position.x, position.y, getWidth(), getHeight());
     }
        
     @Override
@@ -60,6 +47,7 @@ public class Lightning extends AbstractGameObject implements ProjectileInterface
             rotation -= 360;
         }
         sprite.setRotation(rotation);
+        ApplyMovement();
          
     }
 
@@ -91,14 +79,8 @@ public class Lightning extends AbstractGameObject implements ProjectileInterface
     }
 
     public Vector2 setVelocity() {
-        Vector2  veloVector = new Vector2();
-        DirectionEnum direction = player.getPlayerDirection();
-        if (direction == DirectionEnum.NORTH){veloVector = new Vector2(0*speed,1*speed);}
-        if (direction == DirectionEnum.SOUTH){veloVector = new Vector2(0*speed,-1*speed);}
-        if (direction == DirectionEnum.WEST){veloVector = new Vector2(-1*speed,0*speed);}
-        if (direction == DirectionEnum.EAST){veloVector = new Vector2(1*speed,0*speed);}
-        return veloVector;
-    }
+        return null;
+  
 
-    
+    }
 }
