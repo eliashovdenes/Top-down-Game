@@ -100,10 +100,72 @@ public interface PlayerInterface  {
     void setOffPortal();
     
     //TODO write javadoc
-    public Integer getHP();
+    
     public MapInterface returnMap();
     
     void upgradeLightning();
     void upgradeArrow();
+
+    /**
+     * Sets the number of lives the player has
+     * 
+     * @param newLives
+     */
+    public void setLives(int newLives);
+
+    /**
+     * Gets the current amount of lives the player has
+     * 
+     * @return Integer - number of lives
+     */
+    public Integer getLives();
+
+    /**
+     * Reduces the Player's hitpoints by a given amount
+     * Also checks if the Player is dead and reduce the amount of
+     * lives if True. 
+     * 
+     * @param damage
+     */
+    public void takeDamage(int damage);
+    
+    /**
+     * Get the currentHitpoints of the player
+     * 
+     * @return Integer - currentHitpoints
+     */
+    public Integer getCurrentHitpoints();
+    
+    /**
+     * Set the Player's currentHitpoints to a new value
+     * Also makes sure currentHitpoints cannot be set higher then maxHitpoints
+     * or below zero.
+     * 
+     * @param newHitpoints
+     */
+    public void setCurrentHitPoints(int newHitpoints);
+
+    /**
+     * Get the maxHitpoints of the Player
+     * 
+     * @return Integer - maxHitpoints
+     */
+    public Integer getMaxHitpoints();
+
+    /**
+     * Set a new value for the Player's maxHitpoints
+     * 
+     * @param newMaxHitpoints
+     */
+    public void setMaxhitpoints(Integer newMaxHitpoints);
+
+    /**
+     * Checks if the Player is dead
+     * True - if Player is dead
+     * False - otherwise
+     * 
+     * @return boolean
+     */
+    public boolean isDead();
 
 }

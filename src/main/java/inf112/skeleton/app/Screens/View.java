@@ -139,8 +139,8 @@ public class View implements Screen {
 
         }
         
-        lifeText.draw(batch, "Lives: " + 10, playerI.getPosition().x - 12, playerI.getPosition().y + playerI.getHeight() + 30);
-        lifeText.draw(batch, "HP: " + playerI.getHP(), playerI.getPosition().x - 12, playerI.getPosition().y + playerI.getHeight() + 15);
+        lifeText.draw(batch, "Lives: " + playerI.getLives(), playerI.getPosition().x - 12, playerI.getPosition().y + playerI.getHeight() + 30);
+        lifeText.draw(batch, "HP: " + playerI.getCurrentHitpoints(), playerI.getPosition().x - 12, playerI.getPosition().y + playerI.getHeight() + 15);
         lifeText.draw(batch,".",playerI.getPosition().x+11,playerI.getPosition().y+18);
         
         batch.end();
