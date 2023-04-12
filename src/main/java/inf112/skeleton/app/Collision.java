@@ -1,13 +1,20 @@
 package inf112.skeleton.app;
-
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 
+import inf112.skeleton.app.Entities.AbstractGameObject;
+import inf112.skeleton.app.Entities.Player.Player;
+import inf112.skeleton.app.Mapfolder.GrassMini;
+import inf112.skeleton.app.Mapfolder.House;
+import inf112.skeleton.app.Mapfolder.Level1Mini;
+import inf112.skeleton.app.Mapfolder.MapInterface;
+
+
+
 public class Collision {
 
-
-    private boolean housePortal = false, level2 = false;
-    
+    public MapInterface nextMap; 
+    public MapInterface currMap;   
     private TiledMap map;
     public TiledMap getMap() {
         return map;
@@ -18,36 +25,38 @@ public class Collision {
     }
 
 
-    private GameObject entity;
+    private AbstractGameObject entity;
 
-    private float tileWidth;
-    private float tileHeight;
-    private View view;
+    private float tileSize;
+    private float posX,posY;
 
-    public Collision(TiledMap map, GameObject entity, View view) {
-        this.view = view;
-        this.map = map;
+    private boolean killedAllEnemies = true;
+
+    public Collision(MapInterface currMap, AbstractGameObject entity) {
+        this.currMap = currMap;
+        this.map = currMap.getMap();
         this.entity = entity;
-        tileWidth = ((TiledMapTileLayer) map.getLayers().get(0)).getTileWidth();
-        tileHeight = ((TiledMapTileLayer) map.getLayers().get(0)).getTileWidth();
+        tileSize = ((TiledMapTileLayer) this.map.getLayers().get(0)).getTileWidth();
     }
 
-    public boolean chechXDirection(float velX, float oldX) {
+    public boolean checkXDirection(float velX) {
         boolean collisionX = false;
-
+        posX = entity.getPosition().x;
+        posY = entity.getPosition().y;
+        
         
         // when moving to the left
         if (velX < 0) {
             // top left tile
-            collisionX = checkCollisionWith((int) (entity.getX() / tileWidth), (int) ((entity.getY() + entity.getHeight() / 1.5) / tileHeight));
+            collisionX = isCellBlocked((int) (posX+velX / tileSize), (int) ((posY + entity.getHeight() - (entity.getHeight() / 4)) / tileSize));
 
             // middle left tile
             if (!collisionX)
-                collisionX = checkCollisionWith((int) (entity.getX() / tileWidth), (int) ((entity.getY() + entity.getHeight() / 2) / tileHeight));
+                collisionX = isCellBlocked((int) ((posX+velX)/ tileSize), (int) ((posY + entity.getHeight()/2) / tileSize));
 
             // bottom left tile
             if (!collisionX)
-                collisionX = checkCollisionWith((int) (entity.getX() / tileWidth), (int) ((entity.getY() + entity.getHeight() / 5) / tileHeight));
+                collisionX = isCellBlocked((int) (posX+velX/ tileSize), (int) (((posY + entity.getHeight() / 4) / tileSize)));
 
             
         }
@@ -55,15 +64,15 @@ public class Collision {
         // when moving to the right
         else if (velX > 0) {
             // top right tile
-            collisionX = checkCollisionWith((int) ((entity.getX() + entity.getWidth()) / tileWidth), (int) ((entity.getY() + entity.getHeight() / 1.5) / tileHeight));
+            collisionX = isCellBlocked((int) ((posX+velX + entity.getWidth())/tileSize), (int) ((posY + entity.getHeight() - (entity.getHeight() / 4))/tileSize));
 
             //middle right tile
             if (!collisionX)
-                collisionX = checkCollisionWith((int) ((entity.getX() + entity.getWidth()) / tileWidth), (int) ((entity.getY() + entity.getHeight() / 2) / tileHeight));
+                collisionX = isCellBlocked((int) ((posX+velX + entity.getWidth())/tileSize), (int) ((posY + entity.getHeight()/2)/tileSize));
 
             //bottom right
             if (!collisionX)
-                collisionX = checkCollisionWith((int) ((entity.getX() + entity.getWidth()) / tileWidth), (int) ((entity.getY() + entity.getHeight() / 4) / tileHeight));
+                collisionX = isCellBlocked((int) ((posX+velX + entity.getWidth())/tileSize), (int) ((posY + entity.getHeight() / 4)/tileSize));
             }
 
 
@@ -72,105 +81,147 @@ public class Collision {
         
     }
 
-    public boolean chechYDirection(float velY, float oldY) { 
+    public boolean checkYDirection(float velY) { 
         boolean collisionY = false;
 
         // when moving downwards
         if (velY < 0) {
-
             // bottom left
-            collisionY = checkCollisionWith((int) ((entity.getX() + entity.getWidth() / 4) / tileWidth), (int) (entity.getY() / tileHeight));
+            collisionY = isCellBlocked((int) ((posX + entity.getWidth() - (entity.getWidth() / 4)) / tileSize), (int) ((posY+velY)/ tileSize));
 
             // bottom middle
             if (!collisionY)
-                collisionY = checkCollisionWith((int) ((entity.getX() + entity.getWidth() / 2) / tileWidth), (int) (entity.getY() / tileHeight));
+                collisionY = isCellBlocked((int) ((posX + (entity.getWidth()/2) ) / tileSize), (int) ((posY+velY)/ tileSize));
 
             //bottom right
             if (!collisionY)
-                collisionY =  checkCollisionWith((int) ((entity.getX() + entity.getWidth() / 1.5) / tileWidth), (int) (entity.getY() / tileHeight));
+                collisionY =  isCellBlocked((int) ((posX + entity.getWidth() / 4 ) / tileSize), (int) ((posY+velY)/ tileSize));
+                
         }
-
         // moving upwards
         else if (velY > 0) {
 
             // top left
-            collisionY = checkCollisionWith((int) ((entity.getX() + entity.getWidth() / 4) / tileWidth), (int) ((entity.getY() + entity.getHeight()) / tileHeight));
+            collisionY = isCellBlocked((int) ((posX + entity.getWidth() - (entity.getWidth() / 4)) / tileSize), (int) ((posY+velY+ entity.getHeight()) / tileSize));
 
             //top middle
             if (!collisionY)
-                collisionY = checkCollisionWith((int) ((entity.getX() + entity.getWidth() / 2) / tileWidth), (int) ((entity.getY() + entity.getHeight()) / tileHeight));
-
+                collisionY = isCellBlocked((int) ((posX + (entity.getWidth()/2)) / tileSize), (int) ((posY+velY+ entity.getHeight()) / tileSize));
             //top right
             if (!collisionY)
-                collisionY = checkCollisionWith((int) ((entity.getX() + entity.getWidth() / 1.5) / tileWidth), (int) ((entity.getY() + entity.getHeight()) / tileHeight));
-
-
+                collisionY = isCellBlocked((int) ((posX+ entity.getWidth() / 4 ) / tileSize), (int) ((posY+velY+entity.getHeight()) / tileSize));
         }
-
-
-        //House portal
-        if (housePortal){
-            view.changeMap(Maps.House.source, 400, 500);
-            housePortal = false;
-            
-        }
-
-
-        //Level 2 portal
-        if (level2){
-            view.changeMap(Maps.Level2.source, 12*16, 25*16); 
-            level2 = false;
-            
-
-            
-        }
-
         if (collisionY) return true;
-
-            return false;
+        return false;
 
     }
     
    
-    public boolean checkCollisionWith(int xpos, int ypos) {
+    public boolean isCellBlocked(int xpos, int ypos) {
+
         int size = map.getLayers().size();
 
         for (int i = 0; i < size; i++) {
             TiledMapTileLayer layer = (TiledMapTileLayer) map.getLayers().get(i);
-            // System.out.println(layer);
+            TiledMapTileLayer.Cell cell = layer.getCell(xpos, ypos);
             
+
+            if (cell != null && cell.getTile().getProperties().containsKey("blocked")) { 
+                return true;
+            }
             
-            try {
-                if (layer.getCell((int) xpos, (int) ypos).getTile().getProperties().containsKey("portal")) { 
-                    // System.out.println("portal tile");
+        }
+        return false;
+    } 
+
+
+    
+
+
+    public boolean isCellAPortal() {
+
+        if (entity instanceof Player){
+
+
+            int size = map.getLayers().size();
+
+
+            float entityX = (entity.getPosition().x + entity.getWidth() / 2 )/tileSize;
+            float entityY =  (entity.getPosition().y + entity.getHeight()/ 2)/tileSize;
+
+            
+
+            for (int i=0; i<size; i++){
+                
+                TiledMapTileLayer layer = (TiledMapTileLayer) map.getLayers().get(i);
+
+                TiledMapTileLayer.Cell entityCell = layer.getCell((int)entityX,(int)entityY);
+                
+                if(entityCell != null && entityCell.getTile().getProperties().containsKey("portal")) {
                     
-                    if (layer.getCell((int) xpos, (int) ypos).getTile().getProperties().containsKey("house")) {
-                        System.out.println("house portal");
-                        housePortal = true;
-                        return housePortal;
+
+                    //This is for multiple maps (including cave map, and updating maps) cycle:
+                    // if (entityCell.getTile().getProperties().containsKey("level 1")){nextMap = new Level1();}    
+                    // if (entityCell.getTile().getProperties().containsKey("house")){nextMap =  new House();}
+                    
+                    // if (entityCell.getTile().getProperties().containsKey("level 2")){
+                        
+                    //     if (entity.isEnteredLevel3()){
+                    //         nextMap = new Level3(114, 73);
+                    //     }else{
+                    //         nextMap = new Level2(114,73);
+
+                    //     }
+                        
+                    // }
+
+                    // if (entityCell.getTile().getProperties().containsKey("cave")){nextMap = new Cave();}
+
+                    // if (entityCell.getTile().getProperties().containsKey("level 2 from cave")){
+                    //     if (entity.isEnteredLevel3()){
+                    //         nextMap = new Level3(155,66 );
+                    //     } else{
+                    //         nextMap = new Level2(155,66);}
+                    //     }
+                        
+                    // if (entityCell.getTile().getProperties().containsKey("level 3") ){
+                    //     if (currMap.getMonsters().isEmpty()){
+                    //         entity.setEnteredLevel3(true);
+                    //         nextMap = new Level3(123,87);
+                    //     } else {
+                    //         return false;
+                    //     }
+                    
+                        
+                    // } 
+
+                    // if (entityCell.getTile().getProperties().containsKey("grass")){nextMap = new Grass();}
+
+
+                    //This is for mini cycle, better suited for testing:
+                    if (entityCell.getTile().getProperties().containsKey("house")){nextMap =  new House();}
+
+                    if (entityCell.getTile().getProperties().containsKey("level 2")){nextMap = new Level1Mini(113, 75);}
+
+                    if (entityCell.getTile().getProperties().containsKey("grass")){nextMap = new GrassMini(119,52);}
+
+                    if (entityCell.getTile().getProperties().containsKey("mini level 1")){
+                        
+                        if(currMap.getMonsters().isEmpty()){
+                            nextMap = new Level1Mini(139,70);
+                        } else{
+                            return false;
+                        }
+                        
+                        
                     }
 
-                    if (layer.getCell((int) xpos, (int) ypos).getTile().getProperties().containsKey("level2")) {
-                        System.out.println("level2");
-                        level2 = true;
-                        return level2;
-                    }
                     
-            
-                }
-            
-                if (layer.getCell((int) xpos, (int) ypos).getTile().getProperties().containsKey("blocked")) { 
                     
-                    return true;
+                return true;
                 }
-            } catch (Exception e) {
-                continue;
-            }
+            } 
         }
         return false;
     }
-
-
-
-   
 }

@@ -128,6 +128,18 @@ to support the M1 processor
 			<version>${libgdx.version}</version>
 		</dependency>
 		<dependency>
+  			<groupId>com.badlogicgames.gdx</groupId>
+			<artifactId>gdx-backend-headless</artifactId>
+			<version>${libgdx.version}</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.mockito</groupId>
+			<artifactId>mockito-core</artifactId>
+			<version>3.12.4</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
 			<groupId>org.junit.jupiter</groupId>
 			<artifactId>junit-jupiter</artifactId>
 			<version>${junit.jupiter.version}</version>
@@ -151,19 +163,9 @@ to support the M1 processor
 			</dependencies>
 	<build>
 
-	<plugin>
-  <groupId>com.github.spotbugs</groupId>
-  <artifactId>spotbugs-maven-plugin</artifactId>
-  <version>4.7.2.1</version>
-  <dependencies>
-    <!-- overwrite dependency on spotbugs if you want to specify the version of spotbugs -->
-    <dependency>
-      <groupId>com.github.spotbugs</groupId>
-      <artifactId>spotbugs</artifactId>
-      <version>4.7.3</version>
-    </dependency>
-  </dependencies>
-</plugin>
+
+
+
 		<plugins>
 			<!-- Run app through Maven -->
 			<plugin>
