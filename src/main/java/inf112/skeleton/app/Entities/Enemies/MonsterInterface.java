@@ -1,6 +1,7 @@
 package inf112.skeleton.app.Entities.Enemies;
 
 import com.badlogic.gdx.graphics.g2d.Sprite;
+import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import inf112.skeleton.app.Entities.Enums.DirectionEnum;
 
@@ -72,5 +73,6 @@ public interface MonsterInterface {
      * @return list of Monster created in Spawn() method.
      * 
      */
+    Rectangle getRect();
     
 }

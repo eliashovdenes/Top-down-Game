@@ -2,6 +2,7 @@ package inf112.skeleton.app.Entities.Enemies;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
+import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import java.util.Random;
 
@@ -23,6 +24,7 @@ public class RedEnemy extends AbstractGameObject implements MonsterInterface  {
         super(new Vector2(0,0), map);
         this.map = map;
         setSprite(RedEnemyPics.ENEMYDOWN.source);
+        rectangle = new Rectangle(position.x, position.y, getWidth(), getHeight());
         setXYFromSpawnBounds();  
         this.setMaxhitpoints(75);
         this.setCurrentHitPoints(this.getMaxHitpoints()); 

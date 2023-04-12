@@ -8,7 +8,6 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.maps.objects.RectangleMapObject;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.math.Rectangle;
@@ -34,10 +33,6 @@ public class View implements Screen {
     private OrthogonalTiledMapRenderer renderer;
     private OrthographicCamera camera;
     private PlayerInterface playerI;
-    public RectangleMapObject playerRect;
-    public RectangleMapObject enemyRect;
-    public boolean enemyexists;
-    private BitmapFont pointText = new BitmapFont();
     private BitmapFont lifeText = new BitmapFont();
     private Zelda game;
     private MonsterInterface monsterI;
@@ -76,14 +71,14 @@ public class View implements Screen {
         batch = new SpriteBatch();
 
         
-        lifeText.getData().setScale(1);
+        lifeText.getData().setScale(0.7f);
         lifeText.setColor(Color.RED);
 
     }
 
     @Override
     public void render(float delta) {
-
+        playerI.getRect().setSize(playerI.getWidth(), playerI.getHeight());
         if(controller.isPaused()){pause();}
         if(!controller.isPaused()){resume();}
         if (paused) {return;}
@@ -126,11 +121,20 @@ public class View implements Screen {
         //draw arrows
         for (ProjectileInterface projectile : playerI.getArrows()){
             projectile.getSprite().draw(batch);
+            for (MonsterInterface monsterI : mapI.getMonsters()) {
+            if (projectile.getRect().overlaps(monsterI.getRect())) { mapI.removeMonster(monsterI); break; }
+            }
         }
         //draw monsters
         for (MonsterInterface monsterI : mapI.getMonsters()){
             monsterI.update(delta);
-            monsterI.getSprite().draw(batch);      
+            monsterI.getSprite().draw(batch);   
+            if (monsterI.getRect().overlaps(playerI.getRect())) {
+                System.out.println("collision");
+                mapI.removeMonster(monsterI);
+                break;
+             
+        }   
         }
         //open store (bound to K)
         if(controller.isShop()){

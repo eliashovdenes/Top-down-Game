@@ -4,6 +4,7 @@ package inf112.skeleton.app.Entities.Projectiles;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.maps.tiled.TiledMap;
+import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 
 import inf112.skeleton.app.Entities.AbstractGameObject;
@@ -28,6 +29,7 @@ public class Arrow extends AbstractGameObject implements ProjectileInterface  {
         this.velocity = velocity;
         setCorrectSprite();
         sprite.setSize(10,10);
+        rectangle = new Rectangle(position.x, position.y, getWidth(), getHeight());
         
        
     }
@@ -55,6 +57,7 @@ public class Arrow extends AbstractGameObject implements ProjectileInterface  {
         position.y+=velocity.y;
         
         sprite.setPosition(position.x,position.y);
+        ApplyMovement();
     }
 
    

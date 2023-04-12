@@ -5,6 +5,7 @@ import java.util.Random;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
+import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 
 import inf112.skeleton.app.Animation;
@@ -47,7 +48,8 @@ public class Player extends AbstractGameObject implements PlayerInterface {
         this.controller = controller;
         setSprite(PlayerPics.ATTACKDOWN.source);
         sprite.setPosition(position.x, position.y);
-        // setHP(playerHP);
+        rectangle = new Rectangle(position.x, position.y, getWidth(), getHeight());
+        setHP(playerHP);
         this.SM = new SoundManager();
         sprite.setSize(16, 16);
         this.lives = 3;
