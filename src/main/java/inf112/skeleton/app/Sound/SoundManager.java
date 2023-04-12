@@ -6,8 +6,8 @@ public class SoundManager {
     public aSound lightningMultiShotSound;
     
     public SoundManager(){
-        this.mainMenuMusic = new aSound("src/main/java/inf112/skeleton/app/assets/soundfiles/wrong-place.mp3");
-        this.arrowSound = new aSound("src/main/java/inf112/skeleton/app/assets/soundfiles/bow-release.mp3");
-        this.lightningMultiShotSound = new aSound("src/main/java/inf112/skeleton/app/assets/soundfiles/electric-shock.mp3");
+        this.mainMenuMusic = new aSound("src/resources/assets/soundfiles/wrong-place.mp3");
+        this.arrowSound = new aSound("src/resources/assets/soundfiles/bow-release.mp3");
+        this.lightningMultiShotSound = new aSound("src/resources/assets/soundfiles/electric-shock.mp3");
     }
 }

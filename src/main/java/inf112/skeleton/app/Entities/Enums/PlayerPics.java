@@ -2,23 +2,23 @@ package inf112.skeleton.app.Entities.Enums;
 
 //*PlayerPics is used to determine what picture the player and enemies should have*/
 public enum PlayerPics {
-    RIGHT("src/main/java/inf112/skeleton/app/assets/playerPics/playerR.png"),
-    LEFT("src/main/java/inf112/skeleton/app/assets/playerPics/playerL.png"),
-    UP("src/main/java/inf112/skeleton/app/assets/playerPics/playerUP.png"),
-    DOWN("src/main/java/inf112/skeleton/app/assets/playerPics/playerDOWN.png"),
-    ENEMYDOWN("src/main/java/inf112/skeleton/app/assets/enemyPics/enemyDown.png"),
-    ENEMYUP("src/main/java/inf112/skeleton/app/assets/enemyPics/enemyUp.png"),
-    ENEMYLEFT("src/main/java/inf112/skeleton/app/assets/enemyPics/enemyLeft.png"),
-    ENEMYRIGHT("src/main/java/inf112/skeleton/app/assets/enemyPics/enemyRight.png"),
-    ATTACKUP("src/main/java/inf112/skeleton/app/assets/playerPics/linkattacktop.png"),
-    ATTACKDOWN("src/main/java/inf112/skeleton/app/assets/playerPics/linkAttack_down.png"),
-    ATTACKLEFT("src/main/java/inf112/skeleton/app/assets/playerPics/linkattackleft.png"),
-    ATTACKRIGHT("src/main/java/inf112/skeleton/app/assets/playerPics/linkattack_right.png"),
-    RIGHTARROW ("src/main/java/inf112/skeleton/app/assets/projectilePics/RightArrow.png"),
-    LEFTARROW ("src/main/java/inf112/skeleton/app/assets/projectilePics/LeftArrow.png"),
-    UPARROW ("src/main/java/inf112/skeleton/app/assets/projectilePics/UpArrow.png"),
-    DOWNARROW ("src/main/java/inf112/skeleton/app/assets/projectilePics/DownArrow.png"),
-    LIGHTNING ("src/main/java/inf112/skeleton/app/assets/projectilePics/lightning.png");
+    RIGHT("src/resources/assets/playerPics/playerR.png"),
+    LEFT("src/resources/assets/playerPics/playerL.png"),
+    UP("src/resources/assets/playerPics/playerUP.png"),
+    DOWN("src/resources/assets/playerPics/playerDOWN.png"),
+    ENEMYDOWN("src/resources/assets/enemyPics/enemyDown.png"),
+    ENEMYUP("src/resources/assets/enemyPics/enemyUp.png"),
+    ENEMYLEFT("src/resources/assets/enemyPics/enemyLeft.png"),
+    ENEMYRIGHT("src/resources/assets/enemyPics/enemyRight.png"),
+    ATTACKUP("src/resources/assets/playerPics/linkattacktop.png"),
+    ATTACKDOWN("src/resources/assets/playerPics/linkAttack_down.png"),
+    ATTACKLEFT("src/resources/assets/playerPics/linkattackleft.png"),
+    ATTACKRIGHT("src/resources/assets/playerPics/linkattack_right.png"),
+    RIGHTARROW ("src/resources/assets/projectilePics/RightArrow.png"),
+    LEFTARROW ("src/resources/assets/projectilePics/LeftArrow.png"),
+    UPARROW ("src/resources/assets/projectilePics/UpArrow.png"),
+    DOWNARROW ("src/resources/assets/projectilePics/DownArrow.png"),
+    LIGHTNING ("src/resources/assets/projectilePics/lightning.png");
 
     
 
