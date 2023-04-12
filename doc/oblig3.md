@@ -139,6 +139,10 @@ Vi har prioritert å lage et MVP. Kriteriene for å oppnå dette spesifiserte vi
 
 Vi har oppfylt det aller meste av dette. Vi har brukt Tiled til å lage spillbrettet og spillkarakteren vises og kan beveges i åtte retninger. Spillet har en startmeny, active game og game over meny. Når spillet er over, kan du starte på nytt. Hvis fienden treffer spilleren, dør han og spillet er over. Vi har laget en attack-animasjon in fire rettninger som du bruker ved å trykke på "x". For å skade og drepe fienden må du holde inne "x" og treffe fienden med sverdet. I spillet kan du gå inn og ut av huset og dermed gå fra et map til neste. Her starter spilleren på level1, går inn i huset og kommer ut igjen til level2 (level1 og level2 er veldig like utseende messig). Vi har en score på skjermen som skal oppdateres hver gang du dreper en fiende. Spilleren og fiendene har foreløpig ikke hit points, spilleren dør hvis han blir truffet og fienden dør når den blir truffet av sverdet. Spilleren kan også gå raskere ved å trykke på "shift"
 
+12.04.2022:
+
+Vi har nå laget det endelige formatet så nå er spillet snart helt ferdig, det mangler litt finpuss her og der. Vi har viderebygget på forrige det vi hadde før. Endret formatet i fra at du skal gå fra level 1-2-3-4....-osv, til at du er i lvl 1 som har huset hvor du da kan gå til nivå 2 som skal være "kampområde" hvor er der hvor det kommer fiender. Når du har slått ut alle monstrene så kan du gå tilbake til nivå 1 og da kan du gå inn i en nivå 2 igjen. Vi har også laget en upgrade meny som gjør at spilleren kan oppgradere angrepene sine. Ingen begrensninger på når du kan oppgradere angrep foreløpig, men dette skal vi lage til neste gang.
+
 ### Bugs
 * Inne i huset går fiendene ut av av brettet. Dette er fordi fiendene sjekker kollison i hovedbrettet og ikke inne i huset ennå. * Fiender kan også spawne inne i trærne slik at de ikke kan bevege seg.
 * Vi har lagt til SpotBugs Maven Plugin i pom.xml for å hjelpe oss til å finne bugs
