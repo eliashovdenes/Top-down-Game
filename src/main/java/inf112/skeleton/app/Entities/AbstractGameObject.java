@@ -13,7 +13,8 @@ public abstract class AbstractGameObject {
     protected Vector2 position;
     protected Vector2 velocity;
     protected Collision collision;
-    protected Integer currentHPInteger;
+    private Integer currentHitpoints;
+    private Integer maxHitpoints;
     public boolean enteredLevel3 = false;
     protected Rectangle rectangle;
     
@@ -77,14 +78,73 @@ public abstract class AbstractGameObject {
         return velocity.y;
     }
 
-    //**setter and getter for Currenthealth */
-    public Integer getHP(){
-        return currentHPInteger;
+    /**
+     * Get the currentHitpoints of the Entity
+     * 
+     * @return Integer - currentHitpoints
+     */
+    public Integer getCurrentHitpoints(){
+        return this.currentHitpoints;
     }
-    public void setHP(Integer hp){
-            currentHPInteger = hp;
+    
+    /**
+     * Set the Entity's currentHitpoints to a new value
+     * Also makes sure currentHitpoints cannot be set higher then maxHitpoints
+     * or below zero.
+     * 
+     * @param newHitpoints
+     */
+    public void setCurrentHitPoints(int newHitpoints) {
+        if (newHitpoints > this.maxHitpoints) {
+            this.currentHitpoints = maxHitpoints;
+        }
+        else if (newHitpoints < 0) {
+            this.currentHitpoints = 0;
+        }
+        else {
+            this.currentHitpoints = newHitpoints;
+        }
+    }
 
+    /**
+     * Get the maxHitpoints of the Entity
+     * 
+     * @return Integer - maxHitpoints
+     */
+    public Integer getMaxHitpoints(){
+        return this.maxHitpoints;
     }
+
+    /**
+     * Get the maxHitpoints of the Entity
+     * 
+     * @return Integer - maxHitpoints
+     */
+    public void setMaxhitpoints(Integer newMaxHitpoints) {
+        if (newMaxHitpoints > 0) {
+            this.maxHitpoints = newMaxHitpoints;   
+        }
+    }
+
+    /**
+     * Reduces the Entity's hitpoints by a given amount 
+     * 
+     * @param damage
+     */
+    public void takeDamage(int damage) {
+        this.setCurrentHitPoints(this.getCurrentHitpoints() - damage);
+    }
+
+    /**
+     * Checks if the Entity is dead
+     * True - if Entity is dead
+     * False - otherwise
+     * 
+     * @return boolean
+     */
+    public boolean isDead() {
+        return getCurrentHitpoints() <= 0;
+    } 
    
     //**getters for position */
     public Vector2 getPosition() {
