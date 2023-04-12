@@ -2,7 +2,7 @@ package inf112.skeleton.app.Entities.Projectiles;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
-
+import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 
 import inf112.skeleton.app.Entities.AbstractGameObject;
@@ -26,6 +26,7 @@ public class Lightning extends AbstractGameObject implements ProjectileInterface
         this.velocity = velocity;
         setSprite(PlayerPics.LIGHTNING.source);
         sprite.setSize(15, 15);
+        rectangle = new Rectangle(position.x, position.y, getWidth(), getHeight());
     }
        
     @Override
@@ -46,6 +47,7 @@ public class Lightning extends AbstractGameObject implements ProjectileInterface
             rotation -= 360;
         }
         sprite.setRotation(rotation);
+        ApplyMovement();
          
     }
 

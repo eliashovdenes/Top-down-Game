@@ -1,6 +1,7 @@
 package inf112.skeleton.app.Mapfolder;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
@@ -18,7 +19,7 @@ public class House extends TiledMap implements MapInterface {
 
     private TiledMap tiledMap;
     private OrthogonalTiledMapRenderer renderer;
-    private ArrayList<MonsterInterface> monsterList = new ArrayList<>();
+    private LinkedList<MonsterInterface> monsterList = new LinkedList<>();
 
     public House(){
         tiledMap = new TmxMapLoader().load(Maps.House.source);
@@ -77,14 +78,18 @@ public class House extends TiledMap implements MapInterface {
     }
     
     @Override
-    public ArrayList<MonsterInterface> getMonsters() {
+    public LinkedList<MonsterInterface> getMonsters() {
         return monsterList;
     }
 
     @Override
-    public ArrayList<MonsterInterface> getMonsterList() {
+    public LinkedList<MonsterInterface> getMonsterList() {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'getMonsterList'");
+    }
+    @Override
+    public void removeMonster(MonsterInterface monster) {
+        monsterList.remove(monster);
     }
     
 }

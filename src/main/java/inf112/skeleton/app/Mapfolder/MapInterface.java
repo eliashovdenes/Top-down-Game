@@ -1,6 +1,7 @@
 package inf112.skeleton.app.Mapfolder;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
@@ -30,7 +31,7 @@ public interface MapInterface {
      * 
      * @return ArrayList containing the monster objects for the map
      */
-    public ArrayList<MonsterInterface> getMonsters();
+    public LinkedList<MonsterInterface> getMonsters();
     
     /**
      * 
@@ -88,5 +89,7 @@ public interface MapInterface {
      * 
      * @return ArrayList containing the monster objects for the map
      */
-    public ArrayList<MonsterInterface> getMonsterList();
+    public LinkedList<MonsterInterface> getMonsterList();
+
+    public void removeMonster(MonsterInterface monster);
 }
