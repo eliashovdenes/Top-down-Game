@@ -49,7 +49,6 @@ public class Player extends AbstractGameObject implements PlayerInterface {
         setSprite(PlayerPics.ATTACKDOWN.source);
         sprite.setPosition(position.x, position.y);
         rectangle = new Rectangle(position.x, position.y, getWidth(), getHeight());
-        setHP(playerHP);
         this.SM = new SoundManager();
         sprite.setSize(16, 16);
         this.lives = 3;
