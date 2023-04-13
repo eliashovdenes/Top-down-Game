@@ -220,6 +220,14 @@ Endret fremgangen de første dagene. Kanskje droppet å sitte foran pcen, men he
 
 Blitt enige om kommentarer til git tidligere, ikke blande språk.
 
+## Manuell test:
+
+Kollisjon: 
+
+Starter spillet og beveger spilleren mot veggen på kart 1. Holder inne W for å bevege spilleren oppover inn i veggen. Etter spilleren treffer veggen stopper han og bever seg ikke mer enn på på bildet: 
+
+![image.png](./ManuellTestKollisjon)
+
 ## Bildet på klassediagrammet
 ![image.png](./Klassediagram-oblig3.png)
 
