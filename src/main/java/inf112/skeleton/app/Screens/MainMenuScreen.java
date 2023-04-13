@@ -96,6 +96,7 @@ public class MainMenuScreen extends ScreenAdapter {
         font.draw(batch, "Instructions", instructionsRect.x+instructionsRect.width*0.05f,instructionsRect.y+instructionsRect.height*0.75f);
         font.draw(batch, "Credits", creditsRect.x+creditsRect.width*0.05f,creditsRect.y+creditsRect.height*0.75f);
         font.draw(batch, "Quit",quitRect.x+creditsRect.width*0.05f,quitRect.y+quitRect.height*0.75f);
+        
         batch.end();
 
 
@@ -125,6 +126,10 @@ public class MainMenuScreen extends ScreenAdapter {
             }
             
         }
+        System.out.println(controller.getMenuClick().x);
+        System.out.println("  ,  ");
+        System.out.println(controller.getMenuClick().y);
+        System.out.println("...");
     }
 
     @Override
