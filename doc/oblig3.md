@@ -221,4 +221,5 @@ Endret fremgangen de første dagene. Kanskje droppet å sitte foran pcen, men he
 Blitt enige om kommentarer til git tidligere, ikke blande språk.
 
 ## Bildet på klassediagrammet
+![image.png](./Klassediagram-oblig3.png)
 
