@@ -25,7 +25,6 @@ public class CreditScreen extends ScreenAdapter {
     private BitmapFont font;
     private Controller controller;
     private SoundManager SM;
-    MapInterface mapI = new Level1Mini(123,76);
     ShapeRenderer shape;
     Rectangle rect;
     OrthographicCamera camera;
