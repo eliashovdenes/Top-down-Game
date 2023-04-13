@@ -207,7 +207,7 @@ public class Collision {
 
                     if (entityCell.getTile().getProperties().containsKey("mini level 1")){
                         
-                        if(currMap.getMonsters().isEmpty()){
+                        if(currMap.getMonsterList().isEmpty()){
                             nextMap = new Level1Mini(139,70);
                         } else{
                             return false;

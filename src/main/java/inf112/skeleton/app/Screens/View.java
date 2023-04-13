@@ -121,12 +121,12 @@ public class View implements Screen {
         //draw arrows
         for (ProjectileInterface projectile : playerI.getArrows()){
             projectile.getSprite().draw(batch);
-            for (MonsterInterface monsterI : mapI.getMonsters()) {
+            for (MonsterInterface monsterI : mapI.getMonsterList()) {
             if (projectile.getRect().overlaps(monsterI.getRect())) { mapI.removeMonster(monsterI); break; }
             }
         }
         //draw monsters
-        for (MonsterInterface monsterI : mapI.getMonsters()){
+        for (MonsterInterface monsterI : mapI.getMonsterList()){
             monsterI.update(delta);
             monsterI.getSprite().draw(batch);   
             if (monsterI.getRect().overlaps(playerI.getRect())) {
