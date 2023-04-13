@@ -27,6 +27,13 @@ public abstract class AbstractGameObject {
         this.recentPosition = new Vector2(position);
         
     }
+
+    public AbstractGameObject(Vector2 position) {
+        this.position = position;
+        this.velocity = new Vector2();
+        this.recentPosition = new Vector2(position);
+        
+    }
     
     //** update is a method that updates the position of the object */
     public abstract void update(float delta);
