@@ -224,9 +224,9 @@ Blitt enige om kommentarer til git tidligere, ikke blande språk.
 
 Kollisjon: 
 
-Starter spillet og beveger spilleren mot veggen på kart 1. Holder inne W for å bevege spilleren oppover inn i veggen. Etter spilleren treffer veggen stopper han og bever seg ikke mer enn på på bildet: 
+Starter spillet og beveger spilleren mot veggen på kart 1. Holder inne W for å bevege spilleren oppover inn i veggen. Etter spilleren treffer veggen stopper han og bever seg ikke mer enn på på bildet. Dette blir gjort i alle retninger og Spilleren stopper der det er ønskelig.
 
-![image.png](./ManuellTestKollisjon)
+![image.png](./ManuellTestKollisjon.png)
 
 ## Bildet på klassediagrammet
 ![image.png](./Klassediagram-oblig3.png)
