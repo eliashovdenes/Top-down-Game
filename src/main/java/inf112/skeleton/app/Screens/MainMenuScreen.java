@@ -123,6 +123,7 @@ public class MainMenuScreen extends ScreenAdapter {
             if (quitRect.contains(hei.x,hei.y)){
                 Gdx.app.exit();
             }
+            controller.setJustTouched(false);
             
         }
     }

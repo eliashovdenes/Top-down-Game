@@ -171,6 +171,9 @@ public class Controller implements InputProcessor{
         this.fast = fast;
     }
 
+    public void setJustTouched(boolean justTouched) {
+        this.justTouched = false;
+    }
 
     public boolean isShop() {
         return isShop;
