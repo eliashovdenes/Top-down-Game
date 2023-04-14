@@ -42,4 +42,7 @@ public class Zelda extends Game{
         super.resume();
     }
     
+    public Controller getController(){
+        return controller;
+    }
 }

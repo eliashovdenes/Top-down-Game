@@ -26,12 +26,6 @@ public interface MapInterface {
      * @param enemyList - List of monster we want to create
      */
     public void spawn(ArrayList<String> enemyList);
-
-    /**
-     * 
-     * @return ArrayList containing the monster objects for the map
-     */
-    public LinkedList<MonsterInterface> getMonsters();
     
     /**
      * 
@@ -89,7 +83,7 @@ public interface MapInterface {
      * 
      * @return ArrayList containing the monster objects for the map
      */
-    public LinkedList<MonsterInterface> getMonsterList();
+    public ArrayList<MonsterInterface> getMonsterList();
 
 
     /**

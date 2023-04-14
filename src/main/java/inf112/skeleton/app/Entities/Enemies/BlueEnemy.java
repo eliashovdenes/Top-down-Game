@@ -34,6 +34,14 @@ public class BlueEnemy extends AbstractGameObject implements MonsterInterface  {
         // setHP(BlueEnemy);
     }
 
+    public BlueEnemy() {
+        super(new Vector2(0,0));
+        this.velocity.x = speed;
+        this.velocity.y = speed;
+        this.setMaxhitpoints(50);
+        this.setCurrentHitPoints(this.getMaxHitpoints());
+    }
+
     public static MonsterFactory getFactory() {
 		
 		return new MonsterFactory() {
@@ -47,8 +55,17 @@ public class BlueEnemy extends AbstractGameObject implements MonsterInterface  {
 			public MonsterInterface create(MapInterface map) {
 				return new BlueEnemy(map);
 			}
+
+            @Override
+			public MonsterInterface create() {
+				return new BlueEnemy();
+			}
 		};
 	}
+
+    public String getName() {
+        return "BlueEnemy";
+    }
 
     @Override
     public void update(float delta) {
@@ -106,6 +123,6 @@ public class BlueEnemy extends AbstractGameObject implements MonsterInterface  {
     @Override
     public Vector2 getPosition() {
         return position;
-    }
+    }    
     
 }

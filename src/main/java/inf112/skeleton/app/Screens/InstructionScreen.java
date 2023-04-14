@@ -12,9 +12,6 @@ import com.badlogic.gdx.math.Rectangle;
 
 import inf112.skeleton.app.Zelda;
 import inf112.skeleton.app.Controller.Controller;
-import inf112.skeleton.app.Mapfolder.Level1Mini;
-import inf112.skeleton.app.Mapfolder.MapInterface;
-import inf112.skeleton.app.Sound.SoundManager;
 
 
 
@@ -24,7 +21,6 @@ public class InstructionScreen extends ScreenAdapter {
     private Zelda game;
     private BitmapFont font;
     private Controller controller;
-    MapInterface mapI = new Level1Mini(123,76);
     ShapeRenderer shape;
     Rectangle rect;
     OrthographicCamera camera;
