@@ -257,13 +257,19 @@ public class Player extends AbstractGameObject implements PlayerInterface {
         this.direction = direction;
     }
 
+    //**Getter for direction*/
     @Override
     public DirectionEnum getPlayerDirection() {
         return this.direction;
     }
 
+    // **Getter and setter for shootTimer */
+
     public int getShootTimer() {
         return shootTimer;
+    }
+
+    public void setShootTimer(int i) {
     }
 
     @Override
@@ -309,28 +315,31 @@ public class Player extends AbstractGameObject implements PlayerInterface {
     }
 
     @Override
-    // **Overrides method from AbstractGameObject to get the position of the player
-    // */
+    // **Overrides method from AbstractGameObject to get the position of the player*/
     public Vector2 getPosition() {
         return super.getPosition();
     }
 
-    public void setShootTimer(int i) {
-    }
+    //**getter for map */
     public MapInterface returnMap(){
         return map;
     }
 
+    //**this method upgrades the lightning ability*/
     @Override
     public void upgradeLightning() {
         lightningAbilityLevel+=1;
     }
 
+
+    //**this method upgrades the arrow ability*/
     @Override
     public void upgradeArrow() {
         ArrowAbilityLevel+=1;
     }
 
+
+    //**setter and getter for lives*/
     public void setLives(int newLives) {
         if (newLives <= 0) {
             this.lives = 0;
@@ -345,6 +354,7 @@ public class Player extends AbstractGameObject implements PlayerInterface {
         return this.lives;
     }
 
+    //**takeDamage method removes given amount to healthpoints*/
     @Override
     public void takeDamage(int damage) {
         this.setCurrentHitPoints(this.getCurrentHitpoints() - damage);

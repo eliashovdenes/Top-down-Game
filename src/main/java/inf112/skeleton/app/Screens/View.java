@@ -177,7 +177,7 @@ public class View implements Screen {
         paused = true;
     }
 
-/* */
+    /* */
     @Override
     public void resume() {
         paused = false;
