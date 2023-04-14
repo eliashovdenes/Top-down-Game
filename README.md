@@ -53,8 +53,9 @@ Start spillet ved å gjøre main.java
 * Butikk: "k"
 
 ## Kjente feil
-- Fiender beveger seg utenfor spillbrettet i huset fordi den ikke bare har collisionchecks i hovedmapet
-- Fiender kan spawne i hindringer og sette seg fast
-- Lyn-angrep kollisjonsboks er ikke riktig (går rett fram, mens sprite beveger seg 'bølgete')
+- Fiender beveger seg utenfor spillbrettet i huset fordi den ikke bare har collisionchecks i hovedmapet.
+- Fiender kan spawne i hindringer og sette seg fast.
+- Lyn-angrep kollisjonsboks er ikke riktig (går rett fram, mens sprite beveger seg 'bølgete').
+- Oppgrader movement speed og player health i butikk er ikke implementert.
 
 ## Credits
