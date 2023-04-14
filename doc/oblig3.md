@@ -1,40 +1,40 @@
 # PROSJEKTRAPPORT
 
-### Hvordan fungerer rollene i teamet? 
+###### Hvordan fungerer rollene i teamet? 
 Rollene har fungert veldig bra. Gruppen er aktiv så det har ikke vært like rolle-avhengig som det kunne ha vært. Mange er flinke og tar på seg mange oppgaver og sørger for at ting blir gjort selv. Rollene har hatt en viss innflytelse, men vi har ikke vært avhengig av rollene for å få noe gjort. De fordelte rollene har fungert svært bra.
 
-#### Magnus: TEAMLEAD og GitMaster 
+###### Magnus: TEAMLEAD og GitMaster 
 
 Ansvarlig for individene i gruppen. At alle er involvert og opplever at de utvikles i faget. Drive gruppen videre, hjelper til å beslutte hvis det er utfordrende. Sørge for at frister blir imøtekommet og eventuelt ta tak i ting som ikke fungerer som ønsket.
 	
-#### Casper: Kommunikasjonsansvarlig 
+###### Casper: Kommunikasjonsansvarlig 
 
 Ansvar for at vi holder oss til møtepunktene. At vi snakker til hverandre på en god måte og bygger relasjoner med alle på teamet. Han har også ansvar for kontakt ut mot kunden.
 
-#### Bjørn: Dokumentasjonsansvarlig og Arkitekt
+###### Bjørn: Dokumentasjonsansvarlig og Arkitekt
 
 Sørge for at både prosjektet er tilstrekkelig dokumentert og at koden er tilstrekkelig dokumentert med javadoc.
 Ansvaret for arkitekturen på koden, Slik at den er fin og brukervennlig.
 	
-#### Hans-Chr: Testansvarlig, trelloMaster	
+###### Hans-Chr: Testansvarlig, trelloMaster	
 
 Sørger for at alle i gruppen skriver robuste tester til koden de implementerer.
 
-#### Elias: Produktutvikler, Mapdesigner
+###### Elias: Produktutvikler, Mapdesigner
 
 Ansvar for å drive produktet framover slik at vi møter produksjonskrav.
 
-### Trenger vi andre roller?
+#### Trenger vi andre roller?
 
 Ny rolle: Teambuildingsansvarlig, blir gitt til Magnus. Vi velger å fordele dette ansvaret til Magnus slik at vi i gruppen ikke bare samles for å jobbe med oppgaven, men også for å ha det kjekt sammen. Dette er gunstig for moralen.
 
 Forrige oblig så skrev vi at vi gjorde Bjørn til ansvarlig ovenfor arkitekturen. Dette var en kjempesuksee, og vi er fornøyd med dette.
 
-### Har vi erfaringer team-messig eller mtp prosjektmetodikk som er verdt å nevne? 	
+#### Har vi erfaringer team-messig eller mtp prosjektmetodikk som er verdt å nevne? 	
 
 Nå som vi fikk bedre struktur var det vesentlig mye lettere å fordele oppgaver. Ting ble mye mer seksjonert.
 
-### Prosjektverktøy: 
+#### Prosjektverktøy: 
 
 -Trello bruker vi aktivt nå og det funker ganske bra for oss. Det blir lagt inn ting som kan gjøres og så plukker vi hver vår ting som ligger der og jobber med dette.
 
@@ -44,17 +44,19 @@ Nå som vi fikk bedre struktur var det vesentlig mye lettere å fordele oppgaver
 
 -Discord er det verktøyet vi bruker mest for å kommunisere. Her kommuniserer alt fra ideer til hva vi ønsker å lage. Discord har funket veldig bra, vi bruker det helst for å skrive, men vi har også muligheten for muntlig kommunikasjon. Dette har vært et hjelpemiddel som har gjort det veldig lett for oss å skrive til hverandre. Kommunikasjonen i gruppen hadde vært veldig dårlig om det ikke var for discord.
 
-### Liker vi valgene vi har tatt underveis?
+#### Liker vi valgene vi har tatt underveis?
 
 Ja, vi er svært fornøyd med arkitektrollen til Bjørn. Vi hadde skrevet kode som var veldig "rotete" og mange av filene var avhengig av hverandre så det var svært vanskelig å endre på en fil uten å måtte endre på 2-3 andre. Bjørn gjorde en megajobb med å restrukturere prosjektet og det ble veldig bra. 
 
-### Hvordan er gruppedynamikken? Uenigheter?
+#### Hvordan er gruppedynamikken? Uenigheter?
 
 Gruppen har veldig fin dynamikk. Vi har alle lyst til å møte opp og jobbe med prosjektet. Dette er noe som skaper motivasjon for alle som er med i gruppen. Om vi vi gjøre ting anderledes så er alle åpne for hverandres meninger og det har ikke vært noen konflikter. Alle er åpne for god kritikk og klare for å endre det de selv har gjort. 
 
-### Hvordan har kommunikasjon fungert for oss?
+#### Hvordan har kommunikasjon fungert for oss?
 
-### Kort retrospektiv om hva som er bra og hva som kan forbedres. Hva har vi fått til til nå? 
+Det har fungert bra. Vi har brukt mye discord-serveren vår utenom de ukentlige møtene våre.
+
+#### Kort retrospektiv om hva som er bra og hva som kan forbedres. Hva har vi fått til til nå? 
 
 ###### Hva som er bra:
 - Vi har lagt inn tilstrekkelig innsats slik at prosjektet har utviklet seg kontinuerlig over tid. Alle har møtt på gruppemøter 2 til 3 ganger i uken som definitivt har bidratt til denne prosjektutviklingen. 
@@ -68,7 +70,7 @@ Gruppen har veldig fin dynamikk. Vi har alle lyst til å møte opp og jobbe med 
 - Vi ønsket å treffe i et mer sosialt øyemed, men for travle studenter har det enda ikke passet. Det må vi få til. 
 
 
-#### Fra forrige oblig skulle vi jobbe med disse forbedringspunktene:
+###### Fra forrige oblig skulle vi jobbe med disse forbedringspunktene:
 
 1. Se på semesteroppgaveteksten tidligere etter hver innlevering og jobbe med den mer strukturert.**Dette har blitt bedre. Vi var tidlig i gang med å jobbe mot neste frist.**
 
@@ -77,7 +79,7 @@ Gruppen har veldig fin dynamikk. Vi har alle lyst til å møte opp og jobbe med 
 3. Jobbe mer samkjørt, committe og merge oftere. Flere kan jobbe sammen på samme branch i stedet for at alle arbeider på hver sin branch. Dette gjør også at de som arbeider med den samme delen av klassen også må samarbeide tettere. **Dette har også blitt bedre. Teamet vet hva andre holder på med i større grad og jobber med samme brancher. Commits, merging etc blir kommunisert og skjer oftere.** 
 
 
-### Bli enige om maks 3 forbedringspunkter som skal følges opp.
+#### Bli enige om maks 3 forbedringspunkter som skal følges opp.
 1. Jobbe med trello-vanen vår. Sjekke der først! Gå igjennom Trello i starten av hvert gruppemøtet og snakker om hva som må gjøres.
 2. Vi er redde for å jobbe på samme branch, så vi ender opp med å lage for mange brancher. Vi kan nok merge enda oftere slik at vi unngår at vi ender opp en branch av en branch av en branch etc.
 3. Vi skal sørge for å treffes sosialt. Teambuilding.
@@ -246,21 +248,21 @@ Nå som vi har fått et MVP, vil vi bruke tiden framover til å videreutvikle sp
 
 ## Produkt og kode:
 ### Dette har vi fikset siden sist:
-#### Programmet har fått en helt ny arkitektur.
+###### Programmet har fått en helt ny arkitektur.
 * Dette gjorde at vi fikk et lite set-back i prosessen og måtte implementere mange av de vitale delene på nytt som f.eks collision, men nå som alt er i orden og programmet fungerer bedre enn før er det mye lettere å implementere nye implementasjoner.
-#### Vi har utbedret start menyen.
-* Finere Layoput og mer responsivt.
-#### Vi har lagt til en meny for å oppgraderinger.
+###### Vi har utbedret start menyen.
+* Finere Layout og mer responsivt. Lagt til instruksjons-screen, credit-screen og mulighet for å quitte.
+###### Vi har lagt til en meny for å oppgraderinger.
 * Nå kan man oppgradere antall piler og strømkuler som skytes.
-* Man skal også kunne opppgradere health points.
-#### Nå må man drepe alle fiendene i arenaen for å komme seg ut av arenaen.
+* Man skal også kunne opppgradere health points og movementspeed, men det er ikke implementer.
+###### Nå må man drepe alle fiendene i arenaen for å komme seg ut av arenaen.
 * Mappet oppdateres når alle fiender er bekjempet.
-#### Vi har lagt til lyder for å skyte pil og strømkule.
-#### Vi har lagt til musikk i start-menyen.
+###### Vi har lagt til lyder for å skyte pil og strømkule.
+###### Vi har lagt til musikk i start-menyen.
 * Stopper når spillet starter for å fremme fokus til brukeren.
-#### ImplementerT collision mellom fiender og våpen.
+###### Implementert collision mellom fiender og våpen.
 * Nå kan man drepe fiender med pil og strømkule uansett hvor mange man skyter.
-#### Nye map.
+###### Nye map.
 * Vi har lagt til Arenaen som blir låst når man går inn og åpner seg når alle fiender er bekjempet.
 
 
