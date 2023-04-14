@@ -33,8 +33,6 @@ Kanskje hver enkelt kan skrive litt om hvordan de synes selv det har gått med s
 3. 
 
 
-
-
 ## Brukerhistorier, akseptansekriterier og arbeidsoppgaver til MVP (som vi har jobbet med)
 
 **1. Som spiller ønsker jeg en MainMenuScreen og en GameOverScreen, slik at jeg kan starte spillet, velge nytt spill og når jeg vinner/taper i spillet så kommer jeg meg tilbake til main menu.**
@@ -191,40 +189,52 @@ Nå som vi har fått et MVP, vil vi bruke tiden framover til å videreutvikle sp
 
 ### Hvordan styre karateren i spillet
 * Du styrer karateren med "w", "a", "s", "d"
-* Angriper ved å holde inne "x"
-* Løper raskere ved å holde inne "shift"
+* Skyter pil med space-tasten
+* skyter lyn med Enter-tasten
+* Åpner og lukker oppgraderings-meny med "k"
+* Løper raskere ved å holde inne "L"
 
 ## Produkt og kode:
-Dette har vi fikset siden sist:
-* Spilleren kan bevege seg "behagelig" i åtte retninger.
-* Collision detection er i orden mellom GameObject(spiller, fiende) og kart. Vi kan nå enkelt besteme hvor spilleren kan gå og ikke.
-* Det finnes nå en fiende og collision detection mellom fienden og spilleren. Man kan både drepe fienden eller bli drept av fienden avhengig av om man bruker sverdet eller ikke i det man kolliderer med fienden.
-* Vi har lagt til sverd animasjon for fire retninger.
-* Vi har lagt til en start meny.
-* Vi har lagt til en game over meny når man dør.
-* Vi har lagt til tre forskjellige maps som spiller kan flytte seg gjennom.
+### Dette har vi fikset siden sist:
+#### Programmet har fått en helt ny arkitektur.
+* Dette gjorde at vi fikk et lite set-back i prosessen og måtte implementere mange av de vitale delene på nytt som f.eks collision, men nå som alt er i orden og programmet fungerer bedre enn før er det mye lettere å implementere nye implementasjoner.
+#### Vi har utbedret start menyen.
+* Finere Layoput og mer responsivt.
+#### Vi har lagt til en meny for å oppgraderinger.
+* Nå kan man oppgradere antall piler og strømkuler som skytes.
+* Man skal også kunne opppgradere health points.
+#### Nå må man drepe alle fiendene i arenaen for å komme seg ut av arenaen.
+* Mappet oppdateres når alle fiender er bekjempet.
+#### Vi har lagt til lyder for å skyte pil og strømkule.
+#### Vi har lagt til musikk i start-menyen.
+* Stopper når spillet starter for å fremme fokus til brukeren.
+#### ImplementerT collision mellom fiender og våpen.
+* Nå kan man drepe fiender med pil og strømkule uansett hvor mange man skyter.
+#### Nye map.
+* Vi har lagt til Arenaen som blir låst når man går inn og åpner seg når alle fiender er bekjempet.
 
-manuell testing og brukermanualer ligger i readme.md filen.
 
 ### Hva har dere gjort bra, hva hadde dere gjort annerledes hvis dere begynte på nytt?
 
-Vi har vært gode til å bli enige om hva det er vi ønsker å lage. Vi brukte en del tid til å lære hva vi skulle gjøre og hvordan vi skulle gjøre det før vi i det hele tatt begynte med prosjektet. 
+Vi har vært gode til å bli enige om hva det er vi ønsker å lage. Vi brukte mye tid i begynnelsen til å teste oss fram og lære hva vi skulle gjøre og hvordan vi skulle gjøre det før vi i det hele tatt begynte med prosjektet. 
 
-Når vi har fordelt oppgaver så har folk tatt ansvar på de oppgavene og gjort det som må gjøres. Det er såklart vært noen ganger hvor ting ikke har blitt gjort til akkuratt tid det ble satt, men blir alltid gjort CA til den tiden. 
+Når vi har fordelt oppgaver så har folk tatt ansvar på de oppgavene og gjort det som må gjøres. Det er såklart vært noen ganger hvor ting ikke har blitt gjort til akkuratt tid det ble satt, men blir alltid gjort CA til den tiden. Så generelt i gruppen har alle vært flinke til å ta initiativ og ta eierskap til oppgavene de tar og får.  
 
-Vi har vært flinke med å begrense kreativiteten vår for å fokusere på oppgaven: Altså vi stoppet oss selv fra å bare kode kode kode og heller refakturerte/gjorde ting klart til obligen.
+Vi har vært flinke med å begrense kreativiteten vår for å fokusere på oppgaven: Altså vi stoppet oss selv fra å bare kode kode kode og heller refakturerte/gjorde ting klart til obligen. Det sier mye om hvor ivrige hele gruppen er på å skape et skikkelig produkt.
 
 ## Hva vi hadde gjort annerledes hvis vi begynte på nytt?
 
-Endret fremgangen de første dagene. Kanskje droppet å sitte foran pcen, men heller kjørt noe bli kjent aktiviteter. Derretter sette av at én person lager første "skjelettet". Opplevde at det ble lite framgang når vi ventet på skjelettet.
+* Endret fremgangen de første dagene. Kanskje droppet å sitte foran pcen, men heller kjørt noe bli kjent aktiviteter. Derretter sette av at én person lager første "skjelettet". Opplevde at det ble lite framgang når vi ventet på skjelettet.
 
-Blitt enige om kommentarer til git tidligere, ikke blande språk.
+* Vi skulle ha bestemt oss for arkitekturen med en gang istedenfor å måtte endre på alt midt i det hele. Det tok tid å, for det første, få programmet til å virke som det gjorde før "renovasjonen", og for det andre, til å få hele gruppen til å forstå seg på den nye strukturen. 
+
+* Blitt enige om kommentarer til git tidligere, ikke blande språk.
 
 ## Manuell test:
 
 Kollisjon: 
 
-Starter spillet og beveger spilleren mot veggen på kart 1. Holder inne W for å bevege spilleren oppover inn i veggen. Etter spilleren treffer veggen stopper han og bever seg ikke mer enn på på bildet. Dette blir gjort i alle retninger og Spilleren stopper der det er ønskelig.
+Starter spillet og beveger spilleren mot veggen på kart 1. Holder inne W for å bevege spilleren oppover inn i trærne. Når spilleren treffer trærne skal spilleren ikke lenger bevege seg i den retningen. Dette blir gjort i alle retninger og Spilleren stopper der det er ønskelig.
 
 ![image.png](./ManuellTestKollisjon.png)
 
