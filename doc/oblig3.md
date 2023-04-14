@@ -328,7 +328,7 @@ Når vi har fordelt oppgaver så har folk tatt ansvar på de oppgavene og gjort 
 
 Vi har vært flinke med å begrense kreativiteten vår for å fokusere på oppgaven: Altså vi stoppet oss selv fra å bare kode kode kode og heller refakturerte/gjorde ting klart til obligen. Det sier mye om hvor ivrige hele gruppen er på å skape et skikkelig produkt.
 
-## Hva vi hadde gjort annerledes hvis vi begynte på nytt?
+### Hva vi hadde gjort annerledes hvis vi begynte på nytt?
 
 * Endret fremgangen de første dagene. Kanskje droppet å sitte foran pcen, men heller kjørt noe bli kjent aktiviteter. Derretter sette av at én person lager første "skjelettet". Opplevde at det ble lite framgang når vi ventet på skjelettet.
 
