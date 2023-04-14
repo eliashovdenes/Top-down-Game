@@ -70,7 +70,8 @@ Hva kan forbedres:
 
 <Fra forrige oblig skulle vi jobbe med disse forbedringspunktene:>
 
-1. Se på semesteroppgaveteksten tidligere etter hver innlevering og jobbe med den mer strukturert. <Dette har vi fått veldig bra til denne gang>
+1. Se på semesteroppgaveteksten tidligere etter hver innlevering og jobbe med den mer strukturert. 
+## Dette har blitt bedre.
 
 2. Oppgaver kan være enda mer spesifikt fordelt slik at det er klarere for den enkelte hva han skal gjøre. For eksempel: "Implementer Player klassen" blir for vagt, vi må bli enige om hvilke metoder og funksjonalitet Player skal ha. <Dette har vi også lyktes med. Oppgaver vi snakker om og utfører nå er mye mer detaljert>
 
