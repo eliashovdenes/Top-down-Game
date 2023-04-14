@@ -39,20 +39,17 @@ Vi vil lage et Rouge-Like 2D spill hvor du ser brettet ovenfra. I spillet må du
 Foreløpig må spille kjøres i en IDE.
 Start spillet ved å gjøre main.java
 
-## Hvordan styre karateren i spillet
-
+## Keybinds
 ### Bevegelse: 
 - Høyre: "d"
 - Venstre: "a"
 - Opp: "w"
 - Ned: "s"
-
 ### Angrep: 
 * Du styrer karateren med "w", "a", "s", "d"
 * Angriper ved å trykke "space" for å skyte en pil eller "enter" for å skyte et lynangrep!
 * Løper raskere ved å holde inne "shift"
-
-### Øvre keybinds
+### Øvrige keybinds
 * Pause spillet: "Escape"
 * Butikk: "k"
 
