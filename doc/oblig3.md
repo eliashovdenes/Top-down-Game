@@ -230,7 +230,16 @@ Vi har nå laget det endelige formatet så nå er spillet snart helt ferdig, det
 
 ### Prioriteringer framover
 
-Nå som vi har fått et MVP, vil vi bruke tiden framover til å videreutvikle spillet. Vi vil legge til flere fiender, flere maps og skalere fiendene slik at de blir vanskligere å bekjempe jo lenger ut i spillet du kommer.Spilleren og fiendene skal ha hit points og de ulike fiendene skal gjøre ulik skade. Videre må vi refaktorere koden slik at stukturen blir bedre. Noe av refaktoreringen vi vil gjøre er å skille modellen fra view bedre og lage en MonsterFactory som kan lage nye fiender. Det har gått med mye tid på å bli kjent med libGDX og Tiled, dette har gjort at vi måtte prioritere å få laget et MVP til denne innleveringen, noe som har gått på bekostning av å skrive tester. Vi har noen JUnit tester samt noen manuelle tester som er beskrevet i neste del. I neste del av prosjektet vil vi legge til flere tester slik av vi testene har større dekningsgrad. Framover vil vi gå over til mer testdrevet utvikling hvor vi skriver testene parallelt med koden.
+
+Vi øsnker å implementere poengsystem som skal være koblet med nivåene og også med muligheten for å oppgradere med disse poengene. Implementere en bedre skadefunksjon som gjør at både spilleren og fienden tar skade i henhold med hvilken oppgraderinger spilleren har. Spilleren dreper monster ved vanlig kollisjon nå og dette burde vi endre til å være motsatt. 
+
+Fremover så skal vi priotere mye testing ettersom det er det som er største hindringen nå. Automatisk testing av spilleren og kollisjon. 
+
+Vi skal også designe startskjermen og slike skjermer slik at de blir fin å se på for spilleren.
+
+Gjøre unødige public metoder skal vi gjøre om til private og finpusse overalt.
+
+Spillet har tatt seg en del og det er masse småting som vi mangler for å få det til et fullverdig dataspill som er på det nivået vi ønsker. Med å prioritere testing først samt at vi samtkjører fiksing og utvikling av småting skal dette gå ganske lett for seg om vi fortsetter slik vi gjør nå. Så hoved prioriteringen fremover er å få kontroll på testing slik at vi får en god del tester som er av god kvalitet. Etter dette så er det å finpusse masse kode og implementere noen ting for å skape det fullverdige spillet.
 
 ### Brukerhistorier, akseptansekriterier og arbeidsoppgaver til neste innlevering (foreløpig liste)
 
