@@ -234,39 +234,52 @@ Nå som vi har fått et MVP, vil vi bruke tiden framover til å videreutvikle sp
 
 ### Brukerhistorier, akseptansekriterier og arbeidsoppgaver til neste innlevering (foreløpig liste)
 
-**1. Som spiller ønsker jeg at spillkarakteren har hit points slik at jeg ikke dør med en gang jeg tar skade**
+Dette er brukerhistorier vi vil jobbe med fram mot siste innlevering.
 
-* Akseptansekriterier:
-	1. Spilleren skal ha hitpoints og antall hitpoints skal vises på skjermen
-	2. Hitpoints skal oppdateres når spilleren tar skade
-	3. Spilleren skal dø når hitpoints er mindre eller lik null
-	
-* Arbeidsoppgaver:
-	1. Vi må legge til hitpoints i spillerklassen
-	2. Current hitpoints skal vises på skjermen
-	3. Hvis hitpoints er mindre enn null, skal det settes til null og spilleren dør
-	4. Skrive en metode som oppdaterer hitpoints
-	5. Skrive en metode som gjør at spilleren ikke kan ta skade i x-antall sekunder etter han tok skade for å unngå at spilleren tar kontinuerlig skade når han for eksempel går på en fiende
-
-**2. Som spiller ønsker jeg at fiendene har hit points slik at noen fiender tåler mer enn andre og spillet blir mer utfordrende**
-
-* Akseptansekriterier:
-	1. Fiender skal ha hitpoints
-	2. Hitpoints skal oppdateres når fienden tar skade
-	3. Fiender skal dø når hitpoints er mindre eller lik null
-	
-* Arbeidsoppgaver:
-	1. Vi må legge til hitpoints i fiende interfacet 
-	2. Hvis hitpoints er mindre enn null, skal hitpoints settes til null og fienden dør
-	3. Skrive en metode som oppdaterer hitpoints for fiender
-
-**3. Som fiende ønsker jeg å bli sterkere i løpet av spillet slik at spillern ikke dreper meg hver gang**
+**1. Som fiende ønsker jeg å bli sterkere i løpet av spillet slik at det blir vanskligere for spilleren å drepe meg**
 
 * Akseptansekriterier:
 	1. Fiender skal skalere og få mer hitpoints og gjøre mer skade utover i spillet
 	
 * Arbeidsoppgaver:
-	1. Vi implementere en måte å skalere hitpoints og skade til fiendene
+	1. Vi implementere en måte å skalere hitpoints til fiendene
+	2. Vi implementere en måte å skalere skaden fiendene gjør
+
+
+**2. Som utvikler ønsker jeg at spilleren skal ta skade når spilleren kolliderer med fiender slik at spillet blir mer utfordrende for spilleren**
+
+* Akseptansekriterier:
+	1. Spilleren skal ta skade når spilleren kolliderer med en fiende
+	2. Spilleren skal ta ulik skade basert på level og hvilken fiende han kolliderer med
+	3. Når spilleren tar skade, skal spilleren ikke kunne ta skade igjen en liten stund for å unngå at spilleren tar kontinuerlig skade når han kolliderer med en fiende
+	
+* Arbeidsoppgaver:
+	1. Implementere kollisjons-sjekk
+	2. Implementere metode som gjør spilleren uskadelig en kort periode etter han tar skade
+	3. Lage feltvariabler som sier hvor mye skade en fiende gjør på spilleren når de kolliderer
+
+
+**3. Som spiller ønsker jeg at fiendene skal ha bevegelsesmønster/oppførsel slik at de ikke bare står stille, da blir spillet mer utfordrende og mer underholdende å spille**
+
+* Akseptansekriterier:
+	1. Fidende skal ha en oppførsel og bevege seg på skjermen
+	
+* Arbeidsoppgaver:
+	1. Implementere oppførsel/bevegelsesmønster for hver enkel fiende
+	2. Sjekke at fiendene beveger seg naturlig og ikke setter seg fast
+
+
+**4. Som spiller ønsker jeg å få poeng som jeg kan bruke til å oppgradere karakteren min slik at jeg kan utvikle spillkarakteren min**
+
+* Akseptansekriterier:
+	1. Spilleren skal få poeng/penger nå han dreper fiender
+	2. Poengene kan brukes i butikken for å oppgradere prosjektiler og maxHitpoints
+	3. Oppgraderingene skal ha en kostnad
+	
+* Arbeidsoppgaver:
+	1. Lage en metode som gir spilleren poeng
+	2. Implementere kostnad på oppgraderingene
+	3. Lage metode som sjekker om spilleren har nok poeng til å kjøpe en upgrade
 
 
 ### Hvordan styre karateren i spillet
