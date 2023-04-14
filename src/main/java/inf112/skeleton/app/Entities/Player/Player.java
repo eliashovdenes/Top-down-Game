@@ -123,10 +123,14 @@ public class Player extends AbstractGameObject implements PlayerInterface {
         return sprite;
     }
 
-    // **Setter for movement speed */
+    // **Getter and setter for movement speed */
     @Override
     public void setMovementSpeed(float speed) {
         this.speed = speed;
+    }
+
+    public float getMovementSpeed() {
+        return this.speed;
     }
 
     // **Getters for width and height */
@@ -348,5 +352,7 @@ public class Player extends AbstractGameObject implements PlayerInterface {
             this.setLives(this.getLives() - 1);
         }
     }
+
+    
 
 }

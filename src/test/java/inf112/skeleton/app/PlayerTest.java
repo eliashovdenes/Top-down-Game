@@ -8,6 +8,8 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.Mockito.*;
 
+import inf112.skeleton.app.Entities.Enums.DirectionEnum;
+import inf112.skeleton.app.Entities.Enums.PlayerPics;
 import inf112.skeleton.app.Entities.Player.Player;
 
 public class PlayerTest {
@@ -77,6 +79,125 @@ public class PlayerTest {
         assertTrue(player.isDead());
         assertEquals(0, player.getCurrentHitpoints());
         assertEquals(0, player.getLives());
+    }
+
+
+
+    @Test
+    void testPLayerSpeed() {
+
+        Player player = mock(Player.class, Mockito.CALLS_REAL_METHODS);
+
+        //Test if player speed is set correctly
+        player.setMovementSpeed(3);
+
+        assertEquals(3, player.getMovementSpeed());
+
+        player.setMovementSpeed(1);
+
+        assertEquals(1, player.getMovementSpeed());
+
+        player.setMovementSpeed(2);
+
+        assertEquals(2, player.getMovementSpeed());
+
+        player.setMovementSpeed(0);
+
+        assertEquals(0, player.getMovementSpeed());
+    }
+
+
+    @Test
+    void testPlayerAnimation() {
+        // Mock Player
+        Player player = mock(Player.class, Mockito.CALLS_REAL_METHODS);
+
+        player.setPlayerDirection(DirectionEnum.NORTH);
+
+        assertEquals(DirectionEnum.NORTH, player.getPlayerDirection());
+
+        player.setPlayerDirection(DirectionEnum.SOUTH);
+
+        assertEquals(DirectionEnum.SOUTH, player.getPlayerDirection());
+
+        player.setPlayerDirection(DirectionEnum.EAST);
+
+        assertEquals(DirectionEnum.EAST, player.getPlayerDirection());
+
+        player.setPlayerDirection(DirectionEnum.WEST);
+
+        assertEquals(DirectionEnum.WEST, player.getPlayerDirection());
+    }
+
+    @Test
+    void testPlayerSprite(){
+        
+        //Does not work yet
+
+        // Mock Player
+        // Player player = mock(Player.class, Mockito.CALLS_REAL_METHODS);
+
+        // // Test if player sprite is set correctly
+
+        // player.setSprite(PlayerPics.UP.toString());
+
+        // assertEquals(new Sprite(new Texture(PlayerPics.UP.toString())), player.getSprite());
+
+        // // Test if player sprite is set correctly
+        // player.setSprite("player2.png");
+
+        // assertEquals("player2.png", player.getSprite());
+
+        // // Test if player sprite is set correctly
+        // player.setSprite("player3.png");
+
+        // assertEquals("player3.png", player.getSprite());
+
+        // // Test if player sprite is set correctly
+        // player.setSprite("player4.png");
+
+        // assertEquals("player4.png", player.getSprite());
+    }
+
+    @Test
+    void testPlayerPosition(){
+        
+        //Does not work yet
+        
+        
+        // Mock Player
+        // Player player = mock(Player.class, Mockito.CALLS_REAL_METHODS);
+
+        // player.setSprite(PlayerPics.UP.toString());
+
+        // Sprite sprite = player.getSprite();
+
+        // System.out.println(sprite);
+
+
+        // // Test if player position is set correctly
+
+        // sprite.setPosition(0, 0);
+
+        // assertEquals(0, sprite.getX());
+
+        // assertEquals(0, sprite.getY());
+
+        // // Test if player position is set correctly
+
+        // sprite.setPosition(1, 1);
+
+        // assertEquals(1, sprite.getX());
+
+        // assertEquals(1, sprite.getY());
+
+        // // Test if player position is set correctly
+
+        // sprite.setPosition(2, 2);
+
+        // assertEquals(2, sprite.getX());
+
+        // assertEquals(2, sprite.getY());
     }
     
 }
