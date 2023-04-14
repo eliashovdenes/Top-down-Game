@@ -4,12 +4,6 @@
 
 * Spillet kjøres fra main.java klassen.
 
-### movement
-
-* beveg deg gjennom spillet med WASD tastene.
-* beveg deg raskere ved å holde inne SHIFTLEFT tasten.
-* Du angriper med sverdet ved å trykke på x-tasten.
-
 ### For å sjekke at spillet funker som det skal:
 
 * trykk på "new game" i main menu for å starte spillet. (på noen pcer er main menu litt irresponsiv, så hvis den ikke reagerer med det første er det bare å prøve igjen.) - spillet skal ihvertall starte til slutt.
@@ -39,13 +33,25 @@ Vi vil lage et Rouge-Like 2D spill hvor du ser brettet ovenfra. I spillet må du
 Foreløpig må spille kjøres i en IDE.
 Start spillet ved å gjøre main.java
 
-## Hvordan styre karateren i spillet
-* Du syrer karateren med "w", "a", "s", "d"
-* Angriper ved å holde inne "x"
-* Løper raskere ved å holde inne "shift"
+## Keybinds
+### Bevegelse: 
+- Høyre: "D"
+- Venstre: "A"
+- Opp: "W"
+- Ned: "S"
+- Løping: "L"
+### Angrep: 
+- Lynangrep: "enter" 
+- Pilangrep: "space"
+### Øvrige keybinds
+* Pause spillet: "Escape"
+* Butikk: "k"
 
 ## Kjente feil
-Fiender beveger seg utenfor spillbrettet i huset fordi den ikke bare har collisionchecks i hovedmapet
-Fiender kan spawne i hindringer og sette seg fast
+- Fiender beveger seg utenfor spillbrettet i huset fordi den ikke bare har collisionchecks i hovedmapet.
+- Fiender kan spawne i hindringer og sette seg fast.
+- Lyn-angrep kollisjonsboks er ikke riktig i forhold til sprite. (Rektangel går rett fram, mens sprite beveger seg 'bølgete').
+- Oppgrader movement speed og player health i butikk er ikke implementert.
 
 ## Credits
+
