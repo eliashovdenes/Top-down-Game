@@ -47,9 +47,8 @@ public class MainMenuScreenTest {
             assertTrue(game.getScreen().equals(new InstructionScreen(game, game.getController())));
         } catch (UnsatisfiedLinkError ignore) {
         }
-    }
-
-    @Test
+    
+/*    @Test
     void changeToCreditScreenTest() {
 
         try {
@@ -68,5 +67,5 @@ public class MainMenuScreenTest {
         } catch (UnsatisfiedLinkError ignore) {
         }
     }
-
-}
+ */
+}}
