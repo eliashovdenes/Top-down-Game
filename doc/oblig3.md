@@ -5,7 +5,7 @@ Rollene har fungert veldig bra. Gruppen er aktiv så det har ikke vært like rol
 
 #### Magnus: TEAMLEAD og GitMaster 
 
-Ansvarlig for individene i gruppen. At alle er involvert og opplever at de utvikles i faget. Drive gruppen videre, hjelper til å beslutte hvis det er utfordrende. Sørge for at frister blir imøtekommet og eventuelt ta tak i ting som ikke fungerer som ønsket.
+Ansvarlig for individene i gruppen. At alle er involvert og opplever at de utvikles i faget. Drive gruppen videre, hjelper til å beslutte hvis det er utfordrende. Sørge for at frister blir imøtekommet og eventuelt ta tak i ting som ikke fungerer som ønsket. 
 	
 #### Casper: Kommunikasjonsansvarlig 
 
@@ -26,7 +26,7 @@ Ansvar for å drive produktet framover slik at vi møter produksjonskrav.
 
 ### Trenger vi andre roller?
 
-Ny rolle: Teambuildingsansvarlig, blir gitt til Magnus. Vi velger å fordele dette ansvaret til Magnus slik at vi i gruppen ikke bare samles for å jobbe med oppgaven, men også for å ha det kjekt sammen. Dette er gunstig for moralen.
+Ny rolle: Teambuildingsansvarlig, blir gitt til Magnus. Vi velger å gi dette ansvaret til Magnus slik at vi i gruppen ikke bare samles for å jobbe med oppgaven, men også for å ha det kjekt sammen. Dette er gunstig for moralen.
 
 Forrige oblig så skrev vi at vi gjorde Bjørn til ansvarlig ovenfor arkitekturen. Dette var en kjempesuksee, og vi er fornøyd med dette.
 
@@ -224,8 +224,11 @@ Vi har oppfylt det aller meste av dette. Vi har brukt Tiled til å lage spillbre
 Vi har nå laget det endelige formatet så nå er spillet snart helt ferdig, det mangler litt finpuss her og der. Vi har viderebygget på forrige det vi hadde før. Endret formatet i fra at du skal gå fra level 1-2-3-4....-osv, til at du er i lvl 1 som har huset hvor du da kan gå til nivå 2 som skal være "kampområde" hvor er der hvor det kommer fiender. Når du har slått ut alle monstrene så kan du gå tilbake til nivå 1 og da kan du gå inn i en nivå 2 igjen. Vi har også laget en upgrade meny som gjør at spilleren kan oppgradere angrepene sine. Ingen begrensninger på når du kan oppgradere angrep foreløpig, men dette skal vi lage til neste gang.
 
 ### Bugs
-* Inne i huset går fiendene ut av av brettet. Dette er fordi fiendene sjekker kollison i hovedbrettet og ikke inne i huset ennå. * Fiender kan også spawne inne i trærne slik at de ikke kan bevege seg.
-* Vi har lagt til SpotBugs Maven Plugin i pom.xml for å hjelpe oss til å finne bugs
+
+* pilene blir aldri slettet, dette gjør at jo flere piler man skyter jo mer har programmet å jobbr med hvilket resulterer i at det går tregt til slutt.
+* Pilene blir med når man bytter map.
+* Av og til stopper ikke musikken når vi starter spillet.
+* I forrige oblig implementerte vi spotbugs. I vårt tilfelle førte dette til flere bugs hvor halvparten av medlemmene ikke fikk mulighet til å spille spillet med en uforståelig feilmelding, så den har vi sløyfet nå.
 
 
 ### Prioriteringer framover
@@ -291,6 +294,8 @@ Dette er brukerhistorier vi vil jobbe med fram mot siste innlevering.
 
 ## Produkt og kode:
 ### Dette har vi fikset siden sist:
+
+
 #### Programmet har fått en helt ny arkitektur.
 * Dette gjorde at vi fikk et lite set-back i prosessen og måtte implementere mange av de vitale delene på nytt som f.eks collision, men nå som alt er i orden og programmet fungerer bedre enn før er det mye lettere å implementere nye implementasjoner.
 #### Vi har utbedret start menyen.
