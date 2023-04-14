@@ -5,7 +5,7 @@ Rollene har fungert veldig bra. Gruppen er aktiv så det har ikke vært like rol
 
 ###### Magnus: TEAMLEAD og GitMaster 
 
-Ansvarlig for individene i gruppen. At alle er involvert og opplever at de utvikles i faget. Drive gruppen videre, hjelper til å beslutte hvis det er utfordrende. Sørge for at frister blir imøtekommet og eventuelt ta tak i ting som ikke fungerer som ønsket.
+Ansvarlig for individene i gruppen. At alle er involvert og opplever at de utvikles i faget. Drive gruppen videre, hjelper til å beslutte hvis det er utfordrende. Sørge for at frister blir imøtekommet og eventuelt ta tak i ting som ikke fungerer som ønsket. 
 	
 ###### Casper: Kommunikasjonsansvarlig 
 
@@ -26,7 +26,7 @@ Ansvar for å drive produktet framover slik at vi møter produksjonskrav.
 
 #### Trenger vi andre roller?
 
-Ny rolle: Teambuildingsansvarlig, blir gitt til Magnus. Vi velger å fordele dette ansvaret til Magnus slik at vi i gruppen ikke bare samles for å jobbe med oppgaven, men også for å ha det kjekt sammen. Dette er gunstig for moralen.
+Ny rolle: Teambuildingsansvarlig, blir gitt til Magnus. Vi velger å gi dette ansvaret til Magnus slik at vi i gruppen ikke bare samles for å jobbe med oppgaven, men også for å ha det kjekt sammen. Dette er gunstig for moralen.
 
 Forrige oblig så skrev vi at vi gjorde Bjørn til ansvarlig ovenfor arkitekturen. Dette var en kjempesuksee, og vi er fornøyd med dette.
 
@@ -212,8 +212,11 @@ Gruppen har hatt mange ideer på hvordan vi kan legge til ny funksjonalitet. Vi 
 Slik spillet er nå går spilleren inn i en arena hvor han slåss mot fiender. Når fiendene er beseiret, kan han gå ut av arenaen og kommer tilbake til startområdet. I huset kan han kjøpe upgrades (poengsystemet er ikke implementert ennå). 
 
 ### Bugs
-* Inne i huset går fiendene ut av av brettet. Dette er fordi fiendene sjekker kollison i hovedbrettet og ikke inne i huset ennå. * Fiender kan også spawne inne i trærne slik at de ikke kan bevege seg.
-* Vi har lagt til SpotBugs Maven Plugin i pom.xml for å hjelpe oss til å finne bugs
+
+* pilene blir aldri slettet, dette gjør at jo flere piler man skyter jo mer har programmet å jobbr med hvilket resulterer i at det går tregt til slutt.
+* Pilene blir med når man bytter map.
+* Av og til stopper ikke musikken når vi starter spillet.
+* I forrige oblig implementerte vi spotbugs. I vårt tilfelle førte dette til flere bugs hvor halvparten av medlemmene ikke fikk mulighet til å spille spillet med en uforståelig feilmelding, så den har vi sløyfet nå.
 
 
 ### Prioriteringer framover
@@ -288,7 +291,9 @@ Dette er brukerhistorier vi vil jobbe med fram mot siste innlevering.
 
 ## Produkt og kode:
 ### Dette har vi fikset siden sist:
-###### Programmet har fått en helt ny arkitektur.
+
+
+#### Programmet har fått en helt ny arkitektur.
 * Dette gjorde at vi fikk et lite set-back i prosessen og måtte implementere mange av de vitale delene på nytt som f.eks collision, men nå som alt er i orden og programmet fungerer bedre enn før er det mye lettere å implementere nye implementasjoner.
 ###### Vi har utbedret start menyen.
 * Finere Layout og mer responsivt. Lagt til instruksjons-screen, credit-screen og mulighet for å quitte.
