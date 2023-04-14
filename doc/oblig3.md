@@ -322,11 +322,11 @@ Dette er brukerhistorier vi vil jobbe med fram mot siste innlevering.
 
 ### Hva har dere gjort bra, hva hadde dere gjort annerledes hvis dere begynte på nytt?
 
-Vi har vært gode til å bli enige om hva det er vi ønsker å lage. Vi brukte mye tid i begynnelsen til å teste oss fram og lære hva vi skulle gjøre og hvordan vi skulle gjøre det før vi i det hele tatt begynte med prosjektet. 
+* Vi har vært gode til å bli enige om hva det er vi ønsker å lage. Vi brukte mye tid i begynnelsen til å teste oss fram og lære hva vi skulle gjøre og hvordan vi skulle gjøre det før vi i det hele tatt begynte med prosjektet. 
 
-Når vi har fordelt oppgaver så har folk tatt ansvar på de oppgavene og gjort det som må gjøres. Det er såklart vært noen ganger hvor ting ikke har blitt gjort til akkuratt tid det ble satt, men blir alltid gjort CA til den tiden. Så generelt i gruppen har alle vært flinke til å ta initiativ og ta eierskap til oppgavene de tar og får.  
+* Når vi har fordelt oppgaver så har folk tatt ansvar på de oppgavene og gjort det som må gjøres. Det er såklart vært noen ganger hvor ting ikke har blitt gjort til akkuratt tid det ble satt, men blir alltid gjort CA til den tiden. Så generelt i gruppen har alle vært flinke til å ta initiativ og ta eierskap til oppgavene de tar og får.  
 
-Vi har vært flinke med å begrense kreativiteten vår for å fokusere på oppgaven: Altså vi stoppet oss selv fra å bare kode kode kode og heller refakturerte/gjorde ting klart til obligen. Det sier mye om hvor ivrige hele gruppen er på å skape et skikkelig produkt.
+* Vi har vært flinke med å begrense kreativiteten vår for å fokusere på oppgaven: Altså vi stoppet oss selv fra å bare kode kode kode og heller refakturerte/gjorde ting klart til obligen. Det sier mye om hvor ivrige hele gruppen er på å skape et skikkelig produkt.
 
 ### Hva vi hadde gjort annerledes hvis vi begynte på nytt?
 
