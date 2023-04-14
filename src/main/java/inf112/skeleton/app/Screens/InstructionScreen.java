@@ -29,7 +29,7 @@ public class InstructionScreen extends ScreenAdapter {
     Rectangle rect;
     OrthographicCamera camera;
 
-    Rectangle newGameRect,instructionsRect,quitRect,creditsRect;
+    Rectangle movementKeysRect,attackKeysRect,miscKeysRect,purposeRect;
 
     public InstructionScreen(Zelda southGame, Controller controller) {
         this.game = southGame;
@@ -42,17 +42,17 @@ public class InstructionScreen extends ScreenAdapter {
 
         float screenWidth = Gdx.graphics.getWidth();
         float screenHeight = Gdx.graphics.getHeight();
-        float rectangleWidth = screenWidth*0.2f;
+        float rectangleWidth = screenWidth;
         float rectangleHeight = screenHeight*0.03f;
         float spaceBetweenRetangles = screenHeight*0.02f;
         float rectangleY = screenHeight * 0.7f;
 
     
         
-        newGameRect = new Rectangle(screenWidth * 0.05f, rectangleY, rectangleWidth, rectangleHeight);
-        instructionsRect = new Rectangle(screenWidth * 0.05f, rectangleY - rectangleHeight - spaceBetweenRetangles, rectangleWidth, rectangleHeight);
-        creditsRect = new Rectangle(screenWidth * 0.05f, rectangleY - 2 * (rectangleHeight + spaceBetweenRetangles), rectangleWidth, rectangleHeight);
-        quitRect = new Rectangle(screenWidth * 0.05f, rectangleY - 3 * (rectangleHeight + spaceBetweenRetangles), rectangleWidth, rectangleHeight);
+        movementKeysRect = new Rectangle(screenWidth * 0.05f, rectangleY, rectangleWidth, rectangleHeight);
+        attackKeysRect = new Rectangle(screenWidth * 0.05f, rectangleY - rectangleHeight - spaceBetweenRetangles, rectangleWidth, rectangleHeight);
+        miscKeysRect = new Rectangle(screenWidth * 0.05f, rectangleY - 2 * (rectangleHeight + spaceBetweenRetangles), rectangleWidth, rectangleHeight);
+        purposeRect = new Rectangle(screenWidth * 0.05f, rectangleY - 3 * (rectangleHeight + spaceBetweenRetangles), rectangleWidth, rectangleHeight);
 
 
         // Create the camera and set its position to the center of the screen
@@ -74,10 +74,10 @@ public class InstructionScreen extends ScreenAdapter {
         shape.begin(ShapeRenderer.ShapeType.Filled);
         
         
-        shape.rect(newGameRect.x,newGameRect.y,newGameRect.width,newGameRect.height);
-        shape.rect(instructionsRect.x,instructionsRect.y,instructionsRect.width,instructionsRect.height);
-        shape.rect(creditsRect.x,creditsRect.y,creditsRect.width,creditsRect.height);
-        shape.rect(quitRect.x,quitRect.y,quitRect.width,quitRect.height);
+        shape.rect(movementKeysRect.x,movementKeysRect.y,movementKeysRect.width,movementKeysRect.height);
+        shape.rect(attackKeysRect.x,attackKeysRect.y,attackKeysRect.width,attackKeysRect.height);
+        shape.rect(miscKeysRect.x,miscKeysRect.y,miscKeysRect.width,miscKeysRect.height);
+        shape.rect(purposeRect.x,purposeRect.y,purposeRect.width,purposeRect.height);
         shape.end(); 
 
         // Draw the title
@@ -87,10 +87,10 @@ public class InstructionScreen extends ScreenAdapter {
         
         //draw text on buttons
         font.getData().setScale(1);
-        font.draw(batch, "Move with awsd", newGameRect.x+newGameRect.width*0.05f, newGameRect.y+newGameRect.height*0.75f);
-        font.draw(batch, "Attacj with bahllbab", instructionsRect.x+instructionsRect.width*0.05f,instructionsRect.y+instructionsRect.height*0.75f);
-        font.draw(batch, "dont die", creditsRect.x+creditsRect.width*0.05f,creditsRect.y+creditsRect.height*0.75f);
-        font.draw(batch, "shop for upgrades in the shop (press k)",quitRect.x+creditsRect.width*0.05f,quitRect.y+quitRect.height*0.75f);
+        font.draw(batch, "Move with 'A','W','S','D'", movementKeysRect.x+movementKeysRect.width*0.05f, movementKeysRect.y+movementKeysRect.height*0.75f);
+        font.draw(batch, "Ranged attack with 'Enter' and 'Space'. Pause with 'Esc'", attackKeysRect.x+attackKeysRect.width*0.05f,attackKeysRect.y+attackKeysRect.height*0.75f);
+        font.draw(batch, "shop for upgrades in the shop (bound to 'K')", miscKeysRect.x+miscKeysRect.width*0.05f,miscKeysRect.y+miscKeysRect.height*0.75f);
+        font.draw(batch, "Your purpose is to kill monster, get currency to upgrade and then move to the next level",purposeRect.x+purposeRect.width*0.05f,purposeRect.y+purposeRect.height*0.75f);
         batch.end();
         
         if (controller.getJustTouched()){
