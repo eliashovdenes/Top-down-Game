@@ -4,12 +4,6 @@
 
 * Spillet kjøres fra main.java klassen.
 
-### movement
-
-* beveg deg gjennom spillet med WASD tastene.
-* beveg deg raskere ved å holde inne SHIFTLEFT tasten.
-* Du angriper med sverdet ved å trykke på x-tasten.
-
 ### For å sjekke at spillet funker som det skal:
 
 * trykk på "new game" i main menu for å starte spillet. (på noen pcer er main menu litt irresponsiv, så hvis den ikke reagerer med det første er det bare å prøve igjen.) - spillet skal ihvertall starte til slutt.
@@ -41,10 +35,11 @@ Start spillet ved å gjøre main.java
 
 ## Keybinds
 ### Bevegelse: 
-- Høyre: "d"
-- Venstre: "a"
-- Opp: "w"
-- Ned: "s"
+- Høyre: "D"
+- Venstre: "A"
+- Opp: "W"
+- Ned: "S"
+- Løping: "L"
 ### Angrep: 
 - Lynangrep: "enter" 
 - Pilangrep: "space"
@@ -55,7 +50,8 @@ Start spillet ved å gjøre main.java
 ## Kjente feil
 - Fiender beveger seg utenfor spillbrettet i huset fordi den ikke bare har collisionchecks i hovedmapet.
 - Fiender kan spawne i hindringer og sette seg fast.
-- Lyn-angrep kollisjonsboks er ikke riktig (går rett fram, mens sprite beveger seg 'bølgete').
+- Lyn-angrep kollisjonsboks er ikke riktig i forhold til sprite. (Rektangel går rett fram, mens sprite beveger seg 'bølgete').
 - Oppgrader movement speed og player health i butikk er ikke implementert.
 
 ## Credits
+
