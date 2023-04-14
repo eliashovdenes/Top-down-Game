@@ -78,11 +78,9 @@ Gruppen har veldig fin dynamikk. Vi har alle lyst til å møte opp og jobbe med 
 
 
 ### Bli enige om maks 3 forbedringspunkter som skal følges opp.
-1. Vi er redde for å jobbe på samme branch, så vi ender opp med å lage for mange brancher. Vi kan nok merge enda oftere slik at vi unngår at vi ender opp en branch av en branch av en branch etc.
-2.  
-3. 
-
-
+1. Jobbe med trello-vanen vår. Sjekke der først! Gå igjennom Trello i starten av hvert gruppemøtet og snakker om hva som må gjøres.
+2. Vi er redde for å jobbe på samme branch, så vi ender opp med å lage for mange brancher. Vi kan nok merge enda oftere slik at vi unngår at vi ender opp en branch av en branch av en branch etc.
+3. Vi skal sørge for å treffes sosialt. Teambuilding.
 
 
 ## Brukerhistorier, akseptansekriterier og arbeidsoppgaver til MVP (som vi har jobbet med)
