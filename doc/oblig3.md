@@ -1,27 +1,54 @@
 # PROSJEKTRAPPORT
 
 ### Hvordan fungerer rollene i teamet? 
-Kanskje hver enkelt kan skrive litt om hvordan de synes selv det har gått med sin egen rolle?
+Rollene har fungert veldig bra. Gruppen er aktiv så det har ikke vært like rolle-avhengig som det kunne ha vært. Mange er flinke og tar på seg mange oppgaver og sørger for at ting blir gjort selv. Rollene har hatt en viss innflytelse, men vi har ikke vært avhengig av rollene for å få noe gjort. De fordelte rollene har fungert svært bra.
 
 #### Magnus: TEAMLEAD og GitMaster 
+
+Ansvarlig for individene i gruppen. At alle er involvert og opplever at de utvikles i faget. Drive gruppen videre, hjelper til å beslutte hvis det er utfordrende. Sørge for at frister blir imøtekommet og eventuelt ta tak i ting som ikke fungerer som ønsket.
 	
 #### Casper: Kommunikasjonsansvarlig 
 
-#### Bjørn: Dokumentasjonsansvarlig
+Ansvar for at vi holder oss til møtepunktene. At vi snakker til hverandre på en god måte og bygger relasjoner med alle på teamet. Han har også ansvar for kontakt ut mot kunden.
+
+#### Bjørn: Dokumentasjonsansvarlig og Arkitekt
+
+Sørge for at både prosjektet er tilstrekkelig dokumentert og at koden er tilstrekkelig dokumentert med javadoc.
+Ansvaret for arkitekturen på koden, Slik at den er fin og brukervennlig.
 	
 #### Hans-Chr: Testansvarlig, trelloMaster	
 
+Sørger for at alle i gruppen skriver robuste tester til koden de implementerer.
+
 #### Elias: Produktutvikler, Mapdesigner
+
+Ansvar for å drive produktet framover slik at vi møter produksjonskrav.
 
 ### Trenger vi andre roller?
 
+Ny rolle: Teambuildingsansvarlig, blir gitt til Magnus. Vi velger å fordele dette ansvaret til Magnus slik at vi i gruppen ikke bare samles for å jobbe med oppgaven, men også for å ha det kjekt sammen. Dette er gunstig for moralen.
+
+Forrige oblig så skrev vi at vi gjorde Bjørn til ansvarlig ovenfor arkitekturen. Dette var en kjempesuksee, og vi er fornøyd med dette.
+
 ### Har vi erfaringer team-messig eller mtp prosjektmetodikk som er verdt å nevne? 	
+
+Nå som vi fikk bedre struktur var det vesentlig mye lettere å fordele oppgaver. Ting ble mye mer seksjonert.
 
 ### Prosjektverktøy: 
 
+-Trello bruker vi aktivt nå og det funker ganske bra for oss. Det blir lagt inn ting som kan gjøres og så plukker vi hver vår ting som ligger der og jobber med dette.
+
+-Vi benytter oss også mye av parprogrammering i gruppetimer og når vi treffes utenom gruppetimen hver onsdag. Spesielt på de litt 'tyngre' oppgavene som å lage maps i TILED. Vi bruker grupperom med tv til å vise frem kode og så parkoder vi alle sammen på gruppen. Ofte bare 2 og 2 også.
+
+-Gitlab blir brukt som Prosjekt holder.
+
 ### Liker vi valgene vi har tatt underveis?
 
+Ja, vi er svært fornøyd med arkitektrollen til Bjørn. Vi hadde skrevet kode som var veldig "rotete" og mange av filene var avhengig av hverandre så det var svært vanskelig å endre på en fil uten å måtte endre på 2-3 andre. Bjørn gjorde en megajobb med å restrukturere prosjektet og det ble veldig bra. 
+
 ### Hvordan er gruppedynamikken? Uenigheter?
+
+Gruppen har veldig fin dynamikk. Vi har alle lyst til å møte opp og jobbe med prosjektet. Dette er noe som skaper motivasjon for alle som er med i gruppen. Om vi vi gjøre ting anderledes så er alle åpne for hverandres meninger og det har ikke vært noen konflikter. Alle er åpne for god kritikk og klare for å endre det de selv har gjort. 
 
 ### Hvordan har kommunikasjon fungert for oss?
 
