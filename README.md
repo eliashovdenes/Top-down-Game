@@ -46,9 +46,8 @@ Start spillet ved å gjøre main.java
 - Opp: "w"
 - Ned: "s"
 ### Angrep: 
-* Du styrer karateren med "w", "a", "s", "d"
-* Angriper ved å trykke "space" for å skyte en pil eller "enter" for å skyte et lynangrep!
-* Løper raskere ved å holde inne "shift"
+- Lynangrep: "enter" 
+- Pilangrep: "space"
 ### Øvrige keybinds
 * Pause spillet: "Escape"
 * Butikk: "k"
