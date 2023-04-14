@@ -42,6 +42,8 @@ Nå som vi fikk bedre struktur var det vesentlig mye lettere å fordele oppgaver
 
 -Gitlab blir brukt som Prosjekt holder.
 
+-Discord er det verktøyet vi bruker mest for å kommunisere. Her kommuniserer alt fra ideer til hva vi ønsker å lage. Discord har funket veldig bra, vi bruker det helst for å skrive, men vi har også muligheten for muntlig kommunikasjon. Dette har vært et hjelpemiddel som har gjort det veldig lett for oss å skrive til hverandre. Kommunikasjonen i gruppen hadde vært veldig dårlig om det ikke var for discord.
+
 ### Liker vi valgene vi har tatt underveis?
 
 Ja, vi er svært fornøyd med arkitektrollen til Bjørn. Vi hadde skrevet kode som var veldig "rotete" og mange av filene var avhengig av hverandre så det var svært vanskelig å endre på en fil uten å måtte endre på 2-3 andre. Bjørn gjorde en megajobb med å restrukturere prosjektet og det ble veldig bra. 
