@@ -31,7 +31,10 @@ public class MapTest {
         expectedList.add(new BlueEnemy());
 
         // Assert that the spawn method created the right monsters
-        assertEquals(expectedList, testMap.getMonsterList());
+        assertEquals(expectedList.get(0).getName(), testMap.getMonsterList().get(0).getName());
+        assertEquals(expectedList.get(1).getName(), testMap.getMonsterList().get(1).getName());
+        assertEquals(expectedList.get(2).getName(), testMap.getMonsterList().get(2).getName());
+        assertEquals(expectedList.get(3).getName(), testMap.getMonsterList().get(3).getName());
         
     }
 
