@@ -83,7 +83,9 @@ Gruppen har veldig fin dynamikk. Vi har alle lyst til å møte opp og jobbe med 
 3. Vi skal sørge for å treffes sosialt. Teambuilding.
 
 
-## Brukerhistorier, akseptansekriterier og arbeidsoppgaver til MVP (som vi har jobbet med)
+## Brukerhistorier, akseptansekriterier og arbeidsoppgaver - Fullførte Oppgaver:
+
+De følgende brukerhistoriene er vi ferdige med. Vi har jobbet mye med refaktorering de siste ukene som har gjort at vi også har gått tilbake og jobbet med og forbedret mange av brukerhistoriene som vi også jobbet med til oblig2.
 
 **1. Som spiller ønsker jeg en MainMenuScreen og en GameOverScreen, slik at jeg kan starte spillet, velge nytt spill og når jeg vinner/taper i spillet så kommer jeg meg tilbake til main menu.**
 
@@ -97,7 +99,8 @@ Gruppen har veldig fin dynamikk. Vi har alle lyst til å møte opp og jobbe med 
 	2. Lage en Startmeny
 	3. Ha en keyListener som registrerer når spilleren trykker på start
 	4. Lage en metode som registrerer når spilleren er død/har null hit points.
-		
+
+
 **2. Som spiller ønsker jeg å se spillbrettet på skjermen slik at jeg kan se hvor jeg kan bevege karakteren min.** 
 * Akseptansekriterier:
 	1. Spillet starter og viser spillbrettet
@@ -115,7 +118,8 @@ Gruppen har veldig fin dynamikk. Vi har alle lyst til å møte opp og jobbe med 
 	1. Vi må ha en spiller-klasse
 	2. Karakteren må ha en posisjon
 	3. Karakteren må tegnes på skjermen
-		
+
+
 **4. Som spiller ønsker jeg at jeg kan bevege karakteren min ved å trykke på tastene slik at jeg kan unngå at fiender skader meg.**
 * Akseptansekriterier:
 	1. Spilleren skal kunne bevege seg på skjermen i åtte retninger ved å bruke tastene "w", "a", "s", "d"
@@ -126,7 +130,8 @@ Gruppen har veldig fin dynamikk. Vi har alle lyst til å møte opp og jobbe med 
 	3. Kombinasjoner av tastetrykkene må bevege spilleren diagonalt
 	4. Modellen må oppdateres med den nye posisjonen
 	5. Vi må tegne karakteren i den nye posisjonen
-		
+
+
 **5. Som spiller ønsker jeg at det er lett å skille områdene spilleren kan bevege seg på fra hindringer og vegger slik at det er lett å se hvor jeg kan bevege meg på brettet**
 * Akseptansekriterier:
 	1. Brettet skal vises med vegger og hindringer
@@ -140,7 +145,48 @@ Gruppen har veldig fin dynamikk. Vi har alle lyst til å møte opp og jobbe med 
 	5. Modellen må ha informasjon om de ulike tiles-ene og hvor de er.
 	6. View må vite hva som skal tegnes hvor og hvordan tiles ser ut
 
-**6. Som spiller ønsker jeg at spillet har fiender, slik at det er noe som skjer i spillet som er underholdende for spilleren.**
+
+**6. Som spiller ønsker jeg å kunne angripe fiendene slik at jeg kan overvinne dem.**
+
+* Akseptansekriterier:
+	1. Splilleren på kunne drepe fienden
+	2. Fienden skal forsvinne fra brettet når den dør
+
+* Arbeidsoppgaver:
+	1. Spillkarakteren må ha en metode som gjør at han skyter eller slår en fiende med et våpen eller på en annen måte skade fienden
+	2. Det må være en knapp spilleren kan trykke på for å angripe
+	3. Det må registreres når spilleren treffer fienden med våpenet
+	4. En fiende må ha hitpoints
+	5. Fienden må miste hit points når den blir truffet
+	6. Fienden må dø og forsvinne når den ikke har flere hit points
+
+
+**7. Som spiller ønsker jeg at spillkarakteren har hit points slik at jeg ikke dør med en gang jeg tar skade**
+
+* Akseptansekriterier:
+	1. Spilleren skal ha hitpoints og antall hitpoints skal vises på skjermen
+	2. Hitpoints skal oppdateres når spilleren tar skade
+	3. Spilleren skal dø når hitpoints er mindre eller lik null
+	
+* Arbeidsoppgaver:
+	1. Vi må legge til hitpoints i spillerklassen
+	2. Current hitpoints skal vises på skjermen
+	3. Hvis hitpoints er mindre enn null, skal det settes til null og spilleren dør
+	4. Skrive en metode som oppdaterer hitpoints
+
+**8. Som spiller ønsker jeg at fiendene har hit points slik at noen fiender tåler mer enn andre og spillet blir mer utfordrende**
+
+* Akseptansekriterier:
+	1. Fiender skal ha hitpoints
+	2. Hitpoints skal oppdateres når fienden tar skade
+	3. Fiender skal dø når hitpoints er mindre eller lik null
+	
+* Arbeidsoppgaver:
+	1. Vi må legge til hitpoints i fiende interfacet 
+	2. Hvis hitpoints er mindre enn null, skal hitpoints settes til null og fienden dør
+	3. Skrive en metode som oppdaterer hitpoints for fiender
+
+**9. Som spiller ønsker jeg at spillet har fiender, slik at det er noe som skjer i spillet som er underholdende**
 * Akseptansekriterier:
 	1. Spillet må ha en fiende som vises på skjermen
 	
@@ -153,20 +199,6 @@ Gruppen har veldig fin dynamikk. Vi har alle lyst til å møte opp og jobbe med 
 	5. En fiende må ha en hitbox
 	6. Fienden må ha en oppførsel/bevegelsesmønster
 	7. Fienden må tegnes på skjermen
-
-**7. Som spiller ønsker jeg å kunne angripe fiendene slik at jeg kan overvinne dem.**
-
-* Akseptansekriterier:
-	1. Splilleren på kunne drepe fienden
-	2. Fienden skal forsvinne fra brettet når han dør
-
-* Arbeidsoppgaver:
-	1. Spillkarakteren må ha en metode som gjør at han skyter eller slår en fiende med et våpen eller på en annen måte skade fienden
-	2. Det må være en knapp spilleren kan trykke på for å angripe
-	3. Det må registreres når spilleren treffer fienden med våpenet
-	4. En fiende må ha hitpoints
-	5. Fienden må miste hit points når den blir truffet
-	6. Fienden må dø og forsvinne når den ikke har flere hit points
 
 
 # Krav og spesifikasjon
