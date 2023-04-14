@@ -40,12 +40,18 @@ Foreløpig må spille kjøres i en IDE.
 Start spillet ved å gjøre main.java
 
 ## Hvordan styre karateren i spillet
-* Du syrer karateren med "w", "a", "s", "d"
-* Angriper ved å holde inne "x"
+* Bevegelse: 
+- Høyre: "d"
+- Venstre: "a"
+- Opp: "w"
+- Ned: "s"
+* Du styrer karateren med "w", "a", "s", "d"
+* Angriper ved å trykke "space" for å skyte en pil eller "enter" for å skyte et lynangrep!
 * Løper raskere ved å holde inne "shift"
 
 ## Kjente feil
-Fiender beveger seg utenfor spillbrettet i huset fordi den ikke bare har collisionchecks i hovedmapet
-Fiender kan spawne i hindringer og sette seg fast
+- Fiender beveger seg utenfor spillbrettet i huset fordi den ikke bare har collisionchecks i hovedmapet
+- Fiender kan spawne i hindringer og sette seg fast
+- Lyn-angrep kollisjonsboks er ikke riktig (går rett fram, mens sprite beveger seg 'bølgete')
 
 ## Credits
