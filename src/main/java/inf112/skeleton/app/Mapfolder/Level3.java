@@ -28,7 +28,7 @@ public class Level3 extends TiledMap implements MapInterface {
 
     private TiledMap tiledMap;
     private OrthogonalTiledMapRenderer renderer;
-    private LinkedList<MonsterInterface> monsterList = new LinkedList<>();
+    private ArrayList<MonsterInterface> monsterList = new ArrayList<>();
     private Map<String, MonsterFactory> monsterFactories = new HashMap<>();
     private ArrayList<String> enemyList;
 
@@ -59,12 +59,6 @@ public class Level3 extends TiledMap implements MapInterface {
         }
     }
 
-    
-
-    @Override
-    public LinkedList<MonsterInterface> getMonsters() {
-        return monsterList;
-    }
 
     @Override
     public TiledMap getMap() {
@@ -107,9 +101,8 @@ public class Level3 extends TiledMap implements MapInterface {
     }
 
     @Override
-    public LinkedList<MonsterInterface> getMonsterList() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getMonsterList'");
+    public ArrayList<MonsterInterface> getMonsterList() {
+        return this.monsterList;
     }
 
     @Override

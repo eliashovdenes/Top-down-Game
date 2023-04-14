@@ -30,6 +30,14 @@ public class RedEnemy extends AbstractGameObject implements MonsterInterface  {
         this.setCurrentHitPoints(this.getMaxHitpoints()); 
     }
 
+    public RedEnemy() {
+        super(new Vector2(0,0));
+        this.velocity.x = speed;
+        this.velocity.y = speed;
+        this.setMaxhitpoints(50);
+        this.setCurrentHitPoints(this.getMaxHitpoints());
+    }
+
     public static MonsterFactory getFactory() {
 		
 		return new MonsterFactory() {
@@ -43,8 +51,17 @@ public class RedEnemy extends AbstractGameObject implements MonsterInterface  {
 			public MonsterInterface create(MapInterface map) {
 				return new RedEnemy(map);
 			}
+
+            @Override
+			public MonsterInterface create() {
+				return new RedEnemy();
+			}
 		};
 	}
+
+    public String getName() {
+        return "RedEnemy";
+    }
 
     @Override
     public void update(float delta) {
@@ -102,5 +119,17 @@ public class RedEnemy extends AbstractGameObject implements MonsterInterface  {
     public Vector2 getPosition() {
         return position;
     }
+
+    // @Override
+    // public boolean equals(Object obj) {
+    //     if (this == obj)
+    //         return true;
+    //     if (obj == null)
+    //         return false;
+    //     if (getClass() != obj.getClass())
+    //         return false;
+    //     return true;
+    // }
+    
     
 }

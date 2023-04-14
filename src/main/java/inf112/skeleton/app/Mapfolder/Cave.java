@@ -3,7 +3,7 @@ package inf112.skeleton.app.Mapfolder;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
-import java.util.LinkedList;
+import java.util.ArrayList;
 import java.util.Map;
 
 import com.badlogic.gdx.maps.tiled.TiledMap;
@@ -26,7 +26,7 @@ public class Cave extends TiledMap implements MapInterface{
 
     private TiledMap tiledMap;
     private OrthogonalTiledMapRenderer renderer;
-    private LinkedList<MonsterInterface> monsterList = new LinkedList<>();
+    private ArrayList<MonsterInterface> monsterList = new ArrayList<>();
     private Map<String, MonsterFactory> monsterFactories = new HashMap<>();
     private ArrayList<String> enemyList;
 
@@ -54,11 +54,6 @@ public class Cave extends TiledMap implements MapInterface{
             MonsterInterface monster = monsterFactory.create(this);
             monsterList.add(monster);
         }
-    }
-
-    @Override
-    public LinkedList<MonsterInterface> getMonsters() {
-        return monsterList;
     }
 
     @Override
@@ -102,9 +97,8 @@ public class Cave extends TiledMap implements MapInterface{
     }
 
     @Override
-    public LinkedList<MonsterInterface> getMonsterList() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getMonsterList'");
+    public ArrayList<MonsterInterface> getMonsterList() {
+        return this.monsterList;
     }
 
     @Override
