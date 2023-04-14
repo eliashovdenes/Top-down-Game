@@ -70,9 +70,8 @@ Hva kan forbedres:
 
 #### Fra forrige oblig skulle vi jobbe med disse forbedringspunktene:
 
-1. Se på semesteroppgaveteksten tidligere etter hver innlevering og jobbe med den mer strukturert. 
-###### Dette har blitt bedre.
-
+1. Se på semesteroppgaveteksten tidligere etter hver innlevering og jobbe med den mer strukturert.  > hei
+> Dette har blitt bedre.
 2. Oppgaver kan være enda mer spesifikt fordelt slik at det er klarere for den enkelte hva han skal gjøre. For eksempel: "Implementer Player klassen" blir for vagt, vi må bli enige om hvilke metoder og funksjonalitet Player skal ha. <Dette har vi også lyktes med. Oppgaver vi snakker om og utfører nå er mye mer detaljert>
 
 3. Jobbe mer samkjørt, committe og merge oftere. Flere kan jobbe sammen på samme branch i stedet for at alle arbeider på hver sin branch. Dette gjør også at de som arbeider med den samme delen av klassen også må samarbeide tettere. <Dette har også blitt bedre. Teamet vet hva andre holder på med i større grad og jobber med samme brancher. Commits, merging etc blir kommunisert og skjer oftere>
