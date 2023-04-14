@@ -34,6 +34,7 @@ public class View implements Screen {
     private OrthographicCamera camera;
     private PlayerInterface playerI;
     private BitmapFont lifeText = new BitmapFont();
+    private BitmapFont pauseText = new BitmapFont();
     private Zelda game;
     private MonsterInterface monsterI;
     private boolean paused = false;
@@ -70,7 +71,8 @@ public class View implements Screen {
         camera = new OrthographicCamera();        
         batch = new SpriteBatch();
 
-        
+        pauseText.getData().setScale(5,5);
+        pauseText.setColor(Color.BLUE);
         lifeText.getData().setScale(0.7f);
         lifeText.setColor(Color.RED);
 
@@ -81,7 +83,12 @@ public class View implements Screen {
         playerI.getRect().setSize(playerI.getWidth(), playerI.getHeight());
         if(controller.isPaused()){pause();}
         if(!controller.isPaused()){resume();}
-        if (paused) {return;}
+        if (paused) {
+            batch.begin();
+            pauseText.draw(batch, "PAUSED", playerI.getPosition().x, playerI.getPosition().y);
+            batch.end();
+            return;
+        }
         
         
         Gdx.gl.glClearColor(0, 0, 0, 0);
