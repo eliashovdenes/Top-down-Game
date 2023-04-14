@@ -58,6 +58,7 @@ public abstract class AbstractGameObject {
         
     }
 
+    //*getter for the rectangle object */
     public Rectangle getRect() {
         return rectangle;
     }

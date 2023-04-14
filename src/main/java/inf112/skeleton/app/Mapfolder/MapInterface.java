@@ -91,5 +91,11 @@ public interface MapInterface {
      */
     public LinkedList<MonsterInterface> getMonsterList();
 
+
+    /**
+     * 
+     * takes in monster and removes the given monster
+     * @param monster
+     */
     public void removeMonster(MonsterInterface monster);
 }
