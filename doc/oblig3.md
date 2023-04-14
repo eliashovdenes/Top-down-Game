@@ -56,13 +56,13 @@ Gruppen har veldig fin dynamikk. Vi har alle lyst til å møte opp og jobbe med 
 
 ### Kort retrospektiv om hva som er bra og hva som kan forbedres. Hva har vi fått til til nå? 
 
-Hva som er bra:
+###### Hva som er bra:
 - Vi har lagt inn tilstrekkelig innsats slik at prosjektet har utviklet seg kontinuerlig over tid. Alle har møtt på gruppemøter 2 til 3 ganger i uken som definitivt har bidratt til denne prosjektutviklingen. 
 - I møter og i vår egen discordserver har vi gitt masse positiv feedback når medlemmer deler det de har jobbet med og lagt inn i prosjektet. Vi har også flittig hjulpet hverandre når vi har hatt utfordringer. Rett og slett heier hverandre fram.
 - Prosjektet har 'gått seg litt til' underveis, som har gitt rom for individuell kreativitet. Det har skapt eierskap hos gruppemedlemmene. Det kunne vært utfordrende hvis noen har en veldig spesifikk visjon om hvordan ting skal se ut til slutt.
 - Engasjement og samarbeid i gruppen er fortsatt bra.
 
-Hva kan forbedres: 
+###### Hva kan forbedres: 
 - Hvordan vi bruker Trello. Det er veldig lett å hive seg rundt til det man er engasjert for å jobbe med og har snakket med gruppemedlemmer om. Vanen med å gå inn i Trello og velge arbeidsoppgaver utifra der har vært vanskelig å jobbe inn. 
 - Tydeligere på hva vi forventer av hverandre i forbindelse med ansvar. (Hva betyr det egentlig at Bjørn er 'dokumentasjonsansvarlig'. Tenker alle det samme om den rollen? Eller testansvarlig Hans C for den slags skyld.) Da kunne vi avdekket eventuelle usikkerheter og støttet hverandre slik at vi får utført rollene bedre. Alt som er utydelig er vanskeligere å ta tak i. 
 - Vi ønsket å treffe i et mer sosialt øyemed, men for travle studenter har det enda ikke passet. Det må vi få til. 
@@ -70,11 +70,11 @@ Hva kan forbedres:
 
 #### Fra forrige oblig skulle vi jobbe med disse forbedringspunktene:
 
-1. Se på semesteroppgaveteksten tidligere etter hver innlevering og jobbe med den mer strukturert.**Dette har blitt bedre. Vi forberedte oss og så på oppgaven lenge før**
+1. Se på semesteroppgaveteksten tidligere etter hver innlevering og jobbe med den mer strukturert.**Dette har blitt bedre. Vi var tidlig i gang med å jobbe mot neste frist.**
 
 2. Oppgaver kan være enda mer spesifikt fordelt slik at det er klarere for den enkelte hva han skal gjøre. For eksempel: "Implementer Player klassen" blir for vagt, vi må bli enige om hvilke metoder og funksjonalitet Player skal ha. **Dette har vi også lyktes med. Oppgaver vi snakker om og utfører nå er mye mer detaljert.**
 
-3. Jobbe mer samkjørt, committe og merge oftere. Flere kan jobbe sammen på samme branch i stedet for at alle arbeider på hver sin branch. Dette gjør også at de som arbeider med den samme delen av klassen også må samarbeide tettere. **Dette har også blitt bedre. Teamet vet hva andre holder på med i større grad og jobber med samme brancher. Commits, merging etc blir kommunisert og skjer oftere** 
+3. Jobbe mer samkjørt, committe og merge oftere. Flere kan jobbe sammen på samme branch i stedet for at alle arbeider på hver sin branch. Dette gjør også at de som arbeider med den samme delen av klassen også må samarbeide tettere. **Dette har også blitt bedre. Teamet vet hva andre holder på med i større grad og jobber med samme brancher. Commits, merging etc blir kommunisert og skjer oftere.** 
 
 
 ### Bli enige om maks 3 forbedringspunkter som skal følges opp.
