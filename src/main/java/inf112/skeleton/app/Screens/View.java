@@ -11,6 +11,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.math.Rectangle;
+import com.badlogic.gdx.scenes.scene2d.ui.List;
 
 import inf112.skeleton.app.Entities.AbstractGameObject;
 import inf112.skeleton.app.Entities.Enemies.BlueEnemy;
@@ -24,7 +25,9 @@ import inf112.skeleton.app.Controller.Controller;
 
 import com.badlogic.gdx.graphics.Color;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 
 public class View implements Screen {
@@ -40,6 +43,7 @@ public class View implements Screen {
     private boolean paused = false;
     private Controller controller;
     public HashMap<AbstractGameObject, Rectangle> enemies = new HashMap<>();
+    
     
     //MapInterface mapI = new Level1Mini(123,76);
     MapInterface mapI;
@@ -77,6 +81,7 @@ public class View implements Screen {
         lifeText.getData().setScale(0.7f);
         lifeText.setColor(Color.RED);
 
+        
     }
 
     @Override
@@ -126,30 +131,49 @@ public class View implements Screen {
         //draw player
         playerI.getSprite().draw(batch);
 
-        //draw arrows
+        //draw projectiles and check if they hit enemy.
         for (ProjectileInterface projectile : playerI.getArrows()){
             projectile.getSprite().draw(batch);
             for (MonsterInterface monsterI : mapI.getMonsterList()) {
-            if (projectile.getRect().overlaps(monsterI.getRect())) { mapI.removeMonster(monsterI); break; }
+                if (projectile.getRect().overlaps(monsterI.getRect())) { monsterI.takeDamage(projectile.getDamage()); }
             }
         }
+        CopyOnWriteArrayList<MonsterInterface> deadMonsterList = new CopyOnWriteArrayList<>();
+            
         //draw monsters
         for (MonsterInterface monsterI : mapI.getMonsterList()){
+            
             monsterI.update(delta);
             monsterI.getSprite().draw(batch);   
+            lifeText.draw(batch,"HP:"+monsterI.getCurrentHitpoints(),monsterI.getPosition().x,monsterI.getPosition().y);
+            
+            //check if monsterhp is less than or equal to zero
+            if (monsterI.isDead()){
+                deadMonsterList.add(monsterI);
+                playerI.getExp();
+            }
+                
+                
+
+            //check if monster and player is colliding. if so, player takes damage
             if (monsterI.getRect().overlaps(playerI.getRect())) {
                 playerI.takeDamage(monsterI.getDamage());
                 break;
-             
+            }
         }   
-        }
+        //remove dead monsters
+        mapI.getMonsterList().removeAll(deadMonsterList);
+        deadMonsterList.clear();
+        
+        
+        System.out.println(playerI.getHealthAbilityLevel());
+
         //open store (bound to K)
         if(controller.isShop()){
             game.setScreen(new Shop(game,controller,playerI));
              
 
         }
-        
         lifeText.draw(batch, "Lives: " + playerI.getLives(), playerI.getPosition().x - 12, playerI.getPosition().y + playerI.getHeight() + 30);
         lifeText.draw(batch, "HP: " + playerI.getCurrentHitpoints(), playerI.getPosition().x - 12, playerI.getPosition().y + playerI.getHeight() + 15);
         lifeText.draw(batch,".",playerI.getPosition().x+11,playerI.getPosition().y+18);
