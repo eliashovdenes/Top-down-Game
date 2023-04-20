@@ -3,8 +3,11 @@ package inf112.skeleton.app;
 import org.junit.jupiter.api.*;
 import org.mockito.Mockito;
 
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Graphics;
 import com.badlogic.gdx.backends.headless.HeadlessApplication;
 import com.badlogic.gdx.backends.headless.HeadlessApplicationConfiguration;
+import com.badlogic.gdx.graphics.GL20;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
@@ -25,9 +28,9 @@ public class PlayerTest {
 	@BeforeAll
 	static void setUpBeforeAll() {
         // Gdx.files = mock(Files.class);
-        // Gdx.gl = mock(GL20.class);       
-        // Gdx.gl20 = mock(GL20.class);
-        // Gdx.graphics = mock(Graphics.class);   
+        Gdx.gl = mock(GL20.class);       
+        Gdx.gl20 = mock(GL20.class);
+        Gdx.graphics = mock(Graphics.class);   
 	}
 
 	/**

@@ -2,10 +2,10 @@ package inf112.skeleton.app.Entities.Enums;
 
 //*RedEnemyPics is used to determine which picture to use for the red enemy*/
 public enum RedEnemyPics {
-    ENEMYDOWN("src/resources/assets/enemyPics/RedEnemyDOWN.png"),
-    ENEMYUP("src/resources/assets/enemyPics/RedEnemyUP.png"),
-    ENEMYLEFT("src/resources/assets/enemyPics/RedEnemyLEFT.png"),
-    ENEMYRIGHT("src/resources/assets/enemyPics/RedEnemyRIGHT.png");
+    ENEMYDOWN("assets/enemyPics/RedEnemyDOWN.png"),
+    ENEMYUP("assets/enemyPics/RedEnemyUP.png"),
+    ENEMYLEFT("assets/enemyPics/RedEnemyLEFT.png"),
+    ENEMYRIGHT("assets/enemyPics/RedEnemyRIGHT.png");
 
     public String source;
 
