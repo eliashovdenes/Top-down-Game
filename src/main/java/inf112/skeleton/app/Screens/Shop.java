@@ -30,6 +30,8 @@ public class Shop extends ScreenAdapter {
     Rectangle upgradeArrowRect,upgradeLightningRect,upgradePlayerHealthRect,upgradeMovementSpeed;
     OrthographicCamera camera;
   
+    private float upgradeCooldown = 0.5f;
+    private float timeSinceUpgrade = 0;
 
     public Shop(Zelda southGame, Controller controller,PlayerInterface playerI) {
         this.game = southGame;
@@ -83,16 +85,18 @@ public class Shop extends ScreenAdapter {
         // Draw the title
         batch.begin();
         font.getData().setScale(2);
-        font.draw(batch, "Welcome to SouthGame", 10, 850);
+        font.draw(batch, "You have "+playerI.getAbilityPoints()+" ability points", 10, 850);
         
         //draw text on buttons
         font.getData().setScale(1);
-        font.draw(batch, "Upgrade Arrow", upgradeArrowRect.x+upgradeArrowRect.width*0.05f, upgradeArrowRect.y+upgradeArrowRect.height*0.75f);
-        font.draw(batch, "Upgrade Lightning", upgradeLightningRect.x+upgradeLightningRect.width*0.05f,upgradeLightningRect.y+upgradeLightningRect.height*0.75f);
-        font.draw(batch, "Upgrade Health", upgradePlayerHealthRect.x+upgradePlayerHealthRect.width*0.05f,upgradePlayerHealthRect.y+upgradePlayerHealthRect.height*0.75f);
-        font.draw(batch, "Upgrade Movementspeed",upgradeMovementSpeed.x+upgradeMovementSpeed.width*0.05f,upgradeMovementSpeed.y+upgradeMovementSpeed.height*0.75f);
+        font.draw(batch, "Upgrade Arrow (Currently level"+playerI.getArrowAbilityLevel()+")", upgradeArrowRect.x+upgradeArrowRect.width*0.05f, upgradeArrowRect.y+upgradeArrowRect.height*0.75f);
+        font.draw(batch, "Upgrade Lightning (Currently level"+playerI.getLightningAbilityLevel()+")", upgradeLightningRect.x+upgradeLightningRect.width*0.05f,upgradeLightningRect.y+upgradeLightningRect.height*0.75f);
+        font.draw(batch, "Upgrade Health (Currently level"+playerI.getHealthAbilityLevel()+")", upgradePlayerHealthRect.x+upgradePlayerHealthRect.width*0.05f,upgradePlayerHealthRect.y+upgradePlayerHealthRect.height*0.75f);
+        font.draw(batch, "Upgrade Movementspeed (Currently level"+playerI.getMovementAbilityLevel()+")",upgradeMovementSpeed.x+upgradeMovementSpeed.width*0.05f,upgradeMovementSpeed.y+upgradeMovementSpeed.height*0.75f);
         batch.end();
         
+        timeSinceUpgrade+= delta;
+
         if (!controller.isShop()){
             game.setScreen(new View(game, controller, playerI,0,0));
         }
@@ -102,21 +106,35 @@ public class Shop extends ScreenAdapter {
             camera.unproject(hei);
 
 
-            if (upgradeArrowRect.contains(hei.x, hei.y)){
+            if (upgradeArrowRect.contains(hei.x, hei.y) && playerI.getAbilityPoints()>0 && timeSinceUpgrade >=upgradeCooldown){
                 playerI.upgradeArrow();
+                playerI.removeAbilityPoints();
+                timeSinceUpgrade = 0;
             }
-            if (upgradeLightningRect.contains(hei.x,hei.y)){
+            if (upgradeLightningRect.contains(hei.x,hei.y)&& playerI.getAbilityPoints()>=3 && timeSinceUpgrade >=upgradeCooldown){
                 playerI.upgradeLightning();
-            
-            if (upgradePlayerHealthRect.contains(hei.x,hei.y)){
-                //TODO implement upgrade for health
+                for (int i = 0; i<3;i++){
+                    playerI.removeAbilityPoints();
+                }
+                timeSinceUpgrade = 0;
             }
-            if (upgradeMovementSpeed.contains(hei.x,hei.y)){
-                //TODO implement upgrade for movementspeed
+            if (upgradePlayerHealthRect.contains(hei.x,hei.y)&& playerI.getAbilityPoints()>=5 && timeSinceUpgrade >=upgradeCooldown){
+                playerI.upgradeHealth();
+                for (int i = 0; i<5;i++){
+                    playerI.removeAbilityPoints();
+                }
+                timeSinceUpgrade = 0;
+            }
+            if (upgradeMovementSpeed.contains(hei.x,hei.y)&& playerI.getAbilityPoints()>=10 && timeSinceUpgrade >=upgradeCooldown){
+                playerI.upgradeMovement();
+                for (int i = 0; i<10;i++){
+                    playerI.removeAbilityPoints();
+                }
+                timeSinceUpgrade = 0;
             }
             
         
-            }
+            
         }
     }
     @Override

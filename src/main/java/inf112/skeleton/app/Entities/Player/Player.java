@@ -23,10 +23,16 @@ import inf112.skeleton.app.Sound.SoundManager;
 
 public class Player extends AbstractGameObject implements PlayerInterface {
     private Animation playerAnimation;
+    private int playerLevel = 1;
+    private int abilityPoints = 0;
     private Sprite sprite;
     private float speed = 1;
-    private int ArrowAbilityLevel = 1;
+    private float walk = 1;
+    private float run = 2;
+    private int arrowAbilityLevel = 1;
     private int lightningAbilityLevel = 1;
+    private int healthAbilityLevel = 1;
+    private int movementAbilityLevel = 1;
     private MapInterface map;
     public ArrayList<ProjectileInterface> projectileList;
     private int shootTimer;
@@ -40,6 +46,7 @@ public class Player extends AbstractGameObject implements PlayerInterface {
     // private Integer currentHitpoints;
     // private Integer maxHitpoints;
     private Integer lives;
+    private int exp;
 
     public Player(Vector2 position, MapInterface map, Controller controller) {
         super(position, map);
@@ -87,9 +94,9 @@ public class Player extends AbstractGameObject implements PlayerInterface {
 
         if (controller.isFast()) {
 
-            setMovementSpeed(2);
+            setMovementSpeed(run);
         } else
-            setMovementSpeed(1);
+            setMovementSpeed(walk);
 
         if (controller.isSpace()) {
             shootArrow();
@@ -146,7 +153,7 @@ public class Player extends AbstractGameObject implements PlayerInterface {
 
     // **animate does the animation of the player */
     private void animate(float delta) {
-        if (speed == 1) {
+        if (!controller.isFast()) {
             if (direction == DirectionEnum.NORTH)
                 this.playerAnimation = PlayerAnimation.UP.animation;
             if (direction == DirectionEnum.EAST)
@@ -157,7 +164,7 @@ public class Player extends AbstractGameObject implements PlayerInterface {
                 this.playerAnimation = PlayerAnimation.DOWN.animation;
         }
         // running
-        if (speed == 2) {
+        if (controller.isFast()) {
             if (direction == DirectionEnum.NORTH)
                 this.playerAnimation = PlayerAnimation.RUNUP.animation;
             if (direction == DirectionEnum.EAST)
@@ -196,7 +203,7 @@ public class Player extends AbstractGameObject implements PlayerInterface {
 
             // for every arrowAbilityLevel beyond 1, create a new arrow at a randomized
             // angle between -30,30 in the same direction.
-            for (int i = 1; i < ArrowAbilityLevel; i++) {
+            for (int i = 1; i < arrowAbilityLevel; i++) {
                 Vector2 newAngleVelocity = new Vector2(velocity).rotateDeg(rand.nextInt(-30, 30));
                 Vector2 newArrowPos = new Vector2(arrowPos);
                 Arrow extraArrow = new Arrow(newArrowPos, map, newAngleVelocity, this);
@@ -335,7 +342,7 @@ public class Player extends AbstractGameObject implements PlayerInterface {
     //**this method upgrades the arrow ability*/
     @Override
     public void upgradeArrow() {
-        ArrowAbilityLevel+=1;
+        arrowAbilityLevel+=1;
     }
 
 
@@ -363,6 +370,66 @@ public class Player extends AbstractGameObject implements PlayerInterface {
         }
     }
 
+    @Override
+    public int getArrowAbilityLevel() {
+        return arrowAbilityLevel;
+    }
+
+    @Override 
+    public int getLightningAbilityLevel(){
+        return lightningAbilityLevel;
+    }
+
+    @Override
+    public int getAbilityPoints() {
+        return abilityPoints;
+    }
+
+    @Override
+    public void getExp() {
+        exp += 1;
+
+        //level up :)
+        if (exp>=10){
+            exp = 0;
+            playerLevel +=1;
+            abilityPoints +=2;
+            this.setCurrentHitPoints(this.getMaxHitpoints());
+        }
+    }
+
+    @Override
+    public int getLevel() {
+        return playerLevel;
+    }
+
+    @Override
+    public int getHealthAbilityLevel() {
+        return healthAbilityLevel;
+    }
+
+    @Override
+    public int getMovementAbilityLevel() {
+        return healthAbilityLevel;
+    }
+
+    @Override
+    public void removeAbilityPoints(){
+        abilityPoints-=1;
+    }
+
+    @Override
+    public void upgradeHealth() {
+        healthAbilityLevel +=1;
+        setMaxhitpoints(100*healthAbilityLevel);
+    }
+
+    @Override
+    public void upgradeMovement() {
+        movementAbilityLevel+=1;
+        walk = walk+1;
+        run = run+1;
+    }
     
 
 }

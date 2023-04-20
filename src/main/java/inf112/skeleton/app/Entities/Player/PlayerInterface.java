@@ -106,6 +106,8 @@ public interface PlayerInterface  {
     
     void upgradeLightning();
     void upgradeArrow();
+    void upgradeHealth();
+    void upgradeMovement();
 
     /**
      * Sets the number of lives the player has
@@ -170,5 +172,20 @@ public interface PlayerInterface  {
     public boolean isDead();
 
     Rectangle getRect();
+
+    public int getArrowAbilityLevel();
+    public int getLightningAbilityLevel();
+
+    int getAbilityPoints();
+
+    void getExp();
+
+    int getLevel();
+
+    int getHealthAbilityLevel();
+
+    int getMovementAbilityLevel();
+
+    void removeAbilityPoints();
 
 }
