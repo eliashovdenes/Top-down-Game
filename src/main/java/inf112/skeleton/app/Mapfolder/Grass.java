@@ -32,7 +32,7 @@ public class Grass extends TiledMap implements MapInterface {
 
     public Grass(){
         tiledMap = new TmxMapLoader().load(Maps.Grass.source);
-        renderer = new OrthogonalTiledMapRenderer(tiledMap);
+        //renderer = new OrthogonalTiledMapRenderer(tiledMap);
         setup();
         this.spawn(enemyList);
     }

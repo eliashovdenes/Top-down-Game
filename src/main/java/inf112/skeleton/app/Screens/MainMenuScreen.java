@@ -53,6 +53,7 @@ public class MainMenuScreen extends ScreenAdapter {
         float rectangleY = screenHeight * 0.7f;
 
         
+        
         newGameRect = new Rectangle(screenWidth * 0.05f, rectangleY, rectangleWidth, rectangleHeight);
         instructionsRect = new Rectangle(screenWidth * 0.05f, rectangleY - rectangleHeight - spaceBetweenRetangles, rectangleWidth, rectangleHeight);
         creditsRect = new Rectangle(screenWidth * 0.05f, rectangleY - 2 * (rectangleHeight + spaceBetweenRetangles), rectangleWidth, rectangleHeight);

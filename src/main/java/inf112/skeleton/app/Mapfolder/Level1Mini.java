@@ -37,7 +37,7 @@ public class Level1Mini extends TiledMap implements MapInterface {
         PlayerSpawnX = playerSpawnX;
         PlayerSpawnY = playerSpawnY;
         tiledMap = new TmxMapLoader().load(Maps.Level1Mini.source);
-        renderer = new OrthogonalTiledMapRenderer(tiledMap);
+        //renderer = new OrthogonalTiledMapRenderer(tiledMap);
         setup();
         this.spawn(enemyList);
     }

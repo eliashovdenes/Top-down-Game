@@ -10,12 +10,16 @@ import com.badlogic.gdx.Graphics.GraphicsType;
 import com.badlogic.gdx.backends.headless.HeadlessApplication;
 import com.badlogic.gdx.backends.headless.HeadlessApplicationConfiguration;
 import com.badlogic.gdx.graphics.GL20;
+import com.badlogic.gdx.math.Vector2;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.Mockito.*;
 
+import inf112.skeleton.app.Controller.Controller;
 import inf112.skeleton.app.Entities.Enums.DirectionEnum;
 import inf112.skeleton.app.Entities.Enums.PlayerPics;
 import inf112.skeleton.app.Entities.Player.Player;
@@ -56,14 +60,24 @@ public class PlayerTest {
     @Test 
     void testPlayerHitPoints(){
         // Mock Player
-        // Level1 lvl1 = new Level1();
-        Player player = mock(Player.class, Mockito.CALLS_REAL_METHODS);
+
+        Level1 lvl1 = new Level1();
+       
+
+        assertNotNull(lvl1);
         
+
+        //Player player = mock(Player.class, Mockito.CALLS_REAL_METHODS);
+
+        Player player = new Player(new Vector2(0, 0), lvl1, new Controller());
+
         // Set lives and hitpoints
         player.setMaxhitpoints(100);
         player.setCurrentHitPoints(player.getMaxHitpoints());
         player.setLives(3);
     
+        
+        assertNotNull(player);
         // Check that player has 100 current and maxHitpoints and 3 lives
         Assertions.assertEquals(100, player.getMaxHitpoints());
         Assertions.assertEquals(100, player.getCurrentHitpoints());

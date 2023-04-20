@@ -32,7 +32,7 @@ public class Cave extends TiledMap implements MapInterface{
 
     public Cave(){
         tiledMap = new TmxMapLoader().load(Maps.Cave.source);
-        renderer = new OrthogonalTiledMapRenderer(tiledMap);
+        //renderer = new OrthogonalTiledMapRenderer(tiledMap);
         setup();
         this.spawn(enemyList);
     }

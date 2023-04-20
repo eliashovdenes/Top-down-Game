@@ -32,7 +32,7 @@ public class Level1 extends TiledMap implements MapInterface {
 
     public Level1(){
         tiledMap = new TmxMapLoader().load(Maps.Level1.source);
-        renderer = new OrthogonalTiledMapRenderer(tiledMap);
+        //renderer = new OrthogonalTiledMapRenderer(tiledMap);
         setup();
         this.spawn(enemyList);
     }

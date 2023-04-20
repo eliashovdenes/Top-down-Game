@@ -23,7 +23,7 @@ public class House extends TiledMap implements MapInterface {
 
     public House(){
         tiledMap = new TmxMapLoader().load(Maps.House.source);
-        renderer = new OrthogonalTiledMapRenderer(tiledMap);
+        //renderer = new OrthogonalTiledMapRenderer(tiledMap);
     }
 
     @Override

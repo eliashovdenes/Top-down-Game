@@ -34,7 +34,7 @@ public class Level2 extends TiledMap implements MapInterface {
         this.playerSpawnX = playerSpawnX;
         this.playerSpawnY = playerSpawnY;
         tiledMap = new TmxMapLoader().load(Maps.Level2.source);
-        renderer = new OrthogonalTiledMapRenderer(tiledMap);
+        //renderer = new OrthogonalTiledMapRenderer(tiledMap);
         setup();
         this.spawn(enemyList);
     }

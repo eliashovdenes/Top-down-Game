@@ -66,7 +66,8 @@ public class View implements Screen {
     public void show() {
         
         map = mapI.getMap();
-        renderer = mapI.getRenderer();
+        //renderer = mapI.getRenderer();
+        renderer = new OrthogonalTiledMapRenderer(map);
         monsterI = new BlueEnemy(mapI);
         camera = new OrthographicCamera();        
         batch = new SpriteBatch();
