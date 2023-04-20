@@ -14,6 +14,7 @@ import inf112.skeleton.app.Mapfolder.MapInterface;
 public class RedEnemy extends AbstractGameObject implements MonsterInterface  {
 
     Sprite sprite;
+    int attackDamage = 20;
     float fromX,fromY,toX,toY;
     float speed = 1 ;
     private DirectionEnum direction;
@@ -118,6 +119,11 @@ public class RedEnemy extends AbstractGameObject implements MonsterInterface  {
     @Override
     public Vector2 getPosition() {
         return position;
+    }
+
+    @Override
+    public int getDamage() {
+        return attackDamage;
     }
 
     

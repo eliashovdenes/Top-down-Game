@@ -76,4 +76,6 @@ public interface MonsterInterface {
     Rectangle getRect();
     
     public String getName();
+
+    int getDamage();
 }
