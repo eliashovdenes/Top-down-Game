@@ -23,9 +23,11 @@ import inf112.skeleton.app.Sound.SoundManager;
 
 public class Player extends AbstractGameObject implements PlayerInterface {
     private Animation playerAnimation;
+    private int level = 1;
+    private int abilityPoints;
     private Sprite sprite;
     private float speed = 1;
-    private int ArrowAbilityLevel = 1;
+    public int arrowAbilityLevel = 1;
     private int lightningAbilityLevel = 1;
     private MapInterface map;
     public ArrayList<ProjectileInterface> projectileList;
@@ -40,6 +42,7 @@ public class Player extends AbstractGameObject implements PlayerInterface {
     // private Integer currentHitpoints;
     // private Integer maxHitpoints;
     private Integer lives;
+    private int exp;
 
     public Player(Vector2 position, MapInterface map, Controller controller) {
         super(position, map);
@@ -196,7 +199,7 @@ public class Player extends AbstractGameObject implements PlayerInterface {
 
             // for every arrowAbilityLevel beyond 1, create a new arrow at a randomized
             // angle between -30,30 in the same direction.
-            for (int i = 1; i < ArrowAbilityLevel; i++) {
+            for (int i = 1; i < arrowAbilityLevel; i++) {
                 Vector2 newAngleVelocity = new Vector2(velocity).rotateDeg(rand.nextInt(-30, 30));
                 Vector2 newArrowPos = new Vector2(arrowPos);
                 Arrow extraArrow = new Arrow(newArrowPos, map, newAngleVelocity, this);
@@ -335,7 +338,7 @@ public class Player extends AbstractGameObject implements PlayerInterface {
     //**this method upgrades the arrow ability*/
     @Override
     public void upgradeArrow() {
-        ArrowAbilityLevel+=1;
+        arrowAbilityLevel+=1;
     }
 
 
@@ -363,6 +366,37 @@ public class Player extends AbstractGameObject implements PlayerInterface {
         }
     }
 
+    @Override
+    public int getArrowAbilityLevel() {
+        return arrowAbilityLevel;
+    }
+
+    @Override 
+    public int getLightningAbilityLevel(){
+        return lightningAbilityLevel;
+    }
+
+    @Override
+    public int getAbilityPoints() {
+        return abilityPoints;
+    }
+
+    @Override
+    public void getExp() {
+        exp += 1;
+
+        if (exp>=10){
+            exp = 0;
+            level +=1;
+        }
+    }
+
+    @Override
+    public int getLevel() {
+        return level;
+    }
+
+    
     
 
 }
