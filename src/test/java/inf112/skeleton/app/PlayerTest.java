@@ -3,6 +3,14 @@ package inf112.skeleton.app;
 import org.junit.jupiter.api.*;
 import org.mockito.Mockito;
 
+import com.badlogic.gdx.Files;
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Graphics;
+import com.badlogic.gdx.Graphics.GraphicsType;
+import com.badlogic.gdx.backends.headless.HeadlessApplication;
+import com.badlogic.gdx.backends.headless.HeadlessApplicationConfiguration;
+import com.badlogic.gdx.graphics.GL20;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -11,8 +19,10 @@ import static org.mockito.Mockito.*;
 import inf112.skeleton.app.Entities.Enums.DirectionEnum;
 import inf112.skeleton.app.Entities.Enums.PlayerPics;
 import inf112.skeleton.app.Entities.Player.Player;
+import inf112.skeleton.app.Mapfolder.Level1;
 
 public class PlayerTest {
+    private HeadlessApplication app;
 
     /**
 	 * Static method run before everything else
@@ -20,8 +30,8 @@ public class PlayerTest {
 	@BeforeAll
 	static void setUpBeforeAll() {
         // Gdx.files = mock(Files.class);
-        // Gdx.gl = mock(GL20.class);       
-        // Gdx.gl20 = mock(GL20.class);
+        Gdx.gl = mock(GL20.class);       
+        Gdx.gl20 = mock(GL20.class);
         // Gdx.graphics = mock(Graphics.class);   
 	}
 
@@ -30,11 +40,23 @@ public class PlayerTest {
 	 */
 	@BeforeEach
 	void setUpBeforeEach() {
+        HeadlessApplicationConfiguration config = new HeadlessApplicationConfiguration();
+        app = new HeadlessApplication(new Zelda(), config);
+
 	}
+
+    /**
+     * Tests that the tests are running headless
+    */
+    @Test
+    void testRunningHeadless() {
+        assertTrue(Gdx.graphics.getType() == GraphicsType.Mock);
+    }
 
     @Test 
     void testPlayerHitPoints(){
         // Mock Player
+        // Level1 lvl1 = new Level1();
         Player player = mock(Player.class, Mockito.CALLS_REAL_METHODS);
         
         // Set lives and hitpoints
@@ -53,7 +75,9 @@ public class PlayerTest {
         player.takeDamage(50);
         Assertions.assertEquals(25, player.getCurrentHitpoints());
         
-    }   
+    }
+    
+    
     
     @Test
     void testPlayerIsDead() {
