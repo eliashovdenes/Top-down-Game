@@ -138,8 +138,7 @@ public class View implements Screen {
             monsterI.update(delta);
             monsterI.getSprite().draw(batch);   
             if (monsterI.getRect().overlaps(playerI.getRect())) {
-                System.out.println("collision");
-                mapI.removeMonster(monsterI);
+                playerI.takeDamage(monsterI.getDamage());
                 break;
              
         }   
