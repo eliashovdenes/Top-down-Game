@@ -20,7 +20,7 @@ public class Arrow extends AbstractGameObject implements ProjectileInterface  {
     protected TiledMap map;
     protected Vector2 velocity;
     private PlayerInterface player;
-    
+    private int attackDamage = 1;    
 
     public Arrow(Vector2 position, MapInterface map, Vector2 velocity, PlayerInterface player) {
         super(position, map);
@@ -95,5 +95,10 @@ public class Arrow extends AbstractGameObject implements ProjectileInterface  {
         if (player.getPlayerDirection()==DirectionEnum.SOUTH)  sprite = PlayerPics.DOWNARROW.source;
    
         setSprite(sprite);
+    }
+
+    @Override
+    public int getDamage() {
+        return attackDamage;
     }
 }

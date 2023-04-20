@@ -24,5 +24,7 @@ public interface ProjectileInterface{
     public Vector2 setVelocity();
 
     public Rectangle getRect();
+
+    public int getDamage();
    
 }

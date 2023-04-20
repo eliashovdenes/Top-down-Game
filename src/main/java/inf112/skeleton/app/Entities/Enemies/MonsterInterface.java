@@ -78,4 +78,10 @@ public interface MonsterInterface {
     public String getName();
 
     int getDamage();
+
+    void takeDamage(int damage);
+    
+    Integer getCurrentHitpoints();
+
+    boolean isDead();
 }
