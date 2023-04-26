@@ -10,6 +10,7 @@ import com.badlogic.gdx.math.Vector2;
 import inf112.skeleton.app.Entities.AbstractGameObject;
 import inf112.skeleton.app.Entities.Enums.DirectionEnum;
 import inf112.skeleton.app.Entities.Enums.PlayerPics;
+import inf112.skeleton.app.Entities.Items.HealthPotion;
 import inf112.skeleton.app.Mapfolder.MapInterface;
 
 public class BlueEnemy extends AbstractGameObject implements MonsterInterface  {
@@ -20,7 +21,9 @@ public class BlueEnemy extends AbstractGameObject implements MonsterInterface  {
     float speed = 1 ;
     private DirectionEnum direction;
     MapInterface map;
-    // Integer BlueEnemy = 50;
+    private double healthPotionDropChance;
+    private Random random;
+
 
     public BlueEnemy(MapInterface map) {
         super(new Vector2(0,0), map);
@@ -32,7 +35,8 @@ public class BlueEnemy extends AbstractGameObject implements MonsterInterface  {
         this.velocity.y = speed;
         this.setMaxhitpoints(50);
         this.setCurrentHitPoints(this.getMaxHitpoints());
-        // setHP(BlueEnemy);
+        this.setHealthPotionDropChance(0.3);
+        this.random = new Random();
     }
 
     public BlueEnemy() {
@@ -129,6 +133,23 @@ public class BlueEnemy extends AbstractGameObject implements MonsterInterface  {
     @Override
     public int getDamage() {
         return attackDamage;
-    }    
+    }
+
     
+
+    @Override
+    public boolean dropHealthPotion() {
+        double dropValue = this.random.nextDouble();
+        return (dropValue <= this.getHealthPotionDropChance());
+    }
+
+    @Override
+    public double getHealthPotionDropChance() {
+        return this.healthPotionDropChance;
+    }
+
+    @Override
+    public void setHealthPotionDropChance(double chance) {
+        this.healthPotionDropChance = chance;
+    }
 }
