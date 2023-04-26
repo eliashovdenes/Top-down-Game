@@ -16,7 +16,8 @@ import com.badlogic.gdx.scenes.scene2d.ui.List;
 import inf112.skeleton.app.Entities.AbstractGameObject;
 import inf112.skeleton.app.Entities.Enemies.BlueEnemy;
 import inf112.skeleton.app.Entities.Enemies.MonsterInterface;
-
+import inf112.skeleton.app.Entities.Items.HealthPotion;
+import inf112.skeleton.app.Entities.Items.ItemImpl;
 import inf112.skeleton.app.Entities.Player.PlayerInterface;
 import inf112.skeleton.app.Entities.Projectiles.ProjectileInterface;
 import inf112.skeleton.app.Mapfolder.MapInterface;
@@ -43,6 +44,7 @@ public class View implements Screen {
     private boolean paused = false;
     private Controller controller;
     public HashMap<AbstractGameObject, Rectangle> enemies = new HashMap<>();
+    private ArrayList<ItemImpl> itemList = new ArrayList<>();
     
     
     //MapInterface mapI = new Level1Mini(123,76);
@@ -72,7 +74,7 @@ public class View implements Screen {
         map = mapI.getMap();
         //renderer = mapI.getRenderer();
         renderer = new OrthogonalTiledMapRenderer(map);
-        monsterI = new BlueEnemy(mapI);
+        // monsterI = new BlueEnemy(mapI);
         camera = new OrthographicCamera();        
         batch = new SpriteBatch();
 
@@ -139,7 +141,8 @@ public class View implements Screen {
             }
         }
         CopyOnWriteArrayList<MonsterInterface> deadMonsterList = new CopyOnWriteArrayList<>();
-            
+        CopyOnWriteArrayList<ItemImpl> itemsToRemove = new CopyOnWriteArrayList<>();
+        
         //draw monsters
         for (MonsterInterface monsterI : mapI.getMonsterList()){
             
@@ -161,12 +164,39 @@ public class View implements Screen {
                 break;
             }
         }   
-        //remove dead monsters
+        
+        for (MonsterInterface monsterI : deadMonsterList) {
+            if(monsterI.dropHealthPotion()){
+                HealthPotion potion = new HealthPotion(monsterI.getPosition(), mapI);
+                addItem(potion);
+            }
+        }
+        //draw items
+        for (ItemImpl item : this.itemList){
+            item.update(delta);
+            item.getSprite().draw(batch);  
+
+            //check if item and player is colliding. if so, player heals damage
+            if (item.getRect().overlaps(playerI.getRect())) {
+                playerI.healDamage(item.getHealAmount());
+                itemsToRemove.add(item);
+                break;
+            }
+        }   
+
+        //remove dead monsters and used items
         mapI.getMonsterList().removeAll(deadMonsterList);
+        itemList.removeAll(itemsToRemove);
         deadMonsterList.clear();
+        itemsToRemove.clear();
         
         
-        System.out.println(playerI.getHealthAbilityLevel());
+        //remove dead monsters
+        // mapI.getMonsterList().removeAll(deadMonsterList);
+        // deadMonsterList.clear();
+
+
+        // System.out.println(playerI.getHealthAbilityLevel());
 
         //open store (bound to K)
         if(controller.isShop()){
@@ -183,17 +213,10 @@ public class View implements Screen {
 
     }
 
-        
-    
-
-
-
-
     @Override
     public void resize(int width, int height) {
         camera.viewportWidth = width/3f;
-        camera.viewportHeight = height/3f;
-        
+        camera.viewportHeight = height/3f;       
     }
 
 
@@ -217,7 +240,12 @@ public class View implements Screen {
     @Override
     public void dispose() {
         map.dispose();
-        renderer.dispose();
-       
+        renderer.dispose();      
+    }
+
+    private void addItem(ItemImpl item) {
+        if (this.itemList.size() <=3) {
+            this.itemList.add(item);
+        }
     }
 }
