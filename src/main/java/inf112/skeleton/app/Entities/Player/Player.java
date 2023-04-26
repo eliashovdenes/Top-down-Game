@@ -371,6 +371,11 @@ public class Player extends AbstractGameObject implements PlayerInterface {
     }
 
     @Override
+    public void healDamage(int healAmount) {
+        this.setCurrentHitPoints(this.getCurrentHitpoints() + healAmount);
+    }
+
+    @Override
     public int getArrowAbilityLevel() {
         return arrowAbilityLevel;
     }
