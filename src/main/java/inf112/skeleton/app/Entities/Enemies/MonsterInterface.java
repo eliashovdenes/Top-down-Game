@@ -84,4 +84,10 @@ public interface MonsterInterface {
     Integer getCurrentHitpoints();
 
     boolean isDead();
+
+    public boolean dropHealthPotion();
+
+    public double getHealthPotionDropChance();
+
+    public void setHealthPotionDropChance(double chance);
 }
