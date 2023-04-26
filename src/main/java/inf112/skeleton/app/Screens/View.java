@@ -133,15 +133,21 @@ public class View implements Screen {
         //draw player
         playerI.getSprite().draw(batch);
 
+        CopyOnWriteArrayList<MonsterInterface> deadMonsterList = new CopyOnWriteArrayList<>();
+        CopyOnWriteArrayList<ItemImpl> itemsToRemove = new CopyOnWriteArrayList<>();
+        CopyOnWriteArrayList<ProjectileInterface> projectilesToRemove = new CopyOnWriteArrayList<>();
+
         //draw projectiles and check if they hit enemy.
         for (ProjectileInterface projectile : playerI.getArrows()){
             projectile.getSprite().draw(batch);
             for (MonsterInterface monsterI : mapI.getMonsterList()) {
-                if (projectile.getRect().overlaps(monsterI.getRect())) { monsterI.takeDamage(projectile.getDamage()); }
+                if (projectile.getRect().overlaps(monsterI.getRect())) { 
+                    monsterI.takeDamage(projectile.getDamage());
+                    projectilesToRemove.add(projectile);
+                }
             }
         }
-        CopyOnWriteArrayList<MonsterInterface> deadMonsterList = new CopyOnWriteArrayList<>();
-        CopyOnWriteArrayList<ItemImpl> itemsToRemove = new CopyOnWriteArrayList<>();
+        
         
         //draw monsters
         for (MonsterInterface monsterI : mapI.getMonsterList()){
@@ -184,9 +190,10 @@ public class View implements Screen {
             }
         }   
 
-        //remove dead monsters and used items
+        //remove dead monsters, projectiles that hit enemies and used items
         mapI.getMonsterList().removeAll(deadMonsterList);
         itemList.removeAll(itemsToRemove);
+        playerI.getArrows().removeAll(projectilesToRemove);
         deadMonsterList.clear();
         itemsToRemove.clear();
         
