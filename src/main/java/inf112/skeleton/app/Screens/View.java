@@ -38,6 +38,7 @@ public class View implements Screen {
     private OrthographicCamera camera;
     private PlayerInterface playerI;
     private BitmapFont lifeText = new BitmapFont();
+    private BitmapFont hpText = new BitmapFont();
     private BitmapFont pauseText = new BitmapFont();
     private Zelda game;
     private MonsterInterface monsterI;
@@ -80,8 +81,10 @@ public class View implements Screen {
 
         pauseText.getData().setScale(5,5);
         pauseText.setColor(Color.BLUE);
-        lifeText.getData().setScale(0.7f);
-        lifeText.setColor(Color.RED);
+        hpText.getData().setScale(0.7f);
+        hpText.setColor(Color.RED);
+        lifeText.getData().setScale(1.0f);
+        lifeText.setColor(Color.YELLOW);
 
         
     }
@@ -154,7 +157,7 @@ public class View implements Screen {
             
             monsterI.update(delta);
             monsterI.getSprite().draw(batch);   
-            lifeText.draw(batch,"HP:"+monsterI.getCurrentHitpoints(),monsterI.getPosition().x,monsterI.getPosition().y);
+            hpText.draw(batch,"HP:"+monsterI.getCurrentHitpoints(),monsterI.getPosition().x,monsterI.getPosition().y);
             
             //check if monsterhp is less than or equal to zero
             if (monsterI.isDead()){
@@ -211,10 +214,13 @@ public class View implements Screen {
              
 
         }
-        lifeText.draw(batch, "Lives: " + playerI.getLives(), playerI.getPosition().x - 12, playerI.getPosition().y + playerI.getHeight() + 30);
-        lifeText.draw(batch, "HP: " + playerI.getCurrentHitpoints(), playerI.getPosition().x - 12, playerI.getPosition().y + playerI.getHeight() + 15);
-        lifeText.draw(batch,".",playerI.getPosition().x+11,playerI.getPosition().y+18);
-        lifeText.draw(batch, "Level: " + playerI.getLevel(), playerI.getPosition().x - 12, playerI.getPosition().y - playerI.getHeight() + 15);
+        lifeText.draw(batch, "Lives: " + playerI.getLives(), camera.position.x + 225, camera.position.y + 125);
+        lifeText.draw(batch, "Level: " + playerI.getLevel(), camera.position.x + 225, camera.position.y + 150);
+        hpText.draw(batch, "HP: " + playerI.getCurrentHitpoints(), playerI.getPosition().x - 12, playerI.getPosition().y + playerI.getHeight() + 15);
+        
+        // lifeText.draw(batch, "Lives: " + camera.position.x, playerI.getPosition().x - 12, playerI.getPosition().y + playerI.getHeight() + 30);
+        // lifeText.draw(batch,".",playerI.getPosition().x+11,playerI.getPosition().y+18);
+        // lifeText.draw(batch, "Level: " + playerI.getLevel(), playerI.getPosition().x - 12, playerI.getPosition().y - playerI.getHeight() + 15);
         
         batch.end();
 
