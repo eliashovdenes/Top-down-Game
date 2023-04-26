@@ -10,14 +10,20 @@ import com.badlogic.gdx.Graphics.GraphicsType;
 import com.badlogic.gdx.backends.headless.HeadlessApplication;
 import com.badlogic.gdx.backends.headless.HeadlessApplicationConfiguration;
 import com.badlogic.gdx.graphics.GL20;
+import com.badlogic.gdx.graphics.Pixmap;
+import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.math.Vector2;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.Mockito.*;
+
+import java.nio.ByteBuffer;
 
 import inf112.skeleton.app.Controller.Controller;
 import inf112.skeleton.app.Entities.Enums.DirectionEnum;
@@ -145,97 +151,103 @@ public class PlayerTest {
     }
 
 
-    @Test
-    void testPlayerAnimation() {
-        // Mock Player
-        Player player = mock(Player.class, Mockito.CALLS_REAL_METHODS);
 
-        player.setPlayerDirection(DirectionEnum.NORTH);
 
-        assertEquals(DirectionEnum.NORTH, player.getPlayerDirection());
-
-        player.setPlayerDirection(DirectionEnum.SOUTH);
-
-        assertEquals(DirectionEnum.SOUTH, player.getPlayerDirection());
-
-        player.setPlayerDirection(DirectionEnum.EAST);
-
-        assertEquals(DirectionEnum.EAST, player.getPlayerDirection());
-
-        player.setPlayerDirection(DirectionEnum.WEST);
-
-        assertEquals(DirectionEnum.WEST, player.getPlayerDirection());
-    }
 
     @Test
-    void testPlayerSprite(){
-        
-        //Does not work yet
+    public void testSetSprite() {
+        Controller controller = mock(Controller.class, Mockito.CALLS_REAL_METHODS);
+        Level1 lvl1 = new Level1();
 
-        // Mock Player
-        // Player player = mock(Player.class, Mockito.CALLS_REAL_METHODS);
+        assertNotNull(lvl1);
+        Player player = new Player(new Vector2(0, 0), lvl1, controller);
 
-        // // Test if player sprite is set correctly
+        // Set a new sprite for the player
+        String newSpriteFilePath = "src/main/resources/assets/playerPics/playerUP.png";
+        player.setSprite(newSpriteFilePath);
 
-        // player.setSprite(PlayerPics.UP.toString());
+        // Get the current sprite after setting the new sprite
+        Sprite currentSprite = player.getSprite();
 
-        // assertEquals(new Sprite(new Texture(PlayerPics.UP.toString())), player.getSprite());
+        // Get the Pixmap data of the new sprite texture and the current sprite's texture
+        Pixmap newSpritePixmap = new Pixmap(Gdx.files.internal(newSpriteFilePath));
+        Pixmap currentSpritePixmap = new Pixmap(Gdx.files.internal(currentSprite.getTexture().toString()));
 
-        // // Test if player sprite is set correctly
-        // player.setSprite("player2.png");
+        // Compare the Pixmap data
+        ByteBuffer newSpriteBuffer = newSpritePixmap.getPixels();
+        ByteBuffer currentSpriteBuffer = currentSpritePixmap.getPixels();
+        assertTrue(newSpriteBuffer.equals(currentSpriteBuffer));
 
-        // assertEquals("player2.png", player.getSprite());
-
-        // // Test if player sprite is set correctly
-        // player.setSprite("player3.png");
-
-        // assertEquals("player3.png", player.getSprite());
-
-        // // Test if player sprite is set correctly
-        // player.setSprite("player4.png");
-
-        // assertEquals("player4.png", player.getSprite());
+        // Dispose of the textures and pixmaps to avoid memory leak
+        newSpritePixmap.dispose();
+        currentSpritePixmap.dispose();
+        currentSprite.getTexture().dispose();
     }
 
     @Test
     void testPlayerPosition(){
         
-        //Does not work yet
-        
-        
         // Mock Player
-        // Player player = mock(Player.class, Mockito.CALLS_REAL_METHODS);
+        Player player = mock(Player.class, Mockito.CALLS_REAL_METHODS);
 
-        // player.setSprite(PlayerPics.UP.toString());
+        player.setSprite("src/main/resources/assets/playerPics/playerUP.png");
 
-        // Sprite sprite = player.getSprite();
+        Sprite sprite = player.getSprite();
 
-        // System.out.println(sprite);
+        System.out.println(sprite);
 
 
-        // // Test if player position is set correctly
+        // Test if player position is set correctly
 
-        // sprite.setPosition(0, 0);
+        sprite.setPosition(0, 0);
 
-        // assertEquals(0, sprite.getX());
+        assertEquals(0, sprite.getX());
 
-        // assertEquals(0, sprite.getY());
+        assertEquals(0, sprite.getY());
 
-        // // Test if player position is set correctly
 
-        // sprite.setPosition(1, 1);
+        // Test if player position is set correctly
 
-        // assertEquals(1, sprite.getX());
+        sprite.setPosition(1, 1);
 
-        // assertEquals(1, sprite.getY());
+        assertEquals(1, sprite.getX());
 
-        // // Test if player position is set correctly
+        assertEquals(1, sprite.getY());
 
-        // sprite.setPosition(2, 2);
+        // Test if player position is set correctly
 
-        // assertEquals(2, sprite.getX());
+        sprite.setPosition(2, 2);
 
-        // assertEquals(2, sprite.getY());
+        assertEquals(2, sprite.getX());
+
+        assertEquals(2, sprite.getY());
+    }
+
+
+    @Test
+    public void testPlayerMovementSpeedWhenControllerIsFast() {
+        Controller controller = mock(Controller.class, Mockito.CALLS_REAL_METHODS);
+        Level1 lvl1 = new Level1();
+
+        assertNotNull(lvl1);
+        Player player = new Player(new Vector2(0, 0), lvl1, controller);
+        
+        // Set up the mocked Controller behavior
+        Mockito.when(controller.isFast()).thenReturn(true);
+
+        // Capture the initial speed
+        float initialSpeed = player.getMovementSpeed();
+
+        // Update the player to simulate game loop behavior
+        player.update(1f);
+
+        // Get the new speed after the update
+        float newSpeed = player.getMovementSpeed();
+
+        // Verify the speed has changed to 'run'
+        // assertNotEquals(initialSpeed, newSpeed, 0.001);
+        assertNotEquals(newSpeed, initialSpeed, 0.001, "Speed should have changed when controller is fast");
+        assertEquals(2, newSpeed);
     }
     
 }
