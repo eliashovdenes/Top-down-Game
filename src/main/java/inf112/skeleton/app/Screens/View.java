@@ -11,6 +11,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.math.Rectangle;
+import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.ui.List;
 
 import inf112.skeleton.app.Entities.AbstractGameObject;
@@ -176,8 +177,7 @@ public class View implements Screen {
         
         for (MonsterInterface monsterI : deadMonsterList) {
             if(monsterI.dropHealthPotion()){
-                HealthPotion potion = new HealthPotion(monsterI.getPosition(), mapI);
-                addItem(potion);
+                addPotion(monsterI.getPosition());
             }
         }
         //draw items
@@ -199,6 +199,7 @@ public class View implements Screen {
         playerI.getArrows().removeAll(projectilesToRemove);
         deadMonsterList.clear();
         itemsToRemove.clear();
+        projectilesToRemove.clear();
         
         
         //remove dead monsters
@@ -256,9 +257,10 @@ public class View implements Screen {
         renderer.dispose();      
     }
 
-    private void addItem(ItemImpl item) {
-        if (this.itemList.size() <=3) {
-            this.itemList.add(item);
+    private void addPotion(Vector2 position) {
+        if (this.itemList.size() <= 2) {
+            HealthPotion potion = new HealthPotion(position, mapI);
+            this.itemList.add(potion);
         }
     }
 }
