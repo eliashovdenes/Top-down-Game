@@ -1,5 +1,6 @@
 package inf112.skeleton.app.Entities.Enemies;
 
+import java.util.ArrayList;
 import java.util.Random;
 
 import com.badlogic.gdx.graphics.Texture;
@@ -11,6 +12,7 @@ import inf112.skeleton.app.Entities.AbstractGameObject;
 import inf112.skeleton.app.Entities.Enums.DirectionEnum;
 import inf112.skeleton.app.Entities.Enums.PlayerPics;
 import inf112.skeleton.app.Entities.Items.HealthPotion;
+import inf112.skeleton.app.Entities.Projectiles.ProjectileInterface;
 import inf112.skeleton.app.Mapfolder.MapInterface;
 
 public class BlueEnemy extends AbstractGameObject implements MonsterInterface  {
@@ -23,6 +25,7 @@ public class BlueEnemy extends AbstractGameObject implements MonsterInterface  {
     MapInterface map;
     private double healthPotionDropChance;
     private Random random;
+    public ArrayList<ProjectileInterface> projectileList;
 
 
     public BlueEnemy(MapInterface map) {
@@ -37,6 +40,7 @@ public class BlueEnemy extends AbstractGameObject implements MonsterInterface  {
         this.setCurrentHitPoints(this.getMaxHitpoints());
         this.setHealthPotionDropChance(0.3);
         this.random = new Random();
+        projectileList = new ArrayList<ProjectileInterface>();
     }
 
     public BlueEnemy() {
@@ -151,5 +155,10 @@ public class BlueEnemy extends AbstractGameObject implements MonsterInterface  {
     @Override
     public void setHealthPotionDropChance(double chance) {
         this.healthPotionDropChance = chance;
+    }
+
+    @Override
+    public ArrayList<ProjectileInterface> getProjectiles() {
+        return this.projectileList;
     }
 }
