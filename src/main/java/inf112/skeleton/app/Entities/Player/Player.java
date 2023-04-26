@@ -7,7 +7,6 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
-
 import inf112.skeleton.app.Animation;
 import inf112.skeleton.app.Collision;
 import inf112.skeleton.app.Controller.Controller;
@@ -47,6 +46,9 @@ public class Player extends AbstractGameObject implements PlayerInterface {
     // private Integer maxHitpoints;
     private Integer lives;
     private int exp;
+    private boolean isInvincible;
+    private float invincibilityTimer = 0.0f;
+    private final float invincibilityDuration = 1.0f;
 
     public Player(Vector2 position, MapInterface map, Controller controller) {
         super(position, map);
@@ -61,6 +63,7 @@ public class Player extends AbstractGameObject implements PlayerInterface {
         this.lives = 3;
         this.setMaxhitpoints(100);
         this.setCurrentHitPoints(this.getMaxHitpoints());
+        this.isInvincible = false;
 
         projectileList = new ArrayList<ProjectileInterface>();
         shootTimer = 0;
@@ -113,6 +116,14 @@ public class Player extends AbstractGameObject implements PlayerInterface {
             projectile.update(delta);
         }
 
+        if (isInvincible) {
+            invincibilityTimer -= delta;
+            if (invincibilityTimer <= 0.0f) {
+                isInvincible = false;
+                sprite.setAlpha(1);
+            }
+        }
+
         animate(delta);
         ApplyMovement();
         sprite.setPosition(position.x, position.y);
@@ -153,29 +164,32 @@ public class Player extends AbstractGameObject implements PlayerInterface {
 
     // **animate does the animation of the player */
     private void animate(float delta) {
-        if (!controller.isFast()) {
-            if (direction == DirectionEnum.NORTH)
-                this.playerAnimation = PlayerAnimation.UP.animation;
-            if (direction == DirectionEnum.EAST)
-                this.playerAnimation = PlayerAnimation.RIGHT.animation;
-            if (direction == DirectionEnum.WEST)
-                this.playerAnimation = PlayerAnimation.LEFT.animation;
-            if (direction == DirectionEnum.SOUTH)
-                this.playerAnimation = PlayerAnimation.DOWN.animation;
-        }
-        // running
-        if (controller.isFast()) {
-            if (direction == DirectionEnum.NORTH)
-                this.playerAnimation = PlayerAnimation.RUNUP.animation;
-            if (direction == DirectionEnum.EAST)
-                this.playerAnimation = PlayerAnimation.RUNRIGHT.animation;
-            if (direction == DirectionEnum.WEST)
-                this.playerAnimation = PlayerAnimation.RUNLEFT.animation;
-            if (direction == DirectionEnum.SOUTH)
-                this.playerAnimation = PlayerAnimation.RUNDOWN.animation;
+        if (isInvincible) {
+            sprite.setAlpha(0.5f);
+        } else {           
+            if (!controller.isFast()) {
+                if (direction == DirectionEnum.NORTH)
+                    this.playerAnimation = PlayerAnimation.UP.animation;
+                if (direction == DirectionEnum.EAST)
+                    this.playerAnimation = PlayerAnimation.RIGHT.animation;
+                if (direction == DirectionEnum.WEST)
+                    this.playerAnimation = PlayerAnimation.LEFT.animation;
+                if (direction == DirectionEnum.SOUTH)
+                    this.playerAnimation = PlayerAnimation.DOWN.animation;
+            }
+            // running
+            if (controller.isFast()) {
+                if (direction == DirectionEnum.NORTH)
+                    this.playerAnimation = PlayerAnimation.RUNUP.animation;
+                if (direction == DirectionEnum.EAST)
+                    this.playerAnimation = PlayerAnimation.RUNRIGHT.animation;
+                if (direction == DirectionEnum.WEST)
+                    this.playerAnimation = PlayerAnimation.RUNLEFT.animation;
+                if (direction == DirectionEnum.SOUTH)
+                    this.playerAnimation = PlayerAnimation.RUNDOWN.animation;
 
+            }
         }
-
         sprite.setRegion(playerAnimation.getFrame());
         playerAnimation.update(delta);
     }
@@ -364,9 +378,13 @@ public class Player extends AbstractGameObject implements PlayerInterface {
     //**takeDamage method removes given amount to healthpoints*/
     @Override
     public void takeDamage(int damage) {
-        this.setCurrentHitPoints(this.getCurrentHitpoints() - damage);
-        if (this.isDead()) {
-            this.setLives(this.getLives() - 1);
+        if (!isInvincible) {
+            this.setCurrentHitPoints(this.getCurrentHitpoints() - damage);
+            if (this.isDead()) {
+                this.setLives(this.getLives() - 1);
+            }
+            this.isInvincible = true;
+            this.invincibilityTimer = invincibilityDuration;
         }
     }
 
