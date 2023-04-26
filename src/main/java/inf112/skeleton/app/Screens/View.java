@@ -151,6 +151,8 @@ public class View implements Screen {
                 }
             }
         }
+
+        
         
         
         //draw monsters
@@ -164,6 +166,14 @@ public class View implements Screen {
             if (monsterI.isDead()){
                 deadMonsterList.add(monsterI);
                 playerI.getExp();
+            }
+            for (ProjectileInterface projectile : monsterI.getProjectiles()){
+                projectile.getSprite().draw(batch);
+                if (projectile.getRect().overlaps(playerI.getRect())) { 
+                    playerI.takeDamage(projectile.getDamage());
+                    projectilesToRemove.add(projectile);
+                }
+                
             }
                 
                 
