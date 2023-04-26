@@ -54,4 +54,4 @@ Start spillet ved å gjøre main.java
 - Oppgrader movement speed og player health i butikk er ikke implementert.
 
 ## Credits
-
+- Potions:  Bonsaiheldin https://opengameart.org/content/rpg-potions-16x16
