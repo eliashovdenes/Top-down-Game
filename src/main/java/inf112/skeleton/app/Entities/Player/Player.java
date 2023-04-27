@@ -166,30 +166,30 @@ public class Player extends AbstractGameObject implements PlayerInterface {
     private void animate(float delta) {
         if (isInvincible) {
             sprite.setAlpha(0.5f);
-        } else {           
-            if (!controller.isFast()) {
-                if (direction == DirectionEnum.NORTH)
-                    this.playerAnimation = PlayerAnimation.UP.animation;
-                if (direction == DirectionEnum.EAST)
-                    this.playerAnimation = PlayerAnimation.RIGHT.animation;
-                if (direction == DirectionEnum.WEST)
-                    this.playerAnimation = PlayerAnimation.LEFT.animation;
-                if (direction == DirectionEnum.SOUTH)
-                    this.playerAnimation = PlayerAnimation.DOWN.animation;
-            }
-            // running
-            if (controller.isFast()) {
-                if (direction == DirectionEnum.NORTH)
-                    this.playerAnimation = PlayerAnimation.RUNUP.animation;
-                if (direction == DirectionEnum.EAST)
-                    this.playerAnimation = PlayerAnimation.RUNRIGHT.animation;
-                if (direction == DirectionEnum.WEST)
-                    this.playerAnimation = PlayerAnimation.RUNLEFT.animation;
-                if (direction == DirectionEnum.SOUTH)
-                    this.playerAnimation = PlayerAnimation.RUNDOWN.animation;
-
-            }
+        }           
+        if (!controller.isFast()) {
+            if (direction == DirectionEnum.NORTH)
+                this.playerAnimation = PlayerAnimation.UP.animation;
+            if (direction == DirectionEnum.EAST)
+                this.playerAnimation = PlayerAnimation.RIGHT.animation;
+            if (direction == DirectionEnum.WEST)
+                this.playerAnimation = PlayerAnimation.LEFT.animation;
+            if (direction == DirectionEnum.SOUTH)
+                this.playerAnimation = PlayerAnimation.DOWN.animation;
         }
+        // running
+        if (controller.isFast()) {
+            if (direction == DirectionEnum.NORTH)
+                this.playerAnimation = PlayerAnimation.RUNUP.animation;
+            if (direction == DirectionEnum.EAST)
+                this.playerAnimation = PlayerAnimation.RUNRIGHT.animation;
+            if (direction == DirectionEnum.WEST)
+                this.playerAnimation = PlayerAnimation.RUNLEFT.animation;
+            if (direction == DirectionEnum.SOUTH)
+                this.playerAnimation = PlayerAnimation.RUNDOWN.animation;
+
+        }
+        
         sprite.setRegion(playerAnimation.getFrame());
         playerAnimation.update(delta);
     }
