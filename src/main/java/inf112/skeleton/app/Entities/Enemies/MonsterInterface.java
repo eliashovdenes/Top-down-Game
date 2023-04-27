@@ -61,6 +61,15 @@ public interface MonsterInterface {
      */
     void setXYFromSpawnBounds();
 
+
+    /**
+     * Changes the velocity of the enemy.
+     * Made to set the velocity according to th eplayers position.
+     * @param x
+     * @param y
+     */
+    public void followPlayer(float x, float y);
+
     /**
      * 
      * @return a vector2 object containing X and Y coordinates of monster. 

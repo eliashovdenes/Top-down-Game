@@ -146,6 +146,7 @@ public class View implements Screen {
             monsterI.update(delta);
             monsterI.getSprite().draw(batch);   
             lifeText.draw(batch,"HP:"+monsterI.getCurrentHitpoints(),monsterI.getPosition().x,monsterI.getPosition().y);
+            monsterI.followPlayer(playerI.getPosition().x, playerI.getPosition().y);
             
             //check if monsterhp is less than or equal to zero
             if (monsterI.isDead()){

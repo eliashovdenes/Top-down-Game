@@ -17,9 +17,11 @@ public class BlueEnemy extends AbstractGameObject implements MonsterInterface  {
     Sprite sprite;
     int attackDamage = 1;
     float fromX,fromY,toX,toY;
-    float speed = 1 ;
+    float speed = 0.5f ;
     private DirectionEnum direction;
     MapInterface map;
+    Random rand = new Random();
+    float time = 0;
     // Integer BlueEnemy = 50;
 
     public BlueEnemy(MapInterface map) {
@@ -69,14 +71,45 @@ public class BlueEnemy extends AbstractGameObject implements MonsterInterface  {
     }
 
     @Override
+    public void handleCollision() {
+            if (xCollision()){
+                position.x=recentPosition.x;
+                velocity.x = - velocity.x;
+                
+            }
+            if (yCollision()){
+                position.y=recentPosition.y;
+                velocity.y = - velocity.y;
+                
+            }
+            
+        }
+
+    @Override
     public void update(float delta) {
+        changeDirection(delta);
         ApplyMovement();
         sprite.setPosition(position.x, position.y);
+    }
+
+    private boolean changeDirection(float dt) {
+        time -= dt;
+        if (time <= 0) {
+            velocity.x = rand.nextFloat(0,0.5f);
+            velocity.y = rand.nextFloat(0, 0.5f);
+            time = rand.nextFloat(2, 5);
+            return true;
+        }
+        return false;
     }
 
     @Override
     public void setSprite(String string) {
         sprite = new Sprite(new Texture(string));
+    }
+
+    public void followPlayer(float x, float y) {
+      
     }
 
     @Override
