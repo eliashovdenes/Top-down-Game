@@ -199,16 +199,17 @@ public class Collision {
 
 
                     //This is for mini cycle, better suited for testing:
-                    if (entityCell.getTile().getProperties().containsKey("house")){nextMap =  new House();}
+                    if (entityCell.getTile().getProperties().containsKey("house")){nextMap =  new House(); currMap.stopMusic();}
 
-                    if (entityCell.getTile().getProperties().containsKey("level 2")){nextMap = new Level1Mini(113, 75);}
+                    if (entityCell.getTile().getProperties().containsKey("level 2")){nextMap = new Level1Mini(113, 75);currMap.stopMusic();}
 
-                    if (entityCell.getTile().getProperties().containsKey("grass")){nextMap = new GrassMini(119,52);}
+                    if (entityCell.getTile().getProperties().containsKey("grass")){nextMap = new GrassMini(119,52);currMap.stopMusic();}
 
                     if (entityCell.getTile().getProperties().containsKey("mini level 1")){
                         
                         if(currMap.getMonsterList().isEmpty()){
                             nextMap = new Level1Mini(139,70);
+                            currMap.stopMusic();
                         } else{
                             return false;
                         }
