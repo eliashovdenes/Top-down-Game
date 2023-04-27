@@ -124,7 +124,9 @@ public class View implements Screen {
             playerI.setOffPortal();
         }
         
-        
+        if (playerI.isDead()){
+            game.setScreen(new GameOverScreen(game, controller));
+        }
 
         //render map
         renderer.setView(camera);
