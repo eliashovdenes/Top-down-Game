@@ -15,8 +15,6 @@ public interface ProjectileInterface{
 
     public  void setSprite(String string);
 
-    public  void setMovementSpeed(float speed);
-
     public  float getWidth();
     
     public  float getHeight();
