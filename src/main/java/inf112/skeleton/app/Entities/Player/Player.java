@@ -23,6 +23,14 @@ import inf112.skeleton.app.Sound.SoundManager;
 
 public class Player extends AbstractGameObject implements PlayerInterface {
     private Animation playerAnimation;
+    public Animation getPlayerAnimation() {
+        return playerAnimation;
+    }
+
+    public void setPlayerAnimation(Animation playerAnimation) {
+        this.playerAnimation = playerAnimation;
+    }
+
     private int playerLevel = 1;
     private int abilityPoints = 0;
     private Sprite sprite;

@@ -27,6 +27,7 @@ import java.nio.ByteBuffer;
 
 import inf112.skeleton.app.Controller.Controller;
 import inf112.skeleton.app.Entities.Enums.DirectionEnum;
+import inf112.skeleton.app.Entities.Enums.PlayerAnimation;
 import inf112.skeleton.app.Entities.Enums.PlayerPics;
 import inf112.skeleton.app.Entities.Player.Player;
 import inf112.skeleton.app.Mapfolder.Level1;
@@ -231,12 +232,11 @@ public class PlayerTest {
 
         assertNotNull(lvl1);
         Player player = new Player(new Vector2(0, 0), lvl1, controller);
-        
-        // Set up the mocked Controller behavior
-        Mockito.when(controller.isFast()).thenReturn(true);
 
         // Capture the initial speed
         float initialSpeed = player.getMovementSpeed();
+
+        controller.setFast(true);
 
         // Update the player to simulate game loop behavior
         player.update(1f);
@@ -250,4 +250,55 @@ public class PlayerTest {
         assertEquals(2, newSpeed);
     }
     
+    @Test
+    public void testAnimateMethod() {
+        Controller controller = mock(Controller.class, Mockito.CALLS_REAL_METHODS);
+        Level1 lvl1 = new Level1();
+
+        assertNotNull(lvl1);
+        Player player = new Player(new Vector2(0, 0), lvl1, controller);
+
+        // Test when player is walking in each direction
+        for (DirectionEnum direction : DirectionEnum.values()) {
+            player.setPlayerDirection(direction);
+            player.update(1f);
+
+            if (direction == DirectionEnum.NORTH){
+                assertEquals(PlayerAnimation.UP.animation, player.getPlayerAnimation(),
+                        "Player animation should match the direction when walking");
+            } else if (direction == DirectionEnum.SOUTH){
+                assertEquals(PlayerAnimation.DOWN.animation, player.getPlayerAnimation(),
+                        "Player animation should match the direction when walking");
+            } else if (direction == DirectionEnum.EAST){
+                assertEquals(PlayerAnimation.RIGHT.animation, player.getPlayerAnimation(),
+                        "Player animation should match the direction when walking");
+            } else if (direction == DirectionEnum.WEST){
+                assertEquals(PlayerAnimation.LEFT.animation, player.getPlayerAnimation(),
+                        "Player animation should match the direction when walking");
+            }
+            
+        }
+
+        // Test when player is running in each direction
+        controller.setFast(true);
+        for (DirectionEnum direction : DirectionEnum.values()) {
+            player.setPlayerDirection(direction);
+            player.update(1f);
+
+
+            if (direction == DirectionEnum.NORTH){
+                assertEquals(PlayerAnimation.RUNUP.animation, player.getPlayerAnimation(),
+                        "Player animation should match the direction when walking");
+            } else if (direction == DirectionEnum.SOUTH){
+                assertEquals(PlayerAnimation.RUNDOWN.animation, player.getPlayerAnimation(),
+                        "Player animation should match the direction when walking");
+            } else if (direction == DirectionEnum.EAST){
+                assertEquals(PlayerAnimation.RUNRIGHT.animation, player.getPlayerAnimation(),
+                        "Player animation should match the direction when walking");
+            } else if (direction == DirectionEnum.WEST){
+                assertEquals(PlayerAnimation.RUNLEFT.animation, player.getPlayerAnimation(),
+                        "Player animation should match the direction when walking");
+            }
+        }
+    }
 }
