@@ -202,17 +202,18 @@ public class Player extends AbstractGameObject implements PlayerInterface {
             // set velocity based on player direction.
             Vector2 velocity = new Vector2();
             if (this.direction == DirectionEnum.NORTH)
-                velocity.set(0, 1);
+                velocity.set(0,3);
             if (this.direction == DirectionEnum.EAST)
-                velocity.set(1, 0);
+                velocity.set(3, 0);
             if (this.direction == DirectionEnum.WEST)
-                velocity.set(-1, 0);
+                velocity.set(-3, 0);
             if (this.direction == DirectionEnum.SOUTH)
-                velocity.set(0, -1);
+                velocity.set(0, -3);
 
             // first arrow created and added.
             Vector2 arrowPos = new Vector2(position.x, position.y);
             Arrow arrow1 = new Arrow(arrowPos, map, velocity, this);
+            
             projectileList.add(arrow1);
 
             // for every arrowAbilityLevel beyond 1, create a new arrow at a randomized
