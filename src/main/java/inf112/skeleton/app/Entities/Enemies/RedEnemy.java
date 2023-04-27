@@ -79,9 +79,9 @@ public class RedEnemy extends AbstractGameObject implements MonsterInterface  {
 
     public void followPlayer(float x, float y) {
         if (x > position.x) velocity.x = speed;
-        else if (x < position.x) velocity.x =  speed;
+        else if (x < position.x) velocity.x =  -speed;
         if (y > position.y) velocity.y = speed;
-        else if (y < position.y) velocity.y =  speed;
+        else if (y < position.y) velocity.y =  -speed;
     }
 
     public String getName() {
