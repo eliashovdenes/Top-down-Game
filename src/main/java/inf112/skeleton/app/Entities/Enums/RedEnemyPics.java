@@ -5,7 +5,8 @@ public enum RedEnemyPics {
     ENEMYDOWN("assets/enemyPics/RedEnemyDOWN.png"),
     ENEMYUP("assets/enemyPics/RedEnemyUP.png"),
     ENEMYLEFT("assets/enemyPics/RedEnemyLEFT.png"),
-    ENEMYRIGHT("assets/enemyPics/RedEnemyRIGHT.png");
+    ENEMYRIGHT("assets/enemyPics/RedEnemyRIGHT.png"),
+    REDPROJECTILE("assets/projectilePics/RedProjectile.png");
 
     public String source;
 

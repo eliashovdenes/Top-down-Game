@@ -1,9 +1,12 @@
 package inf112.skeleton.app.Entities.Enemies;
 
+import java.util.ArrayList;
+
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import inf112.skeleton.app.Entities.Enums.DirectionEnum;
+import inf112.skeleton.app.Entities.Projectiles.ProjectileInterface;
 
 public interface MonsterInterface {
 
@@ -84,4 +87,12 @@ public interface MonsterInterface {
     Integer getCurrentHitpoints();
 
     boolean isDead();
+
+    public boolean dropHealthPotion();
+
+    public double getHealthPotionDropChance();
+
+    public void setHealthPotionDropChance(double chance);
+
+    ArrayList<ProjectileInterface> getProjectiles();
 }
