@@ -30,7 +30,7 @@ public class RedProjectile extends AbstractGameObject implements ProjectileInter
         this.velocity = velocity;
         setSprite(RedEnemyPics.REDPROJECTILE.source);
         sprite.setSize(10,10);
-        rectangle = new Rectangle(position.x, position.y, getWidth(), getHeight());
+        rectangle = new Rectangle(position.x, position.y, getWidth()/2, getHeight()/2);
         
        
     }
