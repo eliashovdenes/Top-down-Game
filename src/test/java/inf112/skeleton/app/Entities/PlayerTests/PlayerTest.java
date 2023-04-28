@@ -328,17 +328,17 @@ public class PlayerTest {
 
         assertEquals(1, player.getProjectiles().size());
     
-        assertEquals(10, lightning.getDamage());
+        assertEquals(45, lightning.getDamage());
 
         assertEquals(lightning.getCurrentHitpoints(), lightning.getMaxHitpoints());
 
-        assertEquals(0, lightning.getPosition().x);
+        assertEquals(-8, lightning.getPosition().x);
 
-        assertEquals(1, lightning.getPosition().y);
+        assertEquals(-7, lightning.getPosition().y);
 
-        assertEquals(lightning.getHeight(), 15);
+        assertEquals(lightning.getHeight(), 40);
 
-        assertEquals(lightning.getWidth(), 15);
+        assertEquals(lightning.getWidth(), 40);
     }
 
     @Test
