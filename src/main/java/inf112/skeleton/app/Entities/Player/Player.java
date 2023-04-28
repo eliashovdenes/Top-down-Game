@@ -262,7 +262,7 @@ public class Player extends AbstractGameObject implements PlayerInterface {
 
     // *Getter for projectilelist/arrows*/
     @Override
-    public ArrayList<ProjectileInterface> getArrows() {
+    public ArrayList<ProjectileInterface> getProjectiles() {
         return projectileList;
     }
 
@@ -418,7 +418,7 @@ public class Player extends AbstractGameObject implements PlayerInterface {
 
     @Override
     public int getMovementAbilityLevel() {
-        return healthAbilityLevel;
+        return movementAbilityLevel;
     }
 
     @Override
@@ -438,6 +438,8 @@ public class Player extends AbstractGameObject implements PlayerInterface {
         walk = walk+1;
         run = run+1;
     }
+
+    
     
 
 }

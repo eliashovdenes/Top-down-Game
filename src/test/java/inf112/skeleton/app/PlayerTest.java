@@ -1,12 +1,14 @@
 package inf112.skeleton.app;
 
 import org.junit.jupiter.api.*;
+import org.lwjgl.system.windows.INPUT;
 import org.mockito.Mockito;
 
 import com.badlogic.gdx.Files;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Graphics;
 import com.badlogic.gdx.Graphics.GraphicsType;
+import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.backends.headless.HeadlessApplication;
 import com.badlogic.gdx.backends.headless.HeadlessApplicationConfiguration;
 import com.badlogic.gdx.graphics.GL20;
@@ -30,6 +32,8 @@ import inf112.skeleton.app.Entities.Enums.DirectionEnum;
 import inf112.skeleton.app.Entities.Enums.PlayerAnimation;
 import inf112.skeleton.app.Entities.Enums.PlayerPics;
 import inf112.skeleton.app.Entities.Player.Player;
+import inf112.skeleton.app.Entities.Projectiles.Arrow;
+import inf112.skeleton.app.Entities.Projectiles.Lightning;
 import inf112.skeleton.app.Mapfolder.Level1;
 
 public class PlayerTest {
@@ -301,4 +305,154 @@ public class PlayerTest {
             }
         }
     }
+
+
+    @Test
+    public void testShootLightningMethod() {
+        Controller controller = mock(Controller.class, Mockito.CALLS_REAL_METHODS);
+        Level1 lvl1 = new Level1();
+
+        assertNotNull(lvl1);
+        Player player = new Player(new Vector2(0, 0), lvl1, controller);
+
+        controller.keyDown(Keys.ENTER);
+
+        player.setPlayerDirection(DirectionEnum.NORTH);
+
+        player.update(1f);
+
+        Lightning lightning = (Lightning) player.getProjectiles().get(0);
+
+        assertEquals(1, player.getProjectiles().size());
+    
+        assertEquals(10, lightning.getDamage());
+
+        assertEquals(lightning.getCurrentHitpoints(), lightning.getMaxHitpoints());
+
+        assertEquals(0, lightning.getPosition().x);
+
+        assertEquals(1, lightning.getPosition().y);
+
+        assertEquals(lightning.getHeight(), 15);
+
+        assertEquals(lightning.getWidth(), 15);
+    }
+
+    @Test
+    public void testShootArrowMethod() {
+        Controller controller = mock(Controller.class, Mockito.CALLS_REAL_METHODS);
+        Level1 lvl1 = new Level1();
+
+        assertNotNull(lvl1);
+        Player player = new Player(new Vector2(0, 0), lvl1, controller);
+
+        controller.keyDown(Keys.SPACE);
+
+        player.setPlayerDirection(DirectionEnum.NORTH);
+
+        player.update(1f);
+
+        Arrow arrow = (Arrow) player.getProjectiles().get(0);
+
+        assertEquals(1, player.getProjectiles().size());
+
+        assertEquals(1, arrow.getDamage());
+
+        assertEquals(arrow.getCurrentHitpoints(), arrow.getMaxHitpoints());
+
+        assertEquals(0, arrow.getPosition().x);
+
+        assertEquals(1, arrow.getPosition().y);
+
+        assertEquals(arrow.getHeight(), 10);
+
+        assertEquals(arrow.getWidth(), 10);
+    }
+
+
+    @Test
+    public void testPlayerGettersAndSetters() {
+        Controller controller = mock(Controller.class, Mockito.CALLS_REAL_METHODS);
+        Level1 lvl1 = new Level1();
+        assertNotNull(lvl1);
+        Player player = new Player(new Vector2(0, 0), lvl1, controller);
+
+        // Test setPlayerDirection and getPlayerDirection
+        player.setPlayerDirection(DirectionEnum.NORTH);
+        assertEquals(DirectionEnum.NORTH, player.getPlayerDirection());
+
+        // Test setShootTimer and getShootTimer
+        player.setShootTimer(10);
+        assertEquals(0, player.getShootTimer());
+
+        // Test spawn and getPosition
+        player.spawn(16, 32);
+        assertEquals(16, player.getPosition().x);
+        assertEquals(32, player.getPosition().y);
+
+        // Test setOffPortal and onPortal
+        player.setOffPortal();
+        assertFalse(player.onPortal());
+
+        // Test returnMap
+        assertEquals(lvl1, player.returnMap());
+
+        // Test upgradeLightning and getLightningAbilityLevel
+        int initialLightningAbilityLevel = player.getLightningAbilityLevel();
+        player.upgradeLightning();
+        assertEquals(initialLightningAbilityLevel + 1, player.getLightningAbilityLevel());
+
+        // Test upgradeArrow and getArrowAbilityLevel
+        int initialArrowAbilityLevel = player.getArrowAbilityLevel();
+        player.upgradeArrow();
+        assertEquals(initialArrowAbilityLevel + 1, player.getArrowAbilityLevel());
+
+        // Test setLives and getLives
+        player.setLives(3);
+        assertEquals(3, player.getLives());
+
+        // Test takeDamage
+        int initialHitPoints = player.getCurrentHitpoints();
+        int damage = 5;
+        player.takeDamage(damage);
+        assertEquals(initialHitPoints - damage, player.getCurrentHitpoints());
+
+        // Test getExp, getLevel, getAbilityPoints
+        int initialLevel = player.getLevel();
+        int initialAbilityPoints = player.getAbilityPoints();
+        player.getExp();
+        assertEquals(initialLevel, player.getLevel());
+        assertEquals(initialAbilityPoints, player.getAbilityPoints());
+
+        // Test upgradeHealth and getHealthAbilityLevel
+        int initialHealthAbilityLevel = player.getHealthAbilityLevel();
+        player.upgradeHealth();
+        assertEquals(initialHealthAbilityLevel + 1, player.getHealthAbilityLevel());
+
+        // Test upgradeMovement and getMovementAbilityLevel
+        int initialMovementAbilityLevel = player.getMovementAbilityLevel();
+        player.upgradeMovement();
+        player.upgradeMovement();
+
+        // player.update(1f);
+        assertEquals(initialMovementAbilityLevel+2, player.getMovementAbilityLevel());
+        
+        // Test removeAbilityPoints
+        player.removeAbilityPoints();
+        assertEquals(initialAbilityPoints - 1, player.getAbilityPoints());
+    }
+
+
+
+
+
+
+
+
+
+
+
+    
+
+
 }

@@ -132,7 +132,7 @@ public class View implements Screen {
         playerI.getSprite().draw(batch);
 
         //draw projectiles and check if they hit enemy.
-        for (ProjectileInterface projectile : playerI.getArrows()){
+        for (ProjectileInterface projectile : playerI.getProjectiles()){
             projectile.getSprite().draw(batch);
             for (MonsterInterface monsterI : mapI.getMonsterList()) {
                 if (projectile.getRect().overlaps(monsterI.getRect())) { monsterI.takeDamage(projectile.getDamage()); }
