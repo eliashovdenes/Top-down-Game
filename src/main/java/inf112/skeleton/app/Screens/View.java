@@ -211,7 +211,7 @@ public class View implements Screen {
         //remove dead monsters, projectiles that hit enemies and used items
         mapI.getMonsterList().removeAll(deadMonsterList);
         itemList.removeAll(itemsToRemove);
-        playerI.getArrows().removeAll(projectilesToRemove);
+        playerI.getProjectiles().removeAll(projectilesToRemove);
         deadMonsterList.clear();
         itemsToRemove.clear();
         projectilesToRemove.clear();

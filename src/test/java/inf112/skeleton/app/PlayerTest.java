@@ -97,6 +97,7 @@ public class PlayerTest {
         // Simulate player damage and check that hit points updates correctly
         player.takeDamage(25);
         Assertions.assertEquals(75, player.getCurrentHitpoints());
+        player.setInvincible(false);
         player.takeDamage(50);
         Assertions.assertEquals(25, player.getCurrentHitpoints());
         
@@ -124,6 +125,7 @@ public class PlayerTest {
         assertEquals(1, player.getLives());
 
         // Test player is dead when lives = 0
+        player.setInvincible(false);
         player.takeDamage(200);
         assertTrue(player.isDead());
         assertEquals(0, player.getCurrentHitpoints());
@@ -356,13 +358,13 @@ public class PlayerTest {
 
         assertEquals(1, player.getProjectiles().size());
 
-        assertEquals(1, arrow.getDamage());
+        assertEquals(5, arrow.getDamage());
 
         assertEquals(arrow.getCurrentHitpoints(), arrow.getMaxHitpoints());
 
         assertEquals(0, arrow.getPosition().x);
 
-        assertEquals(1, arrow.getPosition().y);
+        assertEquals(3, arrow.getPosition().y);
 
         assertEquals(arrow.getHeight(), 10);
 

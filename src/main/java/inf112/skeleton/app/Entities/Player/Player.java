@@ -55,6 +55,8 @@ public class Player extends AbstractGameObject implements PlayerInterface {
     private Integer lives;
     private int exp;
     private boolean isInvincible;
+    
+
     private float invincibilityTimer = 0.0f;
     private final float invincibilityDuration = 1.0f;
 
@@ -461,6 +463,14 @@ public class Player extends AbstractGameObject implements PlayerInterface {
         movementAbilityLevel+=1;
         walk = walk+1;
         run = run+1;
+    }
+
+    public boolean isInvincible() {
+        return isInvincible;
+    }
+
+    public void setInvincible(boolean isInvincible) {
+        this.isInvincible = isInvincible;
     }
 
     
