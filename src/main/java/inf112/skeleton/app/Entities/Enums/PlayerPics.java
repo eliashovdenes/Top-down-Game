@@ -6,10 +6,7 @@ public enum PlayerPics {
     LEFT("assets/playerPics/playerL.png"),
     UP("assets/playerPics/playerUP.png"),
     DOWN("assets/playerPics/playerDOWN.png"),
-    ENEMYDOWN("assets/enemyPics/enemyDown.png"),
-    ENEMYUP("assets/enemyPics/enemyUp.png"),
-    ENEMYLEFT("assets/enemyPics/enemyLeft.png"),
-    ENEMYRIGHT("assets/enemyPics/enemyRight.png"),
+    
     ATTACKUP("assets/playerPics/linkattacktop.png"),
     ATTACKDOWN("assets/playerPics/linkAttack_down.png"),
     ATTACKLEFT("assets/playerPics/linkattackleft.png"),

@@ -29,44 +29,12 @@ public class MainMenuScreenTest {
     @Test
     void testWrongMouseClick() {
 
-        try {
-            System.out.println("whtf?");
-            game.getController().touchDown(0, 0, 0, 0);
-            assertTrue(game.getScreen().equals(new MainMenuScreen(game, game.getController())));
-            
-        } catch (NullPointerException ignored) {
-            assertTrue(game.getScreen().equals(new MainMenuScreen(game, game.getController())));
-            System.out.println("stemning?");
-        }
+        fail();
     }
 
     @Test
     void changeToInstructionScreenTest() {
 
-        try {
-            game.getController().touchDown(400, 350, 0, 0);
-            assertTrue(game.getScreen().equals(new InstructionScreen(game, game.getController())));
-        } catch (UnsatisfiedLinkError ignore) {
-        }
-    
-/*    @Test
-    void changeToCreditScreenTest() {
-
-        try {
-            game.getController().touchDown(400, 400, 0, 0);
-            assertTrue(game.getScreen().equals(new CreditScreen(game, game.getController())));
-        } catch (UnsatisfiedLinkError ignore) {
-        }
+       fail();
     }
-
-    @Test
-    void changeToViewScreenTest() {
-
-        try {
-            game.getController().touchDown(400, 400, 0, 0);
-            //assertTrue(game.getScreen().equals());
-        } catch (UnsatisfiedLinkError ignore) {
-        }
-    }
- */
-}}
+}

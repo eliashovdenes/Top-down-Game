@@ -1,4 +1,4 @@
-package inf112.skeleton.app.Entities;
+package inf112.skeleton.app.Entities.EnemiesTests;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
@@ -12,7 +12,7 @@ import org.mockito.Mockito;
 import inf112.skeleton.app.Entities.Enemies.BlueEnemy;
 import inf112.skeleton.app.Entities.Enemies.RedEnemy;
 
-public class TestEnemy {
+public class MonsterInterfaceTest {
     
     @Test 
     void testEnemyHitpoints(){

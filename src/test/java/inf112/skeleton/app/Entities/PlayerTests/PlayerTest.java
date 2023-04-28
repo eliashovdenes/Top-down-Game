@@ -1,4 +1,4 @@
-package inf112.skeleton.app.Entities;
+package inf112.skeleton.app.Entities.PlayerTests;
 
 import org.junit.jupiter.api.*;
 import org.lwjgl.system.windows.INPUT;
