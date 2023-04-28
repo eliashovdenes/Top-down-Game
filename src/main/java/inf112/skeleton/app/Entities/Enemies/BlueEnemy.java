@@ -26,6 +26,8 @@ public class BlueEnemy extends AbstractGameObject implements MonsterInterface  {
     private double healthPotionDropChance;
     private Random random;
     public ArrayList<ProjectileInterface> projectileList;
+    Random rand = new Random();
+    float time = 0;
 
 
     public BlueEnemy(MapInterface map) {

@@ -6,7 +6,7 @@ public class SoundManager {
     public aSound lightningMultiShotSound;
     public aSound arenaSound;
     public aSound safeZone;
-    private aSound buttonClick;
+    public aSound buttonClick;
     
     public SoundManager(){
         this.mainMenuMusic = new aSound("src/main/resources/assets/soundfiles/Main.mp3", true);
