@@ -22,6 +22,14 @@ import inf112.skeleton.app.Sound.SoundManager;
 
 public class Player extends AbstractGameObject implements PlayerInterface {
     private Animation playerAnimation;
+    public Animation getPlayerAnimation() {
+        return playerAnimation;
+    }
+
+    public void setPlayerAnimation(Animation playerAnimation) {
+        this.playerAnimation = playerAnimation;
+    }
+
     private int playerLevel = 1;
     private int abilityPoints = 0;
     private Sprite sprite;
@@ -49,6 +57,8 @@ public class Player extends AbstractGameObject implements PlayerInterface {
     private Integer lives;
     private int exp;
     private boolean isInvincible;
+    
+
     private float invincibilityTimer = 0.0f;
     private final float invincibilityDuration = 1.0f;
 
@@ -276,7 +286,7 @@ public class Player extends AbstractGameObject implements PlayerInterface {
 
     // *Getter for projectilelist/arrows*/
     @Override
-    public ArrayList<ProjectileInterface> getArrows() {
+    public ArrayList<ProjectileInterface> getProjectiles() {
         return projectileList;
     }
 
@@ -434,7 +444,7 @@ public class Player extends AbstractGameObject implements PlayerInterface {
 
     @Override
     public int getMovementAbilityLevel() {
-        return healthAbilityLevel;
+        return movementAbilityLevel;
     }
 
     @Override
@@ -454,6 +464,16 @@ public class Player extends AbstractGameObject implements PlayerInterface {
         walk = walk+1;
         run = run+1;
     }
+
+    public boolean isInvincible() {
+        return isInvincible;
+    }
+
+    public void setInvincible(boolean isInvincible) {
+        this.isInvincible = isInvincible;
+    }
+
+    
     
 
 }

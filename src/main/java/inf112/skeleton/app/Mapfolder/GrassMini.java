@@ -14,6 +14,8 @@ import inf112.skeleton.app.Entities.Enemies.BlueEnemy;
 import inf112.skeleton.app.Entities.Enemies.MonsterFactory;
 import inf112.skeleton.app.Entities.Enemies.MonsterInterface;
 import inf112.skeleton.app.Entities.Enemies.RedEnemy;
+import inf112.skeleton.app.Sound.SoundManager;
+import inf112.skeleton.app.Sound.aSound;
 
 public class GrassMini extends TiledMap implements MapInterface {
 
@@ -24,6 +26,7 @@ public class GrassMini extends TiledMap implements MapInterface {
     private int EnemyBoundsToX = 133;
     private int EnemyBoundsFromY = 56;
     private int EnemyBoundsToY = 85;
+    private SoundManager sm;
 
     
 
@@ -40,6 +43,8 @@ public class GrassMini extends TiledMap implements MapInterface {
         PlayerSpawnX = playerSpawnX;
         PlayerSpawnY = playerSpawnY;
         tiledMap = new TmxMapLoader().load(Maps.GrassMini.source);
+        sm = new SoundManager();
+        sm.arenaSound.play();
         //renderer = new OrthogonalTiledMapRenderer(tiledMap);
         setup();
         this.spawn(enemyList);
@@ -114,6 +119,12 @@ public class GrassMini extends TiledMap implements MapInterface {
     @Override
     public void removeMonster(MonsterInterface monster) {
         monsterList.remove(monster);
+    }
+
+    @Override
+    public void stopMusic() {
+        sm.arenaSound.stop();
+        sm.arenaSound.dispose();
     }
     
 }

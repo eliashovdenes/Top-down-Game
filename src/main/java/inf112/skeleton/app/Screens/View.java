@@ -144,7 +144,7 @@ public class View implements Screen {
         CopyOnWriteArrayList<ProjectileInterface> projectilesToRemove = new CopyOnWriteArrayList<>();
 
         //draw projectiles and check if they hit enemy.
-        for (ProjectileInterface projectile : playerI.getArrows()){
+        for (ProjectileInterface projectile : playerI.getProjectiles()){
             projectile.getSprite().draw(batch);
             if (projectile.getPosition().dst(playerI.getPosition())>200){
                 projectilesToRemove.add(projectile);
@@ -165,7 +165,9 @@ public class View implements Screen {
             
             monsterI.update(delta);
             monsterI.getSprite().draw(batch);   
+            lifeText.draw(batch,"HP:"+monsterI.getCurrentHitpoints(),monsterI.getPosition().x,monsterI.getPosition().y);
             hpText.draw(batch,"HP:"+monsterI.getCurrentHitpoints(),monsterI.getPosition().x,monsterI.getPosition().y);
+            monsterI.followPlayer(playerI.getPosition().x, playerI.getPosition().y);
             
             //check if monsterhp is less than or equal to zero
             if (monsterI.isDead()){
@@ -211,7 +213,7 @@ public class View implements Screen {
         //remove dead monsters, projectiles that hit enemies and used items
         mapI.getMonsterList().removeAll(deadMonsterList);
         itemList.removeAll(itemsToRemove);
-        playerI.getArrows().removeAll(projectilesToRemove);
+        playerI.getProjectiles().removeAll(projectilesToRemove);
         deadMonsterList.clear();
         itemsToRemove.clear();
         projectilesToRemove.clear();
@@ -230,8 +232,9 @@ public class View implements Screen {
              
 
         }
-        lifeText.draw(batch, "Lives: " + playerI.getLives(), camera.position.x + 225, camera.position.y + 125);
-        lifeText.draw(batch, "Level: " + playerI.getLevel(), camera.position.x + 225, camera.position.y + 150);
+      
+        lifeText.draw(batch, "Lives: " + playerI.getLives(), (camera.position.x - camera.viewportWidth/2) + 20, camera.position.y + 6*(camera.viewportHeight/16));
+        lifeText.draw(batch, "Level: " + playerI.getLevel(), (camera.position.x - camera.viewportWidth/2) + 20, camera.position.y + 7*(camera.viewportHeight/16));
         hpText.draw(batch, "HP: " + playerI.getCurrentHitpoints(), playerI.getPosition().x - 12, playerI.getPosition().y + playerI.getHeight() + 15);
         
         // lifeText.draw(batch, "Lives: " + camera.position.x, playerI.getPosition().x - 12, playerI.getPosition().y + playerI.getHeight() + 30);
