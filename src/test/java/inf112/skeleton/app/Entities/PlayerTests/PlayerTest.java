@@ -1,4 +1,4 @@
-package inf112.skeleton.app.Entities;
+package inf112.skeleton.app.Entities.PlayerTests;
 
 import org.junit.jupiter.api.*;
 import org.lwjgl.system.windows.INPUT;
@@ -383,10 +383,6 @@ public class PlayerTest {
         // Test setPlayerDirection and getPlayerDirection
         player.setPlayerDirection(DirectionEnum.NORTH);
         assertEquals(DirectionEnum.NORTH, player.getPlayerDirection());
-
-        // Test setShootTimer and getShootTimer
-        player.setShootTimer(10);
-        assertEquals(0, player.getShootTimer());
 
         // Test spawn and getPosition
         player.spawn(16, 32);

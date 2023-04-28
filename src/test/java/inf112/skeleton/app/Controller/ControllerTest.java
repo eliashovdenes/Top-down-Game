@@ -3,6 +3,11 @@ import com.badlogic.gdx.Input.Keys;
 import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.*;
 public class ControllerTest {
+
+    @Test
+    void test(){
+        fail();
+    }
     /*
 //checks if the controller class recieves the attack informasjon.
     @Test
