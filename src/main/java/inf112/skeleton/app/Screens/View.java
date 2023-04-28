@@ -7,6 +7,7 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
+import com.badlogic.gdx.graphics.g2d.GlyphLayout;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
@@ -124,7 +125,9 @@ public class View implements Screen {
         if(!controller.isPaused()){resume();}
         if (paused) {
             batch.begin();
-            pauseText.draw(batch, "PAUSED", playerI.getPosition().x, playerI.getPosition().y);
+            GlyphLayout layout = new GlyphLayout();
+            layout.setText(pauseText, "PAUSED"); 
+            pauseText.draw(batch, "PAUSED", playerI.getPosition().x - (layout.width/2), playerI.getPosition().y);
             batch.end();
             return;
         }
