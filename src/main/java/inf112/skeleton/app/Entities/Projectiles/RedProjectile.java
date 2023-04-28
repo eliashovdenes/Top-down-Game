@@ -8,10 +8,7 @@ import com.badlogic.gdx.math.Vector2;
 
 import inf112.skeleton.app.Entities.AbstractGameObject;
 import inf112.skeleton.app.Entities.Enemies.MonsterInterface;
-import inf112.skeleton.app.Entities.Enums.DirectionEnum;
-import inf112.skeleton.app.Entities.Enums.PlayerPics;
 import inf112.skeleton.app.Entities.Enums.RedEnemyPics;
-import inf112.skeleton.app.Entities.Player.PlayerInterface;
 import inf112.skeleton.app.Mapfolder.MapInterface;
 
 public class RedProjectile extends AbstractGameObject implements ProjectileInterface  {

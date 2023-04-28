@@ -1,7 +1,7 @@
 package inf112.skeleton.app.Entities;
 
 import com.badlogic.gdx.graphics.g2d.Sprite;
-import com.badlogic.gdx.maps.tiled.TiledMap;
+
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 
@@ -21,7 +21,6 @@ public abstract class AbstractGameObject {
     
     public AbstractGameObject(Vector2 position, MapInterface map) {
         this.position = position;
-        TiledMap tiledMap = map.getMap();
         this.collision = new Collision(map, this);
         this.velocity = new Vector2();
         this.recentPosition = new Vector2(position);

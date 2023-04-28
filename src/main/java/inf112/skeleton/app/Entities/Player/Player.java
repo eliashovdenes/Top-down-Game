@@ -49,11 +49,8 @@ public class Player extends AbstractGameObject implements PlayerInterface {
     public MapInterface nextMap;
     public boolean onPortal;
     private Controller controller;
-    private Integer playerHP = 100;
     private SoundManager SM;
     private Random rand = new Random();
-    // private Integer currentHitpoints;
-    // private Integer maxHitpoints;
     private Integer lives;
     private int exp;
     private boolean isInvincible;

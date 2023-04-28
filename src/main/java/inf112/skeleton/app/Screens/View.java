@@ -12,10 +12,8 @@ import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
-import com.badlogic.gdx.scenes.scene2d.ui.List;
 
 import inf112.skeleton.app.Entities.AbstractGameObject;
-import inf112.skeleton.app.Entities.Enemies.BlueEnemy;
 import inf112.skeleton.app.Entities.Enemies.MonsterInterface;
 import inf112.skeleton.app.Entities.Items.HealthPotion;
 import inf112.skeleton.app.Entities.Items.ItemImpl;
