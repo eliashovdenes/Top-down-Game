@@ -1,6 +1,5 @@
 package inf112.skeleton.app.Entities.Projectiles;
 
-
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.maps.tiled.TiledMap;
@@ -8,32 +7,35 @@ import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 
 import inf112.skeleton.app.Entities.AbstractGameObject;
+import inf112.skeleton.app.Entities.Enemies.MonsterInterface;
 import inf112.skeleton.app.Entities.Enums.DirectionEnum;
 import inf112.skeleton.app.Entities.Enums.PlayerPics;
+import inf112.skeleton.app.Entities.Enums.RedEnemyPics;
 import inf112.skeleton.app.Entities.Player.PlayerInterface;
 import inf112.skeleton.app.Mapfolder.MapInterface;
 
-public class Arrow extends AbstractGameObject implements ProjectileInterface  {
+public class RedProjectile extends AbstractGameObject implements ProjectileInterface  {
 
+    protected float speed = 2;
     protected Sprite sprite;
     protected TiledMap map;
     protected Vector2 velocity;
-    private PlayerInterface player;
-    private int attackDamage = 5;    
+    MonsterInterface monster;
+    private int attackDamage = 10;    
 
-    public Arrow(Vector2 position, MapInterface map, Vector2 velocity, PlayerInterface player) {
+    public RedProjectile(Vector2 position, MapInterface map, Vector2 velocity, MonsterInterface monster) {
         super(position, map);
         this.map = map.getMap();
-        this.player = player;
+        this.monster = monster;
         this.velocity = velocity;
-        setCorrectSprite();
+        setSprite(RedEnemyPics.REDPROJECTILE.source);
         sprite.setSize(10,10);
-        rectangle = new Rectangle(position.x, position.y, getWidth(), getHeight());
+        rectangle = new Rectangle(position.x, position.y, getWidth()/2, getHeight()/2);
         
        
     }
 
-    //* setVelocity() is a method that returns a Vector2 with the correct velocity for the arrow. */
+    //* setVelocity() is a method that returns a Vector2 with the correct velocity for the projectile. */
     public Vector2 setVelocity() {
         Vector2  veloVector = new Vector2();
         //DirectionEnum direction = player.getPlayerDirection();
@@ -45,7 +47,7 @@ public class Arrow extends AbstractGameObject implements ProjectileInterface  {
     }
 
     @Override
-    // update() is a method that updates the position of the arrow. */
+    // update() is a method that updates the position of the projectile. */
     public void update(float delta) {
 
         if (velocity.x == 0 && velocity.y==0){
@@ -73,6 +75,7 @@ public class Arrow extends AbstractGameObject implements ProjectileInterface  {
 
     @Override
     public void setMovementSpeed(float speed) {
+        this.speed = speed;
     }
 
     @Override
@@ -83,16 +86,6 @@ public class Arrow extends AbstractGameObject implements ProjectileInterface  {
     @Override
     public float getHeight() {
         return sprite.getHeight();
-    }
-    
-    private void setCorrectSprite(){
-        String sprite = "";
-        if (player.getPlayerDirection()==DirectionEnum.NORTH)  sprite = PlayerPics.UPARROW.source;
-        if (player.getPlayerDirection()==DirectionEnum.EAST) sprite = PlayerPics.RIGHTARROW.source; 
-        if (player.getPlayerDirection()==DirectionEnum.WEST) sprite = PlayerPics.LEFTARROW.source;
-        if (player.getPlayerDirection()==DirectionEnum.SOUTH)  sprite = PlayerPics.DOWNARROW.source;
-   
-        setSprite(sprite);
     }
 
     @Override

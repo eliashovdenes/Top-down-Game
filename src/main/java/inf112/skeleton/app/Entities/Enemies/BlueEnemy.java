@@ -1,5 +1,6 @@
 package inf112.skeleton.app.Entities.Enemies;
 
+import java.util.ArrayList;
 import java.util.Random;
 
 import com.badlogic.gdx.graphics.Texture;
@@ -10,6 +11,8 @@ import com.badlogic.gdx.math.Vector2;
 import inf112.skeleton.app.Entities.AbstractGameObject;
 import inf112.skeleton.app.Entities.Enums.DirectionEnum;
 import inf112.skeleton.app.Entities.Enums.PlayerPics;
+import inf112.skeleton.app.Entities.Items.HealthPotion;
+import inf112.skeleton.app.Entities.Projectiles.ProjectileInterface;
 import inf112.skeleton.app.Mapfolder.MapInterface;
 
 public class BlueEnemy extends AbstractGameObject implements MonsterInterface  {
@@ -20,9 +23,10 @@ public class BlueEnemy extends AbstractGameObject implements MonsterInterface  {
     float speed = 0.5f ;
     private DirectionEnum direction;
     MapInterface map;
-    Random rand = new Random();
-    float time = 0;
-    // Integer BlueEnemy = 50;
+    private double healthPotionDropChance;
+    private Random random;
+    public ArrayList<ProjectileInterface> projectileList;
+
 
     public BlueEnemy(MapInterface map) {
         super(new Vector2(0,0), map);
@@ -34,7 +38,9 @@ public class BlueEnemy extends AbstractGameObject implements MonsterInterface  {
         this.velocity.y = speed;
         this.setMaxhitpoints(50);
         this.setCurrentHitPoints(this.getMaxHitpoints());
-        // setHP(BlueEnemy);
+        this.setHealthPotionDropChance(0.3);
+        this.random = new Random();
+        projectileList = new ArrayList<ProjectileInterface>();
     }
 
     public BlueEnemy() {
@@ -162,6 +168,28 @@ public class BlueEnemy extends AbstractGameObject implements MonsterInterface  {
     @Override
     public int getDamage() {
         return attackDamage;
-    }    
+    }
+
     
+
+    @Override
+    public boolean dropHealthPotion() {
+        double dropValue = this.random.nextDouble();
+        return (dropValue <= this.getHealthPotionDropChance());
+    }
+
+    @Override
+    public double getHealthPotionDropChance() {
+        return this.healthPotionDropChance;
+    }
+
+    @Override
+    public void setHealthPotionDropChance(double chance) {
+        this.healthPotionDropChance = chance;
+    }
+
+    @Override
+    public ArrayList<ProjectileInterface> getProjectiles() {
+        return this.projectileList;
+    }
 }

@@ -4,12 +4,16 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
+
+import java.util.ArrayList;
 import java.util.Random;
 
 import inf112.skeleton.app.Entities.AbstractGameObject;
 import inf112.skeleton.app.Entities.Enums.DirectionEnum;
 import inf112.skeleton.app.Entities.Enums.RedEnemyPics;
-import inf112.skeleton.app.Entities.Player.Player;
+import inf112.skeleton.app.Entities.Items.HealthPotion;
+import inf112.skeleton.app.Entities.Projectiles.ProjectileInterface;
+import inf112.skeleton.app.Entities.Projectiles.RedProjectile;
 import inf112.skeleton.app.Mapfolder.MapInterface;
 
 public class RedEnemy extends AbstractGameObject implements MonsterInterface  {
@@ -20,7 +24,11 @@ public class RedEnemy extends AbstractGameObject implements MonsterInterface  {
     float speed = 0.1f ;
     private DirectionEnum direction;
     MapInterface map;
-    // Integer RedEnemyHP =75;
+    private double healthPotionDropChance;
+    private Random random;
+    public ArrayList<ProjectileInterface> projectileList;
+    private float shootTimer = 0.0f;
+    private final float shootCooldown = 3.0f;
 
     public RedEnemy(MapInterface map) {
         super(new Vector2(0,0), map);
@@ -30,6 +38,9 @@ public class RedEnemy extends AbstractGameObject implements MonsterInterface  {
         setXYFromSpawnBounds();  
         this.setMaxhitpoints(75);
         this.setCurrentHitPoints(this.getMaxHitpoints()); 
+        this.random = new Random();
+        this.setHealthPotionDropChance(1);
+        projectileList = new ArrayList<ProjectileInterface>();
     }
 
     public RedEnemy() {
@@ -93,6 +104,10 @@ public class RedEnemy extends AbstractGameObject implements MonsterInterface  {
 
         ApplyMovement();
         sprite.setPosition(position.x, position.y);
+        shootRedProjectile(delta);
+        for (ProjectileInterface projectile : projectileList) {
+            projectile.update(delta);
+        }
     }
 
     @Override
@@ -149,6 +164,53 @@ public class RedEnemy extends AbstractGameObject implements MonsterInterface  {
     @Override
     public int getDamage() {
         return attackDamage;
+    }
+
+    @Override
+    public boolean dropHealthPotion() {
+        double dropValue = this.random.nextDouble();
+        return (dropValue <= this.getHealthPotionDropChance());
+    }
+
+    @Override
+    public double getHealthPotionDropChance() {
+        return this.healthPotionDropChance;
+    }
+
+    @Override
+    public void setHealthPotionDropChance(double chance) {
+        this.healthPotionDropChance = chance;
+    }
+
+    private void shootRedProjectile(float delta) {
+
+        if (shootTimer <= 0) {
+
+            // set velocity based on enemy direction.
+            Vector2 velocity = new Vector2();
+            if (this.direction == DirectionEnum.NORTH)
+                velocity.set(0, 1);
+            if (this.direction == DirectionEnum.EAST)
+                velocity.set(1, 0);
+            if (this.direction == DirectionEnum.WEST)
+                velocity.set(-1, 0);
+            if (this.direction == DirectionEnum.SOUTH)
+                velocity.set(0, -1);
+
+            // first projectile created and added.
+            Vector2 projectilePos = new Vector2(position.x, position.y);
+            RedProjectile projectile = new RedProjectile(projectilePos, map, velocity, this);
+            projectileList.add(projectile);
+            shootTimer = shootCooldown;  
+        }
+        else {
+            shootTimer -= delta;
+        }
+    }
+
+    @Override
+    public ArrayList<ProjectileInterface> getProjectiles() {
+        return this.projectileList;
     }
 
     

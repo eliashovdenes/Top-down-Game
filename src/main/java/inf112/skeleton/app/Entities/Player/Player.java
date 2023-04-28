@@ -7,7 +7,6 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
-
 import inf112.skeleton.app.Animation;
 import inf112.skeleton.app.Collision;
 import inf112.skeleton.app.Controller.Controller;
@@ -23,6 +22,14 @@ import inf112.skeleton.app.Sound.SoundManager;
 
 public class Player extends AbstractGameObject implements PlayerInterface {
     private Animation playerAnimation;
+    public Animation getPlayerAnimation() {
+        return playerAnimation;
+    }
+
+    public void setPlayerAnimation(Animation playerAnimation) {
+        this.playerAnimation = playerAnimation;
+    }
+
     private int playerLevel = 1;
     private int abilityPoints = 0;
     private Sprite sprite;
@@ -47,6 +54,11 @@ public class Player extends AbstractGameObject implements PlayerInterface {
     // private Integer maxHitpoints;
     private Integer lives;
     private int exp;
+    private boolean isInvincible;
+    
+
+    private float invincibilityTimer = 0.0f;
+    private final float invincibilityDuration = 1.0f;
 
     public Player(Vector2 position, MapInterface map, Controller controller) {
         super(position, map);
@@ -61,6 +73,7 @@ public class Player extends AbstractGameObject implements PlayerInterface {
         this.lives = 3;
         this.setMaxhitpoints(100);
         this.setCurrentHitPoints(this.getMaxHitpoints());
+        this.isInvincible = false;
 
         projectileList = new ArrayList<ProjectileInterface>();
         shootTimer = 0;
@@ -113,6 +126,14 @@ public class Player extends AbstractGameObject implements PlayerInterface {
             projectile.update(delta);
         }
 
+        if (isInvincible) {
+            invincibilityTimer -= delta;
+            if (invincibilityTimer <= 0.0f) {
+                isInvincible = false;
+                sprite.setAlpha(1);
+            }
+        }
+
         animate(delta);
         ApplyMovement();
         sprite.setPosition(position.x, position.y);
@@ -153,6 +174,9 @@ public class Player extends AbstractGameObject implements PlayerInterface {
 
     // **animate does the animation of the player */
     private void animate(float delta) {
+        if (isInvincible) {
+            sprite.setAlpha(0.5f);
+        }           
         if (!controller.isFast()) {
             if (direction == DirectionEnum.NORTH)
                 this.playerAnimation = PlayerAnimation.UP.animation;
@@ -175,7 +199,7 @@ public class Player extends AbstractGameObject implements PlayerInterface {
                 this.playerAnimation = PlayerAnimation.RUNDOWN.animation;
 
         }
-
+        
         sprite.setRegion(playerAnimation.getFrame());
         playerAnimation.update(delta);
     }
@@ -188,17 +212,18 @@ public class Player extends AbstractGameObject implements PlayerInterface {
             // set velocity based on player direction.
             Vector2 velocity = new Vector2();
             if (this.direction == DirectionEnum.NORTH)
-                velocity.set(0, 1);
+                velocity.set(0,3);
             if (this.direction == DirectionEnum.EAST)
-                velocity.set(1, 0);
+                velocity.set(3, 0);
             if (this.direction == DirectionEnum.WEST)
-                velocity.set(-1, 0);
+                velocity.set(-3, 0);
             if (this.direction == DirectionEnum.SOUTH)
-                velocity.set(0, -1);
+                velocity.set(0, -3);
 
             // first arrow created and added.
             Vector2 arrowPos = new Vector2(position.x, position.y);
             Arrow arrow1 = new Arrow(arrowPos, map, velocity, this);
+            
             projectileList.add(arrow1);
 
             // for every arrowAbilityLevel beyond 1, create a new arrow at a randomized
@@ -254,7 +279,7 @@ public class Player extends AbstractGameObject implements PlayerInterface {
 
     // *Getter for projectilelist/arrows*/
     @Override
-    public ArrayList<ProjectileInterface> getArrows() {
+    public ArrayList<ProjectileInterface> getProjectiles() {
         return projectileList;
     }
 
@@ -364,10 +389,19 @@ public class Player extends AbstractGameObject implements PlayerInterface {
     //**takeDamage method removes given amount to healthpoints*/
     @Override
     public void takeDamage(int damage) {
-        this.setCurrentHitPoints(this.getCurrentHitpoints() - damage);
-        if (this.isDead()) {
-            this.setLives(this.getLives() - 1);
+        if (!isInvincible) {
+            this.setCurrentHitPoints(this.getCurrentHitpoints() - damage);
+            if (this.isDead()) {
+                this.setLives(this.getLives() - 1);
+            }
+            this.isInvincible = true;
+            this.invincibilityTimer = invincibilityDuration;
         }
+    }
+
+    @Override
+    public void healDamage(int healAmount) {
+        this.setCurrentHitPoints(this.getCurrentHitpoints() + healAmount);
     }
 
     @Override
@@ -410,7 +444,7 @@ public class Player extends AbstractGameObject implements PlayerInterface {
 
     @Override
     public int getMovementAbilityLevel() {
-        return healthAbilityLevel;
+        return movementAbilityLevel;
     }
 
     @Override
@@ -430,6 +464,16 @@ public class Player extends AbstractGameObject implements PlayerInterface {
         walk = walk+1;
         run = run+1;
     }
+
+    public boolean isInvincible() {
+        return isInvincible;
+    }
+
+    public void setInvincible(boolean isInvincible) {
+        this.isInvincible = isInvincible;
+    }
+
+    
     
 
 }

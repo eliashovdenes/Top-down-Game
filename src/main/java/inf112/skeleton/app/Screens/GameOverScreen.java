@@ -2,7 +2,6 @@ package inf112.skeleton.app.Screens;
 
 
 
-import java.lang.ModuleLayer.Controller;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.ScreenAdapter;
@@ -11,6 +10,7 @@ import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 import inf112.skeleton.app.Zelda;
+import inf112.skeleton.app.Controller.Controller;
 
 //TODO denne klassen må tittes på når vi har mulighet til å dø igjen.
 
@@ -38,10 +38,14 @@ public class GameOverScreen extends ScreenAdapter {
         font.getData().setScale(2);
         font.draw(batch, "Game Over, you died!", 10, 750);
         font.getData().setScale(1);
-        font.draw(batch, "Press space to move to main menu", 10, 700);
+        font.draw(batch, "Click mouse to move to main menu", 10, 700);
         batch.end();
 
-        // Draw the "Restart" button
+        //let user navigate to main-menu.
+        if (controller.getJustTouched()){
+            
+            game.setScreen(new MainMenuScreen(game, controller));
+            }
         }
     
     @Override

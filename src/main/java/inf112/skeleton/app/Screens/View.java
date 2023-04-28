@@ -11,12 +11,14 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.math.Rectangle;
+import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.ui.List;
 
 import inf112.skeleton.app.Entities.AbstractGameObject;
 import inf112.skeleton.app.Entities.Enemies.BlueEnemy;
 import inf112.skeleton.app.Entities.Enemies.MonsterInterface;
-
+import inf112.skeleton.app.Entities.Items.HealthPotion;
+import inf112.skeleton.app.Entities.Items.ItemImpl;
 import inf112.skeleton.app.Entities.Player.PlayerInterface;
 import inf112.skeleton.app.Entities.Projectiles.ProjectileInterface;
 import inf112.skeleton.app.Mapfolder.MapInterface;
@@ -37,12 +39,14 @@ public class View implements Screen {
     private OrthographicCamera camera;
     private PlayerInterface playerI;
     private BitmapFont lifeText = new BitmapFont();
+    private BitmapFont hpText = new BitmapFont();
     private BitmapFont pauseText = new BitmapFont();
     private Zelda game;
     private MonsterInterface monsterI;
     private boolean paused = false;
     private Controller controller;
     public HashMap<AbstractGameObject, Rectangle> enemies = new HashMap<>();
+    private ArrayList<ItemImpl> itemList = new ArrayList<>();
     
     
     //MapInterface mapI = new Level1Mini(123,76);
@@ -72,14 +76,16 @@ public class View implements Screen {
         map = mapI.getMap();
         //renderer = mapI.getRenderer();
         renderer = new OrthogonalTiledMapRenderer(map);
-        monsterI = new BlueEnemy(mapI);
+        // monsterI = new BlueEnemy(mapI);
         camera = new OrthographicCamera();        
         batch = new SpriteBatch();
 
         pauseText.getData().setScale(5,5);
         pauseText.setColor(Color.BLUE);
-        lifeText.getData().setScale(0.7f);
-        lifeText.setColor(Color.RED);
+        hpText.getData().setScale(0.7f);
+        hpText.setColor(Color.RED);
+        lifeText.getData().setScale(1.0f);
+        lifeText.setColor(Color.YELLOW);
 
         
     }
@@ -118,7 +124,9 @@ public class View implements Screen {
             playerI.setOffPortal();
         }
         
-        
+        if (playerI.isDead()){
+            game.setScreen(new GameOverScreen(game, controller));
+        }
 
         //render map
         renderer.setView(camera);
@@ -131,15 +139,27 @@ public class View implements Screen {
         //draw player
         playerI.getSprite().draw(batch);
 
+        CopyOnWriteArrayList<MonsterInterface> deadMonsterList = new CopyOnWriteArrayList<>();
+        CopyOnWriteArrayList<ItemImpl> itemsToRemove = new CopyOnWriteArrayList<>();
+        CopyOnWriteArrayList<ProjectileInterface> projectilesToRemove = new CopyOnWriteArrayList<>();
+
         //draw projectiles and check if they hit enemy.
-        for (ProjectileInterface projectile : playerI.getArrows()){
+        for (ProjectileInterface projectile : playerI.getProjectiles()){
             projectile.getSprite().draw(batch);
+            if (projectile.getPosition().dst(playerI.getPosition())>200){
+                projectilesToRemove.add(projectile);
+            }
             for (MonsterInterface monsterI : mapI.getMonsterList()) {
-                if (projectile.getRect().overlaps(monsterI.getRect())) { monsterI.takeDamage(projectile.getDamage()); }
+                if (projectile.getRect().overlaps(monsterI.getRect())) { 
+                    monsterI.takeDamage(projectile.getDamage());
+                    projectilesToRemove.add(projectile);
+                }
             }
         }
-        CopyOnWriteArrayList<MonsterInterface> deadMonsterList = new CopyOnWriteArrayList<>();
-            
+
+        
+        
+        
         //draw monsters
         for (MonsterInterface monsterI : mapI.getMonsterList()){
             
@@ -154,6 +174,14 @@ public class View implements Screen {
                 deadMonsterList.add(monsterI);
                 playerI.getExp();
             }
+            for (ProjectileInterface projectile : monsterI.getProjectiles()){
+                projectile.getSprite().draw(batch);
+                if (projectile.getRect().overlaps(playerI.getRect())) { 
+                    playerI.takeDamage(projectile.getDamage());
+                    projectilesToRemove.add(projectile);
+                }
+                
+            }
                 
                 
 
@@ -163,12 +191,40 @@ public class View implements Screen {
                 break;
             }
         }   
-        //remove dead monsters
+        
+        for (MonsterInterface monsterI : deadMonsterList) {
+            if(monsterI.dropHealthPotion()){
+                addPotion(monsterI.getPosition());
+            }
+        }
+        //draw items
+        for (ItemImpl item : this.itemList){
+            item.update(delta);
+            item.getSprite().draw(batch);  
+
+            //check if item and player is colliding. if so, player heals damage
+            if (item.getRect().overlaps(playerI.getRect())) {
+                playerI.healDamage(item.getHealAmount());
+                itemsToRemove.add(item);
+                break;
+            }
+        }   
+
+        //remove dead monsters, projectiles that hit enemies and used items
         mapI.getMonsterList().removeAll(deadMonsterList);
+        itemList.removeAll(itemsToRemove);
+        playerI.getProjectiles().removeAll(projectilesToRemove);
         deadMonsterList.clear();
+        itemsToRemove.clear();
+        projectilesToRemove.clear();
         
         
-        System.out.println(playerI.getHealthAbilityLevel());
+        //remove dead monsters
+        // mapI.getMonsterList().removeAll(deadMonsterList);
+        // deadMonsterList.clear();
+
+
+        // System.out.println(playerI.getHealthAbilityLevel());
 
         //open store (bound to K)
         if(controller.isShop()){
@@ -176,26 +232,23 @@ public class View implements Screen {
              
 
         }
-        lifeText.draw(batch, "Lives: " + playerI.getLives(), playerI.getPosition().x - 12, playerI.getPosition().y + playerI.getHeight() + 30);
-        lifeText.draw(batch, "HP: " + playerI.getCurrentHitpoints(), playerI.getPosition().x - 12, playerI.getPosition().y + playerI.getHeight() + 15);
-        lifeText.draw(batch,".",playerI.getPosition().x+11,playerI.getPosition().y+18);
-        lifeText.draw(batch, "Level: " + playerI.getLevel(), playerI.getPosition().x - 12, playerI.getPosition().y - playerI.getHeight() + 15);
+      
+        lifeText.draw(batch, "Lives: " + playerI.getLives(), (camera.position.x - camera.viewportWidth/2) + 20, camera.position.y + 6*(camera.viewportHeight/16));
+        lifeText.draw(batch, "Level: " + playerI.getLevel(), (camera.position.x - camera.viewportWidth/2) + 20, camera.position.y + 7*(camera.viewportHeight/16));
+        hpText.draw(batch, "HP: " + playerI.getCurrentHitpoints(), playerI.getPosition().x - 12, playerI.getPosition().y + playerI.getHeight() + 15);
+        
+        // lifeText.draw(batch, "Lives: " + camera.position.x, playerI.getPosition().x - 12, playerI.getPosition().y + playerI.getHeight() + 30);
+        // lifeText.draw(batch,".",playerI.getPosition().x+11,playerI.getPosition().y+18);
+        // lifeText.draw(batch, "Level: " + playerI.getLevel(), playerI.getPosition().x - 12, playerI.getPosition().y - playerI.getHeight() + 15);
         
         batch.end();
 
     }
 
-        
-    
-
-
-
-
     @Override
     public void resize(int width, int height) {
         camera.viewportWidth = width/3f;
-        camera.viewportHeight = height/3f;
-        
+        camera.viewportHeight = height/3f;       
     }
 
 
@@ -219,7 +272,13 @@ public class View implements Screen {
     @Override
     public void dispose() {
         map.dispose();
-        renderer.dispose();
-       
+        renderer.dispose();      
+    }
+
+    private void addPotion(Vector2 position) {
+        if (this.itemList.size() <= 2) {
+            HealthPotion potion = new HealthPotion(position, mapI);
+            this.itemList.add(potion);
+        }
     }
 }

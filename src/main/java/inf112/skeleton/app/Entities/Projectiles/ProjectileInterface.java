@@ -15,8 +15,6 @@ public interface ProjectileInterface{
 
     public  void setSprite(String string);
 
-    public  void setMovementSpeed(float speed);
-
     public  float getWidth();
     
     public  float getHeight();
@@ -26,5 +24,7 @@ public interface ProjectileInterface{
     public Rectangle getRect();
 
     public int getDamage();
+
+    public Vector2 getPosition();
    
 }

@@ -52,7 +52,7 @@ public interface PlayerInterface  {
      * 
      * @return List of arrows
      */
-    ArrayList<ProjectileInterface> getArrows();
+    ArrayList<ProjectileInterface> getProjectiles();
 
     /**
      * Set the direction the player should face
@@ -131,6 +131,13 @@ public interface PlayerInterface  {
      * @param damage
      */
     public void takeDamage(int damage);
+
+    /**
+     * Increases the Player's hitpoints by a given amount up to maximum MaxHitpoints 
+     * 
+     * @param int healAmount
+     */
+    public void healDamage(int healAmount);
     
     /**
      * Get the currentHitpoints of the player
