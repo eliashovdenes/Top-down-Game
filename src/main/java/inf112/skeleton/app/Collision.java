@@ -158,47 +158,8 @@ public class Collision {
                 TiledMapTileLayer.Cell entityCell = layer.getCell((int)entityX,(int)entityY);
                 
                 if(entityCell != null && entityCell.getTile().getProperties().containsKey("portal")) {
-                    
 
-                    //This is for multiple maps (including cave map, and updating maps) cycle:
-                    // if (entityCell.getTile().getProperties().containsKey("level 1")){nextMap = new Level1();}    
-                    // if (entityCell.getTile().getProperties().containsKey("house")){nextMap =  new House();}
-                    
-                    // if (entityCell.getTile().getProperties().containsKey("level 2")){
-                        
-                    //     if (entity.isEnteredLevel3()){
-                    //         nextMap = new Level3(114, 73);
-                    //     }else{
-                    //         nextMap = new Level2(114,73);
-
-                    //     }
-                        
-                    // }
-
-                    // if (entityCell.getTile().getProperties().containsKey("cave")){nextMap = new Cave();}
-
-                    // if (entityCell.getTile().getProperties().containsKey("level 2 from cave")){
-                    //     if (entity.isEnteredLevel3()){
-                    //         nextMap = new Level3(155,66 );
-                    //     } else{
-                    //         nextMap = new Level2(155,66);}
-                    //     }
-                        
-                    // if (entityCell.getTile().getProperties().containsKey("level 3") ){
-                    //     if (currMap.getMonsters().isEmpty()){
-                    //         entity.setEnteredLevel3(true);
-                    //         nextMap = new Level3(123,87);
-                    //     } else {
-                    //         return false;
-                    //     }
-                    
-                        
-                    // } 
-
-                    // if (entityCell.getTile().getProperties().containsKey("grass")){nextMap = new Grass();}
-
-
-                    //This is for mini cycle, better suited for testing:
+                    //This is for the map cycle
                     if (entityCell.getTile().getProperties().containsKey("house")){nextMap =  new House(); currMap.stopMusic();}
 
                     if (entityCell.getTile().getProperties().containsKey("level 2")){nextMap = new Level1Mini(113, 75);currMap.stopMusic();}

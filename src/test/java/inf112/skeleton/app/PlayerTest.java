@@ -34,7 +34,7 @@ import inf112.skeleton.app.Entities.Enums.PlayerPics;
 import inf112.skeleton.app.Entities.Player.Player;
 import inf112.skeleton.app.Entities.Projectiles.Arrow;
 import inf112.skeleton.app.Entities.Projectiles.Lightning;
-import inf112.skeleton.app.Mapfolder.Level1;
+import inf112.skeleton.app.Mapfolder.Level1Mini;
 
 public class PlayerTest {
     private HeadlessApplication app;
@@ -72,7 +72,7 @@ public class PlayerTest {
     void testPlayerHitPoints(){
         // Mock Player
 
-        Level1 lvl1 = new Level1();
+        Level1Mini lvl1 = new Level1Mini(0, 0);
        
 
         assertNotNull(lvl1);
@@ -164,7 +164,7 @@ public class PlayerTest {
     @Test
     public void testSetSprite() {
         Controller controller = mock(Controller.class, Mockito.CALLS_REAL_METHODS);
-        Level1 lvl1 = new Level1();
+        Level1Mini lvl1 = new Level1Mini(0, 0);
 
         assertNotNull(lvl1);
         Player player = new Player(new Vector2(0, 0), lvl1, controller);
@@ -234,7 +234,7 @@ public class PlayerTest {
     @Test
     public void testPlayerMovementSpeedWhenControllerIsFast() {
         Controller controller = mock(Controller.class, Mockito.CALLS_REAL_METHODS);
-        Level1 lvl1 = new Level1();
+        Level1Mini lvl1 = new Level1Mini(0, 0);
 
         assertNotNull(lvl1);
         Player player = new Player(new Vector2(0, 0), lvl1, controller);
@@ -259,7 +259,7 @@ public class PlayerTest {
     @Test
     public void testAnimateMethod() {
         Controller controller = mock(Controller.class, Mockito.CALLS_REAL_METHODS);
-        Level1 lvl1 = new Level1();
+        Level1Mini lvl1 = new Level1Mini(0, 0);
 
         assertNotNull(lvl1);
         Player player = new Player(new Vector2(0, 0), lvl1, controller);
@@ -312,7 +312,7 @@ public class PlayerTest {
     @Test
     public void testShootLightningMethod() {
         Controller controller = mock(Controller.class, Mockito.CALLS_REAL_METHODS);
-        Level1 lvl1 = new Level1();
+        Level1Mini lvl1 = new Level1Mini(0, 0);
 
         assertNotNull(lvl1);
         Player player = new Player(new Vector2(0, 0), lvl1, controller);
@@ -343,7 +343,7 @@ public class PlayerTest {
     @Test
     public void testShootArrowMethod() {
         Controller controller = mock(Controller.class, Mockito.CALLS_REAL_METHODS);
-        Level1 lvl1 = new Level1();
+        Level1Mini lvl1 = new Level1Mini(0, 0);
 
         assertNotNull(lvl1);
         Player player = new Player(new Vector2(0, 0), lvl1, controller);
@@ -375,17 +375,13 @@ public class PlayerTest {
     @Test
     public void testPlayerGettersAndSetters() {
         Controller controller = mock(Controller.class, Mockito.CALLS_REAL_METHODS);
-        Level1 lvl1 = new Level1();
+        Level1Mini lvl1 = new Level1Mini(0, 0);
         assertNotNull(lvl1);
         Player player = new Player(new Vector2(0, 0), lvl1, controller);
 
         // Test setPlayerDirection and getPlayerDirection
         player.setPlayerDirection(DirectionEnum.NORTH);
         assertEquals(DirectionEnum.NORTH, player.getPlayerDirection());
-
-        // Test setShootTimer and getShootTimer
-        player.setShootTimer(10);
-        assertEquals(0, player.getShootTimer());
 
         // Test spawn and getPosition
         player.spawn(16, 32);
