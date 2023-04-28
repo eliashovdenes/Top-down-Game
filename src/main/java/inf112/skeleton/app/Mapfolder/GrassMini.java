@@ -3,7 +3,6 @@ package inf112.skeleton.app.Mapfolder;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
-import java.util.ArrayList;
 import java.util.Map;
 
 import com.badlogic.gdx.maps.tiled.TiledMap;
@@ -15,7 +14,7 @@ import inf112.skeleton.app.Entities.Enemies.MonsterFactory;
 import inf112.skeleton.app.Entities.Enemies.MonsterInterface;
 import inf112.skeleton.app.Entities.Enemies.RedEnemy;
 import inf112.skeleton.app.Sound.SoundManager;
-import inf112.skeleton.app.Sound.aSound;
+
 
 public class GrassMini extends TiledMap implements MapInterface {
 

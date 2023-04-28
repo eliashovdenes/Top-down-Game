@@ -11,7 +11,6 @@ import java.util.Random;
 import inf112.skeleton.app.Entities.AbstractGameObject;
 import inf112.skeleton.app.Entities.Enums.DirectionEnum;
 import inf112.skeleton.app.Entities.Enums.RedEnemyPics;
-import inf112.skeleton.app.Entities.Items.HealthPotion;
 import inf112.skeleton.app.Entities.Projectiles.ProjectileInterface;
 import inf112.skeleton.app.Entities.Projectiles.RedProjectile;
 import inf112.skeleton.app.Mapfolder.MapInterface;
