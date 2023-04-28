@@ -34,7 +34,9 @@ public class Player extends AbstractGameObject implements PlayerInterface {
     private int movementAbilityLevel = 1;
     private MapInterface map;
     public ArrayList<ProjectileInterface> projectileList;
-    private int shootTimer;
+    
+    private int arrowShootTimer;
+    private int lightningShootTimer;
     DirectionEnum direction;
     public MapInterface nextMap;
     public boolean onPortal;
@@ -66,7 +68,9 @@ public class Player extends AbstractGameObject implements PlayerInterface {
         this.isInvincible = false;
 
         projectileList = new ArrayList<ProjectileInterface>();
-        shootTimer = 0;
+        
+        arrowShootTimer =0;
+        lightningShootTimer = 0;
         direction = DirectionEnum.SOUTH;
 
     }
@@ -108,8 +112,11 @@ public class Player extends AbstractGameObject implements PlayerInterface {
         if (controller.isEnter()) {
             shootLightning();
         }
-        if (shootTimer > 0) {
-            shootTimer -= delta;
+        if (arrowShootTimer>0){
+            arrowShootTimer-= delta;
+        }
+        if (lightningShootTimer>0){
+            lightningShootTimer-=delta;
         }
 
         for (ProjectileInterface projectile : projectileList) {
@@ -197,7 +204,7 @@ public class Player extends AbstractGameObject implements PlayerInterface {
     // **shootArrow creates a new arrow and adds it to the projectileList */
     private void shootArrow() {
 
-        if (shootTimer <= 0) {
+        if (arrowShootTimer <= 0) {
 
             // set velocity based on player direction.
             Vector2 velocity = new Vector2();
@@ -226,7 +233,7 @@ public class Player extends AbstractGameObject implements PlayerInterface {
                 velocity = newAngleVelocity;
             }
 
-            shootTimer = 15;
+            arrowShootTimer = 15;
             SM.arrowSound.play();
         }
     }
@@ -234,7 +241,7 @@ public class Player extends AbstractGameObject implements PlayerInterface {
     // **shootLightning creates a new lightning and adds it to the projectileList */
     private void shootLightning() {
 
-        if (shootTimer <= 0) {
+        if (lightningShootTimer <= 0) {
 
             // set velocity based on player direction.
             Vector2 velocity = new Vector2();
@@ -248,21 +255,21 @@ public class Player extends AbstractGameObject implements PlayerInterface {
                 velocity.set(0, -1);
 
             // first lightning created and added.
-            Vector2 lightningPos = new Vector2(position.x, position.y);
+            Vector2 lightningPos = new Vector2(position.x-this.getWidth()/2, position.y-this.getWidth()/2);
             Lightning lightning1 = new Lightning(lightningPos, map, velocity);
             projectileList.add(lightning1);
 
             // for every arrowAbilityLevel beyond 1, create a new arrow at a randomized
             // angle between -30,30 in the same direction.
             for (int i = 1; i < lightningAbilityLevel; i++) {
-                Vector2 newAngleVelocity = new Vector2(velocity).rotateDeg(rand.nextInt(-30, 30));
+                Vector2 newAngleVelocity = new Vector2(velocity).rotateDeg(rand.nextInt(-90, 90));
                 Vector2 newLightningPos = new Vector2(lightningPos);
                 Lightning extraLightning = new Lightning(newLightningPos, map, newAngleVelocity);
                 projectileList.add(extraLightning);
                 velocity = newAngleVelocity;
             }
 
-            shootTimer = 15;
+            lightningShootTimer = 100;
             SM.lightningMultiShotSound.play();
         }
     }
@@ -285,14 +292,7 @@ public class Player extends AbstractGameObject implements PlayerInterface {
         return this.direction;
     }
 
-    // **Getter and setter for shootTimer */
-
-    public int getShootTimer() {
-        return shootTimer;
-    }
-
-    public void setShootTimer(int i) {
-    }
+    
 
     @Override
     // **Overrides method from AbstractGameObject to check for portal collision in

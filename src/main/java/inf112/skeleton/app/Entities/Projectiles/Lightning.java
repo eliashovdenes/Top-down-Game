@@ -17,17 +17,18 @@ public class Lightning extends AbstractGameObject implements ProjectileInterface
     protected PlayerInterface player;
     protected MapInterface map;
     protected Vector2 velocity;
-    private float rotationSpeed = 200;
+    private float rotationSpeed = 1000;
     private float rotation = 0;
-    private int attackDamage;
+    private int attackDamage = 45;
+    
     
     public Lightning(Vector2 position, MapInterface map, Vector2 velocity){
         super(position,map);
         this.map = map;
         this.velocity = velocity;
         setSprite(PlayerPics.LIGHTNING.source);
-        sprite.setSize(15, 15);
-        rectangle = new Rectangle(position.x, position.y, getWidth(), getHeight());
+        sprite.setSize(40, 40);
+        rectangle = new Rectangle(position.x, position.y, sprite.getWidth(), sprite.getHeight());
     }
        
     @Override
@@ -42,13 +43,22 @@ public class Lightning extends AbstractGameObject implements ProjectileInterface
         //setter origin for sprite før rotering for at den skal spinne rundt egen akse.
         //kanskje litt kult hvis den ikke stemmer?
         
-        sprite.setOrigin(this.getWidth()/2,this.getHeight()*2);
+        
+
+        sprite.setOrigin(sprite.getWidth()/2,sprite.getHeight()/2);
+        
+        rectangle.setPosition(position.x, position.y);
+
+
         rotation += rotationSpeed*delta;
         if (rotation>= 360){
             rotation -= 360;
         }
         sprite.setRotation(rotation);
-        ApplyMovement();
+        
+        
+        
+       // ApplyMovement();
          
     }
 
