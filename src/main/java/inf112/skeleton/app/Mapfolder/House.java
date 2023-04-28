@@ -8,6 +8,7 @@ import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 
 import inf112.skeleton.app.Entities.Enemies.MonsterInterface;
+import inf112.skeleton.app.Sound.SoundManager;
 
 public class House extends TiledMap implements MapInterface {
     private float PlayerSpawnX = 18;
@@ -17,6 +18,8 @@ public class House extends TiledMap implements MapInterface {
     private int EnemyBoundsFromY = 32;
     private int EnemyBoundsToY = 34;
 
+    private SoundManager sm;
+
     private TiledMap tiledMap;
     private OrthogonalTiledMapRenderer renderer;
     private ArrayList<MonsterInterface> monsterList = new ArrayList<>();
@@ -24,6 +27,8 @@ public class House extends TiledMap implements MapInterface {
     public House(){
         tiledMap = new TmxMapLoader().load(Maps.House.source);
         //renderer = new OrthogonalTiledMapRenderer(tiledMap);
+        sm = new SoundManager();
+        sm.house.play();
     }
 
     @Override
@@ -89,8 +94,9 @@ public class House extends TiledMap implements MapInterface {
 
     @Override
     public void stopMusic() {
-        
-        }
+        sm.house.stop();
+        sm.house.dispose();
+    }
     
 }
     

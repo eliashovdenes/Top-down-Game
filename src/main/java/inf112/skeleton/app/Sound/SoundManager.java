@@ -7,6 +7,7 @@ public class SoundManager {
     public aSound arenaSound;
     public aSound safeZone;
     public aSound buttonClick;
+    public aSound house;
     
     public SoundManager(){
         this.mainMenuMusic = new aSound("src/main/resources/assets/soundfiles/Main.mp3", true);
@@ -15,5 +16,6 @@ public class SoundManager {
         this.arenaSound = new aSound("src/main/resources/assets/soundfiles/arena-2.mp3", true);
         this.safeZone = new aSound("src/main/resources/assets/soundfiles/grasshopper.mp3", true);
         this.buttonClick = new aSound("src/main/resources/assets/soundfiles/KnappeLyd.mp3", false);
+        this.house = new aSound("src/main/resources/assets/soundfiles/HouseMusic.mp3", true);
     }
 }
