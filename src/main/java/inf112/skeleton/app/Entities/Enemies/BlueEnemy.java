@@ -9,6 +9,7 @@ import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 
 import inf112.skeleton.app.Entities.AbstractGameObject;
+import inf112.skeleton.app.Entities.Enums.BlueEnemyPics;
 import inf112.skeleton.app.Entities.Enums.DirectionEnum;
 import inf112.skeleton.app.Entities.Enums.PlayerPics;
 import inf112.skeleton.app.Entities.Items.HealthPotion;
@@ -33,7 +34,7 @@ public class BlueEnemy extends AbstractGameObject implements MonsterInterface  {
     public BlueEnemy(MapInterface map) {
         super(new Vector2(0,0), map);
         this.map = map;
-        setSprite(PlayerPics.ENEMYDOWN.source);
+        setSprite(BlueEnemyPics.ENEMYDOWN.source);
         rectangle = new Rectangle(position.x, position.y, getWidth(), getHeight());
         setXYFromSpawnBounds();
         this.velocity.x = speed;

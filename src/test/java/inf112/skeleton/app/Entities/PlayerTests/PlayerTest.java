@@ -1,4 +1,4 @@
-package inf112.skeleton.app;
+package inf112.skeleton.app.Entities.PlayerTests;
 
 import org.junit.jupiter.api.*;
 import org.lwjgl.system.windows.INPUT;
@@ -27,6 +27,7 @@ import static org.mockito.Mockito.*;
 
 import java.nio.ByteBuffer;
 
+import inf112.skeleton.app.Zelda;
 import inf112.skeleton.app.Controller.Controller;
 import inf112.skeleton.app.Entities.Enums.DirectionEnum;
 import inf112.skeleton.app.Entities.Enums.PlayerAnimation;
@@ -327,17 +328,17 @@ public class PlayerTest {
 
         assertEquals(1, player.getProjectiles().size());
     
-        assertEquals(45, lightning.getDamage());
+        assertEquals(10, lightning.getDamage());
 
         assertEquals(lightning.getCurrentHitpoints(), lightning.getMaxHitpoints());
 
-        assertEquals(-8, lightning.getPosition().x);
+        assertEquals(0, lightning.getPosition().x);
 
-        assertEquals(-7, lightning.getPosition().y);
+        assertEquals(1, lightning.getPosition().y);
 
-        assertEquals(lightning.getHeight(), 40);
+        assertEquals(lightning.getHeight(), 15);
 
-        assertEquals(lightning.getWidth(), 40);
+        assertEquals(lightning.getWidth(), 15);
     }
 
     @Test
