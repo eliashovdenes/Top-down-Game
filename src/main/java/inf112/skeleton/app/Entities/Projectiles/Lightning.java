@@ -19,7 +19,7 @@ public class Lightning extends AbstractGameObject implements ProjectileInterface
     protected Vector2 velocity;
     private float rotationSpeed = 200;
     private float rotation = 0;
-    private int attackDamage;
+    private int attackDamage = 10;
     
     public Lightning(Vector2 position, MapInterface map, Vector2 velocity){
         super(position,map);

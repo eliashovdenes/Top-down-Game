@@ -144,7 +144,7 @@ public class View implements Screen {
         CopyOnWriteArrayList<ProjectileInterface> projectilesToRemove = new CopyOnWriteArrayList<>();
 
         //draw projectiles and check if they hit enemy.
-        for (ProjectileInterface projectile : playerI.getArrows()){
+        for (ProjectileInterface projectile : playerI.getProjectiles()){
             projectile.getSprite().draw(batch);
             if (projectile.getPosition().dst(playerI.getPosition())>200){
                 projectilesToRemove.add(projectile);

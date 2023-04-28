@@ -1,28 +1,39 @@
 package inf112.skeleton.app;
 
 import org.junit.jupiter.api.*;
+import org.lwjgl.system.windows.INPUT;
 import org.mockito.Mockito;
 
 import com.badlogic.gdx.Files;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Graphics;
 import com.badlogic.gdx.Graphics.GraphicsType;
+import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.backends.headless.HeadlessApplication;
 import com.badlogic.gdx.backends.headless.HeadlessApplicationConfiguration;
 import com.badlogic.gdx.graphics.GL20;
+import com.badlogic.gdx.graphics.Pixmap;
+import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.math.Vector2;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.Mockito.*;
 
+import java.nio.ByteBuffer;
+
 import inf112.skeleton.app.Controller.Controller;
 import inf112.skeleton.app.Entities.Enums.DirectionEnum;
+import inf112.skeleton.app.Entities.Enums.PlayerAnimation;
 import inf112.skeleton.app.Entities.Enums.PlayerPics;
 import inf112.skeleton.app.Entities.Player.Player;
+import inf112.skeleton.app.Entities.Projectiles.Arrow;
+import inf112.skeleton.app.Entities.Projectiles.Lightning;
 import inf112.skeleton.app.Mapfolder.Level1;
 
 public class PlayerTest {
@@ -145,97 +156,303 @@ public class PlayerTest {
     }
 
 
-    @Test
-    void testPlayerAnimation() {
-        // Mock Player
-        Player player = mock(Player.class, Mockito.CALLS_REAL_METHODS);
 
-        player.setPlayerDirection(DirectionEnum.NORTH);
 
-        assertEquals(DirectionEnum.NORTH, player.getPlayerDirection());
-
-        player.setPlayerDirection(DirectionEnum.SOUTH);
-
-        assertEquals(DirectionEnum.SOUTH, player.getPlayerDirection());
-
-        player.setPlayerDirection(DirectionEnum.EAST);
-
-        assertEquals(DirectionEnum.EAST, player.getPlayerDirection());
-
-        player.setPlayerDirection(DirectionEnum.WEST);
-
-        assertEquals(DirectionEnum.WEST, player.getPlayerDirection());
-    }
 
     @Test
-    void testPlayerSprite(){
-        
-        //Does not work yet
+    public void testSetSprite() {
+        Controller controller = mock(Controller.class, Mockito.CALLS_REAL_METHODS);
+        Level1 lvl1 = new Level1();
 
-        // Mock Player
-        // Player player = mock(Player.class, Mockito.CALLS_REAL_METHODS);
+        assertNotNull(lvl1);
+        Player player = new Player(new Vector2(0, 0), lvl1, controller);
 
-        // // Test if player sprite is set correctly
+        // Set a new sprite for the player
+        String newSpriteFilePath = "src/main/resources/assets/playerPics/playerUP.png";
+        player.setSprite(newSpriteFilePath);
 
-        // player.setSprite(PlayerPics.UP.toString());
+        // Get the current sprite after setting the new sprite
+        Sprite currentSprite = player.getSprite();
 
-        // assertEquals(new Sprite(new Texture(PlayerPics.UP.toString())), player.getSprite());
+        // Get the Pixmap data of the new sprite texture and the current sprite's texture
+        Pixmap newSpritePixmap = new Pixmap(Gdx.files.internal(newSpriteFilePath));
+        Pixmap currentSpritePixmap = new Pixmap(Gdx.files.internal(currentSprite.getTexture().toString()));
 
-        // // Test if player sprite is set correctly
-        // player.setSprite("player2.png");
+        // Compare the Pixmap data
+        ByteBuffer newSpriteBuffer = newSpritePixmap.getPixels();
+        ByteBuffer currentSpriteBuffer = currentSpritePixmap.getPixels();
+        assertTrue(newSpriteBuffer.equals(currentSpriteBuffer));
 
-        // assertEquals("player2.png", player.getSprite());
-
-        // // Test if player sprite is set correctly
-        // player.setSprite("player3.png");
-
-        // assertEquals("player3.png", player.getSprite());
-
-        // // Test if player sprite is set correctly
-        // player.setSprite("player4.png");
-
-        // assertEquals("player4.png", player.getSprite());
+        // Dispose of the textures and pixmaps to avoid memory leak
+        newSpritePixmap.dispose();
+        currentSpritePixmap.dispose();
+        currentSprite.getTexture().dispose();
     }
 
     @Test
     void testPlayerPosition(){
         
-        //Does not work yet
-        
-        
         // Mock Player
-        // Player player = mock(Player.class, Mockito.CALLS_REAL_METHODS);
+        Player player = mock(Player.class, Mockito.CALLS_REAL_METHODS);
 
-        // player.setSprite(PlayerPics.UP.toString());
+        player.setSprite("src/main/resources/assets/playerPics/playerUP.png");
 
-        // Sprite sprite = player.getSprite();
+        Sprite sprite = player.getSprite();
 
-        // System.out.println(sprite);
+        System.out.println(sprite);
 
 
-        // // Test if player position is set correctly
+        // Test if player position is set correctly
 
-        // sprite.setPosition(0, 0);
+        sprite.setPosition(0, 0);
 
-        // assertEquals(0, sprite.getX());
+        assertEquals(0, sprite.getX());
 
-        // assertEquals(0, sprite.getY());
+        assertEquals(0, sprite.getY());
 
-        // // Test if player position is set correctly
 
-        // sprite.setPosition(1, 1);
+        // Test if player position is set correctly
 
-        // assertEquals(1, sprite.getX());
+        sprite.setPosition(1, 1);
 
-        // assertEquals(1, sprite.getY());
+        assertEquals(1, sprite.getX());
 
-        // // Test if player position is set correctly
+        assertEquals(1, sprite.getY());
 
-        // sprite.setPosition(2, 2);
+        // Test if player position is set correctly
 
-        // assertEquals(2, sprite.getX());
+        sprite.setPosition(2, 2);
 
-        // assertEquals(2, sprite.getY());
+        assertEquals(2, sprite.getX());
+
+        assertEquals(2, sprite.getY());
+    }
+
+
+    @Test
+    public void testPlayerMovementSpeedWhenControllerIsFast() {
+        Controller controller = mock(Controller.class, Mockito.CALLS_REAL_METHODS);
+        Level1 lvl1 = new Level1();
+
+        assertNotNull(lvl1);
+        Player player = new Player(new Vector2(0, 0), lvl1, controller);
+
+        // Capture the initial speed
+        float initialSpeed = player.getMovementSpeed();
+
+        controller.setFast(true);
+
+        // Update the player to simulate game loop behavior
+        player.update(1f);
+
+        // Get the new speed after the update
+        float newSpeed = player.getMovementSpeed();
+
+        // Verify the speed has changed to 'run'
+        // assertNotEquals(initialSpeed, newSpeed, 0.001);
+        assertNotEquals(newSpeed, initialSpeed, 0.001, "Speed should have changed when controller is fast");
+        assertEquals(2, newSpeed);
     }
     
+    @Test
+    public void testAnimateMethod() {
+        Controller controller = mock(Controller.class, Mockito.CALLS_REAL_METHODS);
+        Level1 lvl1 = new Level1();
+
+        assertNotNull(lvl1);
+        Player player = new Player(new Vector2(0, 0), lvl1, controller);
+
+        // Test when player is walking in each direction
+        for (DirectionEnum direction : DirectionEnum.values()) {
+            player.setPlayerDirection(direction);
+            player.update(1f);
+
+            if (direction == DirectionEnum.NORTH){
+                assertEquals(PlayerAnimation.UP.animation, player.getPlayerAnimation(),
+                        "Player animation should match the direction when walking");
+            } else if (direction == DirectionEnum.SOUTH){
+                assertEquals(PlayerAnimation.DOWN.animation, player.getPlayerAnimation(),
+                        "Player animation should match the direction when walking");
+            } else if (direction == DirectionEnum.EAST){
+                assertEquals(PlayerAnimation.RIGHT.animation, player.getPlayerAnimation(),
+                        "Player animation should match the direction when walking");
+            } else if (direction == DirectionEnum.WEST){
+                assertEquals(PlayerAnimation.LEFT.animation, player.getPlayerAnimation(),
+                        "Player animation should match the direction when walking");
+            }
+            
+        }
+
+        // Test when player is running in each direction
+        controller.setFast(true);
+        for (DirectionEnum direction : DirectionEnum.values()) {
+            player.setPlayerDirection(direction);
+            player.update(1f);
+
+
+            if (direction == DirectionEnum.NORTH){
+                assertEquals(PlayerAnimation.RUNUP.animation, player.getPlayerAnimation(),
+                        "Player animation should match the direction when walking");
+            } else if (direction == DirectionEnum.SOUTH){
+                assertEquals(PlayerAnimation.RUNDOWN.animation, player.getPlayerAnimation(),
+                        "Player animation should match the direction when walking");
+            } else if (direction == DirectionEnum.EAST){
+                assertEquals(PlayerAnimation.RUNRIGHT.animation, player.getPlayerAnimation(),
+                        "Player animation should match the direction when walking");
+            } else if (direction == DirectionEnum.WEST){
+                assertEquals(PlayerAnimation.RUNLEFT.animation, player.getPlayerAnimation(),
+                        "Player animation should match the direction when walking");
+            }
+        }
+    }
+
+
+    @Test
+    public void testShootLightningMethod() {
+        Controller controller = mock(Controller.class, Mockito.CALLS_REAL_METHODS);
+        Level1 lvl1 = new Level1();
+
+        assertNotNull(lvl1);
+        Player player = new Player(new Vector2(0, 0), lvl1, controller);
+
+        controller.keyDown(Keys.ENTER);
+
+        player.setPlayerDirection(DirectionEnum.NORTH);
+
+        player.update(1f);
+
+        Lightning lightning = (Lightning) player.getProjectiles().get(0);
+
+        assertEquals(1, player.getProjectiles().size());
+    
+        assertEquals(10, lightning.getDamage());
+
+        assertEquals(lightning.getCurrentHitpoints(), lightning.getMaxHitpoints());
+
+        assertEquals(0, lightning.getPosition().x);
+
+        assertEquals(1, lightning.getPosition().y);
+
+        assertEquals(lightning.getHeight(), 15);
+
+        assertEquals(lightning.getWidth(), 15);
+    }
+
+    @Test
+    public void testShootArrowMethod() {
+        Controller controller = mock(Controller.class, Mockito.CALLS_REAL_METHODS);
+        Level1 lvl1 = new Level1();
+
+        assertNotNull(lvl1);
+        Player player = new Player(new Vector2(0, 0), lvl1, controller);
+
+        controller.keyDown(Keys.SPACE);
+
+        player.setPlayerDirection(DirectionEnum.NORTH);
+
+        player.update(1f);
+
+        Arrow arrow = (Arrow) player.getProjectiles().get(0);
+
+        assertEquals(1, player.getProjectiles().size());
+
+        assertEquals(1, arrow.getDamage());
+
+        assertEquals(arrow.getCurrentHitpoints(), arrow.getMaxHitpoints());
+
+        assertEquals(0, arrow.getPosition().x);
+
+        assertEquals(1, arrow.getPosition().y);
+
+        assertEquals(arrow.getHeight(), 10);
+
+        assertEquals(arrow.getWidth(), 10);
+    }
+
+
+    @Test
+    public void testPlayerGettersAndSetters() {
+        Controller controller = mock(Controller.class, Mockito.CALLS_REAL_METHODS);
+        Level1 lvl1 = new Level1();
+        assertNotNull(lvl1);
+        Player player = new Player(new Vector2(0, 0), lvl1, controller);
+
+        // Test setPlayerDirection and getPlayerDirection
+        player.setPlayerDirection(DirectionEnum.NORTH);
+        assertEquals(DirectionEnum.NORTH, player.getPlayerDirection());
+
+        // Test setShootTimer and getShootTimer
+        player.setShootTimer(10);
+        assertEquals(0, player.getShootTimer());
+
+        // Test spawn and getPosition
+        player.spawn(16, 32);
+        assertEquals(16, player.getPosition().x);
+        assertEquals(32, player.getPosition().y);
+
+        // Test setOffPortal and onPortal
+        player.setOffPortal();
+        assertFalse(player.onPortal());
+
+        // Test returnMap
+        assertEquals(lvl1, player.returnMap());
+
+        // Test upgradeLightning and getLightningAbilityLevel
+        int initialLightningAbilityLevel = player.getLightningAbilityLevel();
+        player.upgradeLightning();
+        assertEquals(initialLightningAbilityLevel + 1, player.getLightningAbilityLevel());
+
+        // Test upgradeArrow and getArrowAbilityLevel
+        int initialArrowAbilityLevel = player.getArrowAbilityLevel();
+        player.upgradeArrow();
+        assertEquals(initialArrowAbilityLevel + 1, player.getArrowAbilityLevel());
+
+        // Test setLives and getLives
+        player.setLives(3);
+        assertEquals(3, player.getLives());
+
+        // Test takeDamage
+        int initialHitPoints = player.getCurrentHitpoints();
+        int damage = 5;
+        player.takeDamage(damage);
+        assertEquals(initialHitPoints - damage, player.getCurrentHitpoints());
+
+        // Test getExp, getLevel, getAbilityPoints
+        int initialLevel = player.getLevel();
+        int initialAbilityPoints = player.getAbilityPoints();
+        player.getExp();
+        assertEquals(initialLevel, player.getLevel());
+        assertEquals(initialAbilityPoints, player.getAbilityPoints());
+
+        // Test upgradeHealth and getHealthAbilityLevel
+        int initialHealthAbilityLevel = player.getHealthAbilityLevel();
+        player.upgradeHealth();
+        assertEquals(initialHealthAbilityLevel + 1, player.getHealthAbilityLevel());
+
+        // Test upgradeMovement and getMovementAbilityLevel
+        int initialMovementAbilityLevel = player.getMovementAbilityLevel();
+        player.upgradeMovement();
+        player.upgradeMovement();
+
+        // player.update(1f);
+        assertEquals(initialMovementAbilityLevel+2, player.getMovementAbilityLevel());
+        
+        // Test removeAbilityPoints
+        player.removeAbilityPoints();
+        assertEquals(initialAbilityPoints - 1, player.getAbilityPoints());
+    }
+
+
+
+
+
+
+
+
+
+
+
+    
+
+
 }
