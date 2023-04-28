@@ -50,6 +50,12 @@ public interface MapInterface {
      */
     public float getPlayerSpawnX();
 
+
+    /**
+     * stops the music.
+     */
+    public void stopMusic();
+
     /**
      * @return y-coordinate spawn point
      */

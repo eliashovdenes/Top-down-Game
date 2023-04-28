@@ -21,7 +21,7 @@ public class RedEnemy extends AbstractGameObject implements MonsterInterface  {
     Sprite sprite;
     int attackDamage = 20;
     float fromX,fromY,toX,toY;
-    float speed = 1 ;
+    float speed = 0.1f ;
     private DirectionEnum direction;
     MapInterface map;
     private double healthPotionDropChance;
@@ -72,12 +72,36 @@ public class RedEnemy extends AbstractGameObject implements MonsterInterface  {
 		};
 	}
 
+
+    @Override
+    public void handleCollision() {
+            if (xCollision()){
+                position.x = recentPosition.x;
+                velocity.x = - velocity.x;
+                
+            }
+            if (yCollision()){
+                position.y=recentPosition.y;
+                velocity.y = - velocity.y;
+                
+            }
+            
+        }
+
+    public void followPlayer(float x, float y) {
+        if (x > position.x) velocity.x = speed;
+        else if (x < position.x) velocity.x =  -speed;
+        if (y > position.y) velocity.y = speed;
+        else if (y < position.y) velocity.y =  -speed;
+    }
+
     public String getName() {
         return "RedEnemy";
     }
 
     @Override
     public void update(float delta) {
+
         ApplyMovement();
         sprite.setPosition(position.x, position.y);
         shootRedProjectile(delta);

@@ -105,5 +105,10 @@ public class Cave extends TiledMap implements MapInterface{
     public void removeMonster(MonsterInterface monster) {
         monsterList.remove(monster);
     }
+
+    @Override
+    public void stopMusic() {
+        
+        }
     
 }

@@ -13,6 +13,7 @@ import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import inf112.skeleton.app.Entities.Enemies.BlueEnemy;
 import inf112.skeleton.app.Entities.Enemies.MonsterFactory;
 import inf112.skeleton.app.Entities.Enemies.MonsterInterface;
+import inf112.skeleton.app.Sound.SoundManager;
 
 public class Level1Mini extends TiledMap implements MapInterface {
 
@@ -23,6 +24,7 @@ public class Level1Mini extends TiledMap implements MapInterface {
     private int EnemyBoundsToX = 800;
     private int EnemyBoundsFromY = 200;
     private int EnemyBoundsToY = 800;
+    private SoundManager sm;
 
     
 
@@ -38,6 +40,8 @@ public class Level1Mini extends TiledMap implements MapInterface {
         PlayerSpawnY = playerSpawnY;
         tiledMap = new TmxMapLoader().load(Maps.Level1Mini.source);
         //renderer = new OrthogonalTiledMapRenderer(tiledMap);
+        sm = new SoundManager();
+        sm.safeZone.play();
         setup();
         this.spawn(enemyList);
     }
@@ -110,5 +114,11 @@ public class Level1Mini extends TiledMap implements MapInterface {
     public void removeMonster(MonsterInterface monster) {
         monsterList.remove(monster);
     }
+
+    @Override
+    public void stopMusic() {
+        sm.safeZone.stop();
+        sm.safeZone.dispose();
+        }
     
 }
