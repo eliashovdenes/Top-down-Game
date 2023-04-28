@@ -115,6 +115,7 @@ public class MainMenuScreen extends ScreenAdapter {
             Vector3 hei = new Vector3(controller.getMenuClick(),0);
             camera.unproject(hei);
             SM.buttonClick.play();
+            SM.mainMenuMusic.stop();
 
 
             if (newGameRect.contains(hei.x, hei.y)){
