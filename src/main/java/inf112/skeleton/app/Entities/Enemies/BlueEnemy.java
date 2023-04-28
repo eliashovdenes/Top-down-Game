@@ -18,9 +18,9 @@ import inf112.skeleton.app.Mapfolder.MapInterface;
 public class BlueEnemy extends AbstractGameObject implements MonsterInterface  {
 
     Sprite sprite;
-    int attackDamage = 1;
+    int attackDamage;
     float fromX,fromY,toX,toY;
-    float speed = 0.5f ;
+    float speed;
     private DirectionEnum direction;
     MapInterface map;
     private double healthPotionDropChance;
@@ -30,7 +30,7 @@ public class BlueEnemy extends AbstractGameObject implements MonsterInterface  {
     float time = 0;
 
 
-    public BlueEnemy(MapInterface map) {
+    public BlueEnemy(MapInterface map, float scaler) {
         super(new Vector2(0,0), map);
         this.map = map;
         setSprite(PlayerPics.ENEMYDOWN.source);
@@ -38,20 +38,22 @@ public class BlueEnemy extends AbstractGameObject implements MonsterInterface  {
         setXYFromSpawnBounds();
         this.velocity.x = speed;
         this.velocity.y = speed;
-        this.setMaxhitpoints(50);
+        this.setMaxhitpoints(Math.round(75*scaler));
         this.setCurrentHitPoints(this.getMaxHitpoints());
         this.setHealthPotionDropChance(0.3);
+        this.attackDamage = Math.round(10*scaler);
+        this.speed = scaler/10;
         this.random = new Random();
         projectileList = new ArrayList<ProjectileInterface>();
     }
 
-    public BlueEnemy() {
-        super(new Vector2(0,0));
-        this.velocity.x = speed;
-        this.velocity.y = speed;
-        this.setMaxhitpoints(50);
-        this.setCurrentHitPoints(this.getMaxHitpoints());
-    }
+    // public BlueEnemy() {
+    //     super(new Vector2(0,0));
+    //     this.velocity.x = speed;
+    //     this.velocity.y = speed;
+    //     this.setMaxhitpoints(50);
+    //     this.setCurrentHitPoints(this.getMaxHitpoints());
+    // }
 
     public static MonsterFactory getFactory() {
 		
@@ -63,14 +65,10 @@ public class BlueEnemy extends AbstractGameObject implements MonsterInterface  {
 			}
 
 			@Override
-			public MonsterInterface create(MapInterface map) {
-				return new BlueEnemy(map);
+			public MonsterInterface create(MapInterface map, float scaler) {
+				return new BlueEnemy(map, scaler);
 			}
 
-            @Override
-			public MonsterInterface create() {
-				return new BlueEnemy();
-			}
 		};
 	}
 

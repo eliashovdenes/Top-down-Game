@@ -21,7 +21,7 @@ public class RedEnemy extends AbstractGameObject implements MonsterInterface  {
     Sprite sprite;
     int attackDamage = 20;
     float fromX,fromY,toX,toY;
-    float speed = 0.1f ;
+    float speed;
     private DirectionEnum direction;
     MapInterface map;
     private double healthPotionDropChance;
@@ -29,18 +29,21 @@ public class RedEnemy extends AbstractGameObject implements MonsterInterface  {
     public ArrayList<ProjectileInterface> projectileList;
     private float shootTimer = 0.0f;
     private final float shootCooldown = 3.0f;
+    private int projectileDamage;
 
-    public RedEnemy(MapInterface map) {
+    public RedEnemy(MapInterface map, float scaler) {
         super(new Vector2(0,0), map);
         this.map = map;
         setSprite(RedEnemyPics.ENEMYDOWN.source);
         rectangle = new Rectangle(position.x, position.y, getWidth(), getHeight());
         setXYFromSpawnBounds();  
-        this.setMaxhitpoints(75);
+        this.setMaxhitpoints(Math.round(75*scaler));
         this.setCurrentHitPoints(this.getMaxHitpoints()); 
         this.random = new Random();
-        this.setHealthPotionDropChance(1);
+        this.setHealthPotionDropChance(0.5);
         projectileList = new ArrayList<ProjectileInterface>();
+        this.projectileDamage = Math.round(10 * scaler);
+        this.speed = scaler/20;
     }
 
     public RedEnemy() {
@@ -61,13 +64,8 @@ public class RedEnemy extends AbstractGameObject implements MonsterInterface  {
 			}
 
 			@Override
-			public MonsterInterface create(MapInterface map) {
-				return new RedEnemy(map);
-			}
-
-            @Override
-			public MonsterInterface create() {
-				return new RedEnemy();
+			public MonsterInterface create(MapInterface map, float scaler) {
+				return new RedEnemy(map, scaler);
 			}
 		};
 	}
@@ -104,7 +102,7 @@ public class RedEnemy extends AbstractGameObject implements MonsterInterface  {
 
         ApplyMovement();
         sprite.setPosition(position.x, position.y);
-        shootRedProjectile(delta);
+        shootRedProjectile(delta, this.projectileDamage);
         for (ProjectileInterface projectile : projectileList) {
             projectile.update(delta);
         }
@@ -182,7 +180,7 @@ public class RedEnemy extends AbstractGameObject implements MonsterInterface  {
         this.healthPotionDropChance = chance;
     }
 
-    private void shootRedProjectile(float delta) {
+    private void shootRedProjectile(float delta, int damage) {
 
         if (shootTimer <= 0) {
 
@@ -199,7 +197,7 @@ public class RedEnemy extends AbstractGameObject implements MonsterInterface  {
 
             // first projectile created and added.
             Vector2 projectilePos = new Vector2(position.x, position.y);
-            RedProjectile projectile = new RedProjectile(projectilePos, map, velocity, this);
+            RedProjectile projectile = new RedProjectile(projectilePos, map, velocity, this, damage);
             projectileList.add(projectile);
             shootTimer = shootCooldown;  
         }
