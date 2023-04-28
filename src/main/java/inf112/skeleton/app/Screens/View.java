@@ -16,7 +16,9 @@ import com.badlogic.gdx.scenes.scene2d.ui.List;
 
 import inf112.skeleton.app.Entities.AbstractGameObject;
 import inf112.skeleton.app.Entities.Enemies.BlueEnemy;
+import inf112.skeleton.app.Entities.Enemies.MonsterFactory;
 import inf112.skeleton.app.Entities.Enemies.MonsterInterface;
+import inf112.skeleton.app.Entities.Enemies.RedEnemy;
 import inf112.skeleton.app.Entities.Items.HealthPotion;
 import inf112.skeleton.app.Entities.Items.ItemImpl;
 import inf112.skeleton.app.Entities.Player.PlayerInterface;
@@ -29,6 +31,7 @@ import com.badlogic.gdx.graphics.Color;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 
@@ -47,6 +50,9 @@ public class View implements Screen {
     private Controller controller;
     public HashMap<AbstractGameObject, Rectangle> enemies = new HashMap<>();
     private ArrayList<ItemImpl> itemList = new ArrayList<>();
+    private ArrayList<MonsterInterface> monsterList = new ArrayList<>();
+    private Map<String, MonsterFactory> monsterFactories = new HashMap<>();
+    private float scaler;
     
     
     //MapInterface mapI = new Level1Mini(123,76);
@@ -61,6 +67,8 @@ public class View implements Screen {
         this.playerI = playerI;
         this.mapI=playerI.returnMap();
         playerI.spawn(mapI.getPlayerSpawnX()*16,mapI.getPlayerSpawnY()*16);
+        this.scaler = 1;
+        setup();
         
     }   
     public View(Zelda game, Controller controller, PlayerInterface playerI, float x,float y){
@@ -68,8 +76,27 @@ public class View implements Screen {
         this.controller = controller;    
         this.playerI = playerI;
         this.mapI=playerI.returnMap();
+        this.scaler = 1;
+        setup();
 
     }
+
+    private void setup() {
+        MonsterFactory blueEnemyFactory = BlueEnemy.getFactory();
+        MonsterFactory redEnemyFactory = RedEnemy.getFactory();
+        monsterFactories.put(blueEnemyFactory.name(), blueEnemyFactory);
+        monsterFactories.put(redEnemyFactory.name(), redEnemyFactory);       
+    }
+
+    public void spawn(Map<String, Integer> enemies, float scaler, MapInterface mapI) {
+        for (String enemy : enemies.keySet())
+            for (int i=0; i < enemies.get(enemy) * Math.round(scaler); i++){
+                MonsterFactory monsterFactory = monsterFactories.get(enemy);
+                MonsterInterface monster = monsterFactory.create(mapI);
+                monsterList.add(monster);
+            }
+    }
+
     @Override
     public void show() {
         
@@ -122,6 +149,10 @@ public class View implements Screen {
             
             renderer.setMap(mapI.getMap());
             playerI.setOffPortal();
+            this.scaler = playerI.getLevel();
+            spawn(mapI.getEnemies(), this.scaler, mapI);
+            mapI.setAllEnemiesDead(false);
+            itemList.clear();
         }
         
         if (playerI.isDead()){
@@ -149,7 +180,7 @@ public class View implements Screen {
             if (projectile.getPosition().dst(playerI.getPosition())>200){
                 projectilesToRemove.add(projectile);
             }
-            for (MonsterInterface monsterI : mapI.getMonsterList()) {
+            for (MonsterInterface monsterI : this.monsterList) {
                 if (projectile.getRect().overlaps(monsterI.getRect())) { 
                     monsterI.takeDamage(projectile.getDamage());
                     projectilesToRemove.add(projectile);
@@ -161,7 +192,7 @@ public class View implements Screen {
         
         
         //draw monsters
-        for (MonsterInterface monsterI : mapI.getMonsterList()){
+        for (MonsterInterface monsterI : this.monsterList){
             
             monsterI.update(delta);
             monsterI.getSprite().draw(batch);   
@@ -211,12 +242,17 @@ public class View implements Screen {
         }   
 
         //remove dead monsters, projectiles that hit enemies and used items
-        mapI.getMonsterList().removeAll(deadMonsterList);
+        this.monsterList.removeAll(deadMonsterList);
         itemList.removeAll(itemsToRemove);
         playerI.getProjectiles().removeAll(projectilesToRemove);
         deadMonsterList.clear();
         itemsToRemove.clear();
         projectilesToRemove.clear();
+
+        // Check if all enemies are dead
+        if (this.monsterList.isEmpty()) {
+            mapI.setAllEnemiesDead(true);
+        }
         
         
         //remove dead monsters
