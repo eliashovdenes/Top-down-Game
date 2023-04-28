@@ -92,7 +92,7 @@ public class View implements Screen {
         for (String enemy : enemies.keySet())
             for (int i=0; i < enemies.get(enemy) * Math.round(scaler); i++){
                 MonsterFactory monsterFactory = monsterFactories.get(enemy);
-                MonsterInterface monster = monsterFactory.create(mapI);
+                MonsterInterface monster = monsterFactory.create(mapI, scaler);
                 monsterList.add(monster);
             }
     }
