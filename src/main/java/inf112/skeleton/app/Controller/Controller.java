@@ -28,7 +28,7 @@ public class Controller implements InputProcessor{
         if (keycode == Keys.S) isDown = true;
         if (keycode == Keys.A) isLeft = true;
         if (keycode == Keys.D) isRight = true;
-        if (keycode == Keys.L) fast = true;
+        if (keycode == Keys.SHIFT_LEFT) fast = true;
         if (keycode == Keys.P) isAttack = true;
         if (keycode == Keys.SPACE) isSpace = true;
         if (keycode == Keys.ENTER) enter = true;
@@ -43,7 +43,7 @@ public class Controller implements InputProcessor{
                     }
                 }
             }
-        if(keycode == Keys.K){
+        if(keycode == Keys.TAB){
             if(!wasKjustPressed){
                 wasKjustPressed = true;
                 if (isShop){
@@ -65,12 +65,12 @@ public class Controller implements InputProcessor{
         if (keycode == Keys.S) isDown = false;
         if (keycode == Keys.A) isLeft = false;
         if (keycode == Keys.D) isRight = false;
-        if (keycode == Keys.L) fast = false;
+        if (keycode == Keys.SHIFT_LEFT) fast = false;
         if (keycode == Keys.P) isAttack = false;
         if (keycode == Keys.SPACE) isSpace = false;
         if (keycode == Keys.ENTER) enter = false;
         if (keycode == Keys.ESCAPE) wasEscJustPressed = false;
-        if (keycode == Keys.K) wasKjustPressed = false;
+        if (keycode == Keys.TAB) wasKjustPressed = false;
         
         return true;
     }
