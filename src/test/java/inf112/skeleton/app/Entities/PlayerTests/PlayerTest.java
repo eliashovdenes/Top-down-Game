@@ -328,7 +328,7 @@ public class PlayerTest {
 
         assertEquals(1, player.getProjectiles().size());
     
-        assertEquals(10, lightning.getDamage());
+        assertEquals(45, lightning.getDamage());
 
         assertEquals(lightning.getCurrentHitpoints(), lightning.getMaxHitpoints());
 
