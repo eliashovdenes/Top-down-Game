@@ -5,6 +5,7 @@ import com.badlogic.gdx.ScreenAdapter;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
@@ -24,6 +25,7 @@ import inf112.skeleton.app.Sound.SoundManager;
 public class MainMenuScreen extends ScreenAdapter {
     
     private SpriteBatch batch;
+    private Texture img;
     private Zelda game;
     private BitmapFont font;
     private Controller controller;
@@ -36,6 +38,7 @@ public class MainMenuScreen extends ScreenAdapter {
 
     public MainMenuScreen(Zelda southGame, Controller controller) {
         this.game = southGame;
+        this.img = new Texture("src/main/resources/assets/mainMeny.png");
         this.controller = controller;
         batch = new SpriteBatch();
         font = new BitmapFont();
@@ -54,10 +57,10 @@ public class MainMenuScreen extends ScreenAdapter {
 
         
         
-        newGameRect = new Rectangle(screenWidth * 0.05f, rectangleY, rectangleWidth, rectangleHeight);
-        instructionsRect = new Rectangle(screenWidth * 0.05f, rectangleY - rectangleHeight - spaceBetweenRetangles, rectangleWidth, rectangleHeight);
-        creditsRect = new Rectangle(screenWidth * 0.05f, rectangleY - 2 * (rectangleHeight + spaceBetweenRetangles), rectangleWidth, rectangleHeight);
-        quitRect = new Rectangle(screenWidth * 0.05f, rectangleY - 3 * (rectangleHeight + spaceBetweenRetangles), rectangleWidth, rectangleHeight);
+        newGameRect = new Rectangle(screenWidth * 0.475f, rectangleY, rectangleWidth, rectangleHeight);
+        instructionsRect = new Rectangle(screenWidth * 0.475f, rectangleY - rectangleHeight - spaceBetweenRetangles, rectangleWidth, rectangleHeight);
+        creditsRect = new Rectangle(screenWidth * 0.475f, rectangleY - 2 * (rectangleHeight + spaceBetweenRetangles), rectangleWidth, rectangleHeight);
+        quitRect = new Rectangle(screenWidth * 0.475f, rectangleY - 3 * (rectangleHeight + spaceBetweenRetangles), rectangleWidth, rectangleHeight);
 
         // Create the camera and set its position to the center of the screen
         camera = new OrthographicCamera();
@@ -67,12 +70,14 @@ public class MainMenuScreen extends ScreenAdapter {
     }
 
 
+
     @Override
     public void render(float delta) {
         
         // Clear the screen with a solid color
         Gdx.gl.glClearColor(0, 0, 0, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+       
 
         //draw boxes
         shape.setColor(Color.RED);
@@ -88,6 +93,7 @@ public class MainMenuScreen extends ScreenAdapter {
 
         // Draw the title
         batch.begin();
+        batch.draw(img, -320, -250);
         font.getData().setScale(2);
         font.draw(batch, "Welcome to SouthGame", 10, 850);
         
@@ -108,6 +114,7 @@ public class MainMenuScreen extends ScreenAdapter {
             
             Vector3 hei = new Vector3(controller.getMenuClick(),0);
             camera.unproject(hei);
+            SM.buttonClick.play();
 
 
             if (newGameRect.contains(hei.x, hei.y)){

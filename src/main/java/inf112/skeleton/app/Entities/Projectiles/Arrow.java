@@ -15,7 +15,6 @@ import inf112.skeleton.app.Mapfolder.MapInterface;
 
 public class Arrow extends AbstractGameObject implements ProjectileInterface  {
 
-    protected float speed = 2;
     protected Sprite sprite;
     protected TiledMap map;
     protected Vector2 velocity;
@@ -74,7 +73,6 @@ public class Arrow extends AbstractGameObject implements ProjectileInterface  {
 
     @Override
     public void setMovementSpeed(float speed) {
-        this.speed = speed;
     }
 
     @Override

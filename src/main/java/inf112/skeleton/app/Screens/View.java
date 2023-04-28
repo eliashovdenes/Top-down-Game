@@ -124,7 +124,9 @@ public class View implements Screen {
             playerI.setOffPortal();
         }
         
-        
+        if (playerI.isDead()){
+            game.setScreen(new GameOverScreen(game, controller));
+        }
 
         //render map
         renderer.setView(camera);
@@ -144,6 +146,9 @@ public class View implements Screen {
         //draw projectiles and check if they hit enemy.
         for (ProjectileInterface projectile : playerI.getArrows()){
             projectile.getSprite().draw(batch);
+            if (projectile.getPosition().dst(playerI.getPosition())>200){
+                projectilesToRemove.add(projectile);
+            }
             for (MonsterInterface monsterI : mapI.getMonsterList()) {
                 if (projectile.getRect().overlaps(monsterI.getRect())) { 
                     monsterI.takeDamage(projectile.getDamage());
