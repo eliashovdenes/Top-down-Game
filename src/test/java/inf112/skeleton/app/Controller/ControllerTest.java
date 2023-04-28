@@ -1,4 +1,4 @@
-package inf112.skeleton.app;
+package inf112.skeleton.app.Controller;
 import com.badlogic.gdx.Input.Keys;
 import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.*;
