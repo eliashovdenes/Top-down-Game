@@ -89,8 +89,16 @@ public class RedEnemy extends AbstractGameObject implements MonsterInterface  {
     public void followPlayer(float x, float y) {
         if (x > position.x) velocity.x = speed;
         else if (x < position.x) velocity.x =  -speed;
-        if (y > position.y) velocity.y = speed;
-        else if (y < position.y) velocity.y =  -speed;
+        if (y > position.y) {
+            velocity.y = speed;
+            setSprite(RedEnemyPics.ENEMYUP.source);
+            this.direction = DirectionEnum.NORTH;
+        }
+        else if (y < position.y) {
+            velocity.y =  -speed;
+            setSprite(RedEnemyPics.ENEMYDOWN.source);
+            this.direction = DirectionEnum.SOUTH;
+        }
     }
 
     public String getName() {
@@ -99,7 +107,6 @@ public class RedEnemy extends AbstractGameObject implements MonsterInterface  {
 
     @Override
     public void update(float delta) {
-
         ApplyMovement();
         sprite.setPosition(position.x, position.y);
         shootRedProjectile(delta, this.projectileDamage);
@@ -195,7 +202,7 @@ public class RedEnemy extends AbstractGameObject implements MonsterInterface  {
             if (this.direction == DirectionEnum.SOUTH)
                 velocity.set(0, -1);
 
-            // first projectile created and added.
+            // projectile created and added.
             Vector2 projectilePos = new Vector2(position.x, position.y);
             RedProjectile projectile = new RedProjectile(projectilePos, map, velocity, this, damage);
             projectileList.add(projectile);
