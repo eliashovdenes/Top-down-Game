@@ -29,12 +29,12 @@ public class GrassMini extends TiledMap implements MapInterface {
 
     
 
-    
-
     private TiledMap tiledMap;
     private OrthogonalTiledMapRenderer renderer;
     private ArrayList<MonsterInterface> monsterList = new ArrayList<>();
     private Map<String, MonsterFactory> monsterFactories = new HashMap<>();
+    
+
     private ArrayList<String> enemyList;
 
 
@@ -124,6 +124,22 @@ public class GrassMini extends TiledMap implements MapInterface {
     public void stopMusic() {
         sm.arenaSound.stop();
         sm.arenaSound.dispose();
+    }
+
+    public Map<String, MonsterFactory> getMonsterFactories() {
+        return monsterFactories;
+    }
+
+    public void setMonsterFactories(Map<String, MonsterFactory> monsterFactories) {
+        this.monsterFactories = monsterFactories;
+    }
+
+    public SoundManager getSm() {
+        return sm;
+    }
+
+    public void setSm(SoundManager sm) {
+        this.sm = sm;
     }
     
 }
