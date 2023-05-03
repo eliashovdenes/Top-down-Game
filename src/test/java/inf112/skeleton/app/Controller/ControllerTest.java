@@ -4,13 +4,10 @@ import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.*;
 public class ControllerTest {
 
-    @Test
-    void test(){
-        fail();
-    }
-    /*
-//checks if the controller class recieves the attack informasjon.
-    @Test
+    
+    
+//checks if the controller class recieves the attack information.
+  /*  @Test
     void testInputAttack(){
         Controller controll = new Controller();
         assertFalse(controll.isAttack());
@@ -19,7 +16,7 @@ public class ControllerTest {
         controll.keyUp(Keys.P);
         assertFalse(controll.isAttack());
     }
-
+ */
     @Test
     void testInputUp(){
         Controller controll = new Controller();
@@ -59,5 +56,44 @@ public class ControllerTest {
         controll.keyUp(Keys.D);
         assertFalse(controll.isRight());
     }
-     */
+    @Test
+    void testInputSpace(){
+        Controller controll = new Controller();
+        assertFalse(controll.isSpace());
+        controll.keyDown(Keys.SPACE);
+        assertTrue(controll.isSpace());
+        controll.keyUp(Keys.SPACE);
+        assertFalse(controll.isSpace());
+    }
+    @Test
+    void testInputEnter(){
+        Controller controll = new Controller();
+        assertFalse(controll.isEnter());
+        controll.keyDown(Keys.ENTER);
+        assertTrue(controll.isEnter());
+        controll.keyUp(Keys.ENTER);
+        assertFalse(controll.isEnter());
+    }
+    @Test
+    void testInputShop(){
+        Controller controll = new Controller();
+        assertFalse(controll.isShop());
+        controll.keyDown(Keys.K);
+        controll.keyUp(Keys.K);
+        assertTrue(controll.isShop());
+        controll.keyDown(Keys.K);
+        controll.keyUp(Keys.K);
+        assertFalse(controll.isShop());
+    }
+    @Test
+    void testInputPause(){
+        Controller controll = new Controller();
+        assertFalse(controll.isPaused());
+        controll.keyDown(Keys.ESCAPE);
+        controll.keyUp(Keys.ESCAPE);
+        assertTrue(controll.isPaused());
+        controll.keyDown(Keys.ESCAPE);
+        controll.keyUp(Keys.ESCAPE);
+        assertFalse(controll.isPaused());
+    }
 }

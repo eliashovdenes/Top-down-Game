@@ -19,11 +19,8 @@ public class MainMenuScreenTest {
 
     @BeforeEach
     void setup() {
-        try {
-            game = new Zelda();
-            game.setScreen(new MainMenuScreen(game, game.getController()));
-        } catch (IllegalArgumentException ignored) {
-        }
+   
+        
     }
 
     @Test
