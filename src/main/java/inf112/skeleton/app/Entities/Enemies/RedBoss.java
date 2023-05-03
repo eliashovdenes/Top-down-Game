@@ -5,7 +5,6 @@ import java.util.Random;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
-import com.badlogic.gdx.maps.Map;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 
@@ -13,6 +12,7 @@ import inf112.skeleton.app.Entities.AbstractGameObject;
 import inf112.skeleton.app.Entities.Enums.DirectionEnum;
 import inf112.skeleton.app.Entities.Enums.RedBossPics;
 import inf112.skeleton.app.Entities.Projectiles.ProjectileInterface;
+import inf112.skeleton.app.Entities.Projectiles.RedProjectile;
 import inf112.skeleton.app.Mapfolder.MapInterface;
 
 public class RedBoss extends AbstractGameObject implements MonsterInterface {
@@ -25,6 +25,10 @@ public class RedBoss extends AbstractGameObject implements MonsterInterface {
     private DirectionEnum direction;
     private double healthPotionDropChance;
     public ArrayList<ProjectileInterface> projectileList;
+    private boolean shootingAbility = false;
+    private float shootTimer = 0;
+    private int projectileDamage = 30;
+    private final float shootCooldown = 3.0f;
 
     public RedBoss(MapInterface map, float scaler) {
         super(new Vector2(0,0), map);
@@ -33,9 +37,7 @@ public class RedBoss extends AbstractGameObject implements MonsterInterface {
         setXYFromSpawnBounds();
         this.velocity.x = speed;
         this.velocity.y = speed;
-        this.setMaxhitpoints(100);
-        this.setCurrentHitPoints(this.getMaxHitpoints());
-        this.setHealthPotionDropChance(0.3);
+        this.setMaxhitpoints(Math.round(1000*scaler));
         this.attackDamage = 100;
         projectileList = new ArrayList<ProjectileInterface>();
     }
@@ -62,6 +64,12 @@ public class RedBoss extends AbstractGameObject implements MonsterInterface {
     public void update(float delta) {
         ApplyMovement();
         sprite.setPosition(position.x, position.y);
+        if (shootingAbility) {
+            shootRedProjectile(delta, this.projectileDamage);
+            for (ProjectileInterface projectile : projectileList) {
+                projectile.update(delta);
+            }
+        }
     }
 
     @Override
@@ -115,31 +123,23 @@ public class RedBoss extends AbstractGameObject implements MonsterInterface {
     public void followPlayer(float x, float y) {
         if (x > position.x) {
             velocity.x = speed; 
-            // sprite.setTexture(new Texture(RedBossPics.BOSSRIGHT.source));
-            this.direction = DirectionEnum.WEST;
         }
         else if (x < position.x) {
             velocity.x =  - speed;
-            // sprite.setTexture(new Texture(RedBossPics.BOSSLEFT.source));
-            this.direction = DirectionEnum.EAST;
         }
         if (y > position.y) {
             velocity.y = speed;
-            // sprite.setTexture( new Texture(RedBossPics.BOSSUP.source));
-            this.direction = DirectionEnum.NORTH;
         }
         else if (y < position.y) {
             velocity.y =  - speed;
-            // sprite.setTexture(new Texture(RedBossPics.BOSSDOWN.source));
-            this.direction = DirectionEnum.SOUTH;
         }
         if (Math.abs(x - position.x) > Math.abs(y - position.y)) {
-            if (x > position.x) sprite.setTexture(new Texture(RedBossPics.BOSSRIGHT.source));
-            else sprite.setTexture(new Texture(RedBossPics.BOSSLEFT.source));
+            if (x > position.x) {sprite.setTexture(new Texture(RedBossPics.BOSSRIGHT.source)); this.direction = DirectionEnum.EAST;}
+            else {sprite.setTexture(new Texture(RedBossPics.BOSSLEFT.source)); this.direction = DirectionEnum.WEST;}
         }
         else if (Math.abs(x - position.x) < Math.abs(y - position.y)) {
-            if (y > position.y) sprite.setTexture( new Texture(RedBossPics.BOSSUP.source));
-            else sprite.setTexture( new Texture(RedBossPics.BOSSDOWN.source));
+            if (y > position.y) {sprite.setTexture( new Texture(RedBossPics.BOSSUP.source)); this.direction = DirectionEnum.NORTH;}
+            else {sprite.setTexture( new Texture(RedBossPics.BOSSDOWN.source)); this.direction = DirectionEnum.SOUTH;}
         }
         
     }
@@ -199,6 +199,36 @@ public class RedBoss extends AbstractGameObject implements MonsterInterface {
     @Override
     public ArrayList<ProjectileInterface> getProjectiles() {
         return projectileList;
+    }
+
+    public void giveShootingPermission() {
+        shootingAbility = true;
+    }
+
+    private void shootRedProjectile(float delta, int damage) {
+
+        if (shootTimer <= 0) {
+
+            // set velocity based on enemy direction.
+            Vector2 velocity = new Vector2();
+            if (this.direction == DirectionEnum.NORTH)
+                velocity.set(0, 1);
+            if (this.direction == DirectionEnum.EAST)
+                velocity.set(1, 0);
+            if (this.direction == DirectionEnum.WEST)
+                velocity.set(-1, 0);
+            if (this.direction == DirectionEnum.SOUTH)
+                velocity.set(0, -1);
+
+            // projectile created and added.
+            Vector2 projectilePos = new Vector2(position.x, position.y);
+            RedProjectile projectile = new RedProjectile(projectilePos, map, velocity, this, damage);
+            projectileList.add(projectile);
+            shootTimer = shootCooldown;  
+        }
+        else {
+            shootTimer -= delta;
+        }
     }
     
 }

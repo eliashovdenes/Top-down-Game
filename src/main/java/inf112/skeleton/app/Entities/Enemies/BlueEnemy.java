@@ -214,4 +214,9 @@ public class BlueEnemy extends AbstractGameObject implements MonsterInterface  {
     public ArrayList<ProjectileInterface> getProjectiles() {
         return this.projectileList;
     }
+
+    @Override
+    public void giveShootingPermission() {
+        
+    }
 }

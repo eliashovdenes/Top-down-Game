@@ -54,6 +54,11 @@ public class View implements Screen {
     private ArrayList<MonsterInterface> monsterList = new ArrayList<>();
     private Map<String, MonsterFactory> monsterFactories = new HashMap<>();
     private float scaler;
+    private boolean notConqueredFstBoss = true;
+    private boolean tabJustPressed = false;
+    private float timer = 0;
+    private boolean bosstime = false;
+    private int bosscale = 1;
     
     
     //MapInterface mapI = new Level1Mini(123,76);
@@ -96,6 +101,7 @@ public class View implements Screen {
             for (int i=0; i < enemies.get(enemy) * Math.round(scaler); i++){
                 MonsterFactory monsterFactory = monsterFactories.get(enemy);
                 MonsterInterface monster = monsterFactory.create(mapI, scaler);
+                if (scaler > 3 && enemy == "RedBoss"){ monster.giveShootingPermission();}
                 monsterList.add(monster);
             }
     }
@@ -123,6 +129,15 @@ public class View implements Screen {
     @Override
     public void render(float delta) {
         playerI.getRect().setSize(playerI.getWidth(), playerI.getHeight());
+        if (tabJustPressed) {
+            if (timer <= 0) {
+                timer = 0;
+                tabJustPressed = false;
+                controller.setShop(false);
+                controller.setWasKjustPressed(false);
+            }
+            else timer -= delta;
+        }
         if(controller.isPaused()){pause();}
         if(!controller.isPaused()){resume();}
         if (paused) {
@@ -155,12 +170,15 @@ public class View implements Screen {
             renderer.setMap(mapI.getMap());
             playerI.setOffPortal();
             this.scaler = playerI.getLevel();
-            if (playerI.getLevel() > 2) {
+            if (mapI.getMapName() == "arena" && (scaler == 2 || scaler == 6)) bosstime = true;
+            if (bosstime) {
                 Map<String, Integer> boss = new HashMap<>();
                 boss.put("RedBoss", 1);
-                spawn(boss, this.scaler, mapI);
+                if (scaler < 2) bosscale = 2;
+                spawn(boss, bosscale, mapI);
                 mapI.setAllEnemiesDead(false);
                 itemList.clear();
+                bosstime = false;
             }
             else {
                 spawn(mapI.getEnemies(), this.scaler, mapI);
@@ -217,7 +235,7 @@ public class View implements Screen {
             //check if monsterhp is less than or equal to zero
             if (monsterI.isDead()){
                 deadMonsterList.add(monsterI);
-                playerI.getExp();
+                playerI.getExp(monsterI.getName());
             }
             for (ProjectileInterface projectile : monsterI.getProjectiles()){
                 projectile.getSprite().draw(batch);
@@ -278,9 +296,12 @@ public class View implements Screen {
 
         //open store (bound to K)
         if(controller.isShop()){
-            game.setScreen(new Shop(game,controller,playerI));
-             
-
+            if (mapI.getMapName() == "house") game.setScreen(new Shop(game,controller,playerI));
+            else {
+            String text = "You can only open the shop inside your house.";
+            lifeText.draw(batch, text, (float)(camera.position.x - camera.viewportWidth/3), camera.position.y + camera.viewportHeight/4);
+            if (!tabJustPressed) {tabJustPressed = true; timer = 2;}
+            }
         }
       
         lifeText.draw(batch, "Lives: " + playerI.getLives(), (camera.position.x - camera.viewportWidth/2) + 20, camera.position.y + 6*(camera.viewportHeight/16));

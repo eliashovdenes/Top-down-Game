@@ -102,5 +102,10 @@ public class GrassMini extends TiledMap implements MapInterface {
     public boolean getAllEnemiesDead() {
         return this.allEnemiesDead;
     }
+
+    @Override
+    public String getMapName() {
+        return "arena";
+    }
     
 }
