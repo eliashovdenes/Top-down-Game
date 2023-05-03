@@ -18,4 +18,6 @@ public class SoundManager {
         this.buttonClick = new aSound("src/main/resources/assets/soundfiles/KnappeLyd.mp3", false);
         this.house = new aSound("src/main/resources/assets/soundfiles/HouseMusic.mp3", true);
     }
+
+    
 }

@@ -20,6 +20,10 @@ public class BlueEnemy extends AbstractGameObject implements MonsterInterface  {
     int attackDamage = 1;
     float fromX,fromY,toX,toY;
     float speed = 0.5f ;
+    
+
+    
+
     private DirectionEnum direction;
     MapInterface map;
     private double healthPotionDropChance;
@@ -79,18 +83,18 @@ public class BlueEnemy extends AbstractGameObject implements MonsterInterface  {
 
     @Override
     public void handleCollision() {
-            if (xCollision()){
-                position.x=recentPosition.x;
-                velocity.x = - velocity.x;
+        if (xCollision()){
+            position.x=recentPosition.x;
+            velocity.x = - velocity.x;
                 
-            }
-            if (yCollision()){
-                position.y=recentPosition.y;
-                velocity.y = - velocity.y;
-                
-            }
-            
         }
+        if (yCollision()){
+            position.y=recentPosition.y;
+            velocity.y = - velocity.y;
+                
+        }
+            
+    }
 
     @Override
     public void update(float delta) {
@@ -128,6 +132,8 @@ public class BlueEnemy extends AbstractGameObject implements MonsterInterface  {
     public void setMovementSpeed(float speed) {
         this.speed = speed;
     }
+
+    
 
     @Override
     public float getWidth() {
@@ -193,4 +199,14 @@ public class BlueEnemy extends AbstractGameObject implements MonsterInterface  {
     public ArrayList<ProjectileInterface> getProjectiles() {
         return this.projectileList;
     }
+
+    public float getSpeed() {
+        return this.speed;
+    }
+
+    public void setSpeed(float speed) {
+        this.speed = speed;
+    }
+
+    
 }

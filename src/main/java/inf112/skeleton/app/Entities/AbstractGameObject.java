@@ -10,8 +10,13 @@ import inf112.skeleton.app.Mapfolder.MapInterface;
 
 public abstract class AbstractGameObject {
     protected Vector2 recentPosition;
+    
     protected Vector2 position;
+    
+
     protected Vector2 velocity;
+    
+
     protected Collision collision;
     private Integer currentHitpoints;
     private Integer maxHitpoints;
@@ -173,10 +178,13 @@ public abstract class AbstractGameObject {
     public boolean isEnteredLevel3() {
         return enteredLevel3;
     }
+    
     //**To set if entity has entered level 3 */
     public void setEnteredLevel3(boolean enteredLevel3) {
         this.enteredLevel3 = enteredLevel3;
     }
+
+    
   
     
 

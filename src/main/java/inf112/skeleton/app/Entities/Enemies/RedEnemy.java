@@ -21,6 +21,7 @@ public class RedEnemy extends AbstractGameObject implements MonsterInterface  {
     int attackDamage = 20;
     float fromX,fromY,toX,toY;
     float speed = 0.1f ;
+    
     private DirectionEnum direction;
     MapInterface map;
     private double healthPotionDropChance;
@@ -211,6 +212,19 @@ public class RedEnemy extends AbstractGameObject implements MonsterInterface  {
     public ArrayList<ProjectileInterface> getProjectiles() {
         return this.projectileList;
     }
+
+    public float getSpeed() {
+        return speed;
+    }
+
+    public void setSpeed(float speed) {
+        this.speed = speed;
+    }
+
+    public void setPosition(Vector2 position) {
+        this.position = position;
+    }
+
 
     
 }
