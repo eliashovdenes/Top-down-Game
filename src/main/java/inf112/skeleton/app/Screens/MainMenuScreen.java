@@ -30,7 +30,7 @@ public class MainMenuScreen extends ScreenAdapter {
     private BitmapFont font;
     private Controller controller;
     private SoundManager SM;
-    MapInterface mapI = new Level1Mini(123,76);
+    private MapInterface mapI = new Level1Mini(123,76);
     ShapeRenderer shape;
     Rectangle newGameRect,instructionsRect,quitRect,creditsRect;
     OrthographicCamera camera;

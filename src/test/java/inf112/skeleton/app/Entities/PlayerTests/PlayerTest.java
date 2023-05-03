@@ -138,7 +138,7 @@ public class PlayerTest {
 
 
     @Test
-    void testPLayerSpeed() {
+    void testPlayerSpeed() {
 
         Player player = mock(Player.class, Mockito.CALLS_REAL_METHODS);
 
