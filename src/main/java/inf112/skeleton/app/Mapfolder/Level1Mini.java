@@ -1,7 +1,5 @@
 package inf112.skeleton.app.Mapfolder;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -9,9 +7,6 @@ import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 
-import inf112.skeleton.app.Entities.Enemies.BlueEnemy;
-import inf112.skeleton.app.Entities.Enemies.MonsterFactory;
-import inf112.skeleton.app.Entities.Enemies.MonsterInterface;
 import inf112.skeleton.app.Sound.SoundManager;
 
 public class Level1Mini extends TiledMap implements MapInterface {
@@ -24,14 +19,13 @@ public class Level1Mini extends TiledMap implements MapInterface {
     private int EnemyBoundsFromY = 200;
     private int EnemyBoundsToY = 800;
     private SoundManager sm;
-
+    private boolean allEnemiesDead = false;
     
 
     private TiledMap tiledMap;
     private OrthogonalTiledMapRenderer renderer;
-    private ArrayList<MonsterInterface> monsterList = new ArrayList<>();
-    private Map<String, MonsterFactory> monsterFactories = new HashMap<>();
-    private ArrayList<String> enemyList;
+    private Map<String, Integer> enemies = new HashMap<>();
+
 
 
     public Level1Mini(float playerSpawnX, float playerSpawnY) {
@@ -42,27 +36,13 @@ public class Level1Mini extends TiledMap implements MapInterface {
         sm = new SoundManager();
         sm.safeZone.play();
         setup();
-        this.spawn(enemyList);
     }
 
     @Override
     public void setup() {
-        MonsterFactory blueEnemyFactory = BlueEnemy.getFactory();
-        monsterFactories.put(blueEnemyFactory.name(), blueEnemyFactory);
-        enemyList = new ArrayList<>(Arrays.asList("BlueEnemy", "BlueEnemy", "BlueEnemy"));
+        enemies.put("BlueEnemy", 0);
+        enemies.put("RedEnemy", 0);      
     }
-    
-    @Override
-    public void spawn(ArrayList<String> enemyList) {
-
-        for (int i=0; i < enemyList.size(); i++){
-            MonsterFactory monsterFactory = monsterFactories.get(enemyList.get(i));
-            MonsterInterface monster = monsterFactory.create(this);
-            monsterList.add(monster);
-        }
-    }
-
-    
 
     @Override
     public TiledMap getMap() {
@@ -105,19 +85,23 @@ public class Level1Mini extends TiledMap implements MapInterface {
     }
 
     @Override
-    public ArrayList<MonsterInterface> getMonsterList() {
-        return this.monsterList;
-    }
-
-    @Override
-    public void removeMonster(MonsterInterface monster) {
-        monsterList.remove(monster);
-    }
+    public Map<String, Integer> getEnemies() {
+        return this.enemies;
+    } 
 
     @Override
     public void stopMusic() {
         sm.safeZone.stop();
         sm.safeZone.dispose();
         }
-    
+
+    @Override
+    public void setAllEnemiesDead(boolean allEnemiesDead) {
+        this.allEnemiesDead = allEnemiesDead;
+    }
+
+    @Override
+    public boolean getAllEnemiesDead() {
+        return this.allEnemiesDead;
+    }
 }

@@ -18,13 +18,14 @@ public class RedProjectile extends AbstractGameObject implements ProjectileInter
     protected TiledMap map;
     protected Vector2 velocity;
     MonsterInterface monster;
-    private int attackDamage = 10;    
+    private int attackDamage;    
 
-    public RedProjectile(Vector2 position, MapInterface map, Vector2 velocity, MonsterInterface monster) {
+    public RedProjectile(Vector2 position, MapInterface map, Vector2 velocity, MonsterInterface monster, int damage) {
         super(position, map);
         this.map = map.getMap();
         this.monster = monster;
         this.velocity = velocity;
+        this.attackDamage = damage;
         setSprite(RedEnemyPics.REDPROJECTILE.source);
         sprite.setSize(10,10);
         rectangle = new Rectangle(position.x, position.y, getWidth()/2, getHeight()/2);

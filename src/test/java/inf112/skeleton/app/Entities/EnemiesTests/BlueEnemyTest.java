@@ -1,111 +1,143 @@
 package inf112.skeleton.app.Entities.EnemiesTests;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.mock;
+
+import java.util.ArrayList;
+
 import org.junit.jupiter.api.*;
+import org.mockito.Mockito;
+
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Graphics.GraphicsType;
+import com.badlogic.gdx.backends.headless.HeadlessApplication;
+import com.badlogic.gdx.backends.headless.HeadlessApplicationConfiguration;
+import com.badlogic.gdx.graphics.GL20;
+import com.badlogic.gdx.graphics.g3d.particles.influencers.ColorInfluencer.Random;
+import com.badlogic.gdx.math.Vector2;
+
+import inf112.skeleton.app.Zelda;
+import inf112.skeleton.app.Entities.Enemies.BlueEnemy;
+import inf112.skeleton.app.Entities.Enemies.MonsterFactory;
+import inf112.skeleton.app.Entities.Enemies.MonsterInterface;
+import inf112.skeleton.app.Entities.Enums.DirectionEnum;
+import inf112.skeleton.app.Entities.Projectiles.ProjectileInterface;
+import inf112.skeleton.app.Mapfolder.Level1Mini;
+import inf112.skeleton.app.Mapfolder.MapInterface;
 
 import inf112.skeleton.app.Entities.Enemies.BlueEnemy;
 import inf112.skeleton.app.Entities.Enemies.MonsterInterface;
 import inf112.skeleton.app.Entities.Enemies.RedEnemy;
 
 public class BlueEnemyTest {
-
-    MonsterInterface redEnemy;
-    MonsterInterface blueEnemy;
-
-
-    @BeforeEach 
-    void setup(){
-        redEnemy = new RedEnemy();
-        blueEnemy = new BlueEnemy();
-    }
-    @Test
-    void UpdateTest(){
-        redEnemy.update(1);
-    }
-
-    @Test
-    void setSpriteTest(){
-        fail();
-    }
-
-    @Test
-    void getSpriteTest(){
-        fail();
-    }
-    @Test
-    void setMovementSpeedTest(){
-        fail();
-    }
-    @Test
-    void getWidthTest(){
-        fail();
-    }
-    @Test
-    void getHeightTest(){
-        fail();
-    }
-    @Test
-    void setDirectionTest(){
-        fail();
-    }
-    @Test
-    void getDirectionTest(){
-        fail();
-    }
-    @Test 
-    void setXYFromSpawnBoundsTest(){
-        fail();
-    }
-    @Test 
-    void followPlayerTest(){
-        fail();
-    }
-
-    @Test 
-    void getPositionTest(){
-        fail();
-    }
-    @Test
-    void getRectTest(){
-        fail();
-    }
     
-    @Test
-    void getNameTest(){
-        fail();
-    }
     
-    @Test
-    void getDamageTest(){
-        fail();
-    }
+    private HeadlessApplication app;
+    private BlueEnemy blueEnemy;
+    private Level1Mini map; 
     
+
+    @BeforeAll
+	static void setUpBeforeAll() {
+        // Gdx.files = mock(Files.class);
+        Gdx.gl = mock(GL20.class);       
+        Gdx.gl20 = mock(GL20.class);
+        // Gdx.graphics = mock(Graphics.class);   
+	}
+
+	/**
+	 * Setup method called before each of the test methods
+	 */
+	@BeforeEach
+	void setUpBeforeEach() {
+        HeadlessApplicationConfiguration config = new HeadlessApplicationConfiguration();
+        app = new HeadlessApplication(new Zelda(), config);
+        map = new Level1Mini(0, 0);
+        blueEnemy = new BlueEnemy(map);
+        
+
+	}
+
+    /**
+     * Tests that the tests are running headless
+    */
     @Test
-    void takeDamageTest(){
-        fail();
+    void testRunningHeadless() {
+        assertTrue(Gdx.graphics.getType() == GraphicsType.Mock);
     }
 
     @Test
-    void getCurrentHitpointsTest(){
-        fail();
+    public void testSetMovementSpeed() {
+        blueEnemy.setMovementSpeed(1.0f);
+        assertEquals(1.0f, blueEnemy.getSpeed(), 0.01f);
     }
-   
+
+    @Test
+    public void testGetWidth() {
+        float width = blueEnemy.getSprite().getWidth();
+        assertEquals(width, blueEnemy.getWidth(), 0.01f);
+    }
+
+    @Test
+    public void testGetHeight() {
+        float height = blueEnemy.getSprite().getHeight();
+        assertEquals(height, blueEnemy.getHeight(), 0.01f);
+    }
+
+    @Test
+    public void testSetDirection() {
+        blueEnemy.setDirection(DirectionEnum.NORTH);
+        assertEquals(DirectionEnum.NORTH, blueEnemy.getDirection());
+    }
+
+    @Test
+    public void testGetPosition() {
+        Vector2 position = blueEnemy.getPosition();
+        assertNotNull(position);
+    }
+
+    @Test
+    public void testGetDamage() {
+        assertEquals(1, blueEnemy.getDamage());
+    }
+
+    @Test
+    public void testSetHealthPotionDropChance() {
+        blueEnemy.setHealthPotionDropChance(0.5);
+        assertEquals(0.5, blueEnemy.getHealthPotionDropChance(), 0.01);
+    }
+
+    @Test
+    public void testGetProjectiles() {
+        ArrayList<ProjectileInterface> projectiles = blueEnemy.getProjectiles();
+        assertNotNull(projectiles);
+    }
+
+    @Test
+    public void testGetFactory() {
+        MonsterFactory factory = BlueEnemy.getFactory();
+        
+        // Test name
+        assertEquals("BlueEnemy", factory.name());
+
+        // Test create with MapInterface
+        MonsterInterface createdWithMap = factory.create(map);
+        assertTrue(createdWithMap instanceof BlueEnemy);
+
+        // Test create without MapInterface
+        MonsterInterface createdWithoutMap = factory.create();
+        assertTrue(createdWithoutMap instanceof BlueEnemy);
+    }
+
+    @Test
+    public void testHandleCollision_noCollision() {
+        blueEnemy.update(0.5f);
+        blueEnemy.handleCollision();
+        assertEquals(0.5f, blueEnemy.getSpeed(), 0.01f);
+        assertEquals(0.5f, blueEnemy.getSpeed(), 0.01f);
+    }
+
     
-    @Test
-    void isDeadTest(){
-        fail();
-    }
 
-    @Test 
-    void HealthPotionTest(){
-        blueEnemy.setHealthPotionDropChance(0.3f);
-        blueEnemy.getHealthPotionDropChance();
-        fail();
-    }
-
-
-    @Test
-    void geteProjectileListTest(){
-        fail();
-    }
+    
 }
