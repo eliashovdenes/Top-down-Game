@@ -9,9 +9,8 @@ import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 
 import inf112.skeleton.app.Entities.AbstractGameObject;
+import inf112.skeleton.app.Entities.Enums.BlueEnemyPics;
 import inf112.skeleton.app.Entities.Enums.DirectionEnum;
-import inf112.skeleton.app.Entities.Enums.PlayerPics;
-import inf112.skeleton.app.Entities.Items.HealthPotion;
 import inf112.skeleton.app.Entities.Projectiles.ProjectileInterface;
 import inf112.skeleton.app.Mapfolder.MapInterface;
 
@@ -33,7 +32,7 @@ public class BlueEnemy extends AbstractGameObject implements MonsterInterface  {
     public BlueEnemy(MapInterface map, float scaler) {
         super(new Vector2(0,0), map);
         this.map = map;
-        setSprite(PlayerPics.ENEMYDOWN.source);
+        setSprite(BlueEnemyPics.ENEMYDOWN.source);
         rectangle = new Rectangle(position.x, position.y, getWidth(), getHeight());
         setXYFromSpawnBounds();
         this.velocity.x = speed;
@@ -78,18 +77,18 @@ public class BlueEnemy extends AbstractGameObject implements MonsterInterface  {
 
     @Override
     public void handleCollision() {
-            if (xCollision()){
-                position.x=recentPosition.x;
-                velocity.x = - velocity.x;
+        if (xCollision()){
+            position.x=recentPosition.x;
+            velocity.x = - velocity.x;
                 
-            }
-            if (yCollision()){
-                position.y=recentPosition.y;
-                velocity.y = - velocity.y;
-                
-            }
-            
         }
+        if (yCollision()){
+            position.y=recentPosition.y;
+            velocity.y = - velocity.y;
+                
+        }
+            
+    }
 
     @Override
     public void update(float delta) {
@@ -133,6 +132,8 @@ public class BlueEnemy extends AbstractGameObject implements MonsterInterface  {
     public void setMovementSpeed(float speed) {
         this.speed = speed;
     }
+
+    
 
     @Override
     public float getWidth() {
@@ -198,4 +199,14 @@ public class BlueEnemy extends AbstractGameObject implements MonsterInterface  {
     public ArrayList<ProjectileInterface> getProjectiles() {
         return this.projectileList;
     }
+
+    public float getSpeed() {
+        return this.speed;
+    }
+
+    public void setSpeed(float speed) {
+        this.speed = speed;
+    }
+
+    
 }

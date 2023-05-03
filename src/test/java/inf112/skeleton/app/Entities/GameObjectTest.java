@@ -1,4 +1,4 @@
-package inf112.skeleton.app;
+package inf112.skeleton.app.Entities;
 
 import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.*;

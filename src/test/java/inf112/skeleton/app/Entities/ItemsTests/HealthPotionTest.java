@@ -1,12 +1,11 @@
-package inf112.skeleton.app;
+package inf112.skeleton.app.Entities.ItemsTests;
 
 import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.*;
-public class ViewTest {
-    
-    @Test
-    void testResize(){
-        fail();
 
+public class HealthPotionTest {
+    @Test
+    void test(){
+        fail();
     }
 }

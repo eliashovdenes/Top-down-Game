@@ -1,7 +1,7 @@
 package inf112.skeleton.app.Entities;
 
 import com.badlogic.gdx.graphics.g2d.Sprite;
-import com.badlogic.gdx.maps.tiled.TiledMap;
+
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 
@@ -10,8 +10,13 @@ import inf112.skeleton.app.Mapfolder.MapInterface;
 
 public abstract class AbstractGameObject {
     protected Vector2 recentPosition;
+    
     protected Vector2 position;
+    
+
     protected Vector2 velocity;
+    
+
     protected Collision collision;
     private Integer currentHitpoints;
     private Integer maxHitpoints;
@@ -21,7 +26,6 @@ public abstract class AbstractGameObject {
     
     public AbstractGameObject(Vector2 position, MapInterface map) {
         this.position = position;
-        TiledMap tiledMap = map.getMap();
         this.collision = new Collision(map, this);
         this.velocity = new Vector2();
         this.recentPosition = new Vector2(position);
@@ -174,10 +178,13 @@ public abstract class AbstractGameObject {
     public boolean isEnteredLevel3() {
         return enteredLevel3;
     }
+    
     //**To set if entity has entered level 3 */
     public void setEnteredLevel3(boolean enteredLevel3) {
         this.enteredLevel3 = enteredLevel3;
     }
+
+    
   
     
 

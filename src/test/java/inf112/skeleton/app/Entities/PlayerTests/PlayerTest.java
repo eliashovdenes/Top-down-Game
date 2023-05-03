@@ -1,4 +1,4 @@
-package inf112.skeleton.app;
+package inf112.skeleton.app.Entities.PlayerTests;
 
 import org.junit.jupiter.api.*;
 import org.lwjgl.system.windows.INPUT;
@@ -27,6 +27,7 @@ import static org.mockito.Mockito.*;
 
 import java.nio.ByteBuffer;
 
+import inf112.skeleton.app.Zelda;
 import inf112.skeleton.app.Controller.Controller;
 import inf112.skeleton.app.Entities.Enums.DirectionEnum;
 import inf112.skeleton.app.Entities.Enums.PlayerAnimation;
