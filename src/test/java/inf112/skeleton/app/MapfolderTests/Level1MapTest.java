@@ -2,13 +2,7 @@ package inf112.skeleton.app.MapfolderTests;
 
 import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.*;
-import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.mock;
-
-import java.util.ArrayList;
-import java.util.Arrays;
-
-import org.junit.jupiter.api.*;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Graphics.GraphicsType;
@@ -27,10 +21,8 @@ public class Level1MapTest {
 
     @BeforeAll
 	static void setUpBeforeAll() {
-        // Gdx.files = mock(Files.class);
         Gdx.gl = mock(GL20.class);       
-        Gdx.gl20 = mock(GL20.class);
-        // Gdx.graphics = mock(Graphics.class);   
+        Gdx.gl20 = mock(GL20.class);  
 	}
 
 	/**
@@ -41,9 +33,6 @@ public class Level1MapTest {
         HeadlessApplicationConfiguration config = new HeadlessApplicationConfiguration();
         app = new HeadlessApplication(new Zelda(), config);
         map = new Level1Mini(0, 0);
-        
-        
-
 	}
 
     /**
@@ -95,14 +84,4 @@ public class Level1MapTest {
         assertNotNull(map);
         assertEquals(800, map.getEnemyBoundsToY());
     }
-/* 
-    @Test
-    void testGetMonsterList() {
-        Level1Mini map = new Level1Mini(123, 87);
-        assertNotNull(map);
-        assertEquals(3, map.getMonsterList().size());
-    }
-
-    */
-
 }
