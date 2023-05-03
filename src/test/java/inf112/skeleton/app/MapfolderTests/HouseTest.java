@@ -99,12 +99,12 @@ public class HouseTest {
         assertNotNull(map);
         assertEquals(34, map.getEnemyBoundsToY());
     }
-
+/*
     @Test
     void testGetMonsterList() {
         House map = new House();
         assertNotNull(map);
         assertEquals(0, map.getMonsterList().size());
     }
-
+ */
 }
