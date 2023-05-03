@@ -35,7 +35,9 @@ public abstract class AbstractGameObject {
     }
     
     //** update is a method that updates the position of the object */
-    public abstract void update(float delta);
+
+
+   //public abstract void update(float delta); BLIR IKKE BRUKT? Metoden som overridees er fra interfaces.
     
     //**applymovement is a method that applies the velocity to the position of the object. */
     public void ApplyMovement() {
