@@ -1,12 +1,11 @@
 package inf112.skeleton.app.Mapfolder;
 
-import java.util.ArrayList;
-
+import java.util.HashMap;
+import java.util.Map;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 
-import inf112.skeleton.app.Entities.Enemies.MonsterInterface;
 import inf112.skeleton.app.Sound.SoundManager;
 
 public class House extends TiledMap implements MapInterface {
@@ -18,28 +17,22 @@ public class House extends TiledMap implements MapInterface {
     private int EnemyBoundsToY = 34;
 
     private SoundManager sm;
-
     private TiledMap tiledMap;
     private OrthogonalTiledMapRenderer renderer;
-    private ArrayList<MonsterInterface> monsterList = new ArrayList<>();
+    private boolean allEnemiesDead = false;
+    private Map<String, Integer> enemies = new HashMap<>();
 
     public House(){
         tiledMap = new TmxMapLoader().load(Maps.House.source);
-        //renderer = new OrthogonalTiledMapRenderer(tiledMap);
         sm = new SoundManager();
         sm.house.play();
+        setup();
     }
 
     @Override
     public void setup() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'setup'");
-    }
-
-    @Override
-    public void spawn(ArrayList<String> enemyList) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'spawn'");
+        enemies.put("BlueEnemy", 0);
+        enemies.put("RedEnemy", 0);      
     }
 
     @Override
@@ -82,19 +75,24 @@ public class House extends TiledMap implements MapInterface {
     }
     
     @Override
-    public ArrayList<MonsterInterface> getMonsterList() {
-        return this.monsterList;
+    public Map<String, Integer> getEnemies() {
+        return this.enemies;
     }
     
-    @Override
-    public void removeMonster(MonsterInterface monster) {
-        monsterList.remove(monster);
-    }
-
     @Override
     public void stopMusic() {
         sm.house.stop();
         sm.house.dispose();
+    }
+
+    @Override
+    public void setAllEnemiesDead(boolean allEnemiesDead) {
+        this.allEnemiesDead = allEnemiesDead;
+    }
+
+    @Override
+    public boolean getAllEnemiesDead() {
+        return this.allEnemiesDead;
     }
     
 }
