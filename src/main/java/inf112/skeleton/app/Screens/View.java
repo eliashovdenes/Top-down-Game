@@ -18,6 +18,7 @@ import inf112.skeleton.app.Entities.AbstractGameObject;
 import inf112.skeleton.app.Entities.Enemies.BlueEnemy;
 import inf112.skeleton.app.Entities.Enemies.MonsterFactory;
 import inf112.skeleton.app.Entities.Enemies.MonsterInterface;
+import inf112.skeleton.app.Entities.Enemies.RedBoss;
 import inf112.skeleton.app.Entities.Enemies.RedEnemy;
 import inf112.skeleton.app.Entities.Items.HealthPotion;
 import inf112.skeleton.app.Entities.Items.ItemImpl;
@@ -84,8 +85,10 @@ public class View implements Screen {
     private void setup() {
         MonsterFactory blueEnemyFactory = BlueEnemy.getFactory();
         MonsterFactory redEnemyFactory = RedEnemy.getFactory();
+        MonsterFactory redBossFactory = RedBoss.getFactory();
         monsterFactories.put(blueEnemyFactory.name(), blueEnemyFactory);
-        monsterFactories.put(redEnemyFactory.name(), redEnemyFactory);       
+        monsterFactories.put(redEnemyFactory.name(), redEnemyFactory);
+        monsterFactories.put(redBossFactory.name(), redBossFactory);      
     }
 
     public void spawn(Map<String, Integer> enemies, float scaler, MapInterface mapI) {
@@ -152,9 +155,18 @@ public class View implements Screen {
             renderer.setMap(mapI.getMap());
             playerI.setOffPortal();
             this.scaler = playerI.getLevel();
-            spawn(mapI.getEnemies(), this.scaler, mapI);
-            mapI.setAllEnemiesDead(false);
-            itemList.clear();
+            if (playerI.getLevel() > 2) {
+                Map<String, Integer> boss = new HashMap<>();
+                boss.put("RedBoss", 1);
+                spawn(boss, this.scaler, mapI);
+                mapI.setAllEnemiesDead(false);
+                itemList.clear();
+            }
+            else {
+                spawn(mapI.getEnemies(), this.scaler, mapI);
+                mapI.setAllEnemiesDead(false);
+                itemList.clear();
+            }
         }
         
         if (playerI.isDead()){

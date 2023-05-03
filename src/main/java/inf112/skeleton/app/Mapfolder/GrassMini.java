@@ -14,10 +14,10 @@ public class GrassMini extends TiledMap implements MapInterface {
     private float PlayerSpawnX = 123;
     private float PlayerSpawnY = 87;
 
-    private int EnemyBoundsfromX = 104;
-    private int EnemyBoundsToX = 133;
-    private int EnemyBoundsFromY = 56;
-    private int EnemyBoundsToY = 85;
+    private int EnemyBoundsfromX = 108;
+    private int EnemyBoundsToX = 131;
+    private int EnemyBoundsFromY = 58;
+    private int EnemyBoundsToY = 81;
     
     private SoundManager sm;
     private TiledMap tiledMap;
@@ -38,7 +38,8 @@ public class GrassMini extends TiledMap implements MapInterface {
     @Override
     public void setup() {
         enemies.put("BlueEnemy", 2);
-        enemies.put("RedEnemy", 3);      
+        enemies.put("RedEnemy", 3);   
+        // enemies.put("RedBoss", 1);   
     }
     
     @Override

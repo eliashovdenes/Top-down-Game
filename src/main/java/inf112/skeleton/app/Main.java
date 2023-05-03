@@ -10,12 +10,12 @@ import com.badlogic.gdx.backends.lwjgl3.Lwjgl3ApplicationConfiguration;
 
 
 public class Main {
-    public static final int screenWidth = 1920 ;
-    public static final int screenHeight = 1080;
+    // public static final int screenWidth = 1920 ;
+    // public static final int screenHeight = 1080;
     public static void main(String[] args) {
         Lwjgl3ApplicationConfiguration cfg = new Lwjgl3ApplicationConfiguration();
+        cfg.setResizable(false);
         DisplayMode disp = cfg.getDisplayMode();
-        cfg.setTitle("South game");
         cfg.setWindowedMode(disp.width, disp.height);
 
         new Lwjgl3Application(new Zelda(), cfg);

@@ -30,7 +30,7 @@ public class MainMenuScreen extends ScreenAdapter {
     private BitmapFont font;
     private Controller controller;
     private SoundManager SM;
-    MapInterface mapI = new Level1Mini(123,76);
+    MapInterface mapI;
     ShapeRenderer shape;
     Rectangle newGameRect,instructionsRect,quitRect,creditsRect;
     OrthographicCamera camera;
@@ -119,6 +119,7 @@ public class MainMenuScreen extends ScreenAdapter {
 
 
             if (newGameRect.contains(hei.x, hei.y)){
+                mapI = new Level1Mini(123,76);
                 game.setScreen(new View(game, controller, new Player(new Vector2(0,0),mapI, controller)));
                 SM.mainMenuMusic.stop();
                 SM.mainMenuMusic.dispose();

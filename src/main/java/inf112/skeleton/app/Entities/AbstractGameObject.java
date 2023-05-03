@@ -1,7 +1,7 @@
 package inf112.skeleton.app.Entities;
 
 import com.badlogic.gdx.graphics.g2d.Sprite;
-
+import com.badlogic.gdx.maps.Map;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 
@@ -22,9 +22,11 @@ public abstract class AbstractGameObject {
     private Integer maxHitpoints;
     public boolean enteredLevel3 = false;
     protected Rectangle rectangle;
+    protected MapInterface map;
     
     
     public AbstractGameObject(Vector2 position, MapInterface map) {
+        this.map = map;
         this.position = position;
         this.collision = new Collision(map, this);
         this.velocity = new Vector2();
