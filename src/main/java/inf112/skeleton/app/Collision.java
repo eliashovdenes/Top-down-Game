@@ -177,7 +177,7 @@ public class Collision {
 
                     if (entityCell.getTile().getProperties().containsKey("mini level 1")) {
 
-                        if (currMap.getMonsterList().isEmpty()) {
+                        if (currMap.getAllEnemiesDead()) {
                             nextMap = new Level1Mini(139, 70);
                             currMap.stopMusic();
                         } else {

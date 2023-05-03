@@ -94,10 +94,10 @@ public class BlueEnemy extends AbstractGameObject implements MonsterInterface  {
     public void update(float delta) {
         changeDirection(delta);
         if (velocity.y >= 0) {
-            this.setSprite(PlayerPics.ENEMYUP.source);
+            this.setSprite(BlueEnemyPics.ENEMYUP.source);
         }
         else {
-            this.setSprite(PlayerPics.ENEMYDOWN.source);
+            this.setSprite(BlueEnemyPics.ENEMYDOWN.source);
         }
         ApplyMovement();
         sprite.setPosition(position.x, position.y);
