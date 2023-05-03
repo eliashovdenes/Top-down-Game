@@ -98,12 +98,9 @@ public class View implements Screen {
     }
 
     @Override
-    public void show() {
-        
+    public void show() {        
         map = mapI.getMap();
-        //renderer = mapI.getRenderer();
         renderer = new OrthogonalTiledMapRenderer(map);
-        // monsterI = new BlueEnemy(mapI);
         camera = new OrthographicCamera();        
         batch = new SpriteBatch();
 
@@ -112,9 +109,7 @@ public class View implements Screen {
         hpText.getData().setScale(0.7f);
         hpText.setColor(Color.RED);
         lifeText.getData().setScale(1.0f);
-        lifeText.setColor(Color.YELLOW);
-
-        
+        lifeText.setColor(Color.YELLOW);      
     }
 
     @Override
@@ -131,19 +126,13 @@ public class View implements Screen {
             return;
         }
         
-        
         Gdx.gl.glClearColor(0, 0, 0, 0);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-        
-    
-        
         camera.position.set(playerI.getPosition().x+playerI.getWidth() / 2, playerI.getPosition().y+playerI.getHeight()/2,0);
-        
         
         //Update   
         camera.update();
         batch.setProjectionMatrix(camera.combined);
-        
         playerI.update(delta);
 
         if (playerI.onPortal()){
@@ -165,7 +154,6 @@ public class View implements Screen {
         renderer.setView(camera);
         renderer.render();
    
-        
         //render player / enemies / projectiles
         batch.begin();
 
@@ -190,15 +178,10 @@ public class View implements Screen {
             }
         }
 
-        
-        
-        
         //draw monsters
-        for (MonsterInterface monsterI : this.monsterList){
-            
+        for (MonsterInterface monsterI : this.monsterList){       
             monsterI.update(delta);
             monsterI.getSprite().draw(batch);   
-            //lifeText.draw(batch,"HP:"+monsterI.getCurrentHitpoints(),monsterI.getPosition().x,monsterI.getPosition().y);
             hpText.draw(batch,"HP:"+monsterI.getCurrentHitpoints(),monsterI.getPosition().x,monsterI.getPosition().y);
             monsterI.followPlayer(playerI.getPosition().x, playerI.getPosition().y);
             
@@ -216,8 +199,6 @@ public class View implements Screen {
                 
             }
                 
-                
-
             //check if monster and player is colliding. if so, player takes damage
             if (monsterI.getRect().overlaps(playerI.getRect())) {
                 playerI.takeDamage(monsterI.getDamage());
@@ -230,6 +211,7 @@ public class View implements Screen {
                 addPotion(monsterI.getPosition());
             }
         }
+
         //draw items
         for (ItemImpl item : this.itemList){
             item.update(delta);
@@ -255,14 +237,6 @@ public class View implements Screen {
         if (this.monsterList.isEmpty()) {
             mapI.setAllEnemiesDead(true);
         }
-        
-        
-        //remove dead monsters
-        // mapI.getMonsterList().removeAll(deadMonsterList);
-        // deadMonsterList.clear();
-
-
-        // System.out.println(playerI.getHealthAbilityLevel());
 
         //open store (bound to K)
         if(controller.isShop()){
@@ -275,12 +249,7 @@ public class View implements Screen {
         lifeText.draw(batch, "Level: " + playerI.getLevel(), (camera.position.x - camera.viewportWidth/2) + 20, camera.position.y + 7*(camera.viewportHeight/16));
         hpText.draw(batch, "HP: " + playerI.getCurrentHitpoints(), playerI.getPosition().x - 12, playerI.getPosition().y + playerI.getHeight() + 15);
         
-        // lifeText.draw(batch, "Lives: " + camera.position.x, playerI.getPosition().x - 12, playerI.getPosition().y + playerI.getHeight() + 30);
-        // lifeText.draw(batch,".",playerI.getPosition().x+11,playerI.getPosition().y+18);
-        // lifeText.draw(batch, "Level: " + playerI.getLevel(), playerI.getPosition().x - 12, playerI.getPosition().y - playerI.getHeight() + 15);
-        
         batch.end();
-
     }
 
     @Override
@@ -288,7 +257,6 @@ public class View implements Screen {
         camera.viewportWidth = width/3f;
         camera.viewportHeight = height/3f;       
     }
-
 
     @Override
     public void pause() {
@@ -301,16 +269,18 @@ public class View implements Screen {
         paused = false;
     }
 
-
     @Override
     public void hide() {
     }
-
 
     @Override
     public void dispose() {
         map.dispose();
         renderer.dispose();      
+    }
+
+    public ArrayList<MonsterInterface> getMonsterList() {
+        return this.monsterList;
     }
 
     private void addPotion(Vector2 position) {
