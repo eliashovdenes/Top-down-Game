@@ -1,6 +1,6 @@
 package inf112.skeleton.app.Entities.Enums;
 
-//*BlueEnemyPics is used to determine which picture to use for the red enemy*/
+//*BlueEnemyPics is used to determine which picture to use for the blue enemy*/
 public enum BlueEnemyPics {
     ENEMYDOWN("assets/enemyPics/enemyDown.png"),
     ENEMYUP("assets/enemyPics/enemyUp.png"),
