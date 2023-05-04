@@ -19,6 +19,15 @@ public class Controller implements InputProcessor{
     isShop,
     justTouched = false;
 
+    public boolean isWasKjustPressed() {
+        return wasKjustPressed;
+    }
+
+
+    public void setWasKjustPressed(boolean wasKjustPressed) {
+        this.wasKjustPressed = wasKjustPressed;
+    }
+
     private Vector2 menuClick = new Vector2(0,0);
     
     @Override

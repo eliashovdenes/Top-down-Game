@@ -29,6 +29,7 @@ public class RedEnemy extends AbstractGameObject implements MonsterInterface  {
     private float shootTimer = 0.0f;
     private float shootCooldown;
     private int projectileDamage;
+    private float time = 0;
 
     public RedEnemy(MapInterface map, float scaler) {
         super(new Vector2(0,0), map);
@@ -84,17 +85,13 @@ public class RedEnemy extends AbstractGameObject implements MonsterInterface  {
         }
 
     public void followPlayer(float x, float y) {
-        if (x > position.x) velocity.x = speed;
-        else if (x < position.x) velocity.x =  -speed;
-        if (y > position.y) {
-            velocity.y = speed;
-            setSprite(RedEnemyPics.ENEMYUP.source);
-            this.direction = DirectionEnum.NORTH;
+        if (Math.abs(x - position.x) > Math.abs(y - position.y)) {
+            if (x > position.x) {sprite.setTexture(new Texture(RedEnemyPics.ENEMYRIGHT.source)); this.direction = DirectionEnum.EAST;}
+            else {sprite.setTexture(new Texture(RedEnemyPics.ENEMYLEFT.source)); this.direction = DirectionEnum.WEST;}
         }
-        else if (y < position.y) {
-            velocity.y =  -speed;
-            setSprite(RedEnemyPics.ENEMYDOWN.source);
-            this.direction = DirectionEnum.SOUTH;
+        else if (Math.abs(x - position.x) < Math.abs(y - position.y)) {
+            if (y > position.y) {sprite.setTexture( new Texture(RedEnemyPics.ENEMYUP.source)); this.direction = DirectionEnum.NORTH;}
+            else {sprite.setTexture( new Texture(RedEnemyPics.ENEMYDOWN.source)); this.direction = DirectionEnum.SOUTH;}
         }
     }
 
@@ -104,12 +101,24 @@ public class RedEnemy extends AbstractGameObject implements MonsterInterface  {
 
     @Override
     public void update(float delta) {
+        changeDirection(delta);
         ApplyMovement();
         sprite.setPosition(position.x, position.y);
         shootRedProjectile(delta, this.projectileDamage);
         for (ProjectileInterface projectile : projectileList) {
             projectile.update(delta);
         }
+        
+    }
+    private boolean changeDirection(float dt) {
+        time -= dt;
+        if (time <= 0) {
+            velocity.x = random.nextFloat(-0.7f,0.7f);
+            velocity.y = random.nextFloat(-0.7f, 0.7f);
+            time = random.nextFloat(2, 5);
+            return true;
+        }
+        return false;
     }
 
     @Override

@@ -10,7 +10,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Rectangle;
 
-import inf112.skeleton.app.Zelda;
+import inf112.skeleton.app.Southgame;
 import inf112.skeleton.app.Controller.Controller;
 
 
@@ -18,7 +18,7 @@ import inf112.skeleton.app.Controller.Controller;
 public class InstructionScreen extends ScreenAdapter {
     
     private SpriteBatch batch;
-    private Zelda game;
+    private Southgame game;
     private Controller controller;
     OrthographicCamera camera;
     Texture background = new Texture(Gdx.files.internal("src/main/resources/assets/instructions.png"));
@@ -27,7 +27,7 @@ public class InstructionScreen extends ScreenAdapter {
 
     Rectangle movementKeysRect,attackKeysRect,miscKeysRect,purposeRect;
 
-    public InstructionScreen(Zelda southGame, Controller controller) {
+    public InstructionScreen(Southgame southGame, Controller controller) {
         this.game = southGame;
         this.controller = controller;
         batch = new SpriteBatch();

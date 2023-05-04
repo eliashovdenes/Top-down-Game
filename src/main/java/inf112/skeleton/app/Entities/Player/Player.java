@@ -417,12 +417,14 @@ public class Player extends AbstractGameObject implements PlayerInterface {
     }
 
     @Override
-    public void getExp() {
-        exp += 1;
+    public void getExp(String monster) {
+        if (monster == "RedBoss") exp += 10;
+        else if (monster == "RedEnemy")exp += 2;
+        else exp += 1;
 
         //level up :)
         if (exp>=10){
-            exp = 0;
+            exp -= 10;
             playerLevel +=1;
             abilityPoints +=2;
             this.setCurrentHitPoints(this.getMaxHitpoints());

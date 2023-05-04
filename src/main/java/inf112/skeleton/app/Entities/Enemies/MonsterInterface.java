@@ -104,4 +104,6 @@ public interface MonsterInterface {
     public void setHealthPotionDropChance(double chance);
 
     ArrayList<ProjectileInterface> getProjectiles();
+
+    void giveShootingPermission();
 }

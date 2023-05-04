@@ -16,9 +16,7 @@ import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
 
-import inf112.skeleton.app.Main;
-import inf112.skeleton.app.Zelda;
-import inf112.skeleton.app.Controller.Controller;
+import inf112.skeleton.app.Southgame;
 import inf112.skeleton.app.Entities.Player.Player;
 import inf112.skeleton.app.Mapfolder.MapInterface;
 import inf112.skeleton.app.Screens.CreditScreen;

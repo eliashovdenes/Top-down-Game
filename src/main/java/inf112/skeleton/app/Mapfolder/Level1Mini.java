@@ -104,4 +104,9 @@ public class Level1Mini extends TiledMap implements MapInterface {
     public boolean getAllEnemiesDead() {
         return this.allEnemiesDead;
     }
+
+    @Override
+    public String getMapName() {
+        return "safezone";
+    }
 }

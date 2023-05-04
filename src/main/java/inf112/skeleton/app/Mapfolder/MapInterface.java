@@ -79,4 +79,6 @@ public interface MapInterface {
 
     public boolean getAllEnemiesDead();
 
+    public String getMapName();
+
 }

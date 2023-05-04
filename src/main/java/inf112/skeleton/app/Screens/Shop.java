@@ -11,7 +11,7 @@ import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector3;
 
-import inf112.skeleton.app.Zelda;
+import inf112.skeleton.app.Southgame;
 import inf112.skeleton.app.Controller.Controller;
 import inf112.skeleton.app.Entities.Player.PlayerInterface;
 import inf112.skeleton.app.Sound.SoundManager;
@@ -21,7 +21,7 @@ import inf112.skeleton.app.Sound.SoundManager;
 public class Shop extends ScreenAdapter {
      
     private SpriteBatch batch;
-    private Zelda game;
+    private Southgame game;
     private BitmapFont font;
     private Controller controller;
     private SoundManager SM;
@@ -33,7 +33,7 @@ public class Shop extends ScreenAdapter {
     private float upgradeCooldown = 0.5f;
     private float timeSinceUpgrade = 0;
 
-    public Shop(Zelda southGame, Controller controller,PlayerInterface playerI) {
+    public Shop(Southgame southGame, Controller controller,PlayerInterface playerI) {
         this.game = southGame;
         this.controller = controller;
         batch = new SpriteBatch();

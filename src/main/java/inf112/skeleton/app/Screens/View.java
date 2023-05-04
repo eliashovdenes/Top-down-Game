@@ -18,13 +18,14 @@ import inf112.skeleton.app.Entities.AbstractGameObject;
 import inf112.skeleton.app.Entities.Enemies.BlueEnemy;
 import inf112.skeleton.app.Entities.Enemies.MonsterFactory;
 import inf112.skeleton.app.Entities.Enemies.MonsterInterface;
+import inf112.skeleton.app.Entities.Enemies.RedBoss;
 import inf112.skeleton.app.Entities.Enemies.RedEnemy;
 import inf112.skeleton.app.Entities.Items.HealthPotion;
 import inf112.skeleton.app.Entities.Items.ItemImpl;
 import inf112.skeleton.app.Entities.Player.PlayerInterface;
 import inf112.skeleton.app.Entities.Projectiles.ProjectileInterface;
 import inf112.skeleton.app.Mapfolder.MapInterface;
-import inf112.skeleton.app.Zelda;
+import inf112.skeleton.app.Southgame;
 import inf112.skeleton.app.Controller.Controller;
 
 import com.badlogic.gdx.graphics.Color;
@@ -44,7 +45,7 @@ public class View implements Screen {
     private BitmapFont lifeText = new BitmapFont();
     private BitmapFont hpText = new BitmapFont();
     private BitmapFont pauseText = new BitmapFont();
-    private Zelda game;
+    private Southgame game;
     private MonsterInterface monsterI;
     private boolean paused = false;
     private Controller controller;
@@ -53,6 +54,10 @@ public class View implements Screen {
     private ArrayList<MonsterInterface> monsterList = new ArrayList<>();
     private Map<String, MonsterFactory> monsterFactories = new HashMap<>();
     private float scaler;
+    private boolean tabJustPressed = false;
+    private float timer = 0;
+    private boolean bosstime = false;
+    private int bosscale = 1;
     
     
     //MapInterface mapI = new Level1Mini(123,76);
@@ -61,7 +66,7 @@ public class View implements Screen {
     TiledMap nyMap;
     SpriteBatch batch;
     
-    public View(Zelda game, Controller controller, PlayerInterface playerI) {
+    public View(Southgame game, Controller controller, PlayerInterface playerI) {
         this.game = game;
         this.controller = controller;    
         this.playerI = playerI;
@@ -71,7 +76,7 @@ public class View implements Screen {
         setup();
         
     }   
-    public View(Zelda game, Controller controller, PlayerInterface playerI, float x,float y){
+    public View(Southgame game, Controller controller, PlayerInterface playerI, float x,float y){
         this.game = game;
         this.controller = controller;    
         this.playerI = playerI;
@@ -84,17 +89,24 @@ public class View implements Screen {
     private void setup() {
         MonsterFactory blueEnemyFactory = BlueEnemy.getFactory();
         MonsterFactory redEnemyFactory = RedEnemy.getFactory();
+        MonsterFactory redBossFactory = RedBoss.getFactory();
         monsterFactories.put(blueEnemyFactory.name(), blueEnemyFactory);
-        monsterFactories.put(redEnemyFactory.name(), redEnemyFactory);       
+        monsterFactories.put(redEnemyFactory.name(), redEnemyFactory);
+        monsterFactories.put(redBossFactory.name(), redBossFactory);      
     }
 
     public void spawn(Map<String, Integer> enemies, float scaler, MapInterface mapI) {
-        for (String enemy : enemies.keySet())
-            for (int i=0; i < enemies.get(enemy) * Math.round(scaler); i++){
+        for (String enemy : enemies.keySet()) {
+            float scale;
+            if (enemy == "RedBoss") {scale = 1;}
+            else scale = scaler;
+            for (int i=0; i < enemies.get(enemy) * Math.round(scale); i++){
                 MonsterFactory monsterFactory = monsterFactories.get(enemy);
                 MonsterInterface monster = monsterFactory.create(mapI, scaler);
+                if (scaler > 1 && enemy == "RedBoss"){ monster.giveShootingPermission();}
                 monsterList.add(monster);
             }
+        }
     }
 
     @Override
@@ -115,6 +127,15 @@ public class View implements Screen {
     @Override
     public void render(float delta) {
         playerI.getRect().setSize(playerI.getWidth(), playerI.getHeight());
+        if (tabJustPressed) {
+            if (timer <= 0) {
+                timer = 0;
+                tabJustPressed = false;
+                controller.setShop(false);
+                controller.setWasKjustPressed(false);
+            }
+            else timer -= delta;
+        }
         if(controller.isPaused()){pause();}
         if(!controller.isPaused()){resume();}
         if (paused) {
@@ -141,9 +162,21 @@ public class View implements Screen {
             renderer.setMap(mapI.getMap());
             playerI.setOffPortal();
             this.scaler = playerI.getLevel();
-            spawn(mapI.getEnemies(), this.scaler, mapI);
-            mapI.setAllEnemiesDead(false);
-            itemList.clear();
+            if (mapI.getMapName() == "arena" && (scaler == 2 || scaler == 6)) bosstime = true;
+            if (bosstime) {
+                Map<String, Integer> boss = new HashMap<>();
+                boss.put("RedBoss", 1);
+                if (scaler > 2) bosscale = 2;
+                spawn(boss, bosscale, mapI);
+                mapI.setAllEnemiesDead(false);
+                itemList.clear();
+                bosstime = false;
+            }
+            else {
+                spawn(mapI.getEnemies(), this.scaler, mapI);
+                mapI.setAllEnemiesDead(false);
+                itemList.clear();
+            }
         }
         
         if (playerI.isDead()){
@@ -188,7 +221,7 @@ public class View implements Screen {
             //check if monsterhp is less than or equal to zero
             if (monsterI.isDead()){
                 deadMonsterList.add(monsterI);
-                playerI.getExp();
+                playerI.getExp(monsterI.getName());
             }
             for (ProjectileInterface projectile : monsterI.getProjectiles()){
                 projectile.getSprite().draw(batch);
@@ -240,9 +273,12 @@ public class View implements Screen {
 
         //open store (bound to K)
         if(controller.isShop()){
-            game.setScreen(new Shop(game,controller,playerI));
-             
-
+            if (mapI.getMapName() == "house") game.setScreen(new Shop(game,controller,playerI));
+            else {
+            String text = "You can only open the shop inside your house.";
+            lifeText.draw(batch, text, (float)(camera.position.x - camera.viewportWidth/3), camera.position.y + camera.viewportHeight/4);
+            if (!tabJustPressed) {tabJustPressed = true; timer = 2;}
+            }
         }
       
         lifeText.draw(batch, "Lives: " + playerI.getLives(), (camera.position.x - camera.viewportWidth/2) + 20, camera.position.y + 6*(camera.viewportHeight/16));

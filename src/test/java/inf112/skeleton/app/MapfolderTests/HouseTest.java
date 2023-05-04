@@ -12,7 +12,7 @@ import com.badlogic.gdx.Graphics.GraphicsType;
 import com.badlogic.gdx.backends.headless.HeadlessApplicationConfiguration;
 import com.badlogic.gdx.graphics.GL20;
 
-import inf112.skeleton.app.Zelda;
+import inf112.skeleton.app.Southgame;
 // import inf112.skeleton.app.Mapfolder.GrassMini;
 import inf112.skeleton.app.Mapfolder.House;
 
@@ -33,7 +33,7 @@ public class HouseTest {
 	@BeforeEach
 	void setUpBeforeEach() {
         HeadlessApplicationConfiguration config = new HeadlessApplicationConfiguration();
-        app = new HeadlessApplication(new Zelda(), config);
+        app = new HeadlessApplication(new Southgame(), config);
         map = new House();
 	}
 

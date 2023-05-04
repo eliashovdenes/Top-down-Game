@@ -77,18 +77,18 @@ public class BlueEnemy extends AbstractGameObject implements MonsterInterface  {
 
     @Override
     public void handleCollision() {
-        if (xCollision()){
-            position.x=recentPosition.x;
-            velocity.x = - velocity.x;
+            if (xCollision()){
+                position.x=recentPosition.x;
+                velocity.x = - velocity.x;
                 
-        }
-        if (yCollision()){
-            position.y=recentPosition.y;
-            velocity.y = - velocity.y;
+            }
+            if (yCollision()){
+                position.y=recentPosition.y;
+                velocity.y = - velocity.y;
                 
-        }
+            }
             
-    }
+        }
 
     @Override
     public void update(float delta) {
@@ -103,24 +103,46 @@ public class BlueEnemy extends AbstractGameObject implements MonsterInterface  {
         sprite.setPosition(position.x, position.y);
     }
 
-    private boolean changeDirection(float dt) {
-        time -= dt;
-        if (time <= 0) {
-            velocity.x = rand.nextFloat(0,0.5f);
-            velocity.y = rand.nextFloat(0, 0.5f);
-            time = rand.nextFloat(2, 5);
-            return true;
-        }
-        return false;
-    }
+    
+
+    
 
     @Override
     public void setSprite(String string) {
         sprite = new Sprite(new Texture(string));
     }
 
+    @Override
     public void followPlayer(float x, float y) {
-      
+        if (x > position.x) {
+            velocity.x = speed; 
+            // sprite.setTexture(new Texture(RedBossPics.BOSSRIGHT.source));
+            this.direction = DirectionEnum.WEST;
+        }
+        else if (x < position.x) {
+            velocity.x =  - speed;
+            // sprite.setTexture(new Texture(RedBossPics.BOSSLEFT.source));
+            this.direction = DirectionEnum.EAST;
+        }
+        if (y > position.y) {
+            velocity.y = speed;
+            // sprite.setTexture( new Texture(RedBossPics.BOSSUP.source));
+            this.direction = DirectionEnum.NORTH;
+        }
+        else if (y < position.y) {
+            velocity.y =  - speed;
+            // sprite.setTexture(new Texture(RedBossPics.BOSSDOWN.source));
+            this.direction = DirectionEnum.SOUTH;
+        }
+        if (Math.abs(x - position.x) > Math.abs(y - position.y)) {
+            if (x > position.x) sprite.setTexture(new Texture(BlueEnemyPics.ENEMYRIGHT.source));
+            else sprite.setTexture(new Texture(BlueEnemyPics.ENEMYLEFT.source));
+        }
+        else if (Math.abs(x - position.x) < Math.abs(y - position.y)) {
+            if (y > position.y) sprite.setTexture( new Texture(BlueEnemyPics.ENEMYUP.source));
+            else sprite.setTexture( new Texture(BlueEnemyPics.ENEMYDOWN.source));
+        }
+        
     }
 
     @Override
@@ -132,8 +154,6 @@ public class BlueEnemy extends AbstractGameObject implements MonsterInterface  {
     public void setMovementSpeed(float speed) {
         this.speed = speed;
     }
-
-    
 
     @Override
     public float getWidth() {
@@ -200,13 +220,8 @@ public class BlueEnemy extends AbstractGameObject implements MonsterInterface  {
         return this.projectileList;
     }
 
-    public float getSpeed() {
-        return this.speed;
+    @Override
+    public void giveShootingPermission() {
+        
     }
-
-    public void setSpeed(float speed) {
-        this.speed = speed;
-    }
-
-    
 }
