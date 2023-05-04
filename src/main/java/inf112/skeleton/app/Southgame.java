@@ -7,7 +7,7 @@ import com.badlogic.gdx.Gdx;
 import inf112.skeleton.app.Controller.Controller;
 import inf112.skeleton.app.Screens.MainMenuScreen;
 
-public class Zelda extends Game{
+public class Southgame extends Game{
     private Controller controller = new Controller();
 
     

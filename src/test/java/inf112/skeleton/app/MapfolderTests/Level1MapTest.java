@@ -16,7 +16,7 @@ import com.badlogic.gdx.backends.headless.HeadlessApplication;
 import com.badlogic.gdx.backends.headless.HeadlessApplicationConfiguration;
 import com.badlogic.gdx.graphics.GL20;
 
-import inf112.skeleton.app.Zelda;
+import inf112.skeleton.app.Southgame;
 import inf112.skeleton.app.Mapfolder.Level1Mini;
 
 
@@ -39,7 +39,7 @@ public class Level1MapTest {
 	@BeforeEach
 	void setUpBeforeEach() {
         HeadlessApplicationConfiguration config = new HeadlessApplicationConfiguration();
-        app = new HeadlessApplication(new Zelda(), config);
+        app = new HeadlessApplication(new Southgame(), config);
         map = new Level1Mini(0, 0);
         
         

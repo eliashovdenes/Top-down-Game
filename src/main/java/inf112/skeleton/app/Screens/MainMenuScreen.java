@@ -13,7 +13,7 @@ import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.Vector3;
 
-import inf112.skeleton.app.Zelda;
+import inf112.skeleton.app.Southgame;
 import inf112.skeleton.app.Controller.Controller;
 import inf112.skeleton.app.Entities.Player.Player;
 import inf112.skeleton.app.Mapfolder.Level1Mini;
@@ -26,7 +26,7 @@ public class MainMenuScreen extends ScreenAdapter {
     
     private SpriteBatch batch;
     private Texture img;
-    private Zelda game;
+    private Southgame game;
     private BitmapFont font;
     private Controller controller;
     private SoundManager SM;
@@ -36,7 +36,7 @@ public class MainMenuScreen extends ScreenAdapter {
     OrthographicCamera camera;
 
 
-    public MainMenuScreen(Zelda southGame, Controller controller) {
+    public MainMenuScreen(Southgame southGame, Controller controller) {
         this.game = southGame;
         this.img = new Texture("src/main/resources/assets/mainMeny.png");
         this.controller = controller;

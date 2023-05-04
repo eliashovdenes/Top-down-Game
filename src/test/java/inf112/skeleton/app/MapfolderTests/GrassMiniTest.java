@@ -14,7 +14,7 @@ import com.badlogic.gdx.backends.headless.HeadlessApplication;
 import com.badlogic.gdx.backends.headless.HeadlessApplicationConfiguration;
 import com.badlogic.gdx.graphics.GL20;
 
-import inf112.skeleton.app.Zelda;
+import inf112.skeleton.app.Southgame;
 import inf112.skeleton.app.Mapfolder.GrassMini;
 
 public class GrassMiniTest {
@@ -36,7 +36,7 @@ public class GrassMiniTest {
 	@BeforeEach
 	void setUpBeforeEach() {
         HeadlessApplicationConfiguration config = new HeadlessApplicationConfiguration();
-        app = new HeadlessApplication(new Zelda(), config);
+        app = new HeadlessApplication(new Southgame(), config);
         map = new GrassMini(0, 0);
         
         

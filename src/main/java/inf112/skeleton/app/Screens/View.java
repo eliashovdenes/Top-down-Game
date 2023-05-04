@@ -25,7 +25,7 @@ import inf112.skeleton.app.Entities.Items.ItemImpl;
 import inf112.skeleton.app.Entities.Player.PlayerInterface;
 import inf112.skeleton.app.Entities.Projectiles.ProjectileInterface;
 import inf112.skeleton.app.Mapfolder.MapInterface;
-import inf112.skeleton.app.Zelda;
+import inf112.skeleton.app.Southgame;
 import inf112.skeleton.app.Controller.Controller;
 
 import com.badlogic.gdx.graphics.Color;
@@ -45,7 +45,7 @@ public class View implements Screen {
     private BitmapFont lifeText = new BitmapFont();
     private BitmapFont hpText = new BitmapFont();
     private BitmapFont pauseText = new BitmapFont();
-    private Zelda game;
+    private Southgame game;
     private MonsterInterface monsterI;
     private boolean paused = false;
     private Controller controller;
@@ -54,7 +54,6 @@ public class View implements Screen {
     private ArrayList<MonsterInterface> monsterList = new ArrayList<>();
     private Map<String, MonsterFactory> monsterFactories = new HashMap<>();
     private float scaler;
-    private boolean notConqueredFstBoss = true;
     private boolean tabJustPressed = false;
     private float timer = 0;
     private boolean bosstime = false;
@@ -67,7 +66,7 @@ public class View implements Screen {
     TiledMap nyMap;
     SpriteBatch batch;
     
-    public View(Zelda game, Controller controller, PlayerInterface playerI) {
+    public View(Southgame game, Controller controller, PlayerInterface playerI) {
         this.game = game;
         this.controller = controller;    
         this.playerI = playerI;
@@ -77,7 +76,7 @@ public class View implements Screen {
         setup();
         
     }   
-    public View(Zelda game, Controller controller, PlayerInterface playerI, float x,float y){
+    public View(Southgame game, Controller controller, PlayerInterface playerI, float x,float y){
         this.game = game;
         this.controller = controller;    
         this.playerI = playerI;
@@ -97,13 +96,17 @@ public class View implements Screen {
     }
 
     public void spawn(Map<String, Integer> enemies, float scaler, MapInterface mapI) {
-        for (String enemy : enemies.keySet())
-            for (int i=0; i < enemies.get(enemy) * Math.round(scaler); i++){
+        for (String enemy : enemies.keySet()) {
+            float scale;
+            if (enemy == "RedBoss") {scale = 1;}
+            else scale = scaler;
+            for (int i=0; i < enemies.get(enemy) * Math.round(scale); i++){
                 MonsterFactory monsterFactory = monsterFactories.get(enemy);
                 MonsterInterface monster = monsterFactory.create(mapI, scaler);
-                if (scaler > 3 && enemy == "RedBoss"){ monster.giveShootingPermission();}
+                if (scaler > 1 && enemy == "RedBoss"){ monster.giveShootingPermission();}
                 monsterList.add(monster);
             }
+        }
     }
 
     @Override
@@ -174,7 +177,7 @@ public class View implements Screen {
             if (bosstime) {
                 Map<String, Integer> boss = new HashMap<>();
                 boss.put("RedBoss", 1);
-                if (scaler < 2) bosscale = 2;
+                if (scaler > 2) bosscale = 2;
                 spawn(boss, bosscale, mapI);
                 mapI.setAllEnemiesDead(false);
                 itemList.clear();

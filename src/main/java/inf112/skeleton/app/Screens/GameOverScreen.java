@@ -9,7 +9,7 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
-import inf112.skeleton.app.Zelda;
+import inf112.skeleton.app.Southgame;
 import inf112.skeleton.app.Controller.Controller;
 
 //TODO denne klassen må tittes på når vi har mulighet til å dø igjen.
@@ -17,10 +17,10 @@ import inf112.skeleton.app.Controller.Controller;
 public class GameOverScreen extends ScreenAdapter {
     private SpriteBatch batch;
     private BitmapFont font;
-    private Zelda game;
+    private Southgame game;
     private Controller controller;
 
-    public GameOverScreen(Zelda game, Controller controller){
+    public GameOverScreen(Southgame game, Controller controller){
         this.game = game;
         batch = new SpriteBatch();
         font = new BitmapFont();

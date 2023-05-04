@@ -8,14 +8,14 @@ import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.math.Vector2;
 
-import inf112.skeleton.app.Zelda;
+import inf112.skeleton.app.Southgame;
 import inf112.skeleton.app.Entities.Player.Player;
 import inf112.skeleton.app.Screens.CreditScreen;
 import inf112.skeleton.app.Screens.InstructionScreen;
 import inf112.skeleton.app.Screens.MainMenuScreen;
 
 public class MainMenuScreenTest {
-    Zelda game;
+    Southgame game;
 
     @BeforeEach
     void setup() {

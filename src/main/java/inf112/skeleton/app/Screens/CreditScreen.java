@@ -10,7 +10,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Rectangle;
 
-import inf112.skeleton.app.Zelda;
+import inf112.skeleton.app.Southgame;
 import inf112.skeleton.app.Controller.Controller;
 
 
@@ -18,7 +18,7 @@ import inf112.skeleton.app.Controller.Controller;
 public class CreditScreen extends ScreenAdapter {
     
     private SpriteBatch batch;
-    private Zelda game;
+    private Southgame game;
     private Controller controller;
     OrthographicCamera camera;
     Texture background = new Texture(Gdx.files.internal("src/main/resources/assets/credits.png"));
@@ -27,7 +27,7 @@ public class CreditScreen extends ScreenAdapter {
 
     Rectangle EliasRect,BjornRect,CasperRect,MagnusRect,HansCRect;
 
-    public CreditScreen(Zelda southGame, Controller controller) {
+    public CreditScreen(Southgame southGame, Controller controller) {
         this.game = southGame;
         this.controller = controller;
         batch = new SpriteBatch();
