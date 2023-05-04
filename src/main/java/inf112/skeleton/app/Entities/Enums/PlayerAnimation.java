@@ -5,6 +5,9 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 
 import inf112.skeleton.app.Animation;
 
+/**
+ * Enum for player animations
+ */
 public enum PlayerAnimation {
 
     // WALKING ANIMATION
