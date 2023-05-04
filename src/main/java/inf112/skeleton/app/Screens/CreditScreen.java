@@ -20,9 +20,9 @@ public class CreditScreen extends ScreenAdapter {
     private SpriteBatch batch;
     private Southgame game;
     private Controller controller;
-    OrthographicCamera camera;
-    Texture background = new Texture(Gdx.files.internal("src/main/resources/assets/credits.png"));
-    Lwjgl3ApplicationConfiguration cfg = new Lwjgl3ApplicationConfiguration();
+    private OrthographicCamera camera;
+    private Texture background = new Texture(Gdx.files.internal("src/main/resources/assets/credits.png"));
+    private Lwjgl3ApplicationConfiguration cfg = new Lwjgl3ApplicationConfiguration();
     private DisplayMode disp = cfg.getDisplayMode(); 
 
     Rectangle EliasRect,BjornRect,CasperRect,MagnusRect,HansCRect;
@@ -31,19 +31,12 @@ public class CreditScreen extends ScreenAdapter {
         this.game = southGame;
         this.controller = controller;
         batch = new SpriteBatch();
-        //TODO legg til behagelig credits musikk
-        //SM.mainMenuMusic.play();
-
-            //creating rectangles based on app graphics
-
-        float screenWidth = Gdx.graphics.getWidth();
-        float screenHeight = Gdx.graphics.getHeight();
 
 
         // Create the camera and set its position to the center of the screen
         camera = new OrthographicCamera();
         camera.setToOrtho(false, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
-        camera.position.set(Gdx.graphics.getWidth() / 2f, Gdx.graphics.getHeight() / 2f, 0);
+        camera.position.set(Gdx.graphics.getWidth(), Gdx.graphics.getHeight(), 0);
         camera.update();
     }
 
@@ -54,12 +47,11 @@ public class CreditScreen extends ScreenAdapter {
         Gdx.gl.glClearColor(0, 0, 0, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
-        //draw boxes
-        // Draw the title
         batch.begin();
         batch.draw(background, 0, 0, disp.width, disp.height);
         batch.end();
         if (controller.getJustTouched()){
+            controller.setJustTouched(false);
             game.setScreen(new MainMenuScreen(game, controller));
         }
     }

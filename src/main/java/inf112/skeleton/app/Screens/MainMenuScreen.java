@@ -2,6 +2,8 @@ package inf112.skeleton.app.Screens;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.ScreenAdapter;
+import com.badlogic.gdx.Graphics.DisplayMode;
+import com.badlogic.gdx.backends.lwjgl3.Lwjgl3ApplicationConfiguration;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
@@ -25,31 +27,30 @@ import inf112.skeleton.app.Sound.SoundManager;
 public class MainMenuScreen extends ScreenAdapter {
     
     private SpriteBatch batch;
-    private Texture img;
     private Southgame game;
-    private BitmapFont font;
     private Controller controller;
     private SoundManager SM;
     MapInterface mapI;
     ShapeRenderer shape;
     Rectangle newGameRect,instructionsRect,quitRect,creditsRect;
     OrthographicCamera camera;
+    private Texture background = new Texture(Gdx.files.internal("src/main/resources/assets/mainmenu.png"));
+    private Lwjgl3ApplicationConfiguration cfg = new Lwjgl3ApplicationConfiguration();
+    private DisplayMode disp = Lwjgl3ApplicationConfiguration.getDisplayMode(); 
 
 
     public MainMenuScreen(Southgame southGame, Controller controller) {
         this.game = southGame;
-        this.img = new Texture("src/main/resources/assets/mainMeny.png");
         this.controller = controller;
         batch = new SpriteBatch();
-        font = new BitmapFont();
         this.SM = new SoundManager();
         SM.mainMenuMusic.play();
         this.shape = new ShapeRenderer();
 
         //creating rectangles based on app graphics
 
-        float screenWidth = Gdx.graphics.getWidth();
-        float screenHeight = Gdx.graphics.getHeight();
+        float screenWidth = disp.width;
+        float screenHeight = disp.height;
         float rectangleWidth = screenWidth*0.2f;
         float rectangleHeight = screenHeight*0.03f;
         float spaceBetweenRetangles = screenHeight*0.02f;
@@ -57,10 +58,10 @@ public class MainMenuScreen extends ScreenAdapter {
 
         
         
-        newGameRect = new Rectangle(screenWidth * 0.475f, rectangleY, rectangleWidth, rectangleHeight);
-        instructionsRect = new Rectangle(screenWidth * 0.475f, rectangleY - rectangleHeight - spaceBetweenRetangles, rectangleWidth, rectangleHeight);
-        creditsRect = new Rectangle(screenWidth * 0.475f, rectangleY - 2 * (rectangleHeight + spaceBetweenRetangles), rectangleWidth, rectangleHeight);
-        quitRect = new Rectangle(screenWidth * 0.475f, rectangleY - 3 * (rectangleHeight + spaceBetweenRetangles), rectangleWidth, rectangleHeight);
+        newGameRect = new Rectangle(screenWidth/22, screenHeight/6, screenWidth/6, screenHeight/10);
+        instructionsRect = new Rectangle(screenWidth/4, screenHeight/6, screenWidth/4, screenHeight/10);
+        creditsRect = new Rectangle((float)(screenWidth/1.8), screenHeight/6, screenWidth/6, screenHeight/10);
+        quitRect = new Rectangle((float)(screenWidth/1.3), screenHeight/6, screenWidth/6, screenHeight/10);
 
         // Create the camera and set its position to the center of the screen
         camera = new OrthographicCamera();
@@ -80,31 +81,26 @@ public class MainMenuScreen extends ScreenAdapter {
        
 
         //draw boxes
-        shape.setColor(Color.RED);
-        shape.begin(ShapeRenderer.ShapeType.Filled);
-
-        shape.rect(newGameRect.x,newGameRect.y,newGameRect.width,newGameRect.height);
-        shape.rect(instructionsRect.x,instructionsRect.y,instructionsRect.width,instructionsRect.height);
-        shape.rect(creditsRect.x,creditsRect.y,creditsRect.width,creditsRect.height);
-        shape.rect(quitRect.x,quitRect.y,quitRect.width,quitRect.height);
-
-        
-        shape.end(); 
+       
 
         // Draw the title
         batch.begin();
-        batch.draw(img, -320, -250);
-        font.getData().setScale(2);
-        font.draw(batch, "Welcome to SouthGame", 10, 850);
+        batch.draw(background, 0, 0, disp.width,(int) (disp.height*0.9));
         
         //draw text on buttons
-        font.getData().setScale(1);
-        font.draw(batch, "New Game", newGameRect.x+newGameRect.width*0.05f, newGameRect.y+newGameRect.height*0.75f);
-        font.draw(batch, "Instructions", instructionsRect.x+instructionsRect.width*0.05f,instructionsRect.y+instructionsRect.height*0.75f);
-        font.draw(batch, "Credits", creditsRect.x+creditsRect.width*0.05f,creditsRect.y+creditsRect.height*0.75f);
-        font.draw(batch, "Quit",quitRect.x+creditsRect.width*0.05f,quitRect.y+quitRect.height*0.75f);
+        // font.draw(batch, "Instructions", instructionsRect.x+instructionsRect.width*0.05f,instructionsRect.y+instructionsRect.height*0.75f);
+        // font.draw(batch, "Credits", creditsRect.x+creditsRect.width*0.05f,creditsRect.y+creditsRect.height*0.75f);
+        // font.draw(batch, "Quit",quitRect.x+creditsRect.width*0.05f,quitRect.y+quitRect.height*0.75f);
+        
         
         batch.end();
+        // shape.setColor(Color.RED);
+        // shape.begin(ShapeRenderer.ShapeType.Filled);
+        // shape.rect(newGameRect.x,newGameRect.y,newGameRect.width,newGameRect.height);
+        // shape.rect(instructionsRect.x,instructionsRect.y,instructionsRect.width,instructionsRect.height);
+        // shape.rect(creditsRect.x,creditsRect.y,creditsRect.width,creditsRect.height);
+        // shape.rect(quitRect.x,quitRect.y,quitRect.width,quitRect.height);
+        // shape.end(); 
 
 
 
@@ -115,21 +111,21 @@ public class MainMenuScreen extends ScreenAdapter {
             Vector3 menuClick = new Vector3(controller.getMenuClick(),0);
             camera.unproject(menuClick);
             SM.buttonClick.play();
-            SM.mainMenuMusic.stop();
 
 
             if (newGameRect.contains(menuClick.x, menuClick.y)){
                 mapI = new Level1Mini(123,76);
                 game.setScreen(new View(game, controller, new Player(new Vector2(0,0),mapI, controller)));
                 SM.mainMenuMusic.stop();
-                SM.mainMenuMusic.dispose();
             }
             if (instructionsRect.contains(menuClick.x,menuClick.y)){
                 game.setScreen(new InstructionScreen(game, controller));
+                SM.mainMenuMusic.stop();
             }
 
             if (creditsRect.contains(menuClick.x,menuClick.y)){
                 game.setScreen(new CreditScreen(game, controller));
+                SM.mainMenuMusic.stop();
             }
             if (quitRect.contains(menuClick.x,menuClick.y)){
                 Gdx.app.exit();

@@ -20,10 +20,11 @@ public class InstructionScreen extends ScreenAdapter {
     private SpriteBatch batch;
     private Southgame game;
     private Controller controller;
-    OrthographicCamera camera;
-    Texture background = new Texture(Gdx.files.internal("src/main/resources/assets/instructions.png"));
-    Lwjgl3ApplicationConfiguration cfg = new Lwjgl3ApplicationConfiguration();
+    private OrthographicCamera camera;
+    private Texture background = new Texture(Gdx.files.internal("src/main/resources/assets/instructions.png"));
+    private Lwjgl3ApplicationConfiguration cfg = new Lwjgl3ApplicationConfiguration();
     private DisplayMode disp = cfg.getDisplayMode(); 
+    
 
     Rectangle movementKeysRect,attackKeysRect,miscKeysRect,purposeRect;
 
@@ -37,7 +38,7 @@ public class InstructionScreen extends ScreenAdapter {
         // Create the camera and set its position to the center of the screen
         camera = new OrthographicCamera();
         camera.setToOrtho(false, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
-        camera.position.set(Gdx.graphics.getWidth() / 2f, Gdx.graphics.getHeight() / 2f, 0);
+        camera.position.set(Gdx.graphics.getWidth(), Gdx.graphics.getHeight(), 0);
         camera.update();
     }
 
@@ -51,11 +52,11 @@ public class InstructionScreen extends ScreenAdapter {
         // Draw the title
         batch.begin();
         
-        batch.draw(background, 0, 0, disp.width, disp.height);
+        batch.draw(background, 0, 0, disp.width, (int) (disp.height*0.9));
         batch.end();
         
         if (controller.getJustTouched()){
-            
+            controller.setJustTouched(false);
             game.setScreen(new MainMenuScreen(game, controller));
             }
     }
