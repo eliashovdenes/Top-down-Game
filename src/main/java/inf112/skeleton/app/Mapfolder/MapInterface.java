@@ -23,11 +23,7 @@ public interface MapInterface {
      */
     public TiledMap getMap();
 
-    /**
-     * 
-     * @return OrthogonalTiledMapRenderer object associated with the map.
-     */
-    public OrthogonalTiledMapRenderer getRenderer();
+    
 
     /**
      * @return  x-coordinate spawn point
