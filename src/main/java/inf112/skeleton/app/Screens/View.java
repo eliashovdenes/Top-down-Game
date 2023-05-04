@@ -25,6 +25,7 @@ import inf112.skeleton.app.Entities.Items.ItemImpl;
 import inf112.skeleton.app.Entities.Player.PlayerInterface;
 import inf112.skeleton.app.Entities.Projectiles.ProjectileInterface;
 import inf112.skeleton.app.Mapfolder.MapInterface;
+import inf112.skeleton.app.Sound.SoundManager;
 import inf112.skeleton.app.Southgame;
 import inf112.skeleton.app.Controller.Controller;
 
@@ -58,6 +59,8 @@ public class View implements Screen {
     private float timer = 0;
     private boolean bosstime = false;
     private int bosscale = 1;
+    private SoundManager sm = new SoundManager();
+    private int enemiesremaining;
     
     
     //MapInterface mapI = new Level1Mini(123,76);
@@ -106,6 +109,7 @@ public class View implements Screen {
                 if (scaler > 1 && enemy == "RedBoss"){ monster.giveShootingPermission();}
                 monsterList.add(monster);
             }
+            enemiesremaining = monsterList.size();
         }
     }
 
@@ -157,6 +161,8 @@ public class View implements Screen {
         playerI.update(delta);
 
         if (playerI.onPortal()){
+            sm.safeZone.stop();
+            sm.safeZone.dispose();
             this.mapI=playerI.nextMap();
             
             renderer.setMap(mapI.getMap());
@@ -180,6 +186,8 @@ public class View implements Screen {
         }
         
         if (playerI.isDead()){
+            mapI.stopMusic();
+            sm.killedAllEnemies.play();
             game.setScreen(new GameOverScreen(game, controller));
         }
 
@@ -205,6 +213,7 @@ public class View implements Screen {
             }
             for (MonsterInterface monsterI : this.monsterList) {
                 if (projectile.getRect().overlaps(monsterI.getRect())) { 
+                    sm.hit.play();
                     monsterI.takeDamage(projectile.getDamage());
                     projectilesToRemove.add(projectile);
                 }
@@ -220,6 +229,13 @@ public class View implements Screen {
             
             //check if monsterhp is less than or equal to zero
             if (monsterI.isDead()){
+                if (monsterI.getName() == "RedBoss") sm.monsterdied.play();
+                else sm.kill.play();
+                enemiesremaining -= 1;
+                if (enemiesremaining == 0) {
+                    mapI.stopMusic();
+                    sm.safeZone.play();
+                }
                 deadMonsterList.add(monsterI);
                 playerI.getExp(monsterI.getName());
             }
