@@ -155,7 +155,32 @@ public class PlayerTest {
     }
 
 
+    @Test
+    void testGetExp(){
+        Player player = new Player(new Vector2(0,0),new Level1Mini(0, 0), null);
 
+        int abilitypointsBefore = player.getAbilityPoints();
+
+        assertEquals(1,player.getLevel());
+
+        for (int i=0;i<10;i++){
+            player.getExp("RedEnemy");
+        }
+        int abilitypointsAfter = player.getAbilityPoints();
+        assertNotEquals(abilitypointsBefore,abilitypointsAfter);
+        assertEquals(3,player.getLevel());
+
+        player.getExp("RedBoss");
+        assertEquals(4,player.getLevel());
+
+        for (int i=0;i<100;i++){
+            player.getExp("all the others");
+        }
+        assertEquals(14,player.getLevel());
+        
+
+
+    }
 
 
     @Test
