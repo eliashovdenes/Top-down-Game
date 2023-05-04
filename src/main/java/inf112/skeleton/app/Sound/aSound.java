@@ -10,6 +10,7 @@ public class aSound {
     public aSound(String soundString, boolean loop){
         sound = Gdx.audio.newMusic(Gdx.files.internal(soundString));
         sound.setLooping(loop);
+        
     }
 
     public void play(){
@@ -21,5 +22,8 @@ public class aSound {
 
     public void dispose(){
         sound.dispose();
+    }
+    public Music getMusicObject(){
+        return sound;
     }
 }
