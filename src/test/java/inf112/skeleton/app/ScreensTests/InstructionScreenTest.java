@@ -1,11 +1,3 @@
 package inf112.skeleton.app.ScreensTests;
 
-import static org.junit.jupiter.api.Assertions.*;
-import org.junit.jupiter.api.*;
-
-public class InstructionScreenTest {
-    @Test
-    void test(){
-        fail();
-    }
-}
+//kun render og dispose metode som trenger å bli testet. usikker på hvordan! 

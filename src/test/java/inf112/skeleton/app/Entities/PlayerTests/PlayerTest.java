@@ -27,7 +27,7 @@ import static org.mockito.Mockito.*;
 
 import java.nio.ByteBuffer;
 
-import inf112.skeleton.app.Zelda;
+import inf112.skeleton.app.Southgame;
 import inf112.skeleton.app.Controller.Controller;
 import inf112.skeleton.app.Entities.Enums.DirectionEnum;
 import inf112.skeleton.app.Entities.Enums.PlayerAnimation;
@@ -39,6 +39,7 @@ import inf112.skeleton.app.Mapfolder.Level1Mini;
 
 public class PlayerTest {
     private HeadlessApplication app;
+    private static Zelda zelda;
 
     /**
 	 * Static method run before everything else
@@ -48,6 +49,7 @@ public class PlayerTest {
         // Gdx.files = mock(Files.class);
         Gdx.gl = mock(GL20.class);       
         Gdx.gl20 = mock(GL20.class);
+        zelda = mock(Zelda.class);
         // Gdx.graphics = mock(Graphics.class);   
 	}
 
@@ -57,7 +59,7 @@ public class PlayerTest {
 	@BeforeEach
 	void setUpBeforeEach() {
         HeadlessApplicationConfiguration config = new HeadlessApplicationConfiguration();
-        app = new HeadlessApplication(new Zelda(), config);
+        app = new HeadlessApplication(new Southgame(), config);
 
 	}
 
@@ -136,7 +138,7 @@ public class PlayerTest {
 
 
     @Test
-    void testPLayerSpeed() {
+    void testPlayerSpeed() {
 
         Player player = mock(Player.class, Mockito.CALLS_REAL_METHODS);
 
@@ -202,7 +204,7 @@ public class PlayerTest {
 
         Sprite sprite = player.getSprite();
 
-        System.out.println(sprite);
+        
 
 
         // Test if player position is set correctly

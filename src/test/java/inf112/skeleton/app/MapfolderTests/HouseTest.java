@@ -5,21 +5,14 @@ import org.junit.jupiter.api.*;
 
 import com.badlogic.gdx.backends.headless.HeadlessApplication;
 
-import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.mock;
-
-import java.util.ArrayList;
-import java.util.Arrays;
-
-import org.junit.jupiter.api.*;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Graphics.GraphicsType;
-import com.badlogic.gdx.backends.headless.HeadlessApplication;
 import com.badlogic.gdx.backends.headless.HeadlessApplicationConfiguration;
 import com.badlogic.gdx.graphics.GL20;
 
-import inf112.skeleton.app.Zelda;
+import inf112.skeleton.app.Southgame;
 // import inf112.skeleton.app.Mapfolder.GrassMini;
 import inf112.skeleton.app.Mapfolder.House;
 
@@ -30,10 +23,8 @@ public class HouseTest {
 
     @BeforeAll
 	static void setUpBeforeAll() {
-        // Gdx.files = mock(Files.class);
         Gdx.gl = mock(GL20.class);       
-        Gdx.gl20 = mock(GL20.class);
-        // Gdx.graphics = mock(Graphics.class);   
+        Gdx.gl20 = mock(GL20.class);  
 	}
 
 	/**
@@ -42,11 +33,8 @@ public class HouseTest {
 	@BeforeEach
 	void setUpBeforeEach() {
         HeadlessApplicationConfiguration config = new HeadlessApplicationConfiguration();
-        app = new HeadlessApplication(new Zelda(), config);
+        app = new HeadlessApplication(new Southgame(), config);
         map = new House();
-        
-        
-
 	}
 
     /**
@@ -99,12 +87,4 @@ public class HouseTest {
         assertNotNull(map);
         assertEquals(34, map.getEnemyBoundsToY());
     }
-
-    @Test
-    void testGetMonsterList() {
-        House map = new House();
-        assertNotNull(map);
-        assertEquals(0, map.getMonsterList().size());
-    }
-
 }

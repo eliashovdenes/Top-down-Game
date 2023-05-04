@@ -1,11 +1,9 @@
 package inf112.skeleton.app.Mapfolder;
 
-import java.util.ArrayList;
+import java.util.Map;
 
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
-
-import inf112.skeleton.app.Entities.Enemies.MonsterInterface;
 
 
 public interface MapInterface {
@@ -18,19 +16,6 @@ public interface MapInterface {
      * of each monster we want to spawn on the map
      */
     public void setup();
-
-    /**
-     * Uses the MonsterFactories to create the monsters in the given list
-     * 
-     * @param enemyList - List of monster we want to create
-     */
-    public void spawn(ArrayList<String> enemyList);
-    
-    /**
-     * 
-     * @return an integer that represent amount of enemies to be spawned at map
-     */
-    // public int getEnemies();
 
     /**
      * 
@@ -86,15 +71,14 @@ public interface MapInterface {
 
     /**
      * 
-     * @return ArrayList containing the monster objects for the map
+     * @return Map - key: String monster, value: Integer number of monsters
      */
-    public ArrayList<MonsterInterface> getMonsterList();
+    public Map<String, Integer> getEnemies();
 
+    public void setAllEnemiesDead(boolean allEnemiesDead);
 
-    /**
-     * 
-     * takes in monster and removes the given monster
-     * @param monster
-     */
-    public void removeMonster(MonsterInterface monster);
+    public boolean getAllEnemiesDead();
+
+    public String getMapName();
+
 }

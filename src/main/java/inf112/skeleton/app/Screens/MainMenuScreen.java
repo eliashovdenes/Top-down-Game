@@ -13,7 +13,7 @@ import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.Vector3;
 
-import inf112.skeleton.app.Zelda;
+import inf112.skeleton.app.Southgame;
 import inf112.skeleton.app.Controller.Controller;
 import inf112.skeleton.app.Entities.Player.Player;
 import inf112.skeleton.app.Mapfolder.Level1Mini;
@@ -26,17 +26,17 @@ public class MainMenuScreen extends ScreenAdapter {
     
     private SpriteBatch batch;
     private Texture img;
-    private Zelda game;
+    private Southgame game;
     private BitmapFont font;
     private Controller controller;
     private SoundManager SM;
-    MapInterface mapI = new Level1Mini(123,76);
+    MapInterface mapI;
     ShapeRenderer shape;
     Rectangle newGameRect,instructionsRect,quitRect,creditsRect;
     OrthographicCamera camera;
 
 
-    public MainMenuScreen(Zelda southGame, Controller controller) {
+    public MainMenuScreen(Southgame southGame, Controller controller) {
         this.game = southGame;
         this.img = new Texture("src/main/resources/assets/mainMeny.png");
         this.controller = controller;
@@ -112,25 +112,26 @@ public class MainMenuScreen extends ScreenAdapter {
         
         if (controller.getJustTouched()){
             
-            Vector3 hei = new Vector3(controller.getMenuClick(),0);
-            camera.unproject(hei);
+            Vector3 menuClick = new Vector3(controller.getMenuClick(),0);
+            camera.unproject(menuClick);
             SM.buttonClick.play();
             SM.mainMenuMusic.stop();
 
 
-            if (newGameRect.contains(hei.x, hei.y)){
+            if (newGameRect.contains(menuClick.x, menuClick.y)){
+                mapI = new Level1Mini(123,76);
                 game.setScreen(new View(game, controller, new Player(new Vector2(0,0),mapI, controller)));
                 SM.mainMenuMusic.stop();
                 SM.mainMenuMusic.dispose();
             }
-            if (instructionsRect.contains(hei.x,hei.y)){
+            if (instructionsRect.contains(menuClick.x,menuClick.y)){
                 game.setScreen(new InstructionScreen(game, controller));
             }
 
-            if (creditsRect.contains(hei.x,hei.y)){
+            if (creditsRect.contains(menuClick.x,menuClick.y)){
                 game.setScreen(new CreditScreen(game, controller));
             }
-            if (quitRect.contains(hei.x,hei.y)){
+            if (quitRect.contains(menuClick.x,menuClick.y)){
                 Gdx.app.exit();
             }
             controller.setJustTouched(false);

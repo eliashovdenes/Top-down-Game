@@ -16,7 +16,7 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.g3d.particles.influencers.ColorInfluencer.Random;
 import com.badlogic.gdx.math.Vector2;
 
-import inf112.skeleton.app.Zelda;
+import inf112.skeleton.app.Southgame;
 import inf112.skeleton.app.Entities.Enemies.BlueEnemy;
 import inf112.skeleton.app.Entities.Enemies.MonsterFactory;
 import inf112.skeleton.app.Entities.Enemies.MonsterInterface;
@@ -51,9 +51,9 @@ public class BlueEnemyTest {
 	@BeforeEach
 	void setUpBeforeEach() {
         HeadlessApplicationConfiguration config = new HeadlessApplicationConfiguration();
-        app = new HeadlessApplication(new Zelda(), config);
+        app = new HeadlessApplication(new Southgame(), config);
         map = new Level1Mini(0, 0);
-        blueEnemy = new BlueEnemy(map);
+        blueEnemy = new BlueEnemy(map, 1);
         
 
 	}
@@ -121,12 +121,9 @@ public class BlueEnemyTest {
         assertEquals("BlueEnemy", factory.name());
 
         // Test create with MapInterface
-        MonsterInterface createdWithMap = factory.create(map);
+        MonsterInterface createdWithMap = factory.create(map,1);
         assertTrue(createdWithMap instanceof BlueEnemy);
 
-        // Test create without MapInterface
-        MonsterInterface createdWithoutMap = factory.create();
-        assertTrue(createdWithoutMap instanceof BlueEnemy);
     }
 
     @Test

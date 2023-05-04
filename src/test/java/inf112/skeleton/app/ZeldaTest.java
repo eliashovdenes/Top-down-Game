@@ -11,14 +11,14 @@ import inf112.skeleton.app.Controller.Controller;
 
 public class ZeldaTest {
 
-    private static Zelda game;
+    private static Southgame game;
     private static Controller controller;
 
     
     @BeforeAll
 	static void setUpBeforeAll() {
         
-        game = new Zelda();
+        game = new Southgame();
         controller = new Controller();
 	}
 

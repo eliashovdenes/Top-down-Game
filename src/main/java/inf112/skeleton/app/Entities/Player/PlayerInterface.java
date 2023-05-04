@@ -185,7 +185,7 @@ public interface PlayerInterface  {
 
     int getAbilityPoints();
 
-    void getExp();
+    void getExp(String monster);
 
     int getLevel();
 

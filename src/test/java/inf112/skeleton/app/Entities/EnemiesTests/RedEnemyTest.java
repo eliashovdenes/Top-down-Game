@@ -12,7 +12,7 @@ import com.badlogic.gdx.backends.headless.HeadlessApplicationConfiguration;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.math.Vector2;
 
-import inf112.skeleton.app.Zelda;
+import inf112.skeleton.app.Southgame;
 import inf112.skeleton.app.Entities.Enemies.MonsterFactory;
 import inf112.skeleton.app.Entities.Enemies.MonsterInterface;
 import inf112.skeleton.app.Entities.Enemies.RedEnemy;
@@ -39,9 +39,9 @@ public class RedEnemyTest {
 	@BeforeEach
 	void setUpBeforeEach() {
         HeadlessApplicationConfiguration config = new HeadlessApplicationConfiguration();
-        app = new HeadlessApplication(new Zelda(), config);
+        app = new HeadlessApplication(new Southgame(), config);
         map = new Level1Mini(0, 0);
-        redEnemy = new RedEnemy(map);
+        redEnemy = new RedEnemy(map,1);
         
 
 	}
@@ -61,11 +61,10 @@ public class RedEnemyTest {
 
         assertEquals("RedEnemy", factory.name());
 
-        MonsterInterface createdMonster1 = factory.create(map);
+        MonsterInterface createdMonster1 = factory.create(map,1);
         assertEquals(RedEnemy.class, createdMonster1.getClass());
 
-        MonsterInterface createdMonster2 = factory.create();
-        assertEquals(RedEnemy.class, createdMonster2.getClass());
+        
     }
 
     @Test

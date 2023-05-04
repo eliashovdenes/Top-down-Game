@@ -78,7 +78,7 @@ public class ControllerTest {
     void testInputShop(){
         Controller controll = new Controller();
         assertFalse(controll.isShop());
-        controll.keyDown(Keys.TAB); //TAB
+        controll.keyDown(Keys.TAB);
         controll.keyUp(Keys.TAB);
         assertTrue(controll.isShop());
         controll.keyDown(Keys.TAB);

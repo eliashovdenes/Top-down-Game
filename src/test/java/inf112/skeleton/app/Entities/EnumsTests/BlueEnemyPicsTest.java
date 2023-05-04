@@ -6,6 +6,7 @@ import org.junit.jupiter.api.*;
 import inf112.skeleton.app.Entities.Enums.BlueEnemyPics;
 
 public class BlueEnemyPicsTest {
+    
     @Test
     public void testBlueEnemyPics() {
         assertEquals(BlueEnemyPics.ENEMYDOWN.source, "assets/enemyPics/enemyDown.png");
