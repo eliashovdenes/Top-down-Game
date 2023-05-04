@@ -12,7 +12,6 @@ public abstract class AbstractGameObject {
     protected Vector2 recentPosition;
     
     protected Vector2 position;
-    
 
     protected Vector2 velocity;
     
@@ -41,11 +40,7 @@ public abstract class AbstractGameObject {
         
     }
     
-    //** update is a method that updates the position of the object */
 
-
-   //public abstract void update(float delta); BLIR IKKE BRUKT? Metoden som overridees er fra interfaces.
-    
     //**applymovement is a method that applies the velocity to the position of the object. */
     public void ApplyMovement() {
         recentPosition.set(position);
@@ -78,7 +73,11 @@ public abstract class AbstractGameObject {
         return rectangle;
     }
 
-    //**checks if the object is colliding in x and y direction->>>> */
+    /**
+     * Checks collision in X-direction
+     * velX velocity of object in X direction
+     * @return false if not collision. True if collision.
+     */
     public boolean xCollision(){
         return collision.checkXDirection(velocity.x);
     }
@@ -86,10 +85,26 @@ public abstract class AbstractGameObject {
         return collision.checkYDirection(velocity.y);
     }
 
-    //**getters for velocity in x and y direction */
+
+    /**
+     * Checks if the Entity is dead
+     * True - if Entity is dead
+     * False - otherwise
+     * @return boolean
+     */
+    public boolean isDead() {
+        return getCurrentHitpoints() <= 0;
+    } 
+
+    /**
+     * @return velocity in x direction
+     */
     public float getVeloX(){
         return velocity.x;
     }
+    /**
+     * @return velocity in y-direction
+     */
     public float getVeloY(){
         return velocity.y;
     }
@@ -121,7 +136,14 @@ public abstract class AbstractGameObject {
             this.currentHitpoints = newHitpoints;
         }
     }
-
+    
+    /**
+     * Reduces the Entity's hitpoints by a given amount 
+     * @param damage
+     */
+    public void takeDamage(int damage) {
+        this.setCurrentHitPoints(this.getCurrentHitpoints() - damage);
+    }   
     /**
      * Get the maxHitpoints of the Entity
      * 
@@ -142,48 +164,58 @@ public abstract class AbstractGameObject {
         }
     }
 
-    /**
-     * Reduces the Entity's hitpoints by a given amount 
-     * 
-     * @param damage
-     */
-    public void takeDamage(int damage) {
-        this.setCurrentHitPoints(this.getCurrentHitpoints() - damage);
-    }
+    
 
-    /**
-     * Checks if the Entity is dead
-     * True - if Entity is dead
-     * False - otherwise
-     * 
-     * @return boolean
-     */
-    public boolean isDead() {
-        return getCurrentHitpoints() <= 0;
-    } 
+    
    
-    //**getters for position */
+    /**
+     * returns position of abstractGameObject
+     * @return
+     */
     public Vector2 getPosition() {
         return position;
     }
-
-    //**getters and setters for Sprite */
+    /**
+     * @returns sprite associated with gameobject
+     */
     public abstract Sprite getSprite();
+
+    /**
+     * Sets sprite for the path inserted in string-parameter
+     * @param string 
+     */
     public abstract void setSprite(String string);
 
-    //**Setter for movement speed */
+    /**
+     * Sets movementspeeed for game object.
+     * @param speed
+     */
     public abstract void setMovementSpeed(float speed);
 
-    //**getters for width and height */
+    /**
+     * 
+     * @return width of gameobject
+     */
     public abstract float getWidth();
+
+    /**
+     * 
+     * @return height of gameobject
+     */
     public abstract float getHeight();
 
-    //**To check if entity has entered level 3 */
+    /**
+     * 
+     * @return boolean. Has gameobject entered level 3.
+     */
     public boolean isEnteredLevel3() {
         return enteredLevel3;
     }
-    
-    //**To set if entity has entered level 3 */
+    /**
+     * set the boolean field variable that decides if the 
+     * gameobject has entered level3.
+     * @param enteredLevel3
+     */
     public void setEnteredLevel3(boolean enteredLevel3) {
         this.enteredLevel3 = enteredLevel3;
     }
