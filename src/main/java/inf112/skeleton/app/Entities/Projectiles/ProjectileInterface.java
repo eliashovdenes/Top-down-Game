@@ -19,7 +19,7 @@ public interface ProjectileInterface{
     
     public  float getHeight();
 
-    public Vector2 setVelocity();
+    public float getMovementSpeed();
 
     public Rectangle getRect();
 

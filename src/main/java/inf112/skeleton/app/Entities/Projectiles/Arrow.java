@@ -19,7 +19,8 @@ public class Arrow extends AbstractGameObject implements ProjectileInterface  {
     protected TiledMap map;
     protected Vector2 velocity;
     private PlayerInterface player;
-    private int attackDamage = 5;    
+    private int attackDamage = 5;
+    private float speed;    
 
     public Arrow(Vector2 position, MapInterface map, Vector2 velocity, PlayerInterface player) {
         super(position, map);
@@ -31,17 +32,6 @@ public class Arrow extends AbstractGameObject implements ProjectileInterface  {
         rectangle = new Rectangle(position.x, position.y, getWidth(), getHeight());
         
        
-    }
-
-    //* setVelocity() is a method that returns a Vector2 with the correct velocity for the arrow. */
-    public Vector2 setVelocity() {
-        Vector2  veloVector = new Vector2();
-        //DirectionEnum direction = player.getPlayerDirection();
-       // if (direction == DirectionEnum.NORTH){veloVector = new Vector2(0*speed,1*speed);}
-       // if (direction == DirectionEnum.SOUTH){veloVector = new Vector2(0*speed,-1*speed);}
-      //  if (direction == DirectionEnum.WEST){veloVector = new Vector2(-1*speed,0*speed);}
-      //  if (direction == DirectionEnum.EAST){veloVector = new Vector2(1*speed,0*speed);}
-        return veloVector;
     }
 
     @Override
@@ -73,8 +63,12 @@ public class Arrow extends AbstractGameObject implements ProjectileInterface  {
 
     @Override
     public void setMovementSpeed(float speed) {
+        this.speed = speed;
     }
-
+    @Override
+    public float getMovementSpeed(){
+        return speed;
+    }
     @Override
     public float getWidth() {
         return sprite.getWidth();
@@ -99,4 +93,6 @@ public class Arrow extends AbstractGameObject implements ProjectileInterface  {
     public int getDamage() {
         return attackDamage;
     }
+
+    
 }

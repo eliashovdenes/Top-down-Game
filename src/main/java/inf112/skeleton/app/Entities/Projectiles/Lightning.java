@@ -99,4 +99,8 @@ public class Lightning extends AbstractGameObject implements ProjectileInterface
     public int getDamage() {
         return attackDamage;
     }
+    @Override
+    public float getMovementSpeed(){
+        return speed;
+    }
 }

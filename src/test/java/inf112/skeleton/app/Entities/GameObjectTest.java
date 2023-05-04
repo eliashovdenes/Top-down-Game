@@ -21,6 +21,7 @@ import inf112.skeleton.app.Entities.Enums.DirectionEnum;
 import inf112.skeleton.app.Entities.Enums.PlayerAnimation;
 import inf112.skeleton.app.Entities.Enums.PlayerPics;
 import inf112.skeleton.app.Entities.Player.Player;
+import inf112.skeleton.app.Entities.Projectiles.Arrow;
 import inf112.skeleton.app.Entities.Projectiles.Lightning;
 import inf112.skeleton.app.Mapfolder.GrassMini;
 import inf112.skeleton.app.Mapfolder.Level1Mini;
@@ -32,6 +33,7 @@ public class GameObjectTest {
     Lightning lightning;
     
     private HeadlessApplication app;
+    private Arrow arrow;
     private static Southgame Southgame;
     /**
 	 * Static method run before everything else
@@ -50,6 +52,8 @@ public class GameObjectTest {
         player = new Player(new Vector2(123*16,76*16), new Level1Mini(123,76),new Controller());
         enemy = new RedEnemy();
         lightning = new Lightning(new Vector2(0, 0), new Level1Mini(123,76), new Vector2(0, 0));
+        arrow = new Arrow(new Vector2(0, 0), new Level1Mini(123,76),new Vector2(0, 0), player);
+        
 	}
 
 
@@ -125,7 +129,7 @@ public class GameObjectTest {
     void testSetGetSprite(){
         
         lightning.setSprite(PlayerPics.LIGHTNING.source);
-
+        arrow.setSprite(PlayerPics.DOWNARROW.source);
         Sprite actualSprite = lightning.getSprite();
         Sprite expectedSprite = new Sprite(new Texture(PlayerPics.LIGHTNING.source));
     
@@ -135,8 +139,13 @@ public class GameObjectTest {
         assertEquals(expectedSprite.getHeight(), actualSprite.getHeight(), 0.001);
 
        
+        actualSprite = arrow.getSprite();
+        expectedSprite = new Sprite(new Texture(PlayerPics.DOWNARROW.source));
 
-
+        assertEquals(expectedSprite.getX(), actualSprite.getX(), 0.001);
+        assertEquals(expectedSprite.getY(), actualSprite.getY(), 0.001);
+        assertEquals(expectedSprite.getWidth(), actualSprite.getWidth(), 0.001);
+        assertEquals(expectedSprite.getHeight(), actualSprite.getHeight(), 0.001);
     }
     @Test
     void testMovementSpeed(){
