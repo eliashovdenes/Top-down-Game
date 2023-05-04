@@ -91,7 +91,7 @@ public class GrassMiniTest {
     void testSetup(){
         assertNotNull(map);
         map.setup();
-        assertEquals(map.getEnemies().get("BlueEnemy"), 2);
+        assertEquals(map.getEnemies().get("BlueEnemy"), 4);
         assertEquals(map.getEnemies().get("RedEnemy"), 3);
     }
 
