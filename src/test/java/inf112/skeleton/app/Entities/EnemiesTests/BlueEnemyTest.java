@@ -128,6 +128,16 @@ public class BlueEnemyTest {
         assertEquals(0.1f, blueEnemy.getSpeed(), 0.01f);
     }
 
+    @Test 
+    public void testDropHealthPotion() {
+        blueEnemy.setHealthPotionDropChance(1);
+        assertTrue(blueEnemy.dropHealthPotion());
+    }
+
+    @Test 
+    public void testGetName() {
+        assertEquals("BlueEnemy", blueEnemy.getName());
+    }
     
 
     
