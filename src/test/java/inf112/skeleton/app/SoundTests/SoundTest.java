@@ -13,13 +13,13 @@ import com.badlogic.gdx.backends.headless.HeadlessApplicationConfiguration;
 
 import com.badlogic.gdx.graphics.GL20;
 
-import inf112.skeleton.app.Zelda;
+import inf112.skeleton.app.Southgame;
 import inf112.skeleton.app.Sound.SoundManager;
 
 public class SoundTest {
 
     private SoundManager soundManager;
-    Zelda zelda;
+    Southgame zelda;
     HeadlessApplication app;
 
 
@@ -33,7 +33,7 @@ public class SoundTest {
 
 	@BeforeEach
 	void setUpBeforeEach() {
-        zelda = mock(Zelda.class);
+        zelda = mock(Southgame.class);
         HeadlessApplicationConfiguration config = new HeadlessApplicationConfiguration();
         app = new HeadlessApplication(zelda, config);
         soundManager = new SoundManager();
