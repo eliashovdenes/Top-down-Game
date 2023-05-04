@@ -113,18 +113,16 @@ public class Shop extends ScreenAdapter {
                 }
                 timeSinceUpgrade = 0;
             }
-            if (upgradePlayerHealthRect.contains(hei.x, hei.y) && playerI.getAbilityPoints() >= 5
-                    && timeSinceUpgrade >= upgradeCooldown) {
+            if (upgradePlayerHealthRect.contains(hei.x,hei.y)&& playerI.getAbilityPoints()>=3 && timeSinceUpgrade >=upgradeCooldown){
                 playerI.upgradeHealth();
-                for (int i = 0; i < 5; i++) {
+                for (int i = 0; i<3;i++){
                     playerI.removeAbilityPoints();
                 }
                 timeSinceUpgrade = 0;
             }
-            if (upgradeMovementSpeed.contains(hei.x, hei.y) && playerI.getAbilityPoints() >= 10
-                    && timeSinceUpgrade >= upgradeCooldown) {
+            if (upgradeMovementSpeed.contains(hei.x,hei.y)&& playerI.getAbilityPoints()>=3 && timeSinceUpgrade >=upgradeCooldown){
                 playerI.upgradeMovement();
-                for (int i = 0; i < 10; i++) {
+                for (int i = 0; i<3;i++){
                     playerI.removeAbilityPoints();
                 }
                 timeSinceUpgrade = 0;
