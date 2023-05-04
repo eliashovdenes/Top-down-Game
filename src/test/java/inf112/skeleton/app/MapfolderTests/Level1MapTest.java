@@ -98,4 +98,13 @@ public class Level1MapTest {
         assertNotNull(map);
         assertNotNull(map.getMap());
     }
+
+    @Test
+    void testGetMapName(){
+        assertNotNull(map);
+        assertEquals("safezone", map.getMapName());
+    }       
+
+    
+    
 }

@@ -98,4 +98,10 @@ public class GrassMiniTest {
         assertNotNull(map);
         assertNotNull(map.getMap());
     }
+
+    @Test
+    void testGetMapName(){
+        assertNotNull(map);
+        assertEquals("arena", map.getMapName());
+    }   
 }

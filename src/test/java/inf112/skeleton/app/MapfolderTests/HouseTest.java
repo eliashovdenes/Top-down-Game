@@ -102,5 +102,11 @@ public class HouseTest {
         assertNotNull(map.getMap());
     }
 
+    @Test
+    void testGetMapName(){
+        assertNotNull(map);
+        assertEquals("house", map.getMapName());
+    }   
+
     
 }
