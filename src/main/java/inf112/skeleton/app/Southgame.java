@@ -41,7 +41,9 @@ public class Southgame extends Game{
     public void resume() {
         super.resume();
     }
-    
+    /**
+     * @return controller associated with game.
+     */
     public Controller getController(){
         return controller;
     }

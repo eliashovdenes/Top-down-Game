@@ -66,6 +66,13 @@ public class View implements Screen {
     TiledMap nyMap;
     SpriteBatch batch;
     
+    
+    /**
+     * Contructor to be used when exiting shop (we don't need new coordinates for player)
+     * @param game current game
+     * @param controller current controller
+     * @param playerI current player
+     */
     public View(Southgame game, Controller controller, PlayerInterface playerI) {
         this.game = game;
         this.controller = controller;    
@@ -76,6 +83,12 @@ public class View implements Screen {
         setup();
         
     }   
+    /**
+     * Contructor to be used when creating a new game. Sets player spawn location
+     * @param game new game game
+     * @param controller current controller
+     * @param playerI new player
+     */
     public View(Southgame game, Controller controller, PlayerInterface playerI, float x,float y){
         this.game = game;
         this.controller = controller;    
@@ -94,7 +107,13 @@ public class View implements Screen {
         monsterFactories.put(redEnemyFactory.name(), redEnemyFactory);
         monsterFactories.put(redBossFactory.name(), redBossFactory);      
     }
-
+    /**
+     * Spawns the enemies on the map and scales enemies according to player-level.
+     * 
+     * @param enemies to be spawned.
+     * @param scaler set difficulty
+     * @param mapI map to spawn enemies
+     */
     public void spawn(Map<String, Integer> enemies, float scaler, MapInterface mapI) {
         for (String enemy : enemies.keySet()) {
             float scale;
@@ -320,7 +339,9 @@ public class View implements Screen {
         map.dispose();
         renderer.dispose();      
     }
-
+    /**
+     * @return a list of all monster objects.
+     */
     public ArrayList<MonsterInterface> getMonsterList() {
         return this.monsterList;
     }

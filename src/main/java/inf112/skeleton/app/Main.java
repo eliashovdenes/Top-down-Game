@@ -14,7 +14,7 @@ public class Main {
     public static int screenHeight = 1080;
     public static void main(String[] args) {
         Lwjgl3ApplicationConfiguration cfg = new Lwjgl3ApplicationConfiguration();
-        // cfg.setResizable(false);
+        
         DisplayMode disp = Lwjgl3ApplicationConfiguration.getDisplayMode();
         cfg.setWindowedMode(disp.width, disp.height);
 
