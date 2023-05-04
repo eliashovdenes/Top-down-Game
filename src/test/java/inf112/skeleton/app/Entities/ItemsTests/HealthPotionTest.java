@@ -16,8 +16,6 @@ import inf112.skeleton.app.Southgame;
 import inf112.skeleton.app.Entities.Enums.Items;
 import inf112.skeleton.app.Entities.Items.HealthPotion;
 import inf112.skeleton.app.Mapfolder.Level1Mini;
-import inf112.skeleton.app.Mapfolder.MapInterface;
-import net.bytebuddy.agent.builder.AgentBuilder.PoolStrategy;
 
 public class HealthPotionTest {
     private HealthPotion healthPotion;

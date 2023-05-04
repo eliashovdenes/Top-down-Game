@@ -3,7 +3,7 @@ package inf112.skeleton.app.Entities;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.mock;
 
-import java.util.Vector;
+
 
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
@@ -19,7 +19,6 @@ import inf112.skeleton.app.Southgame;
 import inf112.skeleton.app.Entities.Player.Player;
 import inf112.skeleton.app.Entities.Projectiles.Arrow;
 import inf112.skeleton.app.Entities.Projectiles.Lightning;
-import inf112.skeleton.app.Entities.Projectiles.ProjectileInterface;
 import inf112.skeleton.app.Mapfolder.Level1Mini;
 import inf112.skeleton.app.Mapfolder.MapInterface;
 import inf112.skeleton.app.Entities.Projectiles.RedProjectile;
