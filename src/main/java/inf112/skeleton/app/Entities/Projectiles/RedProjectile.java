@@ -33,16 +33,7 @@ public class RedProjectile extends AbstractGameObject implements ProjectileInter
        
     }
 
-    //* setVelocity() is a method that returns a Vector2 with the correct velocity for the projectile. */
-    public Vector2 setVelocity() {
-        Vector2  veloVector = new Vector2();
-        //DirectionEnum direction = player.getPlayerDirection();
-       // if (direction == DirectionEnum.NORTH){veloVector = new Vector2(0*speed,1*speed);}
-       // if (direction == DirectionEnum.SOUTH){veloVector = new Vector2(0*speed,-1*speed);}
-      //  if (direction == DirectionEnum.WEST){veloVector = new Vector2(-1*speed,0*speed);}
-      //  if (direction == DirectionEnum.EAST){veloVector = new Vector2(1*speed,0*speed);}
-        return veloVector;
-    }
+   
 
     @Override
     // update() is a method that updates the position of the projectile. */
@@ -89,5 +80,9 @@ public class RedProjectile extends AbstractGameObject implements ProjectileInter
     @Override
     public int getDamage() {
         return attackDamage;
+    }
+    @Override
+    public float getMovementSpeed(){
+        return speed;
     }
 }

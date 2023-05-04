@@ -1,19 +1,15 @@
 package inf112.skeleton.app.Entities.PlayerTests;
 
 import org.junit.jupiter.api.*;
-import org.lwjgl.system.windows.INPUT;
 import org.mockito.Mockito;
 
-import com.badlogic.gdx.Files;
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Graphics;
 import com.badlogic.gdx.Graphics.GraphicsType;
 import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.backends.headless.HeadlessApplication;
 import com.badlogic.gdx.backends.headless.HeadlessApplicationConfiguration;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Pixmap;
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.math.Vector2;
 
@@ -21,7 +17,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.Mockito.*;
 
@@ -31,7 +26,6 @@ import inf112.skeleton.app.Southgame;
 import inf112.skeleton.app.Controller.Controller;
 import inf112.skeleton.app.Entities.Enums.DirectionEnum;
 import inf112.skeleton.app.Entities.Enums.PlayerAnimation;
-import inf112.skeleton.app.Entities.Enums.PlayerPics;
 import inf112.skeleton.app.Entities.Player.Player;
 import inf112.skeleton.app.Entities.Projectiles.Arrow;
 import inf112.skeleton.app.Entities.Projectiles.Lightning;
@@ -39,7 +33,7 @@ import inf112.skeleton.app.Mapfolder.Level1Mini;
 
 public class PlayerTest {
     private HeadlessApplication app;
-    private static Southgame Southgame;
+    private static Southgame southGame;
 
     /**
 	 * Static method run before everything else
@@ -49,7 +43,7 @@ public class PlayerTest {
         // Gdx.files = mock(Files.class);
         Gdx.gl = mock(GL20.class);       
         Gdx.gl20 = mock(GL20.class);
-        Southgame = mock(Southgame.class);
+        southGame = mock(Southgame.class);
         // Gdx.graphics = mock(Graphics.class);   
 	}
 
@@ -59,7 +53,8 @@ public class PlayerTest {
 	@BeforeEach
 	void setUpBeforeEach() {
         HeadlessApplicationConfiguration config = new HeadlessApplicationConfiguration();
-        app = new HeadlessApplication(new Southgame(), config);
+
+        app = new HeadlessApplication(southGame, config);
 
 	}
 
@@ -161,7 +156,32 @@ public class PlayerTest {
     }
 
 
+    @Test
+    void testGetExp(){
+        Player player = new Player(new Vector2(0,0),new Level1Mini(0, 0), null);
 
+        int abilitypointsBefore = player.getAbilityPoints();
+
+        assertEquals(1,player.getLevel());
+
+        for (int i=0;i<10;i++){
+            player.getExp("RedEnemy");
+        }
+        int abilitypointsAfter = player.getAbilityPoints();
+        assertNotEquals(abilitypointsBefore,abilitypointsAfter);
+        assertEquals(3,player.getLevel());
+
+        player.getExp("RedBoss");
+        assertEquals(4,player.getLevel());
+
+        for (int i=0;i<100;i++){
+            player.getExp("all the others");
+        }
+        assertEquals(14,player.getLevel());
+        
+
+
+    }
 
 
     @Test
@@ -443,17 +463,45 @@ public class PlayerTest {
         assertEquals(initialAbilityPoints - 1, player.getAbilityPoints());
     }
 
+    @Test
+    public void testHealDamage() {
+        Controller controller = mock(Controller.class, Mockito.CALLS_REAL_METHODS);
+        Level1Mini lvl1 = new Level1Mini(0, 0);
+        assertNotNull(lvl1);
+        Player player = new Player(new Vector2(0, 0), lvl1, controller);
+        
+        player.takeDamage(50);
+        assertEquals(50, player.getCurrentHitpoints());
+        player.healDamage(50);
+        assertEquals(100, player.getCurrentHitpoints());
 
+        // PLayer can take damage again
+        player.setInvincible(false);
+       
+        player.takeDamage(75);
+        assertEquals(25, player.getCurrentHitpoints());
+        player.healDamage(50);
+        assertEquals(75, player.getCurrentHitpoints());
 
+        // Overheal and see that currenthitpoints is not above maxHitpoints
+        player.setInvincible(false);
+        player.healDamage(100);
+        assertEquals(100, player.getCurrentHitpoints());
+    }
 
-
-
-
-
-
-
-
-    
-
-
+    @Test
+    public void testIsInvinvible() {
+        Controller controller = mock(Controller.class, Mockito.CALLS_REAL_METHODS);
+        Level1Mini lvl1 = new Level1Mini(0, 0);
+        assertNotNull(lvl1);
+        Player player = new Player(new Vector2(0, 0), lvl1, controller);
+        
+        player.takeDamage(50);
+        assertEquals(50, player.getCurrentHitpoints());
+        assertTrue(player.isInvincible());
+        
+        // PLayer can take damage again
+        player.setInvincible(false);
+        assertFalse(player.isInvincible());
+    }
 }

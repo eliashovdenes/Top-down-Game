@@ -15,13 +15,13 @@ import com.badlogic.gdx.math.Vector2;
 import inf112.skeleton.app.Southgame;
 import inf112.skeleton.app.Entities.Enemies.MonsterFactory;
 import inf112.skeleton.app.Entities.Enemies.MonsterInterface;
-import inf112.skeleton.app.Entities.Enemies.RedEnemy;
+import inf112.skeleton.app.Entities.Enemies.RedBoss;
 import inf112.skeleton.app.Entities.Enums.DirectionEnum;
 import inf112.skeleton.app.Mapfolder.Level1Mini;
 
-public class RedEnemyTest {
+public class RedBossTest {
     private HeadlessApplication app;
-    private RedEnemy redEnemy;
+    private RedBoss redBoss;
     private Level1Mini map; 
     
 
@@ -42,7 +42,7 @@ public class RedEnemyTest {
         Southgame game = mock(Southgame.class);
         app = new HeadlessApplication(game, config);
         map = new Level1Mini(0, 0);
-        redEnemy = new RedEnemy(map,1);
+        redBoss = new RedBoss(map,1);
         
 
 	}
@@ -58,22 +58,22 @@ public class RedEnemyTest {
 
     @Test
     public void testGetFactory() {
-        MonsterFactory factory = RedEnemy.getFactory();
+        MonsterFactory factory = RedBoss.getFactory();
 
-        assertEquals("RedEnemy", factory.name());
+        assertEquals("RedBoss", factory.name());
 
         MonsterInterface createdMonster1 = factory.create(map,1);
-        assertEquals(RedEnemy.class, createdMonster1.getClass());
+        assertEquals(RedBoss.class, createdMonster1.getClass());
 
         
     }
 
     @Test
     public void testHandleCollision_noCollision() {
-        redEnemy.update(0.5f);
-        redEnemy.handleCollision();
-        assertEquals(0.05f, redEnemy.getSpeed(), 0.01f);
-        assertEquals(0.05f, redEnemy.getSpeed(), 0.01f);
+        redBoss.update(0.5f);
+        redBoss.handleCollision();
+        assertEquals(0.5f, redBoss.getSpeed(), 0.01f);
+        assertEquals(0.5f, redBoss.getSpeed(), 0.01f);
     }
 
 
@@ -81,66 +81,65 @@ public class RedEnemyTest {
     @Test
     public void testSetAndGetSprite() {
         String newSpritePath = "src/main/resources/assets/enemyPics/enemyUp.png"; 
-        redEnemy.setSprite(newSpritePath);
+        redBoss.setSprite(newSpritePath);
 
-        assertEquals(newSpritePath, redEnemy.getSprite().getTexture().toString());
+        assertEquals(newSpritePath, redBoss.getSprite().getTexture().toString());
     }
 
     
 
     @Test
     public void testSetAndGetDirection() {
-        redEnemy.setDirection(DirectionEnum.NORTH);
-        assertEquals(DirectionEnum.NORTH, redEnemy.getDirection());
+        redBoss.setDirection(DirectionEnum.NORTH);
+        assertEquals(DirectionEnum.NORTH, redBoss.getDirection());
     }
 
     @Test
     public void testGetAndSetHealthPotionDropChance() {
         double newDropChance = 0.5;
-        redEnemy.setHealthPotionDropChance(newDropChance);
-        assertEquals(newDropChance, redEnemy.getHealthPotionDropChance(), 0.001);
+        redBoss.setHealthPotionDropChance(newDropChance);
+        assertEquals(newDropChance, redBoss.getHealthPotionDropChance(), 0.001);
     }
 
     @Test
     public void testGetWidthAndHeight() {
-        assertEquals(redEnemy.getSprite().getWidth(), redEnemy.getWidth(), 0.001);
-        assertEquals(redEnemy.getSprite().getHeight(), redEnemy.getHeight(), 0.001);
+        assertEquals(redBoss.getSprite().getWidth(), redBoss.getWidth(), 0.001);
+        assertEquals(redBoss.getSprite().getHeight(), redBoss.getHeight(), 0.001);
     }
 
     @Test
     public void testGetAndSetSpeed() {
         float newSpeed = 0.5f;
-        redEnemy.setSpeed(newSpeed);
-        assertEquals(newSpeed, redEnemy.getSpeed(), 0.001);
+        redBoss.setMovementSpeed(newSpeed);
+        assertEquals(newSpeed, redBoss.getSpeed(), 0.001);
     }
 
     @Test
     public void testGetAndSetPosition() {
         Vector2 newPosition = new Vector2(10, 10);
-        redEnemy.setPosition(newPosition);
-        assertEquals(newPosition, redEnemy.getPosition());
+        redBoss.setPosition(newPosition);
+        assertEquals(newPosition, redBoss.getPosition());
     }
 
     @Test
     public void testGetDamage() {
-        assertEquals(20, redEnemy.getDamage());
+        assertEquals(100, redBoss.getDamage());
     }
 
     @Test
     public void testGetProjectiles() {
-        assertNotNull(redEnemy.getProjectiles());
+        assertNotNull(redBoss.getProjectiles());
     }
 
     @Test 
     public void testDropHealthPotion() {
-        redEnemy.setHealthPotionDropChance(1);
-        assertTrue(redEnemy.dropHealthPotion());
+        redBoss.setHealthPotionDropChance(1);
+        assertTrue(redBoss.dropHealthPotion());
     }
 
     @Test 
     public void testGetName() {
-        assertEquals("RedEnemy", redEnemy.getName());
+        assertEquals("RedBoss", redBoss.getName());
     }
-
-
+    
 }

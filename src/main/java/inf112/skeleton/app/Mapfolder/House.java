@@ -4,7 +4,6 @@ import java.util.HashMap;
 import java.util.Map;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
-import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 
 import inf112.skeleton.app.Sound.SoundManager;
 
@@ -18,7 +17,6 @@ public class House extends TiledMap implements MapInterface {
 
     private SoundManager sm;
     private TiledMap tiledMap;
-    private OrthogonalTiledMapRenderer renderer;
     private boolean allEnemiesDead = false;
     private Map<String, Integer> enemies = new HashMap<>();
 
@@ -40,10 +38,6 @@ public class House extends TiledMap implements MapInterface {
         return tiledMap;
     }
 
-    @Override
-    public OrthogonalTiledMapRenderer getRenderer() {
-        return renderer;
-    }
    
     @Override
     public float getPlayerSpawnX() {

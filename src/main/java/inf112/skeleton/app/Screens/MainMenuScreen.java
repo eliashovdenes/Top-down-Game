@@ -115,11 +115,6 @@ public class MainMenuScreen extends ScreenAdapter {
             controller.setJustTouched(false);
             
         }
-        /*System.out.println(controller.getMenuClick().x);
-        System.out.println("  ,  ");
-        System.out.println(controller.getMenuClick().y);
-        System.out.println("...");
-        */
     }
 
     @Override

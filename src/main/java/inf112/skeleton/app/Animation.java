@@ -22,7 +22,10 @@ public class Animation {
         maxFrameTime = cycleTime / frameCount;
         frame = 0;
     }
-
+    /**
+     * updates the frame 
+     * @param dt delta time parameter decides how often the frame changes
+     */
     public void update(float dt) {
         currentFrameTime += dt;
         if (currentFrameTime > maxFrameTime) {
@@ -33,15 +36,22 @@ public class Animation {
             frame = 0;
         }
     }
-
+    /**
+     * @returns current frame.
+     */
     public TextureRegion getFrame() {
         return frames.get(frame);
     }
-
+    /**
+     * sets how long it takes for a cycle of animation.
+     * @param time 
+     */
     public void setCycleTime(float time) {
         maxFrameTime = time / frameCount;
     }
-
+    /**
+     * @return maximum frame time.
+     */
     public float getMaxFrameTime() {
         return maxFrameTime;
     }

@@ -6,8 +6,7 @@ public class ControllerTest {
 
     
     
-//checks if the controller class recieves the attack information.
-  /*  @Test
+   @Test
     void testInputAttack(){
         Controller controll = new Controller();
         assertFalse(controll.isAttack());
@@ -16,7 +15,7 @@ public class ControllerTest {
         controll.keyUp(Keys.P);
         assertFalse(controll.isAttack());
     }
- */
+ 
     @Test
     void testInputUp(){
         Controller controll = new Controller();

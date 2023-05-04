@@ -15,7 +15,7 @@ public class SoundManager {
     public aSound monsterdied;
     
     public SoundManager(){
-        this.mainMenuMusic = new aSound("src/main/resources/assets/soundfiles/Main.mp3", true);
+        this.mainMenuMusic = new aSound("assets/soundfiles/Main.mp3", true);
         this.arrowSound = new aSound("assets/soundfiles/bow-release.mp3", false);
         this.lightningMultiShotSound = new aSound("src/main/resources/assets/soundfiles/electric-shock.mp3", false);
         this.arenaSound = new aSound("src/main/resources/assets/soundfiles/arena-2.mp3", true);

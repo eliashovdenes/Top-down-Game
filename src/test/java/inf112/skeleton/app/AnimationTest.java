@@ -9,7 +9,7 @@ import com.badlogic.gdx.backends.headless.HeadlessApplicationConfiguration;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
-import com.badlogic.gdx.utils.Array;
+
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.mock;
@@ -17,14 +17,12 @@ public class AnimationTest {
     
     private HeadlessApplication app;
     private Animation animation; 
-    private Array<TextureRegion> frames;
+    //private Array<TextureRegion> frames;
     
     @BeforeAll
 	static void setUpBeforeAll() {
-        // Gdx.files = mock(Files.class);
         Gdx.gl = mock(GL20.class);       
         Gdx.gl20 = mock(GL20.class);
-        // Gdx.graphics = mock(Graphics.class);   
 	}
 
 	/**
@@ -33,7 +31,8 @@ public class AnimationTest {
 	@BeforeEach
 	void setUpBeforeEach() {
         HeadlessApplicationConfiguration config = new HeadlessApplicationConfiguration();
-        app = new HeadlessApplication(new Zelda(), config);
+        Southgame game = mock(Southgame.class);
+        app = new HeadlessApplication(game, config);
         animation = new Animation(new TextureRegion(new Texture("assets/playerPics/animationUP.png")), 12, 0.5f);
         
 	}

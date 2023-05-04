@@ -31,7 +31,8 @@ public class Level1MapTest {
 	@BeforeEach
 	void setUpBeforeEach() {
         HeadlessApplicationConfiguration config = new HeadlessApplicationConfiguration();
-        app = new HeadlessApplication(new Southgame(), config);
+        Southgame game = mock(Southgame.class);
+        app = new HeadlessApplication(game, config);
         map = new Level1Mini(0, 0);
 	}
 
@@ -41,6 +42,14 @@ public class Level1MapTest {
     @Test
     void testRunningHeadless() {
         assertTrue(Gdx.graphics.getType() == GraphicsType.Mock);
+    }
+
+    @Test
+    void testSetup(){
+        assertNotNull(map);
+        map.setup();
+        assertEquals(map.getEnemies().get("BlueEnemy"), 0);
+        assertEquals(map.getEnemies().get("RedEnemy"), 0);
     }
 
     @Test
@@ -84,4 +93,32 @@ public class Level1MapTest {
         assertNotNull(map);
         assertEquals(800, map.getEnemyBoundsToY());
     }
+
+    @Test
+    void testGetMap(){
+        assertNotNull(map);
+        assertNotNull(map.getMap());
+    }
+
+    @Test
+    void testGetMapName(){
+        assertNotNull(map);
+        assertEquals("safezone", map.getMapName());
+    }      
+    
+    @Test
+    void testStopMusic(){
+        assertNotNull(map);
+        map.stopMusic();
+    }
+
+    @Test
+    void setAllEnemiesDead(){
+        assertNotNull(map);
+        map.setAllEnemiesDead(true);
+        assertEquals(map.getAllEnemiesDead(), true);
+    }
+
+    
+    
 }

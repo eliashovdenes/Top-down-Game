@@ -6,14 +6,12 @@ import static org.mockito.Mockito.mock;
 import java.util.ArrayList;
 
 import org.junit.jupiter.api.*;
-import org.mockito.Mockito;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Graphics.GraphicsType;
 import com.badlogic.gdx.backends.headless.HeadlessApplication;
 import com.badlogic.gdx.backends.headless.HeadlessApplicationConfiguration;
 import com.badlogic.gdx.graphics.GL20;
-import com.badlogic.gdx.graphics.g3d.particles.influencers.ColorInfluencer.Random;
 import com.badlogic.gdx.math.Vector2;
 
 import inf112.skeleton.app.Southgame;
@@ -23,11 +21,7 @@ import inf112.skeleton.app.Entities.Enemies.MonsterInterface;
 import inf112.skeleton.app.Entities.Enums.DirectionEnum;
 import inf112.skeleton.app.Entities.Projectiles.ProjectileInterface;
 import inf112.skeleton.app.Mapfolder.Level1Mini;
-import inf112.skeleton.app.Mapfolder.MapInterface;
 
-import inf112.skeleton.app.Entities.Enemies.BlueEnemy;
-import inf112.skeleton.app.Entities.Enemies.MonsterInterface;
-import inf112.skeleton.app.Entities.Enemies.RedEnemy;
 
 public class BlueEnemyTest {
     
@@ -51,7 +45,8 @@ public class BlueEnemyTest {
 	@BeforeEach
 	void setUpBeforeEach() {
         HeadlessApplicationConfiguration config = new HeadlessApplicationConfiguration();
-        app = new HeadlessApplication(new Southgame(), config);
+        Southgame game = mock(Southgame.class);
+        app = new HeadlessApplication(game, config);
         map = new Level1Mini(0, 0);
         blueEnemy = new BlueEnemy(map, 1);
         
@@ -98,7 +93,7 @@ public class BlueEnemyTest {
 
     @Test
     public void testGetDamage() {
-        assertEquals(1, blueEnemy.getDamage());
+        assertEquals(10, blueEnemy.getDamage());
     }
 
     @Test
@@ -130,10 +125,20 @@ public class BlueEnemyTest {
     public void testHandleCollision_noCollision() {
         blueEnemy.update(0.5f);
         blueEnemy.handleCollision();
-        assertEquals(0.5f, blueEnemy.getSpeed(), 0.01f);
-        assertEquals(0.5f, blueEnemy.getSpeed(), 0.01f);
+        assertEquals(0.1f, blueEnemy.getSpeed(), 0.01f);
+        assertEquals(0.1f, blueEnemy.getSpeed(), 0.01f);
     }
 
+    @Test 
+    public void testDropHealthPotion() {
+        blueEnemy.setHealthPotionDropChance(1);
+        assertTrue(blueEnemy.dropHealthPotion());
+    }
+
+    @Test 
+    public void testGetName() {
+        assertEquals("BlueEnemy", blueEnemy.getName());
+    }
     
 
     

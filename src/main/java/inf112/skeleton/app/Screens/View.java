@@ -47,7 +47,7 @@ public class View implements Screen {
     private BitmapFont hpText = new BitmapFont();
     private BitmapFont pauseText = new BitmapFont();
     private Southgame game;
-    private MonsterInterface monsterI;
+    //private MonsterInterface monsterI;
     private boolean paused = false;
     private Controller controller;
     public HashMap<AbstractGameObject, Rectangle> enemies = new HashMap<>();
@@ -69,6 +69,13 @@ public class View implements Screen {
     TiledMap nyMap;
     SpriteBatch batch;
     
+    
+    /**
+     * Contructor to be used when exiting shop (we don't need new coordinates for player)
+     * @param game current game
+     * @param controller current controller
+     * @param playerI current player
+     */
     public View(Southgame game, Controller controller, PlayerInterface playerI) {
         this.game = game;
         this.controller = controller;    
@@ -79,6 +86,12 @@ public class View implements Screen {
         setup();
         
     }   
+    /**
+     * Contructor to be used when creating a new game. Sets player spawn location
+     * @param game new game game
+     * @param controller current controller
+     * @param playerI new player
+     */
     public View(Southgame game, Controller controller, PlayerInterface playerI, float x,float y){
         this.game = game;
         this.controller = controller;    
@@ -97,19 +110,26 @@ public class View implements Screen {
         monsterFactories.put(redEnemyFactory.name(), redEnemyFactory);
         monsterFactories.put(redBossFactory.name(), redBossFactory);      
     }
-
+    /**
+     * Spawns the enemies on the map and scales enemies according to player-level.
+     * 
+     * @param enemies to be spawned.
+     * @param scaler set difficulty
+     * @param mapI map to spawn enemies
+     */
     public void spawn(Map<String, Integer> enemies, float scaler, MapInterface mapI) {
         for (String enemy : enemies.keySet()) {
             float scale;
             if (enemy == "RedBoss") {scale = 1;}
             else scale = scaler;
-            for (int i=0; i < enemies.get(enemy) * Math.round(scale); i++){
-                MonsterFactory monsterFactory = monsterFactories.get(enemy);
-                MonsterInterface monster = monsterFactory.create(mapI, scaler);
-                if (scaler > 1 && enemy == "RedBoss"){ monster.giveShootingPermission();}
-                monsterList.add(monster);
-            }
-            enemiesremaining = monsterList.size();
+            if (enemies.get(enemy) > 0) {
+                for (int i=0; i < enemies.get(enemy) + Math.round(scale-1); i++){
+                    MonsterFactory monsterFactory = monsterFactories.get(enemy);
+                    MonsterInterface monster = monsterFactory.create(mapI, scaler);
+                    if (scaler > 1 && enemy == "RedBoss"){ monster.giveShootingPermission();}
+                    monsterList.add(monster);
+                }
+            }           
         }
     }
 
@@ -204,7 +224,7 @@ public class View implements Screen {
         CopyOnWriteArrayList<MonsterInterface> deadMonsterList = new CopyOnWriteArrayList<>();
         CopyOnWriteArrayList<ItemImpl> itemsToRemove = new CopyOnWriteArrayList<>();
         CopyOnWriteArrayList<ProjectileInterface> projectilesToRemove = new CopyOnWriteArrayList<>();
-
+        CopyOnWriteArrayList<ProjectileInterface> monsterProjectilesToRemove = new CopyOnWriteArrayList<>();
         //draw projectiles and check if they hit enemy.
         for (ProjectileInterface projectile : playerI.getProjectiles()){
             projectile.getSprite().draw(batch);
@@ -241,13 +261,17 @@ public class View implements Screen {
             }
             for (ProjectileInterface projectile : monsterI.getProjectiles()){
                 projectile.getSprite().draw(batch);
+                if (projectile.getPosition().dst(monsterI.getPosition())>100){
+                    monsterProjectilesToRemove.add(projectile);
+                }
                 if (projectile.getRect().overlaps(playerI.getRect())) { 
                     playerI.takeDamage(projectile.getDamage());
-                    projectilesToRemove.add(projectile);
+                    monsterProjectilesToRemove.add(projectile);
                 }
+
                 
             }
-                
+            monsterI.getProjectiles().removeAll(monsterProjectilesToRemove);    
             //check if monster and player is colliding. if so, player takes damage
             if (monsterI.getRect().overlaps(playerI.getRect())) {
                 playerI.takeDamage(monsterI.getDamage());
@@ -330,7 +354,9 @@ public class View implements Screen {
         map.dispose();
         renderer.dispose();      
     }
-
+    /**
+     * @return a list of all monster objects.
+     */
     public ArrayList<MonsterInterface> getMonsterList() {
         return this.monsterList;
     }

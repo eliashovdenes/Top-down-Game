@@ -12,12 +12,10 @@ import com.badlogic.gdx.backends.headless.HeadlessApplicationConfiguration;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.math.Vector2;
 
-import inf112.skeleton.app.Zelda;
+import inf112.skeleton.app.Southgame;
 import inf112.skeleton.app.Entities.Enums.Items;
 import inf112.skeleton.app.Entities.Items.HealthPotion;
 import inf112.skeleton.app.Mapfolder.Level1Mini;
-import inf112.skeleton.app.Mapfolder.MapInterface;
-import net.bytebuddy.agent.builder.AgentBuilder.PoolStrategy;
 
 public class HealthPotionTest {
     private HealthPotion healthPotion;
@@ -41,7 +39,8 @@ public class HealthPotionTest {
 	@BeforeEach
 	void setUpBeforeEach() {
         HeadlessApplicationConfiguration config = new HeadlessApplicationConfiguration();
-        app = new HeadlessApplication(new Zelda(), config);
+        Southgame game = mock(Southgame.class);
+        app = new HeadlessApplication(game, config);
         map = new Level1Mini(0, 0);
         position = new Vector2(0, 0);
         healthPotion = new HealthPotion(position, map);
@@ -80,5 +79,11 @@ public class HealthPotionTest {
         assertEquals(position.y, healthPotion.getRect().y, 0.001f);
         assertEquals(healthPotion.getWidth(), healthPotion.getRect().width, 0.001f);
         assertEquals(healthPotion.getHeight(), healthPotion.getRect().height, 0.001f);
+    }
+    @Test
+    public void testUpdate(){
+        healthPotion.update(1f);
+
+        assertEquals(healthPotion.getSprite().getX(),healthPotion.getPosition().y);
     }
 }

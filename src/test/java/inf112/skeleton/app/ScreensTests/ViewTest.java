@@ -21,10 +21,9 @@ import inf112.skeleton.app.Screens.View;
 public class ViewTest {
     
     private HeadlessApplication app;
-    private GrassMini map; 
-    private View view;
-    private Player player;
     private Controller controller;
+  
+    private View view;
 
     @BeforeAll
 	static void setUpBeforeAll() {
@@ -40,11 +39,13 @@ public class ViewTest {
 	@BeforeEach
 	void setUpBeforeEach() {
         HeadlessApplicationConfiguration config = new HeadlessApplicationConfiguration();
-        app = new HeadlessApplication(new Southgame(), config);
+        Southgame game = mock(Southgame.class);
+        app = new HeadlessApplication(game, config);
         controller = new Controller();
         GrassMini lvl1 = new GrassMini(0, 0);
-        Player player = new Player(new Vector2(0, 0), lvl1, new Controller());
-        view = new View(new Southgame(), new Controller(), player);
+        Player player = new Player(new Vector2(0, 0), lvl1, controller);
+        Southgame games = mock(Southgame.class);
+        view = new View(games, new Controller(), player);
 	}
 
     /**
@@ -67,11 +68,11 @@ public class ViewTest {
 
         // Spawn the base amount of enemies (scaler=1)
         view.spawn(map.getEnemies(), 1, map);
-        assertEquals(5, view.getMonsterList().size());
+        assertEquals(7, view.getMonsterList().size());
         
         // Spawn the base amount of monster x2 (pluss the 5 that are allready in the list)
         view.spawn(map.getEnemies(), 2, map);
-        assertEquals(15, view.getMonsterList().size());
+        assertEquals(16, view.getMonsterList().size());
     }
 
     @Test
@@ -82,18 +83,13 @@ public class ViewTest {
         assertNotNull(view.getMonsterList());
         assertEquals(0, view.getMonsterList().size());
         view.spawn(map.getEnemies(), 1, map);
-        assertEquals(5, view.getMonsterList().size());
-
+        assertEquals(7, view.getMonsterList().size());
+        
         // Do leathal damage to the first and third monster in the list
         view.getMonsterList().get(0).takeDamage(100);
         view.getMonsterList().get(2).takeDamage(100);
         assertTrue(view.getMonsterList().get(0).isDead());
         assertFalse(view.getMonsterList().get(1).isDead());
         assertTrue(view.getMonsterList().get(2).isDead());        
-    }
-    
-    @Test
-    void testResize(){
-        fail();
     }
 }

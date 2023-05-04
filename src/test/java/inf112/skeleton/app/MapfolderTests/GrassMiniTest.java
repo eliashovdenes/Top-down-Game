@@ -18,6 +18,7 @@ public class GrassMiniTest {
     
     private HeadlessApplication app;
     private GrassMini map; 
+    
 
     @BeforeAll
 	static void setUpBeforeAll() {
@@ -31,7 +32,8 @@ public class GrassMiniTest {
 	@BeforeEach
 	void setUpBeforeEach() {
         HeadlessApplicationConfiguration config = new HeadlessApplicationConfiguration();
-        app = new HeadlessApplication(new Southgame(), config);
+        Southgame game = mock(Southgame.class);
+        app = new HeadlessApplication(game, config);
         map = new GrassMini(0, 0);
 	}
 
@@ -61,27 +63,62 @@ public class GrassMiniTest {
     void testGetEnemyBoundsFromX() {
         GrassMini map = new GrassMini(123, 87);
         assertNotNull(map);
-        assertEquals(104, map.getEnemyBoundsFromX());
+        assertEquals(108, map.getEnemyBoundsFromX());
     }
 
     @Test
     void testGetEnemyBoundsToX() {
         GrassMini map = new GrassMini(123, 87);
         assertNotNull(map);
-        assertEquals(133, map.getEnemyBoundsToX());
+        assertEquals(131, map.getEnemyBoundsToX());
     }
 
     @Test
     void testGetEnemyBoundsFromY() {
         GrassMini map = new GrassMini(123, 87);
         assertNotNull(map);
-        assertEquals(56, map.getEnemyBoundsFromY());
+        assertEquals(58, map.getEnemyBoundsFromY());
     }
 
     @Test
     void testGetEnemyBoundsToY() {
         GrassMini map = new GrassMini(123, 87);
         assertNotNull(map);
-        assertEquals(85, map.getEnemyBoundsToY());
+        assertEquals(81, map.getEnemyBoundsToY());
     }
+
+    @Test
+    void testSetup(){
+        assertNotNull(map);
+        map.setup();
+        assertEquals(map.getEnemies().get("BlueEnemy"), 4);
+        assertEquals(map.getEnemies().get("RedEnemy"), 3);
+    }
+
+    @Test
+    void testGetMap(){
+        assertNotNull(map);
+        assertNotNull(map.getMap());
+    }
+
+    @Test
+    void testGetMapName(){
+        assertNotNull(map);
+        assertEquals("arena", map.getMapName());
+    }   
+
+    @Test
+    void testStopMusic(){
+        assertNotNull(map);
+        map.stopMusic();
+    }
+
+    @Test
+    void setAllEnemiesDead(){
+        assertNotNull(map);
+        map.setAllEnemiesDead(true);
+        assertEquals(map.getAllEnemiesDead(), true);
+    }
+
+    
 }

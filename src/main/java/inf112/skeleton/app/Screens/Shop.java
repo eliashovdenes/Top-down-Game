@@ -17,7 +17,7 @@ import com.badlogic.gdx.math.Vector3;
 import inf112.skeleton.app.Southgame;
 import inf112.skeleton.app.Controller.Controller;
 import inf112.skeleton.app.Entities.Player.PlayerInterface;
-import inf112.skeleton.app.Sound.SoundManager;
+
 
 
 
@@ -27,7 +27,6 @@ public class Shop extends ScreenAdapter {
     private Southgame game;
     private BitmapFont font;
     private Controller controller;
-    private SoundManager SM;
     private PlayerInterface playerI;
     private ShapeRenderer shape;
     Rectangle upgradeArrowRect,upgradeLightningRect,upgradePlayerHealthRect,upgradeMovementSpeed;
@@ -47,7 +46,6 @@ public class Shop extends ScreenAdapter {
         this.controller = controller;
         batch = new SpriteBatch();
         font = new BitmapFont();
-        this.SM = new SoundManager();
         this.playerI = playerI;
 
 

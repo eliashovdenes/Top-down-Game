@@ -3,7 +3,6 @@ package inf112.skeleton.app.Mapfolder;
 import java.util.Map;
 
 import com.badlogic.gdx.maps.tiled.TiledMap;
-import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 
 
 public interface MapInterface {
@@ -23,11 +22,7 @@ public interface MapInterface {
      */
     public TiledMap getMap();
 
-    /**
-     * 
-     * @return OrthogonalTiledMapRenderer object associated with the map.
-     */
-    public OrthogonalTiledMapRenderer getRenderer();
+    
 
     /**
      * @return  x-coordinate spawn point
@@ -75,10 +70,23 @@ public interface MapInterface {
      */
     public Map<String, Integer> getEnemies();
 
+    /**
+     * Parameter decides if player can leave arena.
+     * @param allEnemiesDead true: player can leave arena, false: player can't leave arena.s
+     */
+
     public void setAllEnemiesDead(boolean allEnemiesDead);
 
+    /**
+     * 
+     * @return if enemy can leave arena map.
+     */
     public boolean getAllEnemiesDead();
 
+    /**
+     * 
+     * @return string of map name.
+     */
     public String getMapName();
 
 }

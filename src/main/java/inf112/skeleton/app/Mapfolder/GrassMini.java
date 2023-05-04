@@ -5,7 +5,6 @@ import java.util.Map;
 
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
-import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 
 import inf112.skeleton.app.Sound.SoundManager;
 
@@ -21,7 +20,7 @@ public class GrassMini extends TiledMap implements MapInterface {
     
     private SoundManager sm;
     private TiledMap tiledMap;
-    private OrthogonalTiledMapRenderer renderer;
+
     private Map<String, Integer> enemies = new HashMap<>();
     private boolean allEnemiesDead = false;
 
@@ -37,7 +36,7 @@ public class GrassMini extends TiledMap implements MapInterface {
 
     @Override
     public void setup() {
-        enemies.put("BlueEnemy", 2);
+        enemies.put("BlueEnemy", 4);
         enemies.put("RedEnemy", 3);   
         // enemies.put("RedBoss", 1);   
     }
@@ -47,10 +46,7 @@ public class GrassMini extends TiledMap implements MapInterface {
         return tiledMap;
     }
 
-    @Override
-    public OrthogonalTiledMapRenderer getRenderer() {
-        return renderer;
-    }
+   
 
     @Override
     public float getPlayerSpawnX() {

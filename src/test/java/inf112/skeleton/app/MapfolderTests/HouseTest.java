@@ -33,7 +33,8 @@ public class HouseTest {
 	@BeforeEach
 	void setUpBeforeEach() {
         HeadlessApplicationConfiguration config = new HeadlessApplicationConfiguration();
-        app = new HeadlessApplication(new Southgame(), config);
+        Southgame game = mock(Southgame.class);
+        app = new HeadlessApplication(game, config);
         map = new House();
 	}
 
@@ -87,4 +88,39 @@ public class HouseTest {
         assertNotNull(map);
         assertEquals(34, map.getEnemyBoundsToY());
     }
+
+    @Test
+    void testSetup(){
+        assertNotNull(map);
+        map.setup();
+        assertEquals(map.getEnemies().get("BlueEnemy"), 0);
+        assertEquals(map.getEnemies().get("RedEnemy"), 0);
+    }
+
+    @Test
+    void testGetMap(){
+        assertNotNull(map);
+        assertNotNull(map.getMap());
+    }
+
+    @Test
+    void testGetMapName(){
+        assertNotNull(map);
+        assertEquals("house", map.getMapName());
+    }   
+
+    @Test
+    void testStopMusic(){
+        assertNotNull(map);
+        map.stopMusic();
+    }
+
+    @Test
+    void setAllEnemiesDead(){
+        assertNotNull(map);
+        map.setAllEnemiesDead(true);
+        assertEquals(map.getAllEnemiesDead(), true);
+    }
+
+    
 }
