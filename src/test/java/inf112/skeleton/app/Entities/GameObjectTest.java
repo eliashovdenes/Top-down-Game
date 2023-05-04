@@ -17,13 +17,10 @@ import com.badlogic.gdx.math.Vector2;
 import inf112.skeleton.app.Southgame;
 import inf112.skeleton.app.Controller.Controller;
 import inf112.skeleton.app.Entities.Enemies.RedEnemy;
-import inf112.skeleton.app.Entities.Enums.DirectionEnum;
-import inf112.skeleton.app.Entities.Enums.PlayerAnimation;
 import inf112.skeleton.app.Entities.Enums.PlayerPics;
 import inf112.skeleton.app.Entities.Player.Player;
 import inf112.skeleton.app.Entities.Projectiles.Arrow;
 import inf112.skeleton.app.Entities.Projectiles.Lightning;
-import inf112.skeleton.app.Mapfolder.GrassMini;
 import inf112.skeleton.app.Mapfolder.Level1Mini;
 
 public class GameObjectTest {

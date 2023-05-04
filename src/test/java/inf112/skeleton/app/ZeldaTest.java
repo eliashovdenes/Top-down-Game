@@ -2,7 +2,7 @@ package inf112.skeleton.app;
 
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.junit.jupiter.api.Assertions.fail;
+
 
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
@@ -29,9 +29,5 @@ public class ZeldaTest {
         assertTrue(controller instanceof Controller);
     }
 
-    // @Test
-    // public void testCreate(){
-    //     //TODO: implement test (fikk det ikke til!)
-    //     fail();
-    // }
+   
 }

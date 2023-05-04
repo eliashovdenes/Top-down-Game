@@ -1,19 +1,15 @@
 package inf112.skeleton.app.Entities.PlayerTests;
 
 import org.junit.jupiter.api.*;
-import org.lwjgl.system.windows.INPUT;
 import org.mockito.Mockito;
 
-import com.badlogic.gdx.Files;
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Graphics;
 import com.badlogic.gdx.Graphics.GraphicsType;
 import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.backends.headless.HeadlessApplication;
 import com.badlogic.gdx.backends.headless.HeadlessApplicationConfiguration;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Pixmap;
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.math.Vector2;
 
@@ -21,7 +17,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.Mockito.*;
 
@@ -31,7 +26,6 @@ import inf112.skeleton.app.Southgame;
 import inf112.skeleton.app.Controller.Controller;
 import inf112.skeleton.app.Entities.Enums.DirectionEnum;
 import inf112.skeleton.app.Entities.Enums.PlayerAnimation;
-import inf112.skeleton.app.Entities.Enums.PlayerPics;
 import inf112.skeleton.app.Entities.Player.Player;
 import inf112.skeleton.app.Entities.Projectiles.Arrow;
 import inf112.skeleton.app.Entities.Projectiles.Lightning;

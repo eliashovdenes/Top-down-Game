@@ -21,10 +21,8 @@ import inf112.skeleton.app.Screens.View;
 public class ViewTest {
     
     private HeadlessApplication app;
-    private GrassMini map; 
+  
     private View view;
-    private Player player;
-    private Controller controller;
 
     @BeforeAll
 	static void setUpBeforeAll() {

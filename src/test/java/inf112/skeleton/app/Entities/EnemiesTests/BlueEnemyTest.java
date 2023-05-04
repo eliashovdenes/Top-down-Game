@@ -6,14 +6,12 @@ import static org.mockito.Mockito.mock;
 import java.util.ArrayList;
 
 import org.junit.jupiter.api.*;
-import org.mockito.Mockito;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Graphics.GraphicsType;
 import com.badlogic.gdx.backends.headless.HeadlessApplication;
 import com.badlogic.gdx.backends.headless.HeadlessApplicationConfiguration;
 import com.badlogic.gdx.graphics.GL20;
-import com.badlogic.gdx.graphics.g3d.particles.influencers.ColorInfluencer.Random;
 import com.badlogic.gdx.math.Vector2;
 
 import inf112.skeleton.app.Southgame;
@@ -23,11 +21,7 @@ import inf112.skeleton.app.Entities.Enemies.MonsterInterface;
 import inf112.skeleton.app.Entities.Enums.DirectionEnum;
 import inf112.skeleton.app.Entities.Projectiles.ProjectileInterface;
 import inf112.skeleton.app.Mapfolder.Level1Mini;
-import inf112.skeleton.app.Mapfolder.MapInterface;
 
-import inf112.skeleton.app.Entities.Enemies.BlueEnemy;
-import inf112.skeleton.app.Entities.Enemies.MonsterInterface;
-import inf112.skeleton.app.Entities.Enemies.RedEnemy;
 
 public class BlueEnemyTest {
     

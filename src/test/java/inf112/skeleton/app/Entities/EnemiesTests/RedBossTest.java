@@ -16,7 +16,6 @@ import inf112.skeleton.app.Southgame;
 import inf112.skeleton.app.Entities.Enemies.MonsterFactory;
 import inf112.skeleton.app.Entities.Enemies.MonsterInterface;
 import inf112.skeleton.app.Entities.Enemies.RedBoss;
-import inf112.skeleton.app.Entities.Enemies.RedEnemy;
 import inf112.skeleton.app.Entities.Enums.DirectionEnum;
 import inf112.skeleton.app.Mapfolder.Level1Mini;
 
