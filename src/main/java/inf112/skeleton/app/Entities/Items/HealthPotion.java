@@ -27,6 +27,7 @@ public class HealthPotion implements ItemImpl{
         this.healAmount = healAmount;
     }
 
+    
     public int getHealAmount() {
         return this.healAmount;
     }

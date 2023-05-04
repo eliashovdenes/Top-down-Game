@@ -35,7 +35,6 @@ public class Arrow extends AbstractGameObject implements ProjectileInterface  {
     }
 
     @Override
-    // update() is a method that updates the position of the arrow. */
     public void update(float delta) {
 
         if (velocity.x == 0 && velocity.y==0){

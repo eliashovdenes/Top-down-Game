@@ -30,13 +30,33 @@ public interface ItemImpl {
      */
     float getHeight();
 
+    /**
+
+     * @return rectangle of item
+     */
     public Rectangle getRect();
 
-    Vector2 getPosition();
+    /**
+     * 
+     * @return position-vector of item
+     */
+    public Vector2 getPosition();
 
-    void update(float delta);
+    
+    /**
+     * update changable variables of item
+     * @param delta time
+     */
+    public void update(float delta);
 
+    /**
+     * set amount that healthpotion heals
+     * @param healAmount
+     */
     public void setHealAmount(int healAmount);
-
+    
+    /**
+     * @return amount that healthpotions heal
+     */
     public int getHealAmount();
 }

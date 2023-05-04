@@ -32,17 +32,13 @@ public class Lightning extends AbstractGameObject implements ProjectileInterface
     }
        
     @Override
-    // update() is a method that updates the position of the lightning */
     public void update(float delta) {
         
         position.x+=velocity.x;
         position.y+=velocity.y;
         
         sprite.setPosition(this.position.x,this.position.y);
-        
-        //setter origin for sprite før rotering for at den skal spinne rundt egen akse.
-        //kanskje litt kult hvis den ikke stemmer?
-        
+   
         
 
         sprite.setOrigin(sprite.getWidth()/2,sprite.getHeight()/2);
@@ -58,7 +54,6 @@ public class Lightning extends AbstractGameObject implements ProjectileInterface
         
         
         
-       // ApplyMovement();
          
     }
 
@@ -87,12 +82,6 @@ public class Lightning extends AbstractGameObject implements ProjectileInterface
     @Override
     public float getHeight() {
         return sprite.getHeight();
-    }
-
-    public Vector2 setVelocity() {
-        return null;
-  
-
     }
 
     @Override
