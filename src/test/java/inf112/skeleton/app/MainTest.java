@@ -70,18 +70,13 @@ public class MainTest {
     }
 
     @Test
-    public void testGame() {
-        // Starter spillet og sjekker at det ikke krasjer eller gir noen feilmeldinger
-        // Lwjgl3ApplicationConfiguration cfg = new Lwjgl3ApplicationConfiguration();
-        // cfg.setWindowedMode(1280, 720);
-        // Lwjgl3Application screen = new Lwjgl3Application(new Southgame(), cfg);
+    public void testDefaultHeight() {
+        assertEquals(main.getDefaultHeight(), 1080);
+    }
 
-        Main main = new Main();
-        
-        assertEquals(main.toString(), "inf112.skeleton.app.Main@22fa55b2");
-        
-        
-        // screenshotTaker.takeScreenshot();
+    @Test
+    public void testDefaultWidth() {
+        assertEquals(main.getDefaultWidth(), 1920);
     }
 
 }
