@@ -31,13 +31,6 @@ public class CreditScreen extends ScreenAdapter {
         this.game = southGame;
         this.controller = controller;
         batch = new SpriteBatch();
-        //TODO legg til behagelig credits musikk
-        //SM.mainMenuMusic.play();
-
-            //creating rectangles based on app graphics
-
-        float screenWidth = Gdx.graphics.getWidth();
-        float screenHeight = Gdx.graphics.getHeight();
 
 
         // Create the camera and set its position to the center of the screen
