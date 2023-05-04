@@ -100,36 +100,37 @@ public class SoundTest {
 
     @Test
     public void testHit(){
-        soundManager.house.play();
-        assertTrue(soundManager.house.getSoundString()=="assets/soundfiles/takehit.mp3");
-        soundManager.house.stop();
-        soundManager.house.dispose();
+        soundManager.hit.play();
+        assertTrue(soundManager.hit.getSoundString()=="assets/soundfiles/takehit.mp3");
+        soundManager.hit.stop();
+        soundManager.hit.dispose();
     }
     @Test
     public void testkillAllEnemies(){
-        soundManager.house.play();
-        assertTrue(soundManager.house.getSoundString()=="assets/soundfiles/dead.mp3");
-        soundManager.house.stop();
-        soundManager.house.dispose();
+        soundManager.killedAllEnemies.play();
+        assertTrue(soundManager.killedAllEnemies.getSoundString()=="assets/soundfiles/dead.mp3");
+        soundManager.killedAllEnemies.stop();
+        soundManager.killedAllEnemies.dispose();
     }
     @Test
     public void testStart(){
-        soundManager.house.play();
-        assertTrue(soundManager.house.getSoundString()=="assets/soundfiles/start.mp3");
-        soundManager.house.stop();
-        soundManager.house.dispose();
+        soundManager.start.play();
+        assertTrue(soundManager.start.getSoundString()=="assets/soundfiles/start.mp3");
+        soundManager.start.stop();
+        soundManager.start.dispose();
     }
     @Test
     public void testMonsterDied(){
-        soundManager.house.play();
-        assertTrue(soundManager.house.getSoundString()=="assets/soundfiles/monsterdied.mp3");
-        soundManager.house.stop();
-        soundManager.house.dispose();
+        soundManager.monsterdied.play();
+        assertTrue(soundManager.monsterdied.getSoundString()=="assets/soundfiles/monsterdied.mp3");
+        soundManager.monsterdied.stop();
+        soundManager.monsterdied.dispose();
     }
-    this.hit = new aSound(, false);
-        this.killedAllEnemies = new aSound(, false);
-        this.start = new aSound(, false);
-        this.kill = new aSound(, false);
-        this.monsterdied = new aSound(, false);
-
+    @Test
+    public void testKill(){
+        soundManager.kill.play();
+        assertTrue(soundManager.kill.getSoundString()=="assets/soundfiles/killed.mp3");
+        soundManager.kill.stop();
+        soundManager.kill.dispose();
+    }
 }
