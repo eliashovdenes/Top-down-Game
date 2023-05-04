@@ -66,9 +66,9 @@ public class Player extends AbstractGameObject implements PlayerInterface {
         this.controller = controller;
         setSprite(PlayerPics.ATTACKDOWN.source);
         sprite.setPosition(position.x, position.y);
+        sprite.setSize(16, 16);
         rectangle = new Rectangle(position.x, position.y, getWidth(), getHeight());
         this.SM = new SoundManager();
-        sprite.setSize(16, 16);
         this.lives = 3;
         this.setMaxhitpoints(100);
         this.setCurrentHitPoints(this.getMaxHitpoints());

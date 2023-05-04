@@ -17,17 +17,17 @@ import inf112.skeleton.app.Mapfolder.MapInterface;
 
 public class RedEnemy extends AbstractGameObject implements MonsterInterface  {
 
-    Sprite sprite;
-    int attackDamage = 20;
-    float fromX,fromY,toX,toY;
-    float speed;
+    private Sprite sprite;
+    private int attackDamage = 20;
+    private float fromX,fromY,toX,toY;
+    private float speed;
     private DirectionEnum direction;
-    MapInterface map;
+    private MapInterface map;
     private double healthPotionDropChance;
     private Random random;
-    public ArrayList<ProjectileInterface> projectileList;
+    private ArrayList<ProjectileInterface> projectileList;
     private float shootTimer = 0.0f;
-    private final float shootCooldown = 3.0f;
+    private float shootCooldown;
     private int projectileDamage;
     private float time = 0;
 
@@ -44,6 +44,7 @@ public class RedEnemy extends AbstractGameObject implements MonsterInterface  {
         projectileList = new ArrayList<ProjectileInterface>();
         this.projectileDamage = Math.round(10 * scaler);
         this.speed = scaler/20;
+        this.shootCooldown = this.getRandomCooldown(3, 5);
     }
 
     public RedEnemy() {
@@ -75,15 +76,12 @@ public class RedEnemy extends AbstractGameObject implements MonsterInterface  {
     public void handleCollision() {
             if (xCollision()){
                 position.x = recentPosition.x;
-                velocity.x = - velocity.x;
-                
+                velocity.x = - velocity.x;               
             }
             if (yCollision()){
                 position.y=recentPosition.y;
-                velocity.y = - velocity.y;
-                
-            }
-            
+                velocity.y = - velocity.y;               
+            }          
         }
 
     public void followPlayer(float x, float y) {
@@ -195,30 +193,24 @@ public class RedEnemy extends AbstractGameObject implements MonsterInterface  {
         this.healthPotionDropChance = chance;
     }
 
-    private void shootRedProjectile(float delta, int damage) {
-
+    private void shootRedProjectile(float delta, int damage) {      
         if (shootTimer <= 0) {
-
-            // set velocity based on enemy direction.
-            Vector2 velocity = new Vector2();
-            if (this.direction == DirectionEnum.NORTH)
-                velocity.set(0, 1);
-            if (this.direction == DirectionEnum.EAST)
-                velocity.set(1, 0);
-            if (this.direction == DirectionEnum.WEST)
-                velocity.set(-1, 0);
-            if (this.direction == DirectionEnum.SOUTH)
-                velocity.set(0, -1);
-
-            // projectile created and added.
             Vector2 projectilePos = new Vector2(position.x, position.y);
-            RedProjectile projectile = new RedProjectile(projectilePos, map, velocity, this, damage);
-            projectileList.add(projectile);
-            shootTimer = shootCooldown;  
+            createProjectile(projectilePos, map, new Vector2(1, 0), this, damage);
+            createProjectile(projectilePos, map, new Vector2(-1, 0), this, damage);
+            createProjectile(projectilePos, map, new Vector2(0, 1), this, damage);
+            createProjectile(projectilePos, map, new Vector2(0, -1), this, damage);
+    
+            shootTimer = shootCooldown; 
         }
         else {
             shootTimer -= delta;
         }
+    }
+
+    private void createProjectile(Vector2 position, MapInterface mapI, Vector2 velocity, MonsterInterface monster, int damage) {
+        RedProjectile projectile = new RedProjectile(new Vector2(position), mapI, velocity, monster, damage);
+        projectileList.add(projectile);           
     }
 
     @Override
@@ -238,13 +230,8 @@ public class RedEnemy extends AbstractGameObject implements MonsterInterface  {
         this.position = position;
     }
 
-    @Override
-    public void giveShootingPermission() {
-        
-    }
-
-    
-
-
-    
+    private float getRandomCooldown(int min, int max) {
+        Random random = new Random();
+        return min + random.nextFloat() * (max - min);
+    }   
 }

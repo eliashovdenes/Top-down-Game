@@ -6,7 +6,7 @@ import static org.junit.jupiter.api.Assertions.*;
 public class AnimationTest {
     
     @Test
-    void testAnmiation(){
+    void testAnimation(){
         fail();
         //todo
     }

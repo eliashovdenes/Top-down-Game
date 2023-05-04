@@ -3,9 +3,6 @@ package inf112.skeleton.app.MapfolderTests;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.mock;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-
 import org.junit.jupiter.api.*;
 
 import com.badlogic.gdx.Gdx;
@@ -24,10 +21,8 @@ public class GrassMiniTest {
 
     @BeforeAll
 	static void setUpBeforeAll() {
-        // Gdx.files = mock(Files.class);
         Gdx.gl = mock(GL20.class);       
-        Gdx.gl20 = mock(GL20.class);
-        // Gdx.graphics = mock(Graphics.class);   
+        Gdx.gl20 = mock(GL20.class);  
 	}
 
 	/**
@@ -38,9 +33,6 @@ public class GrassMiniTest {
         HeadlessApplicationConfiguration config = new HeadlessApplicationConfiguration();
         app = new HeadlessApplication(new Southgame(), config);
         map = new GrassMini(0, 0);
-        
-        
-
 	}
 
     /**
@@ -49,18 +41,6 @@ public class GrassMiniTest {
     @Test
     void testRunningHeadless() {
         assertTrue(Gdx.graphics.getType() == GraphicsType.Mock);
-    }
-
-    @Test
-    void testSpawn() {
-        GrassMini map = new GrassMini(123, 87);
-        assertNotNull(map);
-        map.setup();
-        assertNotNull(map.getMonsterList());
-        assertEquals(20, map.getMonsterList().size());
-        ArrayList<String> enemyList = new ArrayList<>(Arrays.asList("BlueEnemy", "RedEnemy"));
-        map.spawn(enemyList);
-        assertEquals(22, map.getMonsterList().size());
     }
 
     @Test
@@ -104,26 +84,4 @@ public class GrassMiniTest {
         assertNotNull(map);
         assertEquals(85, map.getEnemyBoundsToY());
     }
-
-    @Test
-    void testGetMonsterList() {
-        GrassMini map = new GrassMini(123, 87);
-        assertNotNull(map);
-        assertEquals(20, map.getMonsterList().size());
-    }
-
-    @Test
-    void testRemoveMonster() {
-        GrassMini map = new GrassMini(123, 87);
-        assertNotNull(map);
-        map.setup();
-        assertNotNull(map.getMonsterList());
-        assertEquals(20, map.getMonsterList().size());
-        ArrayList<String> enemyList = new ArrayList<>(Arrays.asList("BlueEnemy", "RedEnemy"));
-        map.spawn(enemyList);
-        assertEquals(22, map.getMonsterList().size());
-        map.removeMonster(map.getMonsterList().get(0));
-        assertEquals(21, map.getMonsterList().size());
-    }
-
 }

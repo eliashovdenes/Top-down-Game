@@ -112,8 +112,8 @@ public class MainMenuScreen extends ScreenAdapter {
         
         if (controller.getJustTouched()){
             
-            Vector3 hei = new Vector3(controller.getMenuClick(),0);
-            camera.unproject(hei);
+            Vector3 menuClick = new Vector3(controller.getMenuClick(),0);
+            camera.unproject(menuClick);
             SM.buttonClick.play();
             SM.mainMenuMusic.stop();
 
@@ -124,14 +124,14 @@ public class MainMenuScreen extends ScreenAdapter {
                 SM.mainMenuMusic.stop();
                 SM.mainMenuMusic.dispose();
             }
-            if (instructionsRect.contains(hei.x,hei.y)){
+            if (instructionsRect.contains(menuClick.x,menuClick.y)){
                 game.setScreen(new InstructionScreen(game, controller));
             }
 
-            if (creditsRect.contains(hei.x,hei.y)){
+            if (creditsRect.contains(menuClick.x,menuClick.y)){
                 game.setScreen(new CreditScreen(game, controller));
             }
-            if (quitRect.contains(hei.x,hei.y)){
+            if (quitRect.contains(menuClick.x,menuClick.y)){
                 Gdx.app.exit();
             }
             controller.setJustTouched(false);
