@@ -87,4 +87,26 @@ public class HouseTest {
         assertNotNull(map);
         assertEquals(34, map.getEnemyBoundsToY());
     }
+
+    @Test
+    void testSetup(){
+        assertNotNull(map);
+        map.setup();
+        assertEquals(map.getEnemies().get("BlueEnemy"), 0);
+        assertEquals(map.getEnemies().get("RedEnemy"), 0);
+    }
+
+    @Test
+    void testGetMap(){
+        assertNotNull(map);
+        assertNotNull(map.getMap());
+    }
+
+    @Test
+    void testGetMapName(){
+        assertNotNull(map);
+        assertEquals("house", map.getMapName());
+    }   
+
+    
 }
