@@ -182,7 +182,7 @@ public class Controller implements InputProcessor{
     }
 
     public void setJustTouched(boolean justTouched) {
-        this.justTouched = false;
+        this.justTouched = justTouched;
     }
 
     public boolean isShop() {
