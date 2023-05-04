@@ -11,13 +11,12 @@ import inf112.skeleton.app.Mapfolder.MapInterface;
 public class HealthPotion implements ItemImpl{
 
     private Sprite sprite;
-    private MapInterface map;
     private Vector2 position;
     private Rectangle rectangle;
     private int healAmount;
 
     public HealthPotion(Vector2 position, MapInterface map) {
-        this.map = map;
+       
         this.position = position;
         this.setSprite(Items.HEALTHPOTION.source);
         rectangle = new Rectangle(position.x, position.y, getWidth(), getHeight());

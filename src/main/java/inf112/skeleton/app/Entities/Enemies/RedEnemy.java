@@ -196,10 +196,10 @@ public class RedEnemy extends AbstractGameObject implements MonsterInterface  {
     private void shootRedProjectile(float delta, int damage) {      
         if (shootTimer <= 0) {
             Vector2 projectilePos = new Vector2(position.x, position.y);
-            createProjectile(projectilePos, map, new Vector2(1, 0), this, damage);
-            createProjectile(projectilePos, map, new Vector2(-1, 0), this, damage);
-            createProjectile(projectilePos, map, new Vector2(0, 1), this, damage);
-            createProjectile(projectilePos, map, new Vector2(0, -1), this, damage);
+            createProjectile(projectilePos, map, new Vector2(2, 0), this, damage);
+            createProjectile(projectilePos, map, new Vector2(-2, 0), this, damage);
+            createProjectile(projectilePos, map, new Vector2(0, 2), this, damage);
+            createProjectile(projectilePos, map, new Vector2(0, -2), this, damage);
     
             shootTimer = shootCooldown; 
         }

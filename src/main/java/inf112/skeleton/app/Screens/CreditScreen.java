@@ -23,7 +23,7 @@ public class CreditScreen extends ScreenAdapter {
     OrthographicCamera camera;
     Texture background = new Texture(Gdx.files.internal("src/main/resources/assets/credits.png"));
     Lwjgl3ApplicationConfiguration cfg = new Lwjgl3ApplicationConfiguration();
-    private DisplayMode disp = cfg.getDisplayMode(); 
+    private DisplayMode disp = Lwjgl3ApplicationConfiguration.getDisplayMode(); 
 
     Rectangle EliasRect,BjornRect,CasperRect,MagnusRect,HansCRect;
 
@@ -31,13 +31,6 @@ public class CreditScreen extends ScreenAdapter {
         this.game = southGame;
         this.controller = controller;
         batch = new SpriteBatch();
-        //TODO legg til behagelig credits musikk
-        //SM.mainMenuMusic.play();
-
-            //creating rectangles based on app graphics
-
-        float screenWidth = Gdx.graphics.getWidth();
-        float screenHeight = Gdx.graphics.getHeight();
 
 
         // Create the camera and set its position to the center of the screen

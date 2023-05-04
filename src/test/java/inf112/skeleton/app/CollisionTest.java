@@ -36,7 +36,8 @@ public class CollisionTest {
         Gdx.gl = mock(GL20.class);       
         Gdx.gl20 = mock(GL20.class);
         HeadlessApplicationConfiguration config = new HeadlessApplicationConfiguration();
-        app = new HeadlessApplication(new Southgame(), config);
+        Southgame game = mock(Southgame.class);
+        app = new HeadlessApplication(game, config);
         map = new Level1Mini(123,16);
         controller = new Controller();
         player = new Player(new Vector2(123*16, 76*16), map, controller);
@@ -100,14 +101,12 @@ public class CollisionTest {
         
     }
     
-    @Test
-    void testIsPlayerOnPortal(){
-        //TODO: wtwfd
-        collision.isCellAPortal();
+    
+        
 
 
     
-    }
+    
 
     @Test
     void setGetMap(){

@@ -29,8 +29,6 @@ public class Collision {
     private float tileSize;
     private float posX, posY;
 
-    private boolean killedAllEnemies = true;
-
     public Collision(MapInterface currMap, AbstractGameObject entity) {
         this.currMap = currMap;
         this.map = currMap.getMap();
@@ -86,7 +84,8 @@ public class Collision {
 
     public boolean checkYDirection(float velY) {
         boolean collisionY = false;
-
+        posX = entity.getPosition().x;
+        posY = entity.getPosition().y;
         // when moving downwards
         if (velY < 0) {
             // bottom left

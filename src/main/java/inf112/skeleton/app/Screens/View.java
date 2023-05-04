@@ -46,7 +46,7 @@ public class View implements Screen {
     private BitmapFont hpText = new BitmapFont();
     private BitmapFont pauseText = new BitmapFont();
     private Southgame game;
-    private MonsterInterface monsterI;
+    //private MonsterInterface monsterI;
     private boolean paused = false;
     private Controller controller;
     public HashMap<AbstractGameObject, Rectangle> enemies = new HashMap<>();
@@ -198,7 +198,7 @@ public class View implements Screen {
         CopyOnWriteArrayList<MonsterInterface> deadMonsterList = new CopyOnWriteArrayList<>();
         CopyOnWriteArrayList<ItemImpl> itemsToRemove = new CopyOnWriteArrayList<>();
         CopyOnWriteArrayList<ProjectileInterface> projectilesToRemove = new CopyOnWriteArrayList<>();
-
+        CopyOnWriteArrayList<ProjectileInterface> monsterProjectilesToRemove = new CopyOnWriteArrayList<>();
         //draw projectiles and check if they hit enemy.
         for (ProjectileInterface projectile : playerI.getProjectiles()){
             projectile.getSprite().draw(batch);
@@ -227,13 +227,17 @@ public class View implements Screen {
             }
             for (ProjectileInterface projectile : monsterI.getProjectiles()){
                 projectile.getSprite().draw(batch);
+                if (projectile.getPosition().dst(monsterI.getPosition())>100){
+                    monsterProjectilesToRemove.add(projectile);
+                }
                 if (projectile.getRect().overlaps(playerI.getRect())) { 
                     playerI.takeDamage(projectile.getDamage());
-                    projectilesToRemove.add(projectile);
+                    monsterProjectilesToRemove.add(projectile);
                 }
+
                 
             }
-                
+            monsterI.getProjectiles().removeAll(monsterProjectilesToRemove);    
             //check if monster and player is colliding. if so, player takes damage
             if (monsterI.getRect().overlaps(playerI.getRect())) {
                 playerI.takeDamage(monsterI.getDamage());
