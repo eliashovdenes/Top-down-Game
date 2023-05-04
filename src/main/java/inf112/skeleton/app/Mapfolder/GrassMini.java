@@ -17,13 +17,12 @@ public class GrassMini extends TiledMap implements MapInterface {
     private int EnemyBoundsToX = 131;
     private int EnemyBoundsFromY = 58;
     private int EnemyBoundsToY = 81;
-    
+
     private SoundManager sm;
     private TiledMap tiledMap;
 
     private Map<String, Integer> enemies = new HashMap<>();
     private boolean allEnemiesDead = false;
-
 
     public GrassMini(float playerSpawnX, float playerSpawnY) {
         PlayerSpawnX = playerSpawnX;
@@ -37,16 +36,14 @@ public class GrassMini extends TiledMap implements MapInterface {
     @Override
     public void setup() {
         enemies.put("BlueEnemy", 4);
-        enemies.put("RedEnemy", 3);   
-        // enemies.put("RedBoss", 1);   
+        enemies.put("RedEnemy", 3);
+
     }
-    
+
     @Override
     public TiledMap getMap() {
         return tiledMap;
     }
-
-   
 
     @Override
     public float getPlayerSpawnX() {
@@ -103,5 +100,5 @@ public class GrassMini extends TiledMap implements MapInterface {
     public String getMapName() {
         return "arena";
     }
-    
+
 }

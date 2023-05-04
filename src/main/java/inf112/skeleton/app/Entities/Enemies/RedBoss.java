@@ -21,7 +21,7 @@ public class RedBoss extends AbstractGameObject implements MonsterInterface {
     private float speed = 0.5f;
     private int attackDamage;
     private Random rand = new Random();
-    float fromX,fromY,toX,toY;
+    float fromX, fromY, toX, toY;
     private DirectionEnum direction;
     private double healthPotionDropChance;
     public ArrayList<ProjectileInterface> projectileList;
@@ -31,35 +31,34 @@ public class RedBoss extends AbstractGameObject implements MonsterInterface {
     private final float shootCooldown = 3.0f;
 
     public RedBoss(MapInterface map, float scaler) {
-        super(new Vector2(0,0), map);
+        super(new Vector2(0, 0), map);
         setSprite(RedBossPics.BOSSDOWN.source);
         rectangle = new Rectangle(position.x, position.y, getWidth(), getHeight());
         setXYFromSpawnBounds();
         this.velocity.x = speed;
         this.velocity.y = speed;
-        this.setMaxhitpoints(Math.round(1000*scaler));
+        this.setMaxhitpoints(Math.round(1000 * scaler));
         this.setCurrentHitPoints(this.getMaxHitpoints());
         this.attackDamage = 100;
         projectileList = new ArrayList<ProjectileInterface>();
     }
 
     public static MonsterFactory getFactory() {
-		
-		return new MonsterFactory() {
 
-			@Override
-			public String name() {
-				return "RedBoss";
-			}
+        return new MonsterFactory() {
 
-			@Override
-			public MonsterInterface create(MapInterface map, float scaler) {
-				return new RedBoss(map, scaler);
-			}
+            @Override
+            public String name() {
+                return "RedBoss";
+            }
 
-		};
-	}
+            @Override
+            public MonsterInterface create(MapInterface map, float scaler) {
+                return new RedBoss(map, scaler);
+            }
 
+        };
+    }
 
     @Override
     public void update(float delta) {
@@ -111,54 +110,61 @@ public class RedBoss extends AbstractGameObject implements MonsterInterface {
 
     @Override
     public void setXYFromSpawnBounds() {
-        
-        fromX = map.getEnemyBoundsFromX()*16;
-        fromY = map.getEnemyBoundsFromY()*16;
-        toX = map.getEnemyBoundsToX()*16;
-        toY = map.getEnemyBoundsToY()*16;
-        super.position.set(rand.nextFloat(toX-fromX)+fromX, rand.nextFloat(toY-fromY)+fromY);
-        sprite.setPosition(position.x,position.y);
+
+        fromX = map.getEnemyBoundsFromX() * 16;
+        fromY = map.getEnemyBoundsFromY() * 16;
+        toX = map.getEnemyBoundsToX() * 16;
+        toY = map.getEnemyBoundsToY() * 16;
+        super.position.set(rand.nextFloat(toX - fromX) + fromX, rand.nextFloat(toY - fromY) + fromY);
+        sprite.setPosition(position.x, position.y);
     }
 
     @Override
     public void followPlayer(float x, float y) {
         if (x > position.x) {
-            velocity.x = speed; 
-        }
-        else if (x < position.x) {
-            velocity.x =  - speed;
+            velocity.x = speed;
+        } else if (x < position.x) {
+            velocity.x = -speed;
         }
         if (y > position.y) {
             velocity.y = speed;
-        }
-        else if (y < position.y) {
-            velocity.y =  - speed;
+        } else if (y < position.y) {
+            velocity.y = -speed;
         }
         if (Math.abs(x - position.x) > Math.abs(y - position.y)) {
-            if (x > position.x) {sprite.setTexture(new Texture(RedBossPics.BOSSRIGHT.source)); this.direction = DirectionEnum.EAST;}
-            else {sprite.setTexture(new Texture(RedBossPics.BOSSLEFT.source)); this.direction = DirectionEnum.WEST;}
+            if (x > position.x) {
+                sprite.setTexture(new Texture(RedBossPics.BOSSRIGHT.source));
+                this.direction = DirectionEnum.EAST;
+            } else {
+                sprite.setTexture(new Texture(RedBossPics.BOSSLEFT.source));
+                this.direction = DirectionEnum.WEST;
+            }
+        } else if (Math.abs(x - position.x) < Math.abs(y - position.y)) {
+            if (y > position.y) {
+                sprite.setTexture(new Texture(RedBossPics.BOSSUP.source));
+                this.direction = DirectionEnum.NORTH;
+            } else {
+                sprite.setTexture(new Texture(RedBossPics.BOSSDOWN.source));
+                this.direction = DirectionEnum.SOUTH;
+            }
         }
-        else if (Math.abs(x - position.x) < Math.abs(y - position.y)) {
-            if (y > position.y) {sprite.setTexture( new Texture(RedBossPics.BOSSUP.source)); this.direction = DirectionEnum.NORTH;}
-            else {sprite.setTexture( new Texture(RedBossPics.BOSSDOWN.source)); this.direction = DirectionEnum.SOUTH;}
-        }
-        
+
     }
 
     @Override
     public void handleCollision() {
-            if (xCollision()){
-                position.x=recentPosition.x;
-                velocity.x = - velocity.x;
-                
-            }
-            if (yCollision()){
-                position.y=recentPosition.y;
-                velocity.y = - velocity.y;
-                
-            }
-            
+        if (xCollision()) {
+            position.x = recentPosition.x;
+            velocity.x = -velocity.x;
+
         }
+        if (yCollision()) {
+            position.y = recentPosition.y;
+            velocity.y = -velocity.y;
+
+        }
+
+    }
 
     @Override
     public Vector2 getPosition() {
@@ -179,7 +185,6 @@ public class RedBoss extends AbstractGameObject implements MonsterInterface {
     public int getDamage() {
         return attackDamage;
     }
-
 
     @Override
     public boolean dropHealthPotion() {
@@ -225,9 +230,8 @@ public class RedBoss extends AbstractGameObject implements MonsterInterface {
             Vector2 projectilePos = new Vector2(position.x, position.y);
             RedProjectile projectile = new RedProjectile(projectilePos, map, velocity, this, damage);
             projectileList.add(projectile);
-            shootTimer = shootCooldown;  
-        }
-        else {
+            shootTimer = shootCooldown;
+        } else {
             shootTimer -= delta;
         }
     }
@@ -239,5 +243,5 @@ public class RedBoss extends AbstractGameObject implements MonsterInterface {
     public void setPosition(Vector2 newPosition) {
         this.position = newPosition;
     }
-    
+
 }

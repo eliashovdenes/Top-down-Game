@@ -10,29 +10,34 @@ import inf112.skeleton.app.Entities.Enums.DirectionEnum;
 import inf112.skeleton.app.Entities.Projectiles.ProjectileInterface;
 import inf112.skeleton.app.Mapfolder.MapInterface;
 
-public interface PlayerInterface  {
+public interface PlayerInterface {
 
     /**
      * Update changes to player. Call before draw.
+     * 
      * @param delta Time elapsed since last frame was rendered.
      */
     void update(float delta);
 
-    /**Set new sprite for player. 
+    /**
+     * Set new sprite for player.
      * 
-     * @param string is a path to an image in resources. Intended for use with enum PlayerPics.
+     * @param string is a path to an image in resources. Intended for use with enum
+     *               PlayerPics.
      */
     void setSprite(String string);
 
     /**
      * Get the sprite currently set on player-object
+     * 
      * @return Player sprite
      */
     Sprite getSprite();
 
     /**
-     * Set base movement speed of player 
-     * @param speed (float) 
+     * Set base movement speed of player
+     * 
+     * @param speed (float)
      */
     void setMovementSpeed(float speed);
 
@@ -48,7 +53,8 @@ public interface PlayerInterface  {
      */
     float getHeight();
 
-    /** Get list of projectile arrows to be drawn
+    /**
+     * Get list of projectile arrows to be drawn
      * 
      * @return List of arrows
      */
@@ -56,7 +62,8 @@ public interface PlayerInterface  {
 
     /**
      * Set the direction the player should face
-     * @param direction 
+     * 
+     * @param direction
      */
     void setPlayerDirection(DirectionEnum direction);
 
@@ -66,12 +73,16 @@ public interface PlayerInterface  {
      */
     DirectionEnum getPlayerDirection();
 
-    /** Check collision in y-direction.
+    /**
+     * Check collision in y-direction.
+     * 
      * @return true or false depending on if collision was detected
      */
     boolean yCollision();
 
-    /**Set spawn location of player. 
+    /**
+     * Set spawn location of player.
+     * 
      * @param x coordinate of player
      * @param y coordinate of player
      */
@@ -84,8 +95,10 @@ public interface PlayerInterface  {
     boolean onPortal();
 
     /**
-     * When a player moves onto portal to an other level, the collision sets the variable nextMap 
+     * When a player moves onto portal to an other level, the collision sets the
+     * variable nextMap
      * to the map the player moves 'in' to. This method returns that map.
+     * 
      * @return map object. used to iniate map change in view
      */
     MapInterface nextMap();
@@ -96,16 +109,16 @@ public interface PlayerInterface  {
     Vector2 getPosition();
 
     /**
-     * set Boolean for player to FALSE to indicate that player is not on portal anymore.
+     * set Boolean for player to FALSE to indicate that player is not on portal
+     * anymore.
      */
     void setOffPortal();
-    
-    
+
     /**
      * @return a boolean the map
      */
     public MapInterface returnMap();
-    
+
     /**
      * method for upgrading the player's lightning
      */
@@ -143,26 +156,26 @@ public interface PlayerInterface  {
     /**
      * Reduces the Player's hitpoints by a given amount
      * Also checks if the Player is dead and reduce the amount of
-     * lives if True. 
+     * lives if True.
      * 
      * @param damage
      */
     public void takeDamage(int damage);
 
     /**
-     * Increases the Player's hitpoints by a given amount up to maximum MaxHitpoints 
+     * Increases the Player's hitpoints by a given amount up to maximum MaxHitpoints
      * 
      * @param int healAmount
      */
     public void healDamage(int healAmount);
-    
+
     /**
      * Get the currentHitpoints of the player
      * 
      * @return Integer - currentHitpoints
      */
     public Integer getCurrentHitpoints();
-    
+
     /**
      * Set the Player's currentHitpoints to a new value
      * Also makes sure currentHitpoints cannot be set higher then maxHitpoints
@@ -215,9 +228,8 @@ public interface PlayerInterface  {
      */
     int getAbilityPoints();
 
-
     /**
-     * Getter for exp from  @param monsters
+     * Getter for exp from @param monsters
      */
     void getExp(String monster);
 

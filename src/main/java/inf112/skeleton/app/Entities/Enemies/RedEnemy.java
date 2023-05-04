@@ -15,11 +15,11 @@ import inf112.skeleton.app.Entities.Projectiles.ProjectileInterface;
 import inf112.skeleton.app.Entities.Projectiles.RedProjectile;
 import inf112.skeleton.app.Mapfolder.MapInterface;
 
-public class RedEnemy extends AbstractGameObject implements MonsterInterface  {
+public class RedEnemy extends AbstractGameObject implements MonsterInterface {
 
     private Sprite sprite;
     private int attackDamage = 20;
-    private float fromX,fromY,toX,toY;
+    private float fromX, fromY, toX, toY;
     private float speed;
     private DirectionEnum direction;
     private MapInterface map;
@@ -32,23 +32,23 @@ public class RedEnemy extends AbstractGameObject implements MonsterInterface  {
     private float time = 0;
 
     public RedEnemy(MapInterface map, float scaler) {
-        super(new Vector2(0,0), map);
+        super(new Vector2(0, 0), map);
         this.map = map;
         setSprite(RedEnemyPics.ENEMYDOWN.source);
         rectangle = new Rectangle(position.x, position.y, getWidth(), getHeight());
-        setXYFromSpawnBounds();  
-        this.setMaxhitpoints(Math.round(25*scaler));
-        this.setCurrentHitPoints(this.getMaxHitpoints()); 
+        setXYFromSpawnBounds();
+        this.setMaxhitpoints(Math.round(25 * scaler));
+        this.setCurrentHitPoints(this.getMaxHitpoints());
         this.random = new Random();
         this.setHealthPotionDropChance(0.5);
         projectileList = new ArrayList<ProjectileInterface>();
         this.projectileDamage = Math.round(10 * scaler);
-        this.speed = scaler/20;
+        this.speed = scaler / 20;
         this.shootCooldown = this.getRandomCooldown(3, 5);
     }
 
     public RedEnemy() {
-        super(new Vector2(0,0));
+        super(new Vector2(0, 0));
         this.velocity.x = speed;
         this.velocity.y = speed;
         this.setMaxhitpoints(50);
@@ -56,42 +56,50 @@ public class RedEnemy extends AbstractGameObject implements MonsterInterface  {
     }
 
     public static MonsterFactory getFactory() {
-		
-		return new MonsterFactory() {
 
-			@Override
-			public String name() {
-				return "RedEnemy";
-			}
+        return new MonsterFactory() {
 
-			@Override
-			public MonsterInterface create(MapInterface map, float scaler) {
-				return new RedEnemy(map, scaler);
-			}
-		};
-	}
+            @Override
+            public String name() {
+                return "RedEnemy";
+            }
 
+            @Override
+            public MonsterInterface create(MapInterface map, float scaler) {
+                return new RedEnemy(map, scaler);
+            }
+        };
+    }
 
     @Override
     public void handleCollision() {
-            if (xCollision()){
-                position.x = recentPosition.x;
-                velocity.x = - velocity.x;               
-            }
-            if (yCollision()){
-                position.y=recentPosition.y;
-                velocity.y = - velocity.y;               
-            }          
+        if (xCollision()) {
+            position.x = recentPosition.x;
+            velocity.x = -velocity.x;
         }
+        if (yCollision()) {
+            position.y = recentPosition.y;
+            velocity.y = -velocity.y;
+        }
+    }
 
     public void followPlayer(float x, float y) {
         if (Math.abs(x - position.x) > Math.abs(y - position.y)) {
-            if (x > position.x) {sprite.setTexture(new Texture(RedEnemyPics.ENEMYRIGHT.source)); this.direction = DirectionEnum.EAST;}
-            else {sprite.setTexture(new Texture(RedEnemyPics.ENEMYLEFT.source)); this.direction = DirectionEnum.WEST;}
-        }
-        else if (Math.abs(x - position.x) < Math.abs(y - position.y)) {
-            if (y > position.y) {sprite.setTexture( new Texture(RedEnemyPics.ENEMYUP.source)); this.direction = DirectionEnum.NORTH;}
-            else {sprite.setTexture( new Texture(RedEnemyPics.ENEMYDOWN.source)); this.direction = DirectionEnum.SOUTH;}
+            if (x > position.x) {
+                sprite.setTexture(new Texture(RedEnemyPics.ENEMYRIGHT.source));
+                this.direction = DirectionEnum.EAST;
+            } else {
+                sprite.setTexture(new Texture(RedEnemyPics.ENEMYLEFT.source));
+                this.direction = DirectionEnum.WEST;
+            }
+        } else if (Math.abs(x - position.x) < Math.abs(y - position.y)) {
+            if (y > position.y) {
+                sprite.setTexture(new Texture(RedEnemyPics.ENEMYUP.source));
+                this.direction = DirectionEnum.NORTH;
+            } else {
+                sprite.setTexture(new Texture(RedEnemyPics.ENEMYDOWN.source));
+                this.direction = DirectionEnum.SOUTH;
+            }
         }
     }
 
@@ -108,12 +116,13 @@ public class RedEnemy extends AbstractGameObject implements MonsterInterface  {
         for (ProjectileInterface projectile : projectileList) {
             projectile.update(delta);
         }
-        
+
     }
+
     private boolean changeDirection(float dt) {
         time -= dt;
         if (time <= 0) {
-            velocity.x = random.nextFloat(-0.7f,0.7f);
+            velocity.x = random.nextFloat(-0.7f, 0.7f);
             velocity.y = random.nextFloat(-0.7f, 0.7f);
             time = random.nextFloat(2, 5);
             return true;
@@ -157,14 +166,14 @@ public class RedEnemy extends AbstractGameObject implements MonsterInterface  {
     }
 
     @Override
-    public void setXYFromSpawnBounds(){
+    public void setXYFromSpawnBounds() {
         Random rand = new Random();
-        fromX = map.getEnemyBoundsFromX()*16;
-        fromY = map.getEnemyBoundsFromY()*16;
-        toX = map.getEnemyBoundsToX()*16;
-        toY = map.getEnemyBoundsToY()*16;
-        super.position.set(rand.nextFloat(toX-fromX)+fromX, rand.nextFloat(toY-fromY)+fromY);
-        sprite.setPosition(position.x,position.y);
+        fromX = map.getEnemyBoundsFromX() * 16;
+        fromY = map.getEnemyBoundsFromY() * 16;
+        toX = map.getEnemyBoundsToX() * 16;
+        toY = map.getEnemyBoundsToY() * 16;
+        super.position.set(rand.nextFloat(toX - fromX) + fromX, rand.nextFloat(toY - fromY) + fromY);
+        sprite.setPosition(position.x, position.y);
     }
 
     @Override
@@ -193,24 +202,24 @@ public class RedEnemy extends AbstractGameObject implements MonsterInterface  {
         this.healthPotionDropChance = chance;
     }
 
-    private void shootRedProjectile(float delta, int damage) {      
+    private void shootRedProjectile(float delta, int damage) {
         if (shootTimer <= 0) {
             Vector2 projectilePos = new Vector2(position.x, position.y);
             createProjectile(projectilePos, map, new Vector2(2, 0), this, damage);
             createProjectile(projectilePos, map, new Vector2(-2, 0), this, damage);
             createProjectile(projectilePos, map, new Vector2(0, 2), this, damage);
             createProjectile(projectilePos, map, new Vector2(0, -2), this, damage);
-    
-            shootTimer = shootCooldown; 
-        }
-        else {
+
+            shootTimer = shootCooldown;
+        } else {
             shootTimer -= delta;
         }
     }
 
-    private void createProjectile(Vector2 position, MapInterface mapI, Vector2 velocity, MonsterInterface monster, int damage) {
+    private void createProjectile(Vector2 position, MapInterface mapI, Vector2 velocity, MonsterInterface monster,
+            int damage) {
         RedProjectile projectile = new RedProjectile(new Vector2(position), mapI, velocity, monster, damage);
-        projectileList.add(projectile);           
+        projectileList.add(projectile);
     }
 
     @Override
@@ -237,6 +246,6 @@ public class RedEnemy extends AbstractGameObject implements MonsterInterface  {
 
     @Override
     public void giveShootingPermission() {
-        
-    }   
+
+    }
 }

@@ -13,25 +13,22 @@ import com.badlogic.gdx.math.Rectangle;
 import inf112.skeleton.app.Southgame;
 import inf112.skeleton.app.Controller.Controller;
 
-
-
 public class CreditScreen extends ScreenAdapter {
-    
+
     private SpriteBatch batch;
     private Southgame game;
     private Controller controller;
     private OrthographicCamera camera;
     private Texture background = new Texture(Gdx.files.internal("src/main/resources/assets/credits.png"));
     private Lwjgl3ApplicationConfiguration cfg = new Lwjgl3ApplicationConfiguration();
-    private DisplayMode disp = cfg.getDisplayMode(); 
+    private DisplayMode disp = cfg.getDisplayMode();
 
-    Rectangle EliasRect,BjornRect,CasperRect,MagnusRect,HansCRect;
+    Rectangle EliasRect, BjornRect, CasperRect, MagnusRect, HansCRect;
 
     public CreditScreen(Southgame southGame, Controller controller) {
         this.game = southGame;
         this.controller = controller;
         batch = new SpriteBatch();
-
 
         // Create the camera and set its position to the center of the screen
         camera = new OrthographicCamera();
@@ -39,7 +36,6 @@ public class CreditScreen extends ScreenAdapter {
         camera.position.set(Gdx.graphics.getWidth(), Gdx.graphics.getHeight(), 0);
         camera.update();
     }
-
 
     @Override
     public void render(float delta) {
@@ -50,7 +46,7 @@ public class CreditScreen extends ScreenAdapter {
         batch.begin();
         batch.draw(background, 0, 0, disp.width, disp.height);
         batch.end();
-        if (controller.getJustTouched()){
+        if (controller.getJustTouched()) {
             controller.setJustTouched(false);
             game.setScreen(new MainMenuScreen(game, controller));
         }
@@ -58,7 +54,7 @@ public class CreditScreen extends ScreenAdapter {
 
     @Override
     public void dispose() {
-        
+
         batch.dispose();
     }
 }

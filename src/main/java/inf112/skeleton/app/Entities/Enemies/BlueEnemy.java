@@ -14,11 +14,11 @@ import inf112.skeleton.app.Entities.Enums.DirectionEnum;
 import inf112.skeleton.app.Entities.Projectiles.ProjectileInterface;
 import inf112.skeleton.app.Mapfolder.MapInterface;
 
-public class BlueEnemy extends AbstractGameObject implements MonsterInterface  {
+public class BlueEnemy extends AbstractGameObject implements MonsterInterface {
 
     Sprite sprite;
     int attackDamage;
-    float fromX,fromY,toX,toY;
+    float fromX, fromY, toX, toY;
     float speed;
     private DirectionEnum direction;
     MapInterface map;
@@ -28,48 +28,47 @@ public class BlueEnemy extends AbstractGameObject implements MonsterInterface  {
     Random rand = new Random();
     float time = 0;
 
-
     public BlueEnemy(MapInterface map, float scaler) {
-        super(new Vector2(0,0), map);
+        super(new Vector2(0, 0), map);
         this.map = map;
         setSprite(BlueEnemyPics.ENEMYDOWN.source);
         rectangle = new Rectangle(position.x, position.y, getWidth(), getHeight());
         setXYFromSpawnBounds();
         this.velocity.x = speed;
         this.velocity.y = speed;
-        this.setMaxhitpoints(Math.round(40*scaler));
+        this.setMaxhitpoints(Math.round(40 * scaler));
         this.setCurrentHitPoints(this.getMaxHitpoints());
         this.setHealthPotionDropChance(0.3);
-        this.attackDamage = Math.round(10*scaler);
-        this.speed = scaler/10;
+        this.attackDamage = Math.round(10 * scaler);
+        this.speed = scaler / 10;
         this.random = new Random();
         projectileList = new ArrayList<ProjectileInterface>();
     }
 
     // public BlueEnemy() {
-    //     super(new Vector2(0,0));
-    //     this.velocity.x = speed;
-    //     this.velocity.y = speed;
-    //     this.setMaxhitpoints(50);
-    //     this.setCurrentHitPoints(this.getMaxHitpoints());
+    // super(new Vector2(0,0));
+    // this.velocity.x = speed;
+    // this.velocity.y = speed;
+    // this.setMaxhitpoints(50);
+    // this.setCurrentHitPoints(this.getMaxHitpoints());
     // }
 
     public static MonsterFactory getFactory() {
-		
-		return new MonsterFactory() {
 
-			@Override
-			public String name() {
-				return "BlueEnemy";
-			}
+        return new MonsterFactory() {
 
-			@Override
-			public MonsterInterface create(MapInterface map, float scaler) {
-				return new BlueEnemy(map, scaler);
-			}
+            @Override
+            public String name() {
+                return "BlueEnemy";
+            }
 
-		};
-	}
+            @Override
+            public MonsterInterface create(MapInterface map, float scaler) {
+                return new BlueEnemy(map, scaler);
+            }
+
+        };
+    }
 
     public String getName() {
         return "BlueEnemy";
@@ -77,26 +76,24 @@ public class BlueEnemy extends AbstractGameObject implements MonsterInterface  {
 
     @Override
     public void handleCollision() {
-            if (xCollision()){
-                position.x=recentPosition.x;
-                velocity.x = - velocity.x;
-                
-            }
-            if (yCollision()){
-                position.y=recentPosition.y;
-                velocity.y = - velocity.y;
-                
-            }
-            
+        if (xCollision()) {
+            position.x = recentPosition.x;
+            velocity.x = -velocity.x;
+
         }
+        if (yCollision()) {
+            position.y = recentPosition.y;
+            velocity.y = -velocity.y;
+
+        }
+
+    }
 
     @Override
     public void update(float delta) {
         ApplyMovement();
         sprite.setPosition(position.x, position.y);
     }
-
-    
 
     @Override
     public void setSprite(String string) {
@@ -106,12 +103,11 @@ public class BlueEnemy extends AbstractGameObject implements MonsterInterface  {
     @Override
     public void followPlayer(float x, float y) {
         if (x > position.x) {
-            velocity.x = speed; 
+            velocity.x = speed;
             // sprite.setTexture(new Texture(RedBossPics.BOSSRIGHT.source));
             this.direction = DirectionEnum.WEST;
-        }
-        else if (x < position.x) {
-            velocity.x =  - speed;
+        } else if (x < position.x) {
+            velocity.x = -speed;
             // sprite.setTexture(new Texture(RedBossPics.BOSSLEFT.source));
             this.direction = DirectionEnum.EAST;
         }
@@ -119,21 +115,23 @@ public class BlueEnemy extends AbstractGameObject implements MonsterInterface  {
             velocity.y = speed;
             // sprite.setTexture( new Texture(RedBossPics.BOSSUP.source));
             this.direction = DirectionEnum.NORTH;
-        }
-        else if (y < position.y) {
-            velocity.y =  - speed;
+        } else if (y < position.y) {
+            velocity.y = -speed;
             // sprite.setTexture(new Texture(RedBossPics.BOSSDOWN.source));
             this.direction = DirectionEnum.SOUTH;
         }
         if (Math.abs(x - position.x) > Math.abs(y - position.y)) {
-            if (x > position.x) sprite.setTexture(new Texture(BlueEnemyPics.ENEMYRIGHT.source));
-            else sprite.setTexture(new Texture(BlueEnemyPics.ENEMYLEFT.source));
+            if (x > position.x)
+                sprite.setTexture(new Texture(BlueEnemyPics.ENEMYRIGHT.source));
+            else
+                sprite.setTexture(new Texture(BlueEnemyPics.ENEMYLEFT.source));
+        } else if (Math.abs(x - position.x) < Math.abs(y - position.y)) {
+            if (y > position.y)
+                sprite.setTexture(new Texture(BlueEnemyPics.ENEMYUP.source));
+            else
+                sprite.setTexture(new Texture(BlueEnemyPics.ENEMYDOWN.source));
         }
-        else if (Math.abs(x - position.x) < Math.abs(y - position.y)) {
-            if (y > position.y) sprite.setTexture( new Texture(BlueEnemyPics.ENEMYUP.source));
-            else sprite.setTexture( new Texture(BlueEnemyPics.ENEMYDOWN.source));
-        }
-        
+
     }
 
     @Override
@@ -167,15 +165,15 @@ public class BlueEnemy extends AbstractGameObject implements MonsterInterface  {
     }
 
     @Override
-    public void setXYFromSpawnBounds(){
+    public void setXYFromSpawnBounds() {
 
         Random rand = new Random();
-        fromX = map.getEnemyBoundsFromX()*16;
-        fromY = map.getEnemyBoundsFromY()*16;
-        toX = map.getEnemyBoundsToX()*16;
-        toY = map.getEnemyBoundsToY()*16;
-        super.position.set(rand.nextFloat(toX-fromX)+fromX, rand.nextFloat(toY-fromY)+fromY);
-        sprite.setPosition(position.x,position.y);
+        fromX = map.getEnemyBoundsFromX() * 16;
+        fromY = map.getEnemyBoundsFromY() * 16;
+        toX = map.getEnemyBoundsToX() * 16;
+        toY = map.getEnemyBoundsToY() * 16;
+        super.position.set(rand.nextFloat(toX - fromX) + fromX, rand.nextFloat(toY - fromY) + fromY);
+        sprite.setPosition(position.x, position.y);
     }
 
     @Override
@@ -187,8 +185,6 @@ public class BlueEnemy extends AbstractGameObject implements MonsterInterface  {
     public int getDamage() {
         return attackDamage;
     }
-
-    
 
     @Override
     public boolean dropHealthPotion() {
@@ -213,7 +209,7 @@ public class BlueEnemy extends AbstractGameObject implements MonsterInterface  {
 
     @Override
     public void giveShootingPermission() {
-        
+
     }
 
     public float getSpeed() {

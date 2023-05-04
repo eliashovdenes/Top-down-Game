@@ -1,6 +1,5 @@
 package inf112.skeleton.app.Entities.Projectiles;
 
-
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.maps.tiled.TiledMap;
@@ -13,14 +12,14 @@ import inf112.skeleton.app.Entities.Enums.PlayerPics;
 import inf112.skeleton.app.Entities.Player.PlayerInterface;
 import inf112.skeleton.app.Mapfolder.MapInterface;
 
-public class Arrow extends AbstractGameObject implements ProjectileInterface  {
+public class Arrow extends AbstractGameObject implements ProjectileInterface {
 
     protected Sprite sprite;
     protected TiledMap map;
     protected Vector2 velocity;
     private PlayerInterface player;
     private int attackDamage = 5;
-    private float speed;    
+    private float speed;
 
     public Arrow(Vector2 position, MapInterface map, Vector2 velocity, PlayerInterface player) {
         super(position, map);
@@ -28,28 +27,26 @@ public class Arrow extends AbstractGameObject implements ProjectileInterface  {
         this.player = player;
         this.velocity = velocity;
         setCorrectSprite();
-        sprite.setSize(10,10);
+        sprite.setSize(10, 10);
         rectangle = new Rectangle(position.x, position.y, getWidth(), getHeight());
-        
-       
+
     }
 
     @Override
     public void update(float delta) {
 
-        if (velocity.x == 0 && velocity.y==0){
+        if (velocity.x == 0 && velocity.y == 0) {
             velocity.y = -1;
         }
-        
-        position.x+=velocity.x;
-        position.y+=velocity.y;
-        
-        sprite.setPosition(position.x,position.y);
+
+        position.x += velocity.x;
+        position.y += velocity.y;
+
+        sprite.setPosition(position.x, position.y);
         ApplyMovement();
     }
 
-   
-   //Setters and getters ->>>>>>>>>>>>
+    // Setters and getters ->>>>>>>>>>>>
     @Override
     public void setSprite(String string) {
         sprite = new Sprite(new Texture(string));
@@ -64,10 +61,12 @@ public class Arrow extends AbstractGameObject implements ProjectileInterface  {
     public void setMovementSpeed(float speed) {
         this.speed = speed;
     }
+
     @Override
-    public float getMovementSpeed(){
+    public float getMovementSpeed() {
         return speed;
     }
+
     @Override
     public float getWidth() {
         return sprite.getWidth();
@@ -77,14 +76,18 @@ public class Arrow extends AbstractGameObject implements ProjectileInterface  {
     public float getHeight() {
         return sprite.getHeight();
     }
-    
-    private void setCorrectSprite(){
+
+    private void setCorrectSprite() {
         String sprite = "";
-        if (player.getPlayerDirection()==DirectionEnum.NORTH)  sprite = PlayerPics.UPARROW.source;
-        if (player.getPlayerDirection()==DirectionEnum.EAST) sprite = PlayerPics.RIGHTARROW.source; 
-        if (player.getPlayerDirection()==DirectionEnum.WEST) sprite = PlayerPics.LEFTARROW.source;
-        if (player.getPlayerDirection()==DirectionEnum.SOUTH)  sprite = PlayerPics.DOWNARROW.source;
-   
+        if (player.getPlayerDirection() == DirectionEnum.NORTH)
+            sprite = PlayerPics.UPARROW.source;
+        if (player.getPlayerDirection() == DirectionEnum.EAST)
+            sprite = PlayerPics.RIGHTARROW.source;
+        if (player.getPlayerDirection() == DirectionEnum.WEST)
+            sprite = PlayerPics.LEFTARROW.source;
+        if (player.getPlayerDirection() == DirectionEnum.SOUTH)
+            sprite = PlayerPics.DOWNARROW.source;
+
         setSprite(sprite);
     }
 
@@ -93,5 +96,4 @@ public class Arrow extends AbstractGameObject implements ProjectileInterface  {
         return attackDamage;
     }
 
-    
 }

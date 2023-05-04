@@ -11,14 +11,14 @@ import inf112.skeleton.app.Entities.Enemies.MonsterInterface;
 import inf112.skeleton.app.Entities.Enums.RedEnemyPics;
 import inf112.skeleton.app.Mapfolder.MapInterface;
 
-public class RedProjectile extends AbstractGameObject implements ProjectileInterface  {
+public class RedProjectile extends AbstractGameObject implements ProjectileInterface {
 
     protected float speed = 2;
     protected Sprite sprite;
     protected TiledMap map;
     protected Vector2 velocity;
     MonsterInterface monster;
-    private int attackDamage;    
+    private int attackDamage;
 
     public RedProjectile(Vector2 position, MapInterface map, Vector2 velocity, MonsterInterface monster, int damage) {
         super(position, map);
@@ -27,31 +27,27 @@ public class RedProjectile extends AbstractGameObject implements ProjectileInter
         this.velocity = velocity;
         this.attackDamage = damage;
         setSprite(RedEnemyPics.REDPROJECTILE.source);
-        sprite.setSize(10,10);
-        rectangle = new Rectangle(position.x, position.y, getWidth()/2, getHeight()/2);
-        
-       
-    }
+        sprite.setSize(10, 10);
+        rectangle = new Rectangle(position.x, position.y, getWidth() / 2, getHeight() / 2);
 
-   
+    }
 
     @Override
     // update() is a method that updates the position of the projectile. */
     public void update(float delta) {
 
-        if (velocity.x == 0 && velocity.y==0){
+        if (velocity.x == 0 && velocity.y == 0) {
             velocity.y = -1;
         }
-        
-        position.x+=velocity.x;
-        position.y+=velocity.y;
-        
-        sprite.setPosition(position.x,position.y);
+
+        position.x += velocity.x;
+        position.y += velocity.y;
+
+        sprite.setPosition(position.x, position.y);
         ApplyMovement();
     }
 
-   
-   //Setters and getters ->>>>>>>>>>>>
+    // Setters and getters ->>>>>>>>>>>>
     @Override
     public void setSprite(String string) {
         sprite = new Sprite(new Texture(string));
@@ -81,8 +77,9 @@ public class RedProjectile extends AbstractGameObject implements ProjectileInter
     public int getDamage() {
         return attackDamage;
     }
+
     @Override
-    public float getMovementSpeed(){
+    public float getMovementSpeed() {
         return speed;
     }
 }

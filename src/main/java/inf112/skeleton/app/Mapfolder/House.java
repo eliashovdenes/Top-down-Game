@@ -20,7 +20,7 @@ public class House extends TiledMap implements MapInterface {
     private boolean allEnemiesDead = false;
     private Map<String, Integer> enemies = new HashMap<>();
 
-    public House(){
+    public House() {
         tiledMap = new TmxMapLoader().load(Maps.House.source);
         sm = new SoundManager();
         sm.house.play();
@@ -30,7 +30,7 @@ public class House extends TiledMap implements MapInterface {
     @Override
     public void setup() {
         enemies.put("BlueEnemy", 0);
-        enemies.put("RedEnemy", 0);      
+        enemies.put("RedEnemy", 0);
     }
 
     @Override
@@ -38,16 +38,17 @@ public class House extends TiledMap implements MapInterface {
         return tiledMap;
     }
 
-   
     @Override
     public float getPlayerSpawnX() {
         return PlayerSpawnX;
     }
+
     @Override
     public float getPlayerSpawnY() {
         return PlayerSpawnY;
-      
+
     }
+
     @Override
     public int getEnemyBoundsFromX() {
         return EnemyBoundsfromX;
@@ -67,12 +68,12 @@ public class House extends TiledMap implements MapInterface {
     public int getEnemyBoundsToY() {
         return EnemyBoundsToY;
     }
-    
+
     @Override
     public Map<String, Integer> getEnemies() {
         return this.enemies;
     }
-    
+
     @Override
     public void stopMusic() {
         sm.house.stop();
@@ -93,7 +94,5 @@ public class House extends TiledMap implements MapInterface {
     public String getMapName() {
         return "house";
     }
-    
-}
-    
 
+}

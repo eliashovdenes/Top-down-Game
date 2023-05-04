@@ -45,7 +45,6 @@ public class Player extends AbstractGameObject implements PlayerInterface {
     private Integer lives;
     private int exp;
     private boolean isInvincible;
-    
 
     private float invincibilityTimer = 0.0f;
     private final float invincibilityDuration = 1.0f;
@@ -66,8 +65,8 @@ public class Player extends AbstractGameObject implements PlayerInterface {
         this.isInvincible = false;
 
         projectileList = new ArrayList<ProjectileInterface>();
-        
-        arrowShootTimer =0;
+
+        arrowShootTimer = 0;
         lightningShootTimer = 0;
         direction = DirectionEnum.SOUTH;
 
@@ -110,11 +109,11 @@ public class Player extends AbstractGameObject implements PlayerInterface {
         if (controller.isEnter()) {
             shootLightning();
         }
-        if (arrowShootTimer>0){
-            arrowShootTimer-= delta;
+        if (arrowShootTimer > 0) {
+            arrowShootTimer -= delta;
         }
-        if (lightningShootTimer>0){
-            lightningShootTimer-=delta;
+        if (lightningShootTimer > 0) {
+            lightningShootTimer -= delta;
         }
 
         for (ProjectileInterface projectile : projectileList) {
@@ -171,7 +170,7 @@ public class Player extends AbstractGameObject implements PlayerInterface {
     private void animate(float delta) {
         if (isInvincible) {
             sprite.setAlpha(0.5f);
-        }           
+        }
         if (!controller.isFast()) {
             if (direction == DirectionEnum.NORTH)
                 this.playerAnimation = PlayerAnimation.UP.animation;
@@ -194,7 +193,7 @@ public class Player extends AbstractGameObject implements PlayerInterface {
                 this.playerAnimation = PlayerAnimation.RUNDOWN.animation;
 
         }
-        
+
         sprite.setRegion(playerAnimation.getFrame());
         playerAnimation.update(delta);
     }
@@ -207,7 +206,7 @@ public class Player extends AbstractGameObject implements PlayerInterface {
             // set velocity based on player direction.
             Vector2 velocity = new Vector2();
             if (this.direction == DirectionEnum.NORTH)
-                velocity.set(0,3);
+                velocity.set(0, 3);
             if (this.direction == DirectionEnum.EAST)
                 velocity.set(3, 0);
             if (this.direction == DirectionEnum.WEST)
@@ -218,7 +217,7 @@ public class Player extends AbstractGameObject implements PlayerInterface {
             // first arrow created and added.
             Vector2 arrowPos = new Vector2(position.x, position.y);
             Arrow arrow1 = new Arrow(arrowPos, map, velocity, this);
-            
+
             projectileList.add(arrow1);
 
             // for every arrowAbilityLevel beyond 1, create a new arrow at a randomized
@@ -253,7 +252,7 @@ public class Player extends AbstractGameObject implements PlayerInterface {
                 velocity.set(0, -1);
 
             // first lightning created and added.
-            Vector2 lightningPos = new Vector2(position.x-this.getWidth()/2, position.y-this.getWidth()/2);
+            Vector2 lightningPos = new Vector2(position.x - this.getWidth() / 2, position.y - this.getWidth() / 2);
             Lightning lightning1 = new Lightning(lightningPos, map, velocity);
             projectileList.add(lightning1);
 
@@ -284,13 +283,11 @@ public class Player extends AbstractGameObject implements PlayerInterface {
         this.direction = direction;
     }
 
-    //**Getter for direction*/
+    // **Getter for direction*/
     @Override
     public DirectionEnum getPlayerDirection() {
         return this.direction;
     }
-
-    
 
     @Override
     // **Overrides method from AbstractGameObject to check for portal collision in
@@ -335,36 +332,34 @@ public class Player extends AbstractGameObject implements PlayerInterface {
     }
 
     @Override
-    // **Overrides method from AbstractGameObject to get the position of the player*/
+    // **Overrides method from AbstractGameObject to get the position of the
+    // player*/
     public Vector2 getPosition() {
         return super.getPosition();
     }
 
-    //**getter for map */
-    public MapInterface returnMap(){
+    // **getter for map */
+    public MapInterface returnMap() {
         return map;
     }
 
-    //**this method upgrades the lightning ability*/
+    // **this method upgrades the lightning ability*/
     @Override
     public void upgradeLightning() {
-        lightningAbilityLevel+=1;
+        lightningAbilityLevel += 1;
     }
 
-
-    //**this method upgrades the arrow ability*/
+    // **this method upgrades the arrow ability*/
     @Override
     public void upgradeArrow() {
-        arrowAbilityLevel+=1;
+        arrowAbilityLevel += 1;
     }
 
-
-    //**setter and getter for lives*/
+    // **setter and getter for lives*/
     public void setLives(int newLives) {
         if (newLives <= 0) {
             this.lives = 0;
-        }
-        else {
+        } else {
             this.lives = newLives;
             this.setCurrentHitPoints(this.getMaxHitpoints());
         }
@@ -374,7 +369,7 @@ public class Player extends AbstractGameObject implements PlayerInterface {
         return this.lives;
     }
 
-    //**takeDamage method removes given amount to healthpoints*/
+    // **takeDamage method removes given amount to healthpoints*/
     @Override
     public void takeDamage(int damage) {
         if (!isInvincible) {
@@ -387,21 +382,20 @@ public class Player extends AbstractGameObject implements PlayerInterface {
         }
     }
 
-    //**healDamage method heals given amount to healthpoints*/
+    // **healDamage method heals given amount to healthpoints*/
     @Override
     public void healDamage(int healAmount) {
         this.setCurrentHitPoints(this.getCurrentHitpoints() + healAmount);
     }
 
-
-    //Getters and setters
+    // Getters and setters
     @Override
     public int getArrowAbilityLevel() {
         return arrowAbilityLevel;
     }
 
-    @Override 
-    public int getLightningAbilityLevel(){
+    @Override
+    public int getLightningAbilityLevel() {
         return lightningAbilityLevel;
     }
 
@@ -412,15 +406,18 @@ public class Player extends AbstractGameObject implements PlayerInterface {
 
     @Override
     public void getExp(String monster) {
-        if (monster == "RedBoss") exp += 10;
-        else if (monster == "RedEnemy")exp += 2;
-        else exp += 1;
+        if (monster == "RedBoss")
+            exp += 10;
+        else if (monster == "RedEnemy")
+            exp += 2;
+        else
+            exp += 1;
 
-        //level up :)
-        if (exp>=10){
+        // level up :)
+        if (exp >= 10) {
             exp -= 10;
-            playerLevel +=1;
-            abilityPoints +=2;
+            playerLevel += 1;
+            abilityPoints += 2;
             this.setCurrentHitPoints(this.getMaxHitpoints());
         }
     }
@@ -440,38 +437,38 @@ public class Player extends AbstractGameObject implements PlayerInterface {
         return movementAbilityLevel;
     }
 
-    //Removes one ability point
+    // Removes one ability point
     @Override
-    public void removeAbilityPoints(){
-        abilityPoints-=1;
+    public void removeAbilityPoints() {
+        abilityPoints -= 1;
     }
 
-    //Upgrades the health ability
+    // Upgrades the health ability
     @Override
     public void upgradeHealth() {
-        healthAbilityLevel +=1;
-        setMaxhitpoints(100*healthAbilityLevel);
+        healthAbilityLevel += 1;
+        setMaxhitpoints(100 * healthAbilityLevel);
     }
 
-    //Upgrades the movement ability
+    // Upgrades the movement ability
     @Override
     public void upgradeMovement() {
-        movementAbilityLevel+=1;
-        walk = walk+1;
-        run = run+1;
+        movementAbilityLevel += 1;
+        walk = walk + 1;
+        run = run + 1;
     }
 
-    //Checks if the player is invincible or not
+    // Checks if the player is invincible or not
     public boolean isInvincible() {
         return isInvincible;
     }
 
-    //Sets the player to invincible or not
+    // Sets the player to invincible or not
     public void setInvincible(boolean isInvincible) {
         this.isInvincible = isInvincible;
     }
 
-    //Getter and setters
+    // Getter and setters
     public Animation getPlayerAnimation() {
         return playerAnimation;
     }
@@ -479,8 +476,5 @@ public class Player extends AbstractGameObject implements PlayerInterface {
     public void setPlayerAnimation(Animation playerAnimation) {
         this.playerAnimation = playerAnimation;
     }
-
-    
-    
 
 }

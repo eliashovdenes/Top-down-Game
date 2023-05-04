@@ -1,16 +1,14 @@
 package inf112.skeleton.app;
 
-
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 
 import inf112.skeleton.app.Controller.Controller;
 import inf112.skeleton.app.Screens.MainMenuScreen;
 
-public class Southgame extends Game{
+public class Southgame extends Game {
     private Controller controller = new Controller();
 
-    
     @Override
     public void create() {
         Gdx.input.setInputProcessor(controller);
@@ -41,10 +39,11 @@ public class Southgame extends Game{
     public void resume() {
         super.resume();
     }
+
     /**
      * @return controller associated with game.
      */
-    public Controller getController(){
+    public Controller getController() {
         return controller;
     }
 }
