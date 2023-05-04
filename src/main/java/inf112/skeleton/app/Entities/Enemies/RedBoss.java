@@ -38,6 +38,7 @@ public class RedBoss extends AbstractGameObject implements MonsterInterface {
         this.velocity.x = speed;
         this.velocity.y = speed;
         this.setMaxhitpoints(Math.round(1000*scaler));
+        this.setCurrentHitPoints(this.getMaxHitpoints());
         this.attackDamage = 100;
         projectileList = new ArrayList<ProjectileInterface>();
     }
