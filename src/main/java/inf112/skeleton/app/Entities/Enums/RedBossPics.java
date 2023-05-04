@@ -1,5 +1,8 @@
 package inf112.skeleton.app.Entities.Enums;
 
+/**
+ * Enum for red boss
+ */
 public enum RedBossPics {
     BOSSDOWN("assets/enemyPics/redbossDwon.png"),
     BOSSUP("assets/enemyPics/redbossUp.png"),

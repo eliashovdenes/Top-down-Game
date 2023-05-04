@@ -16,13 +16,13 @@ public class HealthPotion implements ItemImpl{
     private int healAmount;
 
     public HealthPotion(Vector2 position, MapInterface map) {
-       
         this.position = position;
         this.setSprite(Items.HEALTHPOTION.source);
         rectangle = new Rectangle(position.x, position.y, getWidth(), getHeight());
         setHealAmount(50);
     }
-
+    
+    // Getters and setters
     public void setHealAmount(int healAmount) {
         this.healAmount = healAmount;
     }
@@ -61,6 +61,7 @@ public class HealthPotion implements ItemImpl{
         return this.position;
     }
 
+    
     @Override
     public void update(float delta) {
         sprite.setPosition(position.x, position.y);

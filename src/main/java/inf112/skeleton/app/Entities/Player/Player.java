@@ -22,14 +22,6 @@ import inf112.skeleton.app.Sound.SoundManager;
 
 public class Player extends AbstractGameObject implements PlayerInterface {
     private Animation playerAnimation;
-    public Animation getPlayerAnimation() {
-        return playerAnimation;
-    }
-
-    public void setPlayerAnimation(Animation playerAnimation) {
-        this.playerAnimation = playerAnimation;
-    }
-
     private int playerLevel = 1;
     private int abilityPoints = 0;
     private Sprite sprite;
@@ -42,7 +34,6 @@ public class Player extends AbstractGameObject implements PlayerInterface {
     private int movementAbilityLevel = 1;
     private MapInterface map;
     public ArrayList<ProjectileInterface> projectileList;
-    
     private int arrowShootTimer;
     private int lightningShootTimer;
     DirectionEnum direction;
@@ -83,7 +74,7 @@ public class Player extends AbstractGameObject implements PlayerInterface {
     }
 
     @Override
-    // **Updates the player's position and animation. */
+    // **Updates the player's position and animation.. */
     public void update(float delta) {
 
         // Movement in x-direction
@@ -396,11 +387,14 @@ public class Player extends AbstractGameObject implements PlayerInterface {
         }
     }
 
+    //**healDamage method heals given amount to healthpoints*/
     @Override
     public void healDamage(int healAmount) {
         this.setCurrentHitPoints(this.getCurrentHitpoints() + healAmount);
     }
 
+
+    //Getters and setters
     @Override
     public int getArrowAbilityLevel() {
         return arrowAbilityLevel;
@@ -446,17 +440,20 @@ public class Player extends AbstractGameObject implements PlayerInterface {
         return movementAbilityLevel;
     }
 
+    //Removes one ability point
     @Override
     public void removeAbilityPoints(){
         abilityPoints-=1;
     }
 
+    //Upgrades the health ability
     @Override
     public void upgradeHealth() {
         healthAbilityLevel +=1;
         setMaxhitpoints(100*healthAbilityLevel);
     }
 
+    //Upgrades the movement ability
     @Override
     public void upgradeMovement() {
         movementAbilityLevel+=1;
@@ -464,12 +461,23 @@ public class Player extends AbstractGameObject implements PlayerInterface {
         run = run+1;
     }
 
+    //Checks if the player is invincible or not
     public boolean isInvincible() {
         return isInvincible;
     }
 
+    //Sets the player to invincible or not
     public void setInvincible(boolean isInvincible) {
         this.isInvincible = isInvincible;
+    }
+
+    //Getter and setters
+    public Animation getPlayerAnimation() {
+        return playerAnimation;
+    }
+
+    public void setPlayerAnimation(Animation playerAnimation) {
+        this.playerAnimation = playerAnimation;
     }
 
     

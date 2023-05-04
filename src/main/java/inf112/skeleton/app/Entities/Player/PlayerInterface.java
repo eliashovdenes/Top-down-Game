@@ -100,13 +100,30 @@ public interface PlayerInterface  {
      */
     void setOffPortal();
     
-    //TODO write javadoc
     
+    /**
+     * @return a boolean the map
+     */
     public MapInterface returnMap();
     
+    /**
+     * method for upgrading the player's lightning
+     */
     void upgradeLightning();
+
+    /**
+     * method for upgrading the player's arrow
+     */
     void upgradeArrow();
+
+    /**
+     * method for upgrading the player's health
+     */
     void upgradeHealth();
+
+    /**
+     * method for upgrading the player's movement
+     */
     void upgradeMovement();
 
     /**
@@ -178,21 +195,50 @@ public interface PlayerInterface  {
      */
     public boolean isDead();
 
+    /**
+     * Getter for the rectangle of the player
+     */
     Rectangle getRect();
 
+    /**
+     * Getter for arrow ability level
+     */
     public int getArrowAbilityLevel();
+
+    /**
+     * Getter for lightning ability level
+     */
     public int getLightningAbilityLevel();
 
+    /**
+     * Getter for ability points
+     */
     int getAbilityPoints();
 
+
+    /**
+     * Getter for exp from  @param monsters
+     */
     void getExp(String monster);
 
+    /**
+     * Getter for level
+     */
     int getLevel();
 
+    /**
+     * Getter for health ability level
+     */
     int getHealthAbilityLevel();
 
+    /**
+     * Getter for movement ability level
+     */
     int getMovementAbilityLevel();
 
+    /**
+     * Removes ability points
+     */
     void removeAbilityPoints();
 
 }
