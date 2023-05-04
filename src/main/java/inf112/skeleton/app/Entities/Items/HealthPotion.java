@@ -23,10 +23,17 @@ public class HealthPotion implements ItemImpl{
         setHealAmount(50);
     }
 
+    /**
+     * set amount that healthpotion heals
+     * @param healAmount
+     */
     public void setHealAmount(int healAmount) {
         this.healAmount = healAmount;
     }
 
+    /**
+     * @return amount that healthpotions heal
+     */
     public int getHealAmount() {
         return this.healAmount;
     }
