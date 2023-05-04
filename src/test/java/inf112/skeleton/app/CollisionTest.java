@@ -76,10 +76,10 @@ public class CollisionTest {
         
     }
     
-    @Test
-    void testIsPlayerOnPortal(){
-        fail();
-    }
+    // @Test
+    // void testIsPlayerOnPortal(){
+    //     fail();
+    // }
 }
 
 

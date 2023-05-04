@@ -57,14 +57,14 @@ public class MainMenuScreenTest {
         
     }
 
-    @Test
-    void testWrongMouseClick() {
+    // @Test
+    // void testWrongMouseClick() {
 
 
-    }
+    // }
 
-    @Test
-    void changeToInstructionScreenTest() {
+    // @Test
+    // void changeToInstructionScreenTest() {
 
-    }
+    // }
 }

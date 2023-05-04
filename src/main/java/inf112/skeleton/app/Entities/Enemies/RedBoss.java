@@ -231,5 +231,13 @@ public class RedBoss extends AbstractGameObject implements MonsterInterface {
             shootTimer -= delta;
         }
     }
+
+    public float getSpeed() {
+        return speed;
+    }
+
+    public void setPosition(Vector2 newPosition) {
+        this.position = newPosition;
+    }
     
 }

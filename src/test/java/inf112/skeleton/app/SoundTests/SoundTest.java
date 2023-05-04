@@ -19,7 +19,7 @@ import inf112.skeleton.app.Sound.SoundManager;
 public class SoundTest {
 
     private SoundManager soundManager;
-    Southgame zelda;
+    inf112.skeleton.app.Southgame Southgame;
     HeadlessApplication app;
 
 
@@ -33,9 +33,9 @@ public class SoundTest {
 
 	@BeforeEach
 	void setUpBeforeEach() {
-        zelda = mock(Southgame.class);
+        Southgame = mock(Southgame.class);
         HeadlessApplicationConfiguration config = new HeadlessApplicationConfiguration();
-        app = new HeadlessApplication(zelda, config);
+        app = new HeadlessApplication(Southgame, config);
         soundManager = new SoundManager();
         
         

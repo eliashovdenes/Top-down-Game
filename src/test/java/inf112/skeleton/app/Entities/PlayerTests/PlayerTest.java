@@ -443,17 +443,45 @@ public class PlayerTest {
         assertEquals(initialAbilityPoints - 1, player.getAbilityPoints());
     }
 
+    @Test
+    public void testHealDamage() {
+        Controller controller = mock(Controller.class, Mockito.CALLS_REAL_METHODS);
+        Level1Mini lvl1 = new Level1Mini(0, 0);
+        assertNotNull(lvl1);
+        Player player = new Player(new Vector2(0, 0), lvl1, controller);
+        
+        player.takeDamage(50);
+        assertEquals(50, player.getCurrentHitpoints());
+        player.healDamage(50);
+        assertEquals(100, player.getCurrentHitpoints());
 
+        // PLayer can take damage again
+        player.setInvincible(false);
+       
+        player.takeDamage(75);
+        assertEquals(25, player.getCurrentHitpoints());
+        player.healDamage(50);
+        assertEquals(75, player.getCurrentHitpoints());
 
+        // Overheal and see that currenthitpoints is not above maxHitpoints
+        player.setInvincible(false);
+        player.healDamage(100);
+        assertEquals(100, player.getCurrentHitpoints());
+    }
 
-
-
-
-
-
-
-
-    
-
-
+    @Test
+    public void testIsInvinvible() {
+        Controller controller = mock(Controller.class, Mockito.CALLS_REAL_METHODS);
+        Level1Mini lvl1 = new Level1Mini(0, 0);
+        assertNotNull(lvl1);
+        Player player = new Player(new Vector2(0, 0), lvl1, controller);
+        
+        player.takeDamage(50);
+        assertEquals(50, player.getCurrentHitpoints());
+        assertTrue(player.isInvincible());
+        
+        // PLayer can take damage again
+        player.setInvincible(false);
+        assertFalse(player.isInvincible());
+    }
 }
