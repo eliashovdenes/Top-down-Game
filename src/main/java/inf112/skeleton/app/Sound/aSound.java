@@ -1,14 +1,18 @@
 package inf112.skeleton.app.Sound;
 
+import java.nio.file.Files;
+
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.audio.Music;
 // import com.badlogic.gdx.audio.Sound;
 
 public class aSound {
     private Music sound;
+    private String fileString;
 
     public aSound(String soundString, boolean loop){
-        sound = Gdx.audio.newMusic(Gdx.files.internal(soundString));
+        this.fileString = soundString;
+        sound = Gdx.audio.newMusic(Gdx.files.internal(fileString));
         sound.setLooping(loop);
         
     }
@@ -23,7 +27,7 @@ public class aSound {
     public void dispose(){
         sound.dispose();
     }
-    public Music getMusicObject(){
-        return sound;
+    public String getSoundString(){
+        return fileString;
     }
 }
