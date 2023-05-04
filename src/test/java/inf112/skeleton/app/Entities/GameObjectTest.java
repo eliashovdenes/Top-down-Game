@@ -163,5 +163,12 @@ public class GameObjectTest {
         player.setEnteredLevel3(false);
         assertFalse(player.isEnteredLevel3());
     }
-     
+    @Test
+    void testVelos(){
+        
+        
+        assertEquals(player.getVeloX(),0);
+        assertEquals(player.getVeloY(),0);
+        
+    }
 }
