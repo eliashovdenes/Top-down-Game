@@ -86,7 +86,8 @@ public class Collision {
 
     public boolean checkYDirection(float velY) {
         boolean collisionY = false;
-
+        posX = entity.getPosition().x;
+        posY = entity.getPosition().y;
         // when moving downwards
         if (velY < 0) {
             // bottom left
