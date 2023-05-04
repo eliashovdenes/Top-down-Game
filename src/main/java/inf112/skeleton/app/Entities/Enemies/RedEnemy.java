@@ -37,7 +37,7 @@ public class RedEnemy extends AbstractGameObject implements MonsterInterface  {
         setSprite(RedEnemyPics.ENEMYDOWN.source);
         rectangle = new Rectangle(position.x, position.y, getWidth(), getHeight());
         setXYFromSpawnBounds();  
-        this.setMaxhitpoints(Math.round(75*scaler));
+        this.setMaxhitpoints(Math.round(25*scaler));
         this.setCurrentHitPoints(this.getMaxHitpoints()); 
         this.random = new Random();
         this.setHealthPotionDropChance(0.5);
