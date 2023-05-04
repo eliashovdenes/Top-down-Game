@@ -37,7 +37,7 @@ public class GrassMini extends TiledMap implements MapInterface {
 
     @Override
     public void setup() {
-        enemies.put("BlueEnemy", 2);
+        enemies.put("BlueEnemy", 4);
         enemies.put("RedEnemy", 3);   
         // enemies.put("RedBoss", 1);   
     }
