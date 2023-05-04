@@ -233,5 +233,10 @@ public class RedEnemy extends AbstractGameObject implements MonsterInterface  {
     private float getRandomCooldown(int min, int max) {
         Random random = new Random();
         return min + random.nextFloat() * (max - min);
+    }
+
+    @Override
+    public void giveShootingPermission() {
+        
     }   
 }

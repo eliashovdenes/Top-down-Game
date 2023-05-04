@@ -118,7 +118,7 @@ public class MainMenuScreen extends ScreenAdapter {
             SM.mainMenuMusic.stop();
 
 
-            if (newGameRect.contains(hei.x, hei.y)){
+            if (newGameRect.contains(menuClick.x, menuClick.y)){
                 mapI = new Level1Mini(123,76);
                 game.setScreen(new View(game, controller, new Player(new Vector2(0,0),mapI, controller)));
                 SM.mainMenuMusic.stop();
