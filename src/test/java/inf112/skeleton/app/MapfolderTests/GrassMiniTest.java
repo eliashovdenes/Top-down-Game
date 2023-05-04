@@ -84,4 +84,12 @@ public class GrassMiniTest {
         assertNotNull(map);
         assertEquals(81, map.getEnemyBoundsToY());
     }
+
+    @Test
+    void testSetup(){
+        assertNotNull(map);
+        map.setup();
+        assertEquals(map.getEnemies().get("BlueEnemy"), 2);
+        assertEquals(map.getEnemies().get("RedEnemy"), 3);
+    }
 }
