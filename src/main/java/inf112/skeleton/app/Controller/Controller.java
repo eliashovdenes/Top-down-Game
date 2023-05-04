@@ -84,25 +84,26 @@ public class Controller implements InputProcessor{
         return true;
     }
 
-    
-    @Override
-    //*This method is called when a key is typed, we do not use this method*/
-    public boolean keyTyped(char character) {
-        return false;
-    }
-
     @Override
     public boolean touchDown(int screenX, int screenY, int pointer, int button) {
         menuClick = new Vector2(screenX,screenY);
         justTouched = true;
         return true;
     }
+
     @Override
-    //*This method is called when the mouse is released, we do not use this method*/
     public boolean touchUp(int screenX, int screenY, int pointer, int button) {
         justTouched = false;
         return false;
     }
+
+
+    @Override
+    //*This method is called when a key is typed, we do not use this method*/
+    public boolean keyTyped(char character) {
+        return false;
+    }
+   
     @Override
     //*This method is called when the mouse is dragged, we do not use this method*/
     public boolean touchDragged(int screenX, int screenY, int pointer) {

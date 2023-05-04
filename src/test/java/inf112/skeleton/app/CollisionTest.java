@@ -48,7 +48,7 @@ public class CollisionTest {
     void testCollisionYdirection(){
 
         //HVORFOR DETECTER VI COLLISION HER??? NOE ER RART
-        //assertFalse(collision.checkYDirection(1));
+        assertFalse(collision.checkYDirection(1f));
         
         controller.setUp(true);
 
@@ -56,16 +56,26 @@ public class CollisionTest {
         for (int i = 0; i<10000; i++){
             player.update(1f);
         }
-        assertTrue(collision.checkYDirection(1));
-
+        assertTrue(collision.checkYDirection(1f));
+        controller.setUp(false);
         
+        //Move other way
+        controller.setDown(true);
+        
+        player.update(1f);
+
+        assertFalse(collision.checkYDirection(-1f));
+        for (int i = 0; i<10000; i++){
+            player.update(1f);
+        }
+        assertTrue(collision.checkYDirection(-1f));
         
     }
 
     @Test
     void testCollisionXdirection(){
 
-        assertFalse(collision.checkXDirection(1));
+        assertFalse(collision.checkXDirection(1f));
 
         
         controller.setRight(true);
@@ -73,7 +83,20 @@ public class CollisionTest {
         for (int i = 0; i<10000; i++){
             player.update(1f);
         }
-        assertTrue(collision.checkXDirection(1));
+        assertTrue(collision.checkXDirection(1f));
+
+        controller.setRight(false);
+        //Move other way
+        controller.setLeft(true);
+        player.update(1f);
+        
+
+        assertFalse(collision.checkXDirection(-1f));
+        for (int i = 0; i<10000; i++){
+            player.update(1f);
+        }
+        assertTrue(collision.checkXDirection(-1f));
+
         
     }
     
