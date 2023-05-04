@@ -13,8 +13,8 @@ public class SoundManager {
     public aSound start;
     public aSound kill;
     public aSound monsterdied;
-    
-    public SoundManager(){
+
+    public SoundManager() {
         this.mainMenuMusic = new aSound("assets/soundfiles/Main.mp3", true);
         this.arrowSound = new aSound("assets/soundfiles/bow-release.mp3", false);
         this.lightningMultiShotSound = new aSound("assets/soundfiles/electric-shock.mp3", false);
@@ -30,5 +30,4 @@ public class SoundManager {
 
     }
 
-    
 }

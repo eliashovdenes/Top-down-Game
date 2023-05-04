@@ -20,44 +20,37 @@ public class Lightning extends AbstractGameObject implements ProjectileInterface
     private float rotationSpeed = 1000;
     private float rotation = 0;
     private int attackDamage = 45;
-    
-    
-    public Lightning(Vector2 position, MapInterface map, Vector2 velocity){
-        super(position,map);
+
+    public Lightning(Vector2 position, MapInterface map, Vector2 velocity) {
+        super(position, map);
         this.map = map;
         this.velocity = velocity;
         setSprite(PlayerPics.LIGHTNING.source);
         sprite.setSize(40, 40);
         rectangle = new Rectangle(position.x, position.y, sprite.getWidth(), sprite.getHeight());
     }
-       
+
     @Override
     public void update(float delta) {
-        
-        position.x+=velocity.x;
-        position.y+=velocity.y;
-        
-        sprite.setPosition(this.position.x,this.position.y);
-   
-        
 
-        sprite.setOrigin(sprite.getWidth()/2,sprite.getHeight()/2);
-        
+        position.x += velocity.x;
+        position.y += velocity.y;
+
+        sprite.setPosition(this.position.x, this.position.y);
+
+        sprite.setOrigin(sprite.getWidth() / 2, sprite.getHeight() / 2);
+
         rectangle.setPosition(position.x, position.y);
 
-
-        rotation += rotationSpeed*delta;
-        if (rotation>= 360){
+        rotation += rotationSpeed * delta;
+        if (rotation >= 360) {
             rotation -= 360;
         }
         sprite.setRotation(rotation);
-        
-        
-        
-         
+
     }
 
-    //Setters and getters -->>>>
+    // Setters and getters -->>>>
     @Override
     public Sprite getSprite() {
         return sprite;
@@ -73,7 +66,6 @@ public class Lightning extends AbstractGameObject implements ProjectileInterface
         this.speed = speed;
     }
 
-
     @Override
     public float getWidth() {
         return sprite.getWidth();
@@ -88,8 +80,9 @@ public class Lightning extends AbstractGameObject implements ProjectileInterface
     public int getDamage() {
         return attackDamage;
     }
+
     @Override
-    public float getMovementSpeed(){
+    public float getMovementSpeed() {
         return speed;
     }
 }

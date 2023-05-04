@@ -22,22 +22,19 @@ import inf112.skeleton.app.Mapfolder.Level1Mini;
 import inf112.skeleton.app.Mapfolder.MapInterface;
 import inf112.skeleton.app.Sound.SoundManager;
 
-
-
 public class MainMenuScreen extends ScreenAdapter {
-    
+
     private SpriteBatch batch;
     private Southgame game;
     private Controller controller;
     private SoundManager SM;
     MapInterface mapI;
     ShapeRenderer shape;
-    Rectangle newGameRect,instructionsRect,quitRect,creditsRect;
+    Rectangle newGameRect, instructionsRect, quitRect, creditsRect;
     OrthographicCamera camera;
     private Texture background = new Texture(Gdx.files.internal("src/main/resources/assets/mainmenu.png"));
     private Lwjgl3ApplicationConfiguration cfg = new Lwjgl3ApplicationConfiguration();
-    private DisplayMode disp = Lwjgl3ApplicationConfiguration.getDisplayMode(); 
-
+    private DisplayMode disp = Lwjgl3ApplicationConfiguration.getDisplayMode();
 
     public MainMenuScreen(Southgame southGame, Controller controller) {
         this.game = southGame;
@@ -47,15 +44,15 @@ public class MainMenuScreen extends ScreenAdapter {
         SM.mainMenuMusic.play();
         this.shape = new ShapeRenderer();
 
-        //creating rectangles based on app graphics
+        // creating rectangles based on app graphics
 
         float screenWidth = disp.width;
         float screenHeight = disp.height;
 
-        newGameRect = new Rectangle(screenWidth/22, screenHeight/6, screenWidth/6, screenHeight/10);
-        instructionsRect = new Rectangle(screenWidth/4, screenHeight/6, screenWidth/4, screenHeight/10);
-        creditsRect = new Rectangle((float)(screenWidth/1.8), screenHeight/6, screenWidth/6, screenHeight/10);
-        quitRect = new Rectangle((float)(screenWidth/1.3), screenHeight/6, screenWidth/6, screenHeight/10);
+        newGameRect = new Rectangle(screenWidth / 22, screenHeight / 6, screenWidth / 6, screenHeight / 10);
+        instructionsRect = new Rectangle(screenWidth / 4, screenHeight / 6, screenWidth / 4, screenHeight / 10);
+        creditsRect = new Rectangle((float) (screenWidth / 1.8), screenHeight / 6, screenWidth / 6, screenHeight / 10);
+        quitRect = new Rectangle((float) (screenWidth / 1.3), screenHeight / 6, screenWidth / 6, screenHeight / 10);
 
         // Create the camera and set its position to the center of the screen
         camera = new OrthographicCamera();
@@ -64,16 +61,15 @@ public class MainMenuScreen extends ScreenAdapter {
         camera.update();
     }
 
-
     @Override
     public void render(float delta) {
-        
+
         // Clear the screen with a solid color
         Gdx.gl.glClearColor(0, 0, 0, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-       
+
         batch.begin();
-        batch.draw(background, 0, 0, disp.width,(int) (disp.height*0.9));
+        batch.draw(background, 0, 0, disp.width, (int) (disp.height * 0.9));
         batch.end();
         // shape.setColor(Color.RED);
         // shape.begin(ShapeRenderer.ShapeType.Filled);
@@ -81,45 +77,40 @@ public class MainMenuScreen extends ScreenAdapter {
         // shape.rect(instructionsRect.x,instructionsRect.y,instructionsRect.width,instructionsRect.height);
         // shape.rect(creditsRect.x,creditsRect.y,creditsRect.width,creditsRect.height);
         // shape.rect(quitRect.x,quitRect.y,quitRect.width,quitRect.height);
-        // shape.end(); 
+        // shape.end();
 
+        if (controller.getJustTouched()) {
 
-
-
-        
-        if (controller.getJustTouched()){
-            
-            Vector3 menuClick = new Vector3(controller.getMenuClick(),0);
+            Vector3 menuClick = new Vector3(controller.getMenuClick(), 0);
             camera.unproject(menuClick);
             SM.buttonClick.play();
 
-
-            if (newGameRect.contains(menuClick.x, menuClick.y)){
-                mapI = new Level1Mini(123,76);
-                game.setScreen(new View(game, controller, new Player(new Vector2(0,0),mapI, controller)));
+            if (newGameRect.contains(menuClick.x, menuClick.y)) {
+                mapI = new Level1Mini(123, 76);
+                game.setScreen(new View(game, controller, new Player(new Vector2(0, 0), mapI, controller)));
                 SM.start.play();
                 SM.mainMenuMusic.stop();
             }
-            if (instructionsRect.contains(menuClick.x,menuClick.y)){
+            if (instructionsRect.contains(menuClick.x, menuClick.y)) {
                 game.setScreen(new InstructionScreen(game, controller));
                 SM.mainMenuMusic.stop();
             }
 
-            if (creditsRect.contains(menuClick.x,menuClick.y)){
+            if (creditsRect.contains(menuClick.x, menuClick.y)) {
                 game.setScreen(new CreditScreen(game, controller));
                 SM.mainMenuMusic.stop();
             }
-            if (quitRect.contains(menuClick.x,menuClick.y)){
+            if (quitRect.contains(menuClick.x, menuClick.y)) {
                 Gdx.app.exit();
             }
             controller.setJustTouched(false);
-            
+
         }
     }
 
     @Override
     public void dispose() {
-        
+
         batch.dispose();
     }
 }

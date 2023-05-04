@@ -4,35 +4,37 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 
+public interface ProjectileInterface {
 
-public interface ProjectileInterface{
-
-    
     /**
      * Update changable variables in accordance with
+     * 
      * @param delta time
      */
     public void update(float delta);
+
     /**
      * @return projectile sprite
      */
-    public  Sprite getSprite();
+    public Sprite getSprite();
+
     /**
      * Set projectile sprite.
+     * 
      * @param string path
      */
-    public  void setSprite(String string);
+    public void setSprite(String string);
 
     /**
      * @return width of projectile
      */
-    public  float getWidth();
-    
+    public float getWidth();
+
     /**
      * 
      * @return height of the projectile
      */
-    public  float getHeight();
+    public float getHeight();
 
     /**
      * 
@@ -52,11 +54,10 @@ public interface ProjectileInterface{
      */
     public int getDamage();
 
-    
     /**
      * 
      * @return position of projectile.
      */
     public Vector2 getPosition();
-   
+
 }

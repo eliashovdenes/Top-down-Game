@@ -4,9 +4,8 @@ import java.util.Map;
 
 import com.badlogic.gdx.maps.tiled.TiledMap;
 
-
 public interface MapInterface {
-    
+
     /**
      * Setup creates a MonsterFactory for each enemy class used in the map.
      * The MonsterFactories are stored in a HashMap - monsterFactories, where
@@ -22,13 +21,10 @@ public interface MapInterface {
      */
     public TiledMap getMap();
 
-    
-
     /**
-     * @return  x-coordinate spawn point
+     * @return x-coordinate spawn point
      */
     public float getPlayerSpawnX();
-
 
     /**
      * stops the music.
@@ -62,7 +58,7 @@ public interface MapInterface {
      * 
      * @return to Y coordinate bounds for spawn location.
      */
-    public int getEnemyBoundsToY();    
+    public int getEnemyBoundsToY();
 
     /**
      * 
@@ -72,7 +68,9 @@ public interface MapInterface {
 
     /**
      * Parameter decides if player can leave arena.
-     * @param allEnemiesDead true: player can leave arena, false: player can't leave arena.s
+     * 
+     * @param allEnemiesDead true: player can leave arena, false: player can't leave
+     *                       arena.s
      */
 
     public void setAllEnemiesDead(boolean allEnemiesDead);

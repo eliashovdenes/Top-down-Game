@@ -8,7 +8,7 @@ import com.badlogic.gdx.math.Vector2;
 import inf112.skeleton.app.Entities.Enums.Items;
 import inf112.skeleton.app.Mapfolder.MapInterface;
 
-public class HealthPotion implements ItemImpl{
+public class HealthPotion implements ItemImpl {
 
     private Sprite sprite;
     private Vector2 position;
@@ -21,13 +21,12 @@ public class HealthPotion implements ItemImpl{
         rectangle = new Rectangle(position.x, position.y, getWidth(), getHeight());
         setHealAmount(50);
     }
-    
+
     // Getters and setters
     public void setHealAmount(int healAmount) {
         this.healAmount = healAmount;
     }
 
-    
     public int getHealAmount() {
         return this.healAmount;
     }
@@ -50,7 +49,7 @@ public class HealthPotion implements ItemImpl{
     @Override
     public float getHeight() {
         return sprite.getHeight();
-    }  
+    }
 
     @Override
     public Rectangle getRect() {
@@ -62,9 +61,8 @@ public class HealthPotion implements ItemImpl{
         return this.position;
     }
 
-    
     @Override
     public void update(float delta) {
         sprite.setPosition(position.x, position.y);
-    }  
+    }
 }

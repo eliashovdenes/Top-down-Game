@@ -13,27 +13,24 @@ import com.badlogic.gdx.math.Rectangle;
 import inf112.skeleton.app.Southgame;
 import inf112.skeleton.app.Controller.Controller;
 
-
-
 public class InstructionScreen extends ScreenAdapter {
-    
+
     private SpriteBatch batch;
     private Southgame game;
     private Controller controller;
     private OrthographicCamera camera;
     private Texture background = new Texture(Gdx.files.internal("src/main/resources/assets/instructions.png"));
     private Lwjgl3ApplicationConfiguration cfg = new Lwjgl3ApplicationConfiguration();
-    private DisplayMode disp = cfg.getDisplayMode(); 
-    
+    private DisplayMode disp = cfg.getDisplayMode();
 
-    Rectangle movementKeysRect,attackKeysRect,miscKeysRect,purposeRect;
+    Rectangle movementKeysRect, attackKeysRect, miscKeysRect, purposeRect;
 
     public InstructionScreen(Southgame southGame, Controller controller) {
         this.game = southGame;
         this.controller = controller;
         batch = new SpriteBatch();
 
-         //creating rectangles based on app graphics
+        // creating rectangles based on app graphics
 
         // Create the camera and set its position to the center of the screen
         camera = new OrthographicCamera();
@@ -41,7 +38,6 @@ public class InstructionScreen extends ScreenAdapter {
         camera.position.set(Gdx.graphics.getWidth(), Gdx.graphics.getHeight(), 0);
         camera.update();
     }
-
 
     @Override
     public void render(float delta) {
@@ -51,14 +47,14 @@ public class InstructionScreen extends ScreenAdapter {
 
         // Draw the title
         batch.begin();
-        
-        batch.draw(background, 0, 0, disp.width, (int) (disp.height*0.9));
+
+        batch.draw(background, 0, 0, disp.width, (int) (disp.height * 0.9));
         batch.end();
-        
-        if (controller.getJustTouched()){
+
+        if (controller.getJustTouched()) {
             controller.setJustTouched(false);
             game.setScreen(new MainMenuScreen(game, controller));
-            }
+        }
     }
 
     @Override

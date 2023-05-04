@@ -19,18 +19,15 @@ public class Level1Mini extends TiledMap implements MapInterface {
     private int EnemyBoundsToY = 800;
     private SoundManager sm;
     private boolean allEnemiesDead = false;
-    
 
     private TiledMap tiledMap;
     private Map<String, Integer> enemies = new HashMap<>();
-
-
 
     public Level1Mini(float playerSpawnX, float playerSpawnY) {
         PlayerSpawnX = playerSpawnX;
         PlayerSpawnY = playerSpawnY;
         tiledMap = new TmxMapLoader().load(Maps.Level1Mini.source);
-        //renderer = new OrthogonalTiledMapRenderer(tiledMap);
+    
         sm = new SoundManager();
         sm.safeZone.play();
         setup();
@@ -39,7 +36,7 @@ public class Level1Mini extends TiledMap implements MapInterface {
     @Override
     public void setup() {
         enemies.put("BlueEnemy", 0);
-        enemies.put("RedEnemy", 0);      
+        enemies.put("RedEnemy", 0);
     }
 
     @Override
@@ -80,13 +77,13 @@ public class Level1Mini extends TiledMap implements MapInterface {
     @Override
     public Map<String, Integer> getEnemies() {
         return this.enemies;
-    } 
+    }
 
     @Override
     public void stopMusic() {
         sm.safeZone.stop();
         sm.safeZone.dispose();
-        }
+    }
 
     @Override
     public void setAllEnemiesDead(boolean allEnemiesDead) {

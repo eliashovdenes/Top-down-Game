@@ -26,7 +26,6 @@ public enum PlayerAnimation {
     ATTACKDOWN(new Animation(new TextureRegion(new Texture("assets/playerPics/attackDown.png")), 8, 0.1f)),
     ATTACKLEFT(new Animation(new TextureRegion(new Texture("assets/playerPics/attackLeft.png")), 12, 0.1f));
 
-
     public Animation animation;
 
     PlayerAnimation(Animation animation) {

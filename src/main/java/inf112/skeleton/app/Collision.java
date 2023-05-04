@@ -16,8 +16,6 @@ public class Collision {
     public MapInterface currMap;
     private TiledMap map;
 
-    
-
     private AbstractGameObject entity;
 
     private float tileSize;
@@ -29,8 +27,10 @@ public class Collision {
         this.entity = entity;
         tileSize = ((TiledMapTileLayer) this.map.getLayers().get(0)).getTileWidth();
     }
+
     /**
      * Checks collision in X-direction
+     * 
      * @param velX velocity of object in X direction
      * @return false if not collision. True if collision.
      */
@@ -79,8 +79,10 @@ public class Collision {
         return false;
 
     }
+
     /**
      * Checks collision in Y-direction
+     * 
      * @param velY velocity of object in Y direction
      * @return false if not collision. True if collision.
      */
@@ -142,6 +144,7 @@ public class Collision {
         }
         return false;
     }
+
     /**
      * @return true if entity is a player and collides with a portal. False if not
      */
@@ -195,14 +198,17 @@ public class Collision {
         }
         return false;
     }
+
     /**
      * @returns map associated with collision.
      */
     public TiledMap getMap() {
         return map;
     }
+
     /**
      * Sets map associated with collision.
+     * 
      * @param map
      */
     public void setMap(TiledMap map) {

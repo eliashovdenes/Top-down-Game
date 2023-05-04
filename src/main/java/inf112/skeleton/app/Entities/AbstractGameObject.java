@@ -10,11 +10,10 @@ import inf112.skeleton.app.Mapfolder.MapInterface;
 
 public abstract class AbstractGameObject {
     protected Vector2 recentPosition;
-    
+
     protected Vector2 position;
 
     protected Vector2 velocity;
-    
 
     protected Collision collision;
     private Integer currentHitpoints;
@@ -22,24 +21,22 @@ public abstract class AbstractGameObject {
     public boolean enteredLevel3 = false;
     protected Rectangle rectangle;
     protected MapInterface map;
-    
-    
+
     public AbstractGameObject(Vector2 position, MapInterface map) {
         this.map = map;
         this.position = position;
         this.collision = new Collision(map, this);
         this.velocity = new Vector2();
         this.recentPosition = new Vector2(position);
-        
+
     }
 
     public AbstractGameObject(Vector2 position) {
         this.position = position;
         this.velocity = new Vector2();
         this.recentPosition = new Vector2(position);
-        
+
     }
-    
 
     /**
      * Applies the movement to position of object and rectangle.
@@ -47,30 +44,28 @@ public abstract class AbstractGameObject {
     public void ApplyMovement() {
         recentPosition.set(position);
         handleCollision();
-        position.x += velocity.x;     
+        position.x += velocity.x;
         position.y += velocity.y;
         rectangle.setPosition(position);
-    }   
-    
-    
-    
+    }
 
     /**
      * Handle collision in X- and Y-direction.
      */
-    public void handleCollision(){
-        if (xCollision()){
-            position.x=recentPosition.x;
+    public void handleCollision() {
+        if (xCollision()) {
+            position.x = recentPosition.x;
             velocity.x = 0;
-            
+
         }
-        if (yCollision()){
-            position.y=recentPosition.y;
+        if (yCollision()) {
+            position.y = recentPosition.y;
             velocity.y = 0;
-            
+
         }
-        
+
     }
+
     /**
      * @return rectangle associated gameobject
      */
@@ -80,40 +75,44 @@ public abstract class AbstractGameObject {
 
     /**
      * Checks collision in X-direction
+     * 
      * @return false if not collision. True if collision.
      */
-    public boolean xCollision(){
+    public boolean xCollision() {
         return collision.checkXDirection(velocity.x);
     }
+
     /**
      * Checks collision in Y-direction
+     * 
      * @return false if not collision. True if collision.
      */
-    public boolean yCollision(){
+    public boolean yCollision() {
         return collision.checkYDirection(velocity.y);
     }
-
 
     /**
      * Checks if the Entity is dead
      * True - if Entity is dead
      * False - otherwise
+     * 
      * @return boolean
      */
     public boolean isDead() {
         return getCurrentHitpoints() <= 0;
-    } 
+    }
 
     /**
      * @return velocity in x direction
      */
-    public float getVeloX(){
+    public float getVeloX() {
         return velocity.x;
     }
+
     /**
      * @return velocity in y-direction
      */
-    public float getVeloY(){
+    public float getVeloY() {
         return velocity.y;
     }
 
@@ -122,10 +121,10 @@ public abstract class AbstractGameObject {
      * 
      * @return Integer - currentHitpoints
      */
-    public Integer getCurrentHitpoints(){
+    public Integer getCurrentHitpoints() {
         return this.currentHitpoints;
     }
-    
+
     /**
      * Set the Entity's currentHitpoints to a new value
      * Also makes sure currentHitpoints cannot be set higher then maxHitpoints
@@ -136,28 +135,28 @@ public abstract class AbstractGameObject {
     public void setCurrentHitPoints(int newHitpoints) {
         if (newHitpoints > this.maxHitpoints) {
             this.currentHitpoints = maxHitpoints;
-        }
-        else if (newHitpoints < 0) {
+        } else if (newHitpoints < 0) {
             this.currentHitpoints = 0;
-        }
-        else {
+        } else {
             this.currentHitpoints = newHitpoints;
         }
     }
-    
+
     /**
-     * Reduces the Entity's hitpoints by a given amount 
+     * Reduces the Entity's hitpoints by a given amount
+     * 
      * @param damage
      */
     public void takeDamage(int damage) {
         this.setCurrentHitPoints(this.getCurrentHitpoints() - damage);
-    }   
+    }
+
     /**
      * Get the maxHitpoints of the Entity
      * 
      * @return Integer - maxHitpoints
      */
-    public Integer getMaxHitpoints(){
+    public Integer getMaxHitpoints() {
         return this.maxHitpoints;
     }
 
@@ -168,21 +167,19 @@ public abstract class AbstractGameObject {
      */
     public void setMaxhitpoints(Integer newMaxHitpoints) {
         if (newMaxHitpoints > 0) {
-            this.maxHitpoints = newMaxHitpoints;   
+            this.maxHitpoints = newMaxHitpoints;
         }
     }
 
-    
-
-    
-   
     /**
      * returns position of abstractGameObject
+     * 
      * @return
      */
     public Vector2 getPosition() {
         return position;
     }
+
     /**
      * @returns sprite associated with gameobject
      */
@@ -190,12 +187,14 @@ public abstract class AbstractGameObject {
 
     /**
      * Sets sprite for the path inserted in string-parameter
-     * @param string 
+     * 
+     * @param string
      */
     public abstract void setSprite(String string);
 
     /**
      * Sets movementspeeed for game object.
+     * 
      * @param speed
      */
     public abstract void setMovementSpeed(float speed);
@@ -219,17 +218,15 @@ public abstract class AbstractGameObject {
     public boolean isEnteredLevel3() {
         return enteredLevel3;
     }
+
     /**
-     * set the boolean field variable that decides if the 
+     * set the boolean field variable that decides if the
      * gameobject has entered level3.
+     * 
      * @param enteredLevel3
      */
     public void setEnteredLevel3(boolean enteredLevel3) {
         this.enteredLevel3 = enteredLevel3;
     }
-
-    
-  
-    
 
 }
