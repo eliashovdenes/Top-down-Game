@@ -9,7 +9,7 @@ import org.junit.jupiter.api.Test;
 
 import inf112.skeleton.app.Controller.Controller;
 
-public class SouthGame {
+public class SouthGameTest {
 
     private static Southgame game;
     private static Controller controller;
