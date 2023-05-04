@@ -92,4 +92,10 @@ public class GrassMiniTest {
         assertEquals(map.getEnemies().get("BlueEnemy"), 2);
         assertEquals(map.getEnemies().get("RedEnemy"), 3);
     }
+
+    @Test
+    void testGetMap(){
+        assertNotNull(map);
+        assertNotNull(map.getMap());
+    }
 }

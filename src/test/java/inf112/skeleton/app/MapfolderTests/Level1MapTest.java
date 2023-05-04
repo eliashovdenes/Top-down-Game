@@ -92,4 +92,10 @@ public class Level1MapTest {
         assertNotNull(map);
         assertEquals(800, map.getEnemyBoundsToY());
     }
+
+    @Test
+    void testGetMap(){
+        assertNotNull(map);
+        assertNotNull(map.getMap());
+    }
 }

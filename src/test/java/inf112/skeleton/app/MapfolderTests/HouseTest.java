@@ -96,5 +96,11 @@ public class HouseTest {
         assertEquals(map.getEnemies().get("RedEnemy"), 0);
     }
 
+    @Test
+    void testGetMap(){
+        assertNotNull(map);
+        assertNotNull(map.getMap());
+    }
+
     
 }
