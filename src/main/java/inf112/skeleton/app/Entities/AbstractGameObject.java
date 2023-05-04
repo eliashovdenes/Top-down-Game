@@ -41,7 +41,9 @@ public abstract class AbstractGameObject {
     }
     
 
-    //**applymovement is a method that applies the velocity to the position of the object. */
+    /**
+     * Applies the movement to position of object and rectangle.
+     */
     public void ApplyMovement() {
         recentPosition.set(position);
         handleCollision();
@@ -53,7 +55,9 @@ public abstract class AbstractGameObject {
     
     
 
-    //**override to handle collision a different way for your class that extends abstractgameobject */
+    /**
+     * Handle collision in X- and Y-direction.
+     */
     public void handleCollision(){
         if (xCollision()){
             position.x=recentPosition.x;
@@ -67,20 +71,24 @@ public abstract class AbstractGameObject {
         }
         
     }
-
-    //*getter for the rectangle object */
+    /**
+     * @return rectangle associated gameobject
+     */
     public Rectangle getRect() {
         return rectangle;
     }
 
     /**
      * Checks collision in X-direction
-     * velX velocity of object in X direction
      * @return false if not collision. True if collision.
      */
     public boolean xCollision(){
         return collision.checkXDirection(velocity.x);
     }
+    /**
+     * Checks collision in Y-direction
+     * @return false if not collision. True if collision.
+     */
     public boolean yCollision(){
         return collision.checkYDirection(velocity.y);
     }
