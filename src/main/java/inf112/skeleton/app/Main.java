@@ -16,22 +16,12 @@ public class Main {
         Lwjgl3ApplicationConfiguration cfg = new Lwjgl3ApplicationConfiguration();
         // cfg.setResizable(false);
         DisplayMode disp = Lwjgl3ApplicationConfiguration.getDisplayMode();
-        cfg.setWindowedMode(1920, 1080);
+        cfg.setWindowedMode(disp.width, disp.height);
 
-        if(disp.width < 1920 || disp.height < 1080){
-            cfg.setWindowedMode(disp.width, disp.height);
-        }
+        
 
         new Lwjgl3Application(new Southgame(), cfg);
     }
 
-    public int getDefaultWidth(){
-        return screenWidth;
-    }
-
-
-    public int getDefaultHeight(){
-        return screenHeight;
-    }
 }
 
