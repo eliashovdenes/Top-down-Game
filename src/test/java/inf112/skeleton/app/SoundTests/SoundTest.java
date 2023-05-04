@@ -14,7 +14,6 @@ import com.badlogic.gdx.backends.headless.HeadlessApplicationConfiguration;
 import com.badlogic.gdx.graphics.GL20;
 
 import inf112.skeleton.app.Southgame;
-// import inf112.skeleton.app.Zelda;
 import inf112.skeleton.app.Sound.SoundManager;
 
 public class SoundTest {
