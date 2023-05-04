@@ -39,7 +39,8 @@ public class ViewTest {
 	@BeforeEach
 	void setUpBeforeEach() {
         HeadlessApplicationConfiguration config = new HeadlessApplicationConfiguration();
-        app = new HeadlessApplication(new Southgame(), config);
+        Southgame game = mock(Southgame.class);
+        app = new HeadlessApplication(game, config);
         controller = new Controller();
         GrassMini lvl1 = new GrassMini(0, 0);
         Player player = new Player(new Vector2(0, 0), lvl1, new Controller());

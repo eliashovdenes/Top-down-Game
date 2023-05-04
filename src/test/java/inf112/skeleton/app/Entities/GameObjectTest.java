@@ -166,7 +166,6 @@ public class GameObjectTest {
     @Test
     void testVelos(){
         
-        
         assertEquals(player.getVeloX(),0);
         assertEquals(player.getVeloY(),0);
         

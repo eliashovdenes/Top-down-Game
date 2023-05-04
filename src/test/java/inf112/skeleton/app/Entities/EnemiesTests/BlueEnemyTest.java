@@ -45,7 +45,8 @@ public class BlueEnemyTest {
 	@BeforeEach
 	void setUpBeforeEach() {
         HeadlessApplicationConfiguration config = new HeadlessApplicationConfiguration();
-        app = new HeadlessApplication(new Southgame(), config);
+        Southgame game = mock(Southgame.class);
+        app = new HeadlessApplication(game, config);
         map = new Level1Mini(0, 0);
         blueEnemy = new BlueEnemy(map, 1);
         
@@ -128,6 +129,16 @@ public class BlueEnemyTest {
         assertEquals(0.1f, blueEnemy.getSpeed(), 0.01f);
     }
 
+    @Test 
+    public void testDropHealthPotion() {
+        blueEnemy.setHealthPotionDropChance(1);
+        assertTrue(blueEnemy.dropHealthPotion());
+    }
+
+    @Test 
+    public void testGetName() {
+        assertEquals("BlueEnemy", blueEnemy.getName());
+    }
     
 
     

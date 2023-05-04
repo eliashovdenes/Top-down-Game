@@ -33,7 +33,8 @@ public class AnimationTest {
 	@BeforeEach
 	void setUpBeforeEach() {
         HeadlessApplicationConfiguration config = new HeadlessApplicationConfiguration();
-        app = new HeadlessApplication(new Southgame(), config);
+        Southgame game = mock(Southgame.class);
+        app = new HeadlessApplication(game, config);
         animation = new Animation(new TextureRegion(new Texture("assets/playerPics/animationUP.png")), 12, 0.5f);
         
 	}

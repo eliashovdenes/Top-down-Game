@@ -6,6 +6,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.backends.headless.HeadlessApplication;
 import com.badlogic.gdx.backends.headless.HeadlessApplicationConfiguration;
 import com.badlogic.gdx.graphics.GL20;
+import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.math.Vector2;
 
 import inf112.skeleton.app.Controller.Controller;
@@ -76,10 +77,23 @@ public class CollisionTest {
         
     }
     
-    // @Test
-    // void testIsPlayerOnPortal(){
-    //     fail();
-    // }
+    @Test
+    void testIsPlayerOnPortal(){
+        //TODO: wtwfd
+        collision.isCellAPortal();
+
+
+    
+    }
+
+    @Test
+    void setGetMap(){
+        TiledMap mapTobeSet = new Level1Mini(0, 0).getMap();
+        
+        collision.setMap(mapTobeSet);
+        assertEquals(collision.getMap(),mapTobeSet);
+        
+    }
 }
 
 

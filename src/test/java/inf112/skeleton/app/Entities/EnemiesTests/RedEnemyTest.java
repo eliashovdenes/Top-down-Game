@@ -39,7 +39,8 @@ public class RedEnemyTest {
 	@BeforeEach
 	void setUpBeforeEach() {
         HeadlessApplicationConfiguration config = new HeadlessApplicationConfiguration();
-        app = new HeadlessApplication(new Southgame(), config);
+        Southgame game = mock(Southgame.class);
+        app = new HeadlessApplication(game, config);
         map = new Level1Mini(0, 0);
         redEnemy = new RedEnemy(map,1);
         
@@ -130,6 +131,16 @@ public class RedEnemyTest {
         assertNotNull(redEnemy.getProjectiles());
     }
 
+    @Test 
+    public void testDropHealthPotion() {
+        redEnemy.setHealthPotionDropChance(1);
+        assertTrue(redEnemy.dropHealthPotion());
+    }
+
+    @Test 
+    public void testGetName() {
+        assertEquals("RedEnemy", redEnemy.getName());
+    }
 
 
 }

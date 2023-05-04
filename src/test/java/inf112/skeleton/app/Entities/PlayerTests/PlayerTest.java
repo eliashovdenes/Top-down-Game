@@ -33,7 +33,7 @@ import inf112.skeleton.app.Mapfolder.Level1Mini;
 
 public class PlayerTest {
     private HeadlessApplication app;
-    private static Southgame Southgame;
+    private static Southgame southGame;
 
     /**
 	 * Static method run before everything else
@@ -43,7 +43,7 @@ public class PlayerTest {
         // Gdx.files = mock(Files.class);
         Gdx.gl = mock(GL20.class);       
         Gdx.gl20 = mock(GL20.class);
-        Southgame = mock(Southgame.class);
+        southGame = mock(Southgame.class);
         // Gdx.graphics = mock(Graphics.class);   
 	}
 
@@ -53,7 +53,8 @@ public class PlayerTest {
 	@BeforeEach
 	void setUpBeforeEach() {
         HeadlessApplicationConfiguration config = new HeadlessApplicationConfiguration();
-        app = new HeadlessApplication(new Southgame(), config);
+
+        app = new HeadlessApplication(southGame, config);
 
 	}
 
