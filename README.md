@@ -27,7 +27,7 @@ Team: Sørkanten (Gruppe 8/Team 1)
 * Hans-Christian Lønne
 
 ## Om spillet
-Vi vil lage et Rouge-Like 2D spill hvor du ser brettet ovenfra. I spillet må du bekjempe fiender før du kan bevege deg videre til neste rom. Fiendene vil bli gradvis sterkere når du avanserer i spillet. Målet med spillet er å overleve lengst mulig/fullføre så mange rom som mulig (et rom er fullført når alle fiendene i rommet er beseiret). Når fiendene dør har de en mulighet til å legge fra seg gjenstander som hjelper spilleren. 
+Vi vil lage et Rouge-Like 2D spill hvor du ser brettet ovenfra. I spillet må du bekjempe fiender før du kan bevege deg videre til neste rom. Når fiender dør, får spilleren erfaring som man kan bruke i butikken for å oppgradere angrep eller attributter. Fiendene vil bli gradvis sterkere når du avanserer i spillet. Plutselig møter du kanskje på en heftig sjefs-fiende? Målet med spillet er å overleve lengst mulig/fullføre så mange rom som mulig (et rom er fullført når alle fiendene i rommet er beseiret). Når fiendene dør har de en mulighet til å legge fra seg gjenstander som hjelper spilleren. 
 
 ## Kjøring
 Foreløpig må spille kjøres i en IDE.
@@ -39,19 +39,16 @@ Start spillet ved å gjøre main.java
 - Venstre: "A"
 - Opp: "W"
 - Ned: "S"
-- Løping: "L"
+- Løping: "L.Shift"
 ### Angrep: 
 - Lynangrep: "enter" 
 - Pilangrep: "space"
 ### Øvrige keybinds
 * Pause spillet: "Escape"
-* Butikk: "k"
+* Butikk: "TAB" (virker kun i huset! Det er en nettbutikk med lynrask levering)
 
 ## Kjente feil
-- Fiender beveger seg utenfor spillbrettet i huset fordi den ikke bare har collisionchecks i hovedmapet.
 - Fiender kan spawne i hindringer og sette seg fast.
-- Lyn-angrep kollisjonsboks er ikke riktig i forhold til sprite. (Rektangel går rett fram, mens sprite beveger seg 'bølgete').
-- Oppgrader movement speed og player health i butikk er ikke implementert.
 
 ## Credits
 - Potions:  Bonsaiheldin https://opengameart.org/content/rpg-potions-16x16
