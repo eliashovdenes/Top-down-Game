@@ -129,6 +129,7 @@ public class View implements Screen {
                     if (scaler > 1 && enemy == "RedBoss"){ monster.giveShootingPermission();}
                     monsterList.add(monster);
                 }
+                enemiesremaining = monsterList.size();
             }           
         }
     }
