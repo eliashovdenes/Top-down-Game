@@ -33,7 +33,7 @@ public class AnimationTest {
 	@BeforeEach
 	void setUpBeforeEach() {
         HeadlessApplicationConfiguration config = new HeadlessApplicationConfiguration();
-        app = new HeadlessApplication(new Zelda(), config);
+        app = new HeadlessApplication(new Southgame(), config);
         animation = new Animation(new TextureRegion(new Texture("assets/playerPics/animationUP.png")), 12, 0.5f);
         
 	}

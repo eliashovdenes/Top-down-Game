@@ -12,7 +12,7 @@ import com.badlogic.gdx.backends.headless.HeadlessApplicationConfiguration;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.math.Vector2;
 
-import inf112.skeleton.app.Zelda;
+import inf112.skeleton.app.Southgame;
 import inf112.skeleton.app.Entities.Enums.Items;
 import inf112.skeleton.app.Entities.Items.HealthPotion;
 import inf112.skeleton.app.Mapfolder.Level1Mini;
@@ -41,7 +41,7 @@ public class HealthPotionTest {
 	@BeforeEach
 	void setUpBeforeEach() {
         HeadlessApplicationConfiguration config = new HeadlessApplicationConfiguration();
-        app = new HeadlessApplication(new Zelda(), config);
+        app = new HeadlessApplication(new Southgame(), config);
         map = new Level1Mini(0, 0);
         position = new Vector2(0, 0);
         healthPotion = new HealthPotion(position, map);

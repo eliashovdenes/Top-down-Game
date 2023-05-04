@@ -215,4 +215,8 @@ public class BlueEnemy extends AbstractGameObject implements MonsterInterface  {
     public void giveShootingPermission() {
         
     }
+
+    public float getSpeed() {
+        return speed;
+    }
 }

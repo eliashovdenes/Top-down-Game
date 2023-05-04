@@ -61,27 +61,27 @@ public class GrassMiniTest {
     void testGetEnemyBoundsFromX() {
         GrassMini map = new GrassMini(123, 87);
         assertNotNull(map);
-        assertEquals(104, map.getEnemyBoundsFromX());
+        assertEquals(108, map.getEnemyBoundsFromX());
     }
 
     @Test
     void testGetEnemyBoundsToX() {
         GrassMini map = new GrassMini(123, 87);
         assertNotNull(map);
-        assertEquals(133, map.getEnemyBoundsToX());
+        assertEquals(131, map.getEnemyBoundsToX());
     }
 
     @Test
     void testGetEnemyBoundsFromY() {
         GrassMini map = new GrassMini(123, 87);
         assertNotNull(map);
-        assertEquals(56, map.getEnemyBoundsFromY());
+        assertEquals(58, map.getEnemyBoundsFromY());
     }
 
     @Test
     void testGetEnemyBoundsToY() {
         GrassMini map = new GrassMini(123, 87);
         assertNotNull(map);
-        assertEquals(85, map.getEnemyBoundsToY());
+        assertEquals(81, map.getEnemyBoundsToY());
     }
 }

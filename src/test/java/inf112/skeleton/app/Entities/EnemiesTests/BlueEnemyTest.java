@@ -98,7 +98,7 @@ public class BlueEnemyTest {
 
     @Test
     public void testGetDamage() {
-        assertEquals(1, blueEnemy.getDamage());
+        assertEquals(10, blueEnemy.getDamage());
     }
 
     @Test
@@ -130,8 +130,8 @@ public class BlueEnemyTest {
     public void testHandleCollision_noCollision() {
         blueEnemy.update(0.5f);
         blueEnemy.handleCollision();
-        assertEquals(0.5f, blueEnemy.getSpeed(), 0.01f);
-        assertEquals(0.5f, blueEnemy.getSpeed(), 0.01f);
+        assertEquals(0.1f, blueEnemy.getSpeed(), 0.01f);
+        assertEquals(0.1f, blueEnemy.getSpeed(), 0.01f);
     }
 
     

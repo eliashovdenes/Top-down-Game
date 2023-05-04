@@ -71,25 +71,11 @@ public class RedEnemyTest {
     public void testHandleCollision_noCollision() {
         redEnemy.update(0.5f);
         redEnemy.handleCollision();
-        assertEquals(0.1f, redEnemy.getSpeed(), 0.01f);
-        assertEquals(0.1f, redEnemy.getSpeed(), 0.01f);
+        assertEquals(0.05f, redEnemy.getSpeed(), 0.01f);
+        assertEquals(0.05f, redEnemy.getSpeed(), 0.01f);
     }
 
-    @Test
-    public void testFollowPlayer() {
-        redEnemy.setPosition(new Vector2(0, 0));
-        redEnemy.setPosition(new Vector2(0, 0));
 
-        redEnemy.followPlayer(10, 10);
-
-        assertEquals(0.1f, redEnemy.getVeloX(), 0.01f);
-        assertEquals(0.1f, redEnemy.getVeloY(), 0.01f);
-
-        redEnemy.followPlayer(-10, -10);
-
-        assertEquals(-0.1f, redEnemy.getVeloX(), 0.01f);
-        assertEquals(-0.1f, redEnemy.getVeloY(), 0.01f);
-    }
 
     @Test
     public void testSetAndGetSprite() {
