@@ -42,5 +42,9 @@ public class Animation {
         maxFrameTime = time / frameCount;
     }
 
+    public float getMaxFrameTime() {
+        return maxFrameTime;
+    }
+
 
 }
