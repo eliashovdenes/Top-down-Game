@@ -15,7 +15,7 @@ public class Main {
     public static void main(String[] args) {
         Lwjgl3ApplicationConfiguration cfg = new Lwjgl3ApplicationConfiguration();
         // cfg.setResizable(false);
-        DisplayMode disp = cfg.getDisplayMode();
+        DisplayMode disp = Lwjgl3ApplicationConfiguration.getDisplayMode();
         cfg.setWindowedMode(disp.width, disp.height);
 
         new Lwjgl3Application(new Southgame(), cfg);
