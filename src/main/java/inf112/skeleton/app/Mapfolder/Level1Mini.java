@@ -5,7 +5,6 @@ import java.util.Map;
 
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
-import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 
 import inf112.skeleton.app.Sound.SoundManager;
 
@@ -23,7 +22,6 @@ public class Level1Mini extends TiledMap implements MapInterface {
     
 
     private TiledMap tiledMap;
-    private OrthogonalTiledMapRenderer renderer;
     private Map<String, Integer> enemies = new HashMap<>();
 
 

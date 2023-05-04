@@ -101,14 +101,12 @@ public class CollisionTest {
         
     }
     
-    @Test
-    void testIsPlayerOnPortal(){
-        //TODO: wtwfd
-        collision.isCellAPortal();
+    
+        
 
 
     
-    }
+    
 
     @Test
     void setGetMap(){

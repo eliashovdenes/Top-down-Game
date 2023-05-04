@@ -43,7 +43,7 @@ public class ViewTest {
         app = new HeadlessApplication(game, config);
         controller = new Controller();
         GrassMini lvl1 = new GrassMini(0, 0);
-        Player player = new Player(new Vector2(0, 0), lvl1, new Controller());
+        Player player = new Player(new Vector2(0, 0), lvl1, controller);
         Southgame games = mock(Southgame.class);
         view = new View(games, new Controller(), player);
 	}

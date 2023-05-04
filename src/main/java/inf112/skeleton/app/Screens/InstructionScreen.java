@@ -23,7 +23,7 @@ public class InstructionScreen extends ScreenAdapter {
     OrthographicCamera camera;
     Texture background = new Texture(Gdx.files.internal("src/main/resources/assets/instructions.png"));
     Lwjgl3ApplicationConfiguration cfg = new Lwjgl3ApplicationConfiguration();
-    private DisplayMode disp = cfg.getDisplayMode(); 
+    private DisplayMode disp = Lwjgl3ApplicationConfiguration.getDisplayMode(); 
 
     Rectangle movementKeysRect,attackKeysRect,miscKeysRect,purposeRect;
 

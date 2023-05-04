@@ -46,7 +46,7 @@ public class View implements Screen {
     private BitmapFont hpText = new BitmapFont();
     private BitmapFont pauseText = new BitmapFont();
     private Southgame game;
-    private MonsterInterface monsterI;
+    //private MonsterInterface monsterI;
     private boolean paused = false;
     private Controller controller;
     public HashMap<AbstractGameObject, Rectangle> enemies = new HashMap<>();

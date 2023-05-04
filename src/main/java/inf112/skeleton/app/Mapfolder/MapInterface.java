@@ -3,7 +3,6 @@ package inf112.skeleton.app.Mapfolder;
 import java.util.Map;
 
 import com.badlogic.gdx.maps.tiled.TiledMap;
-import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 
 
 public interface MapInterface {

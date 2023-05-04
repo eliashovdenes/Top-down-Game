@@ -9,7 +9,7 @@ import org.junit.jupiter.api.Test;
 
 import inf112.skeleton.app.Controller.Controller;
 
-public class ZeldaTest {
+public class SouthGame {
 
     private static Southgame game;
     private static Controller controller;
@@ -28,6 +28,7 @@ public class ZeldaTest {
         assertNotNull(controller);
         assertTrue(controller instanceof Controller);
     }
+    
 
    
 }

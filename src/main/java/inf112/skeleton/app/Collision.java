@@ -29,8 +29,6 @@ public class Collision {
     private float tileSize;
     private float posX, posY;
 
-    private boolean killedAllEnemies = true;
-
     public Collision(MapInterface currMap, AbstractGameObject entity) {
         this.currMap = currMap;
         this.map = currMap.getMap();
