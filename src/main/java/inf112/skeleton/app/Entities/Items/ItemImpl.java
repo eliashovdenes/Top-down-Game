@@ -49,4 +49,14 @@ public interface ItemImpl {
      */
     public void update(float delta);
 
+    /**
+     * set amount that healthpotion heals
+     * @param healAmount
+     */
+    public void setHealAmount(int healAmount);
+    
+    /**
+     * @return amount that healthpotions heal
+     */
+    public int getHealAmount();
 }

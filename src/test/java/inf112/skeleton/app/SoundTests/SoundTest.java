@@ -97,4 +97,39 @@ public class SoundTest {
         soundManager.house.stop();
         soundManager.house.dispose();
     }    
+
+    @Test
+    public void testHit(){
+        soundManager.house.play();
+        assertTrue(soundManager.house.getSoundString()=="assets/soundfiles/takehit.mp3");
+        soundManager.house.stop();
+        soundManager.house.dispose();
+    }
+    @Test
+    public void testkillAllEnemies(){
+        soundManager.house.play();
+        assertTrue(soundManager.house.getSoundString()=="assets/soundfiles/dead.mp3");
+        soundManager.house.stop();
+        soundManager.house.dispose();
+    }
+    @Test
+    public void testStart(){
+        soundManager.house.play();
+        assertTrue(soundManager.house.getSoundString()=="assets/soundfiles/start.mp3");
+        soundManager.house.stop();
+        soundManager.house.dispose();
+    }
+    @Test
+    public void testMonsterDied(){
+        soundManager.house.play();
+        assertTrue(soundManager.house.getSoundString()=="assets/soundfiles/monsterdied.mp3");
+        soundManager.house.stop();
+        soundManager.house.dispose();
+    }
+    this.hit = new aSound(, false);
+        this.killedAllEnemies = new aSound(, false);
+        this.start = new aSound(, false);
+        this.kill = new aSound(, false);
+        this.monsterdied = new aSound(, false);
+
 }
