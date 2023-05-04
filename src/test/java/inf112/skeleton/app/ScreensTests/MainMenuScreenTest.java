@@ -17,6 +17,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
 
 import inf112.skeleton.app.Southgame;
+import inf112.skeleton.app.Controller.Controller;
 import inf112.skeleton.app.Entities.Player.Player;
 import inf112.skeleton.app.Mapfolder.MapInterface;
 import inf112.skeleton.app.Screens.CreditScreen;
@@ -25,7 +26,7 @@ import inf112.skeleton.app.Screens.MainMenuScreen;
 import inf112.skeleton.app.Sound.SoundManager;
 
 public class MainMenuScreenTest {
-    Zelda game;
+    Southgame game;
     Controller controller;
     HeadlessApplication app;
   
@@ -48,7 +49,7 @@ public class MainMenuScreenTest {
 	void setUpBeforeEach() {
         HeadlessApplicationConfiguration config = new HeadlessApplicationConfiguration();
         app = new HeadlessApplication(game, config);
-        game = mock(Zelda.class);
+        game = mock(Southgame.class);
 
         screen = new MainMenuScreen(game, controller);
   

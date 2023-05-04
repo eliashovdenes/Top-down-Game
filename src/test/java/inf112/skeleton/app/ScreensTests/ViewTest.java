@@ -13,7 +13,7 @@ import com.badlogic.gdx.backends.headless.HeadlessApplicationConfiguration;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.math.Vector2;
 
-import inf112.skeleton.app.Zelda;
+import inf112.skeleton.app.Southgame;
 import inf112.skeleton.app.Controller.Controller;
 import inf112.skeleton.app.Entities.Player.Player;
 import inf112.skeleton.app.Mapfolder.GrassMini;
@@ -40,11 +40,11 @@ public class ViewTest {
 	@BeforeEach
 	void setUpBeforeEach() {
         HeadlessApplicationConfiguration config = new HeadlessApplicationConfiguration();
-        app = new HeadlessApplication(new Zelda(), config);
+        app = new HeadlessApplication(new Southgame(), config);
         controller = new Controller();
         GrassMini lvl1 = new GrassMini(0, 0);
         Player player = new Player(new Vector2(0, 0), lvl1, new Controller());
-        view = new View(new Zelda(), new Controller(), player);
+        view = new View(new Southgame(), new Controller(), player);
 	}
 
     /**
