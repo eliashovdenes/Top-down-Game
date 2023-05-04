@@ -100,12 +100,14 @@ public class View implements Screen {
             float scale;
             if (enemy == "RedBoss") {scale = 1;}
             else scale = scaler;
-            for (int i=0; i < enemies.get(enemy) * Math.round(scale); i++){
-                MonsterFactory monsterFactory = monsterFactories.get(enemy);
-                MonsterInterface monster = monsterFactory.create(mapI, scaler);
-                if (scaler > 1 && enemy == "RedBoss"){ monster.giveShootingPermission();}
-                monsterList.add(monster);
-            }
+            if (enemies.get(enemy) > 0) {
+                for (int i=0; i < enemies.get(enemy) + Math.round(scale-1); i++){
+                    MonsterFactory monsterFactory = monsterFactories.get(enemy);
+                    MonsterInterface monster = monsterFactory.create(mapI, scaler);
+                    if (scaler > 1 && enemy == "RedBoss"){ monster.giveShootingPermission();}
+                    monsterList.add(monster);
+                }
+            }           
         }
     }
 
