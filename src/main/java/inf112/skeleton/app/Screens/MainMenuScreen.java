@@ -51,13 +51,7 @@ public class MainMenuScreen extends ScreenAdapter {
 
         float screenWidth = disp.width;
         float screenHeight = disp.height;
-        float rectangleWidth = screenWidth*0.2f;
-        float rectangleHeight = screenHeight*0.03f;
-        float spaceBetweenRetangles = screenHeight*0.02f;
-        float rectangleY = screenHeight * 0.7f;
 
-        
-        
         newGameRect = new Rectangle(screenWidth/22, screenHeight/6, screenWidth/6, screenHeight/10);
         instructionsRect = new Rectangle(screenWidth/4, screenHeight/6, screenWidth/4, screenHeight/10);
         creditsRect = new Rectangle((float)(screenWidth/1.8), screenHeight/6, screenWidth/6, screenHeight/10);
@@ -71,7 +65,6 @@ public class MainMenuScreen extends ScreenAdapter {
     }
 
 
-
     @Override
     public void render(float delta) {
         
@@ -79,20 +72,8 @@ public class MainMenuScreen extends ScreenAdapter {
         Gdx.gl.glClearColor(0, 0, 0, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
        
-
-        //draw boxes
-       
-
-        // Draw the title
         batch.begin();
         batch.draw(background, 0, 0, disp.width,(int) (disp.height*0.9));
-        
-        //draw text on buttons
-        // font.draw(batch, "Instructions", instructionsRect.x+instructionsRect.width*0.05f,instructionsRect.y+instructionsRect.height*0.75f);
-        // font.draw(batch, "Credits", creditsRect.x+creditsRect.width*0.05f,creditsRect.y+creditsRect.height*0.75f);
-        // font.draw(batch, "Quit",quitRect.x+creditsRect.width*0.05f,quitRect.y+quitRect.height*0.75f);
-        
-        
         batch.end();
         // shape.setColor(Color.RED);
         // shape.begin(ShapeRenderer.ShapeType.Filled);

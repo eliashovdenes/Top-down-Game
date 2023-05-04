@@ -2,9 +2,12 @@ package inf112.skeleton.app.Screens;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.ScreenAdapter;
+import com.badlogic.gdx.Graphics.DisplayMode;
+import com.badlogic.gdx.backends.lwjgl3.Lwjgl3ApplicationConfiguration;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
@@ -29,9 +32,15 @@ public class Shop extends ScreenAdapter {
     private ShapeRenderer shape;
     Rectangle upgradeArrowRect,upgradeLightningRect,upgradePlayerHealthRect,upgradeMovementSpeed;
     OrthographicCamera camera;
+    Rectangle newGameRect,instructionsRect,quitRect,creditsRect;
+    private Texture background = new Texture(Gdx.files.internal("src/main/resources/assets/shop.png"));
+    private Lwjgl3ApplicationConfiguration cfg = new Lwjgl3ApplicationConfiguration();
+    private DisplayMode disp = Lwjgl3ApplicationConfiguration.getDisplayMode(); 
   
     private float upgradeCooldown = 0.5f;
     private float timeSinceUpgrade = 0;
+    private float screenWidth = disp.width;
+    private float screenHeight = disp.height;
 
     public Shop(Southgame southGame, Controller controller,PlayerInterface playerI) {
         this.game = southGame;
@@ -40,21 +49,14 @@ public class Shop extends ScreenAdapter {
         font = new BitmapFont();
         this.SM = new SoundManager();
         this.playerI = playerI;
-        
-        this.shape = new ShapeRenderer();
-        float screenWidth = Gdx.graphics.getWidth();
-        float screenHeight = Gdx.graphics.getHeight();
-        float rectangleWidth = screenWidth*0.2f;
-        float rectangleHeight = screenHeight*0.03f;
-        float spaceBetweenRetangles = screenHeight*0.02f;
-        float rectangleY = screenHeight * 0.7f;
 
-        
-        upgradeArrowRect = new Rectangle(screenWidth * 0.05f, rectangleY, rectangleWidth, rectangleHeight);
-        upgradeLightningRect = new Rectangle(screenWidth * 0.05f, rectangleY - rectangleHeight - spaceBetweenRetangles, rectangleWidth, rectangleHeight);
-        upgradePlayerHealthRect = new Rectangle(screenWidth * 0.05f, rectangleY - 2 * (rectangleHeight + spaceBetweenRetangles), rectangleWidth, rectangleHeight);
-        upgradeMovementSpeed = new Rectangle(screenWidth * 0.05f, rectangleY - 3 * (rectangleHeight + spaceBetweenRetangles), rectangleWidth, rectangleHeight);
-        
+
+        upgradeArrowRect  = new Rectangle(screenWidth/22, screenHeight/6, screenWidth/6, screenHeight/6);
+        upgradeLightningRect = new Rectangle(screenWidth/3.5f, screenHeight/6, screenWidth/5, screenHeight/6);
+        upgradePlayerHealthRect = new Rectangle(screenWidth/1.9f, screenHeight/6, screenWidth/5, screenHeight/6);
+        upgradeMovementSpeed = new Rectangle(screenWidth/1.3f, screenHeight/6, screenWidth/5, screenHeight/6);
+        this.shape = new ShapeRenderer();
+
         camera = new OrthographicCamera();
         camera.setToOrtho(false, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
         camera.position.set(Gdx.graphics.getWidth() / 2f, Gdx.graphics.getHeight() / 2f, 0);
@@ -66,33 +68,26 @@ public class Shop extends ScreenAdapter {
     @Override
     public void render(float delta) {
         // Clear the screen with a solid color
-        Gdx.gl.glClearColor(0, 0, 0, 1);
+        Gdx.gl.glClearColor(0, 0, 0, 0);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
        
         //draw boxes
-        shape.setColor(Color.RED);
-        shape.begin(ShapeRenderer.ShapeType.Filled);
-
-        shape.rect(upgradeArrowRect.x,upgradeArrowRect.y,upgradeArrowRect.width,upgradeArrowRect.height);
-        shape.rect(upgradeLightningRect.x,upgradeLightningRect.y,upgradeLightningRect.width,upgradeLightningRect.height);
-        shape.rect(upgradePlayerHealthRect.x,upgradePlayerHealthRect.y,upgradePlayerHealthRect.width,upgradePlayerHealthRect.height);
-        shape.rect(upgradeMovementSpeed.x,upgradeMovementSpeed.y,upgradeMovementSpeed.width,upgradeMovementSpeed.height);
-
         
-        shape.end(); 
 
         // Draw the title
         batch.begin();
-        font.getData().setScale(2);
-        font.draw(batch, "You have "+playerI.getAbilityPoints()+" ability points", 10, 850);
+        batch.draw(background, 0, 0, disp.width,(int) (disp.height*0.9));
+        font.getData().setScale(3);
+        font.setColor(Color.BLACK);
+        font.draw(batch, ""+playerI.getAbilityPoints()+"", (float)(screenWidth/3.95), (float)(screenHeight/1.375));
         
         //draw text on buttons
-        font.getData().setScale(1);
-        font.draw(batch, "Upgrade Arrow (Currently level"+playerI.getArrowAbilityLevel()+")", upgradeArrowRect.x+upgradeArrowRect.width*0.05f, upgradeArrowRect.y+upgradeArrowRect.height*0.75f);
-        font.draw(batch, "Upgrade Lightning (Currently level"+playerI.getLightningAbilityLevel()+")", upgradeLightningRect.x+upgradeLightningRect.width*0.05f,upgradeLightningRect.y+upgradeLightningRect.height*0.75f);
-        font.draw(batch, "Upgrade Health (Currently level"+playerI.getHealthAbilityLevel()+")", upgradePlayerHealthRect.x+upgradePlayerHealthRect.width*0.05f,upgradePlayerHealthRect.y+upgradePlayerHealthRect.height*0.75f);
-        font.draw(batch, "Upgrade Movementspeed (Currently level"+playerI.getMovementAbilityLevel()+")",upgradeMovementSpeed.x+upgradeMovementSpeed.width*0.05f,upgradeMovementSpeed.y+upgradeMovementSpeed.height*0.75f);
+        font.getData().setScale(2.5f);
+        font.draw(batch, ""+playerI.getArrowAbilityLevel()+"", upgradeArrowRect.x+upgradeArrowRect.width/1.2f, upgradeArrowRect.y+upgradeArrowRect.height/4);
+        font.draw(batch, ""+playerI.getLightningAbilityLevel()+"", upgradeLightningRect.x+upgradeLightningRect.width/1.4f,upgradeLightningRect.y+upgradeLightningRect.height/4);
+        font.draw(batch, ""+playerI.getHealthAbilityLevel()+"", upgradePlayerHealthRect.x+upgradePlayerHealthRect.width/1.3f,upgradePlayerHealthRect.y+upgradePlayerHealthRect.height/4);
+        font.draw(batch, ""+playerI.getMovementAbilityLevel()+"",upgradeMovementSpeed.x+upgradeMovementSpeed.width/1.23f,upgradeMovementSpeed.y+upgradeMovementSpeed.height/4);
         batch.end();
         
         timeSinceUpgrade+= delta;
