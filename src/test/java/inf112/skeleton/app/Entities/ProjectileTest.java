@@ -33,6 +33,8 @@ public class ProjectileTest {
     MapInterface map;
     Vector2 vector;
     int damage;
+
+    
     @BeforeAll
 	static void setUpBeforeAll() {
         // Gdx.files = mock(Files.class);
@@ -49,7 +51,7 @@ public class ProjectileTest {
 	void setUpBeforeEach() {
         game = mock(Southgame.class);
         HeadlessApplicationConfiguration config = new HeadlessApplicationConfiguration();
-        app = new HeadlessApplication(new Southgame(), config);
+        app = new HeadlessApplication(game, config);
         map = new Level1Mini(0, 0);
         vector = new Vector2(0,0);
         player = new Player(vector, map, null);

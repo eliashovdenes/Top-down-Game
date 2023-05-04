@@ -18,6 +18,7 @@ public class GrassMiniTest {
     
     private HeadlessApplication app;
     private GrassMini map; 
+    
 
     @BeforeAll
 	static void setUpBeforeAll() {
@@ -31,7 +32,8 @@ public class GrassMiniTest {
 	@BeforeEach
 	void setUpBeforeEach() {
         HeadlessApplicationConfiguration config = new HeadlessApplicationConfiguration();
-        app = new HeadlessApplication(new Southgame(), config);
+        Southgame game = mock(Southgame.class);
+        app = new HeadlessApplication(game, config);
         map = new GrassMini(0, 0);
 	}
 
