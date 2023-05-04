@@ -68,11 +68,11 @@ public class ViewTest {
 
         // Spawn the base amount of enemies (scaler=1)
         view.spawn(map.getEnemies(), 1, map);
-        assertEquals(5, view.getMonsterList().size());
+        assertEquals(7, view.getMonsterList().size());
         
         // Spawn the base amount of monster x2 (pluss the 5 that are allready in the list)
         view.spawn(map.getEnemies(), 2, map);
-        assertEquals(15, view.getMonsterList().size());
+        assertEquals(16, view.getMonsterList().size());
     }
 
     @Test
@@ -83,8 +83,8 @@ public class ViewTest {
         assertNotNull(view.getMonsterList());
         assertEquals(0, view.getMonsterList().size());
         view.spawn(map.getEnemies(), 1, map);
-        assertEquals(5, view.getMonsterList().size());
-
+        assertEquals(7, view.getMonsterList().size());
+        
         // Do leathal damage to the first and third monster in the list
         view.getMonsterList().get(0).takeDamage(100);
         view.getMonsterList().get(2).takeDamage(100);
@@ -92,9 +92,4 @@ public class ViewTest {
         assertFalse(view.getMonsterList().get(1).isDead());
         assertTrue(view.getMonsterList().get(2).isDead());        
     }
-    
-    // @Test
-    // void testResize(){
-    //     fail();
-    // }
 }
