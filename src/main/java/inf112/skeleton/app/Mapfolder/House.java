@@ -40,10 +40,6 @@ public class House extends TiledMap implements MapInterface {
         return tiledMap;
     }
 
-    @Override
-    public OrthogonalTiledMapRenderer getRenderer() {
-        return renderer;
-    }
    
     @Override
     public float getPlayerSpawnX() {

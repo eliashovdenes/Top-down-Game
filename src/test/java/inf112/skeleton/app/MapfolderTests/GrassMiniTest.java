@@ -106,4 +106,19 @@ public class GrassMiniTest {
         assertNotNull(map);
         assertEquals("arena", map.getMapName());
     }   
+
+    @Test
+    void testStopMusic(){
+        assertNotNull(map);
+        map.stopMusic();
+    }
+
+    @Test
+    void setAllEnemiesDead(){
+        assertNotNull(map);
+        map.setAllEnemiesDead(true);
+        assertEquals(map.getAllEnemiesDead(), true);
+    }
+
+    
 }

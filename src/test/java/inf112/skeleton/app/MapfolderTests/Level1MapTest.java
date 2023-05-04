@@ -104,7 +104,20 @@ public class Level1MapTest {
     void testGetMapName(){
         assertNotNull(map);
         assertEquals("safezone", map.getMapName());
-    }       
+    }      
+    
+    @Test
+    void testStopMusic(){
+        assertNotNull(map);
+        map.stopMusic();
+    }
+
+    @Test
+    void setAllEnemiesDead(){
+        assertNotNull(map);
+        map.setAllEnemiesDead(true);
+        assertEquals(map.getAllEnemiesDead(), true);
+    }
 
     
     

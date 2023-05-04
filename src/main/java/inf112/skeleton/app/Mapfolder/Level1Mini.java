@@ -50,11 +50,6 @@ public class Level1Mini extends TiledMap implements MapInterface {
     }
 
     @Override
-    public OrthogonalTiledMapRenderer getRenderer() {
-        return renderer;
-    }
-
-    @Override
     public float getPlayerSpawnX() {
         return PlayerSpawnX;
     }

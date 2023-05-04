@@ -21,7 +21,7 @@ public class GrassMini extends TiledMap implements MapInterface {
     
     private SoundManager sm;
     private TiledMap tiledMap;
-    private OrthogonalTiledMapRenderer renderer;
+
     private Map<String, Integer> enemies = new HashMap<>();
     private boolean allEnemiesDead = false;
 
@@ -47,10 +47,7 @@ public class GrassMini extends TiledMap implements MapInterface {
         return tiledMap;
     }
 
-    @Override
-    public OrthogonalTiledMapRenderer getRenderer() {
-        return renderer;
-    }
+   
 
     @Override
     public float getPlayerSpawnX() {
