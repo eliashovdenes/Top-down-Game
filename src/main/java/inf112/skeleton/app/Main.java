@@ -33,7 +33,5 @@ public class Main {
     public int getDefaultHeight(){
         return screenHeight;
     }
-
-    
 }
 
