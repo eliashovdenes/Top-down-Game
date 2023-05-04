@@ -45,6 +45,14 @@ public class Level1MapTest {
     }
 
     @Test
+    void testSetup(){
+        assertNotNull(map);
+        map.setup();
+        assertEquals(map.getEnemies().get("BlueEnemy"), 0);
+        assertEquals(map.getEnemies().get("RedEnemy"), 0);
+    }
+
+    @Test
     void testGetPlayerSpawnX() {
         Level1Mini map = new Level1Mini(123, 87);
         assertNotNull(map);
@@ -85,4 +93,19 @@ public class Level1MapTest {
         assertNotNull(map);
         assertEquals(800, map.getEnemyBoundsToY());
     }
+
+    @Test
+    void testGetMap(){
+        assertNotNull(map);
+        assertNotNull(map.getMap());
+    }
+
+    @Test
+    void testGetMapName(){
+        assertNotNull(map);
+        assertEquals("safezone", map.getMapName());
+    }       
+
+    
+    
 }

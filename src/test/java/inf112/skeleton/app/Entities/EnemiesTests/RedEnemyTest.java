@@ -131,6 +131,16 @@ public class RedEnemyTest {
         assertNotNull(redEnemy.getProjectiles());
     }
 
+    @Test 
+    public void testDropHealthPotion() {
+        redEnemy.setHealthPotionDropChance(1);
+        assertTrue(redEnemy.dropHealthPotion());
+    }
+
+    @Test 
+    public void testGetName() {
+        assertEquals("RedEnemy", redEnemy.getName());
+    }
 
 
 }

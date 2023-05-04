@@ -131,6 +131,15 @@ public class RedBossTest {
         assertNotNull(redBoss.getProjectiles());
     }
 
+    @Test 
+    public void testDropHealthPotion() {
+        redBoss.setHealthPotionDropChance(1);
+        assertTrue(redBoss.dropHealthPotion());
+    }
 
-
+    @Test 
+    public void testGetName() {
+        assertEquals("RedBoss", redBoss.getName());
+    }
+    
 }
