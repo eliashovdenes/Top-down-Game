@@ -21,6 +21,7 @@ import inf112.skeleton.app.Screens.View;
 public class ViewTest {
     
     private HeadlessApplication app;
+    private Controller controller;
   
     private View view;
 

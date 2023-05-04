@@ -79,4 +79,10 @@ public class HealthPotionTest {
         assertEquals(healthPotion.getWidth(), healthPotion.getRect().width, 0.001f);
         assertEquals(healthPotion.getHeight(), healthPotion.getRect().height, 0.001f);
     }
+    @Test
+    public void testUpdate(){
+        healthPotion.update(1f);
+
+        assertEquals(healthPotion.getSprite().getX(),healthPotion.getPosition().y);
+    }
 }
