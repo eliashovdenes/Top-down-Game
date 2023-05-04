@@ -35,7 +35,7 @@ public class CollisionTest {
         Gdx.gl = mock(GL20.class);       
         Gdx.gl20 = mock(GL20.class);
         HeadlessApplicationConfiguration config = new HeadlessApplicationConfiguration();
-        app = new HeadlessApplication(new Zelda(), config);
+        app = new HeadlessApplication(new Southgame(), config);
         map = new Level1Mini(123,16);
         controller = new Controller();
         player = new Player(new Vector2(123*16, 76*16), map, controller);

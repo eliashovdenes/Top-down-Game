@@ -14,7 +14,7 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 
-import inf112.skeleton.app.Zelda;
+import inf112.skeleton.app.Southgame;
 import inf112.skeleton.app.Controller.Controller;
 import inf112.skeleton.app.Entities.Enemies.RedEnemy;
 import inf112.skeleton.app.Entities.Enums.DirectionEnum;
@@ -32,7 +32,7 @@ public class GameObjectTest {
     Lightning lightning;
     
     private HeadlessApplication app;
-    private static Zelda zelda;
+    private static Southgame Southgame;
     /**
 	 * Static method run before everything else
 	 */
@@ -40,13 +40,13 @@ public class GameObjectTest {
 	static void setUpBeforeAll() {
         Gdx.gl = mock(GL20.class);       
         Gdx.gl20 = mock(GL20.class);
-        zelda = mock(Zelda.class);
+        Southgame = mock(Southgame.class);
 	}
 
 	@BeforeEach
 	void setUpBeforeEach() {
         HeadlessApplicationConfiguration config = new HeadlessApplicationConfiguration();
-        app = new HeadlessApplication(zelda, config);
+        app = new HeadlessApplication(Southgame, config);
         player = new Player(new Vector2(123*16,76*16), new Level1Mini(123,76),new Controller());
         enemy = new RedEnemy();
         lightning = new Lightning(new Vector2(0, 0), new Level1Mini(123,76), new Vector2(0, 0));
