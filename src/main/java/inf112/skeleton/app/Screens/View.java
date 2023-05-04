@@ -134,7 +134,8 @@ public class View implements Screen {
                     }
                     monsterList.add(monster);
                 }
-            }
+                enemiesremaining = monsterList.size();
+            }           
         }
     }
 
@@ -282,6 +283,7 @@ public class View implements Screen {
                     playerI.takeDamage(projectile.getDamage());
                     monsterProjectilesToRemove.add(projectile);
                 }
+
 
             }
             monsterI.getProjectiles().removeAll(monsterProjectilesToRemove);
