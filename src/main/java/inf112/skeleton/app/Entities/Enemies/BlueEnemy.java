@@ -45,14 +45,6 @@ public class BlueEnemy extends AbstractGameObject implements MonsterInterface {
         projectileList = new ArrayList<ProjectileInterface>();
     }
 
-    // public BlueEnemy() {
-    // super(new Vector2(0,0));
-    // this.velocity.x = speed;
-    // this.velocity.y = speed;
-    // this.setMaxhitpoints(50);
-    // this.setCurrentHitPoints(this.getMaxHitpoints());
-    // }
-
     public static MonsterFactory getFactory() {
 
         return new MonsterFactory() {
@@ -79,14 +71,11 @@ public class BlueEnemy extends AbstractGameObject implements MonsterInterface {
         if (xCollision()) {
             position.x = recentPosition.x;
             velocity.x = -velocity.x;
-
         }
         if (yCollision()) {
             position.y = recentPosition.y;
             velocity.y = -velocity.y;
-
         }
-
     }
 
     @Override
@@ -166,7 +155,6 @@ public class BlueEnemy extends AbstractGameObject implements MonsterInterface {
 
     @Override
     public void setXYFromSpawnBounds() {
-
         Random rand = new Random();
         fromX = map.getEnemyBoundsFromX() * 16;
         fromY = map.getEnemyBoundsFromY() * 16;
