@@ -7,11 +7,7 @@ import com.badlogic.gdx.maps.tiled.TiledMap;
 public interface MapInterface {
 
     /**
-     * Setup creates a MonsterFactory for each enemy class used in the map.
-     * The MonsterFactories are stored in a HashMap - monsterFactories, where
-     * the key (String) is the name of the monster class.
-     * In setup we also create an ArrayList containing the string representation
-     * of each monster we want to spawn on the map
+     * Adds the base amount of enemies to the enemies HashMap
      */
     public void setup();
 
