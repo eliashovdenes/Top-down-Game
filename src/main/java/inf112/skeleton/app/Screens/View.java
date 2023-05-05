@@ -45,7 +45,6 @@ public class View implements Screen {
     private BitmapFont hpText = new BitmapFont();
     private BitmapFont pauseText = new BitmapFont();
     private Southgame game;
-    // private MonsterInterface monsterI;
     private boolean paused = false;
     private Controller controller;
     public HashMap<AbstractGameObject, Rectangle> enemies = new HashMap<>();
@@ -60,7 +59,6 @@ public class View implements Screen {
     private SoundManager sm = new SoundManager();
     private int enemiesremaining;
 
-    // MapInterface mapI = new Level1Mini(123,76);
     MapInterface mapI;
     OrthogonalTiledMapRenderer nyRend;
     TiledMap nyMap;
@@ -237,6 +235,7 @@ public class View implements Screen {
         CopyOnWriteArrayList<ItemImpl> itemsToRemove = new CopyOnWriteArrayList<>();
         CopyOnWriteArrayList<ProjectileInterface> projectilesToRemove = new CopyOnWriteArrayList<>();
         CopyOnWriteArrayList<ProjectileInterface> monsterProjectilesToRemove = new CopyOnWriteArrayList<>();
+        
         // draw projectiles and check if they hit enemy.
         for (ProjectileInterface projectile : playerI.getProjectiles()) {
             projectile.getSprite().draw(batch);
@@ -256,8 +255,16 @@ public class View implements Screen {
         for (MonsterInterface monsterI : this.monsterList) {
             monsterI.update(delta);
             monsterI.getSprite().draw(batch);
-            hpText.draw(batch, "HP:" + monsterI.getCurrentHitpoints(), monsterI.getPosition().x,
+            if (monsterI.getName() == "RedBoss") {
+                hpText.draw(batch, "HP:" + monsterI.getCurrentHitpoints(), monsterI.getPosition().x - 16,
+                    monsterI.getPosition().y + monsterI.getHeight()*3);
+            }
+            else {
+                hpText.draw(batch, "HP:" + monsterI.getCurrentHitpoints(), monsterI.getPosition().x,
                     monsterI.getPosition().y);
+            }
+            
+            
             monsterI.followPlayer(playerI.getPosition().x, playerI.getPosition().y);
 
             // check if monsterhp is less than or equal to zero
@@ -326,7 +333,7 @@ public class View implements Screen {
             mapI.setAllEnemiesDead(true);
         }
 
-        // open store (bound to K)
+        // open store (bound to Tab)
         if (controller.isShop()) {
             if (mapI.getMapName() == "house")
                 game.setScreen(new Shop(game, controller, playerI));
