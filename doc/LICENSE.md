@@ -19,7 +19,7 @@
 - Player pictures: barubary, spriters resource https://www.spriters-resource.com/game_boy_advance/thelegendofzeldatheminishcap/sheet/6369/
 
 **Projectile pictures**
-- Arrow: 
+- Arrow: https://arydian.itch.io/simple-wooden-bow-and-arrows
 - Lightning: Lightning pngitem.com
 - red projectile: (Hans-Christian Lønne)
 
