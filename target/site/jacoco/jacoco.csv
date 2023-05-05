@@ -19,7 +19,7 @@ Southgame,inf112.skeleton.app.Entities.Enums,RedBossPics,0,39,0,0,0,8,0,2,0,2
 Southgame,inf112.skeleton.app.Entities.Enums,RedEnemyPics,0,46,0,0,0,9,0,2,0,2
 Southgame,inf112.skeleton.app.Entities.Enums,Items,0,18,0,0,0,5,0,2,0,2
 Southgame,inf112.skeleton.app.Entities.Enums,DirectionEnum,0,27,0,0,0,2,0,1,0,1
-Southgame,inf112.skeleton.app.Entities.Enums,PlayerPics,0,102,0,0,0,17,0,2,0,2
+Southgame,inf112.skeleton.app.Entities.Enums,PlayerPics,0,74,0,0,0,13,0,2,0,2
 Southgame,inf112.skeleton.app.Entities.Enums,BlueEnemyPics,0,39,0,0,0,8,0,2,0,2
 Southgame,inf112.skeleton.app.Entities,AbstractGameObject,0,196,1,11,0,49,1,23,0,18
 Southgame,inf112.skeleton.app.Screens,MainMenuScreen,323,0,10,0,47,0,8,0,3,0

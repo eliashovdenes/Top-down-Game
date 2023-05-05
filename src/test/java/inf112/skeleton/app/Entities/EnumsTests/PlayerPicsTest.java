@@ -28,26 +28,6 @@ public class PlayerPicsTest {
     }
 
     @Test
-    public void testAttackUpPic() {
-        assertEquals("assets/playerPics/linkattacktop.png", PlayerPics.ATTACKUP.source);
-    }
-
-    @Test
-    public void testAttackDownPic() {
-        assertEquals("assets/playerPics/linkAttack_down.png", PlayerPics.ATTACKDOWN.source);
-    }
-
-    @Test
-    public void testAttackLeftPic() {
-        assertEquals("assets/playerPics/linkattackleft.png", PlayerPics.ATTACKLEFT.source);
-    }
-
-    @Test
-    public void testAttackRightPic() {
-        assertEquals("assets/playerPics/linkattack_right.png", PlayerPics.ATTACKRIGHT.source);
-    }
-
-    @Test
     public void testRightArrowPic() {
         assertEquals("assets/projectilePics/RightArrow.png", PlayerPics.RIGHTARROW.source);
     }
