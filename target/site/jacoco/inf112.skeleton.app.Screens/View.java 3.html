@@ -1,0 +1,402 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>View.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Southgame</a> &gt; <a href="index.source.html" class="el_package">inf112.skeleton.app.Screens</a> &gt; <span class="el_source">View.java</span></div><h1>View.java</h1><pre class="source lang-java linenums">package inf112.skeleton.app.Screens;
+
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.graphics.GL20;
+import com.badlogic.gdx.graphics.OrthographicCamera;
+
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
+import com.badlogic.gdx.graphics.g2d.GlyphLayout;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.maps.tiled.TiledMap;
+import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
+import com.badlogic.gdx.math.Rectangle;
+import com.badlogic.gdx.math.Vector2;
+
+import inf112.skeleton.app.Entities.AbstractGameObject;
+import inf112.skeleton.app.Entities.Enemies.BlueEnemy;
+import inf112.skeleton.app.Entities.Enemies.MonsterFactory;
+import inf112.skeleton.app.Entities.Enemies.MonsterInterface;
+import inf112.skeleton.app.Entities.Enemies.RedBoss;
+import inf112.skeleton.app.Entities.Enemies.RedEnemy;
+import inf112.skeleton.app.Entities.Items.HealthPotion;
+import inf112.skeleton.app.Entities.Items.ItemImpl;
+import inf112.skeleton.app.Entities.Player.PlayerInterface;
+import inf112.skeleton.app.Entities.Projectiles.ProjectileInterface;
+import inf112.skeleton.app.Mapfolder.MapInterface;
+import inf112.skeleton.app.Sound.SoundManager;
+import inf112.skeleton.app.Southgame;
+import inf112.skeleton.app.Controller.Controller;
+
+import com.badlogic.gdx.graphics.Color;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.concurrent.CopyOnWriteArrayList;
+
+public class View implements Screen {
+
+    private TiledMap map;
+    private OrthogonalTiledMapRenderer renderer;
+    private OrthographicCamera camera;
+    private PlayerInterface playerI;
+<span class="pc" id="L44">    private BitmapFont lifeText = new BitmapFont();</span>
+<span class="pc" id="L45">    private BitmapFont hpText = new BitmapFont();</span>
+<span class="pc" id="L46">    private BitmapFont pauseText = new BitmapFont();</span>
+    private Southgame game;
+<span class="pc" id="L48">    private boolean paused = false;</span>
+    private Controller controller;
+<span class="pc" id="L50">    public HashMap&lt;AbstractGameObject, Rectangle&gt; enemies = new HashMap&lt;&gt;();</span>
+<span class="pc" id="L51">    private ArrayList&lt;ItemImpl&gt; itemList = new ArrayList&lt;&gt;();</span>
+<span class="pc" id="L52">    private ArrayList&lt;MonsterInterface&gt; monsterList = new ArrayList&lt;&gt;();</span>
+<span class="pc" id="L53">    private Map&lt;String, MonsterFactory&gt; monsterFactories = new HashMap&lt;&gt;();</span>
+    private float scaler;
+<span class="pc" id="L55">    private boolean tabJustPressed = false;</span>
+<span class="pc" id="L56">    private float timer = 0;</span>
+<span class="pc" id="L57">    private boolean bosstime = false;</span>
+<span class="pc" id="L58">    private int bosscale = 1;</span>
+<span class="pc" id="L59">    private SoundManager sm = new SoundManager();</span>
+    private int enemiesremaining;
+
+    MapInterface mapI;
+    OrthogonalTiledMapRenderer nyRend;
+    TiledMap nyMap;
+    SpriteBatch batch;
+
+    /**
+     * Contructor to be used when exiting shop (we don't need new coordinates for
+     * player)
+     * 
+     * @param game       current game
+     * @param controller current controller
+     * @param playerI    current player
+     */
+<span class="fc" id="L75">    public View(Southgame game, Controller controller, PlayerInterface playerI) {</span>
+<span class="fc" id="L76">        this.game = game;</span>
+<span class="fc" id="L77">        this.controller = controller;</span>
+<span class="fc" id="L78">        this.playerI = playerI;</span>
+<span class="fc" id="L79">        this.mapI = playerI.returnMap();</span>
+<span class="fc" id="L80">        playerI.spawn(mapI.getPlayerSpawnX() * 16, mapI.getPlayerSpawnY() * 16);</span>
+<span class="fc" id="L81">        this.scaler = 1;</span>
+<span class="fc" id="L82">        setup();</span>
+
+<span class="fc" id="L84">    }</span>
+
+    /**
+     * Contructor to be used when creating a new game. Sets player spawn location
+     * 
+     * @param game       new game game
+     * @param controller current controller
+     * @param playerI    new player
+     */
+<span class="nc" id="L93">    public View(Southgame game, Controller controller, PlayerInterface playerI, float x, float y) {</span>
+<span class="nc" id="L94">        this.game = game;</span>
+<span class="nc" id="L95">        this.controller = controller;</span>
+<span class="nc" id="L96">        this.playerI = playerI;</span>
+<span class="nc" id="L97">        this.mapI = playerI.returnMap();</span>
+<span class="nc" id="L98">        this.scaler = 1;</span>
+<span class="nc" id="L99">        setup();</span>
+
+<span class="nc" id="L101">    }</span>
+
+    private void setup() {
+<span class="fc" id="L104">        MonsterFactory blueEnemyFactory = BlueEnemy.getFactory();</span>
+<span class="fc" id="L105">        MonsterFactory redEnemyFactory = RedEnemy.getFactory();</span>
+<span class="fc" id="L106">        MonsterFactory redBossFactory = RedBoss.getFactory();</span>
+<span class="fc" id="L107">        monsterFactories.put(blueEnemyFactory.name(), blueEnemyFactory);</span>
+<span class="fc" id="L108">        monsterFactories.put(redEnemyFactory.name(), redEnemyFactory);</span>
+<span class="fc" id="L109">        monsterFactories.put(redBossFactory.name(), redBossFactory);</span>
+<span class="fc" id="L110">    }</span>
+
+    /**
+     * Spawns the enemies on the map and scales enemies according to player-level.
+     * 
+     * @param enemies to be spawned.
+     * @param scaler  set difficulty
+     * @param mapI    map to spawn enemies
+     */
+    public void spawn(Map&lt;String, Integer&gt; enemies, float scaler, MapInterface mapI) {
+<span class="fc bfc" id="L120" title="All 2 branches covered.">        for (String enemy : enemies.keySet()) {</span>
+            float scale;
+<span class="pc bpc" id="L122" title="1 of 2 branches missed.">            if (enemy == &quot;RedBoss&quot;) {</span>
+<span class="nc" id="L123">                scale = 1;</span>
+            } else
+<span class="fc" id="L125">                scale = scaler;</span>
+<span class="pc bpc" id="L126" title="1 of 2 branches missed.">            if (enemies.get(enemy) &gt; 0) {</span>
+<span class="fc bfc" id="L127" title="All 2 branches covered.">                for (int i = 0; i &lt; enemies.get(enemy) + Math.round(scale - 1); i++) {</span>
+<span class="fc" id="L128">                    MonsterFactory monsterFactory = monsterFactories.get(enemy);</span>
+<span class="fc" id="L129">                    MonsterInterface monster = monsterFactory.create(mapI, scaler);</span>
+<span class="pc bpc" id="L130" title="1 of 4 branches missed.">                    if (scaler &gt; 1 &amp;&amp; enemy == &quot;RedBoss&quot;) {</span>
+<span class="nc" id="L131">                        monster.giveShootingPermission();</span>
+                    }
+<span class="fc" id="L133">                    monsterList.add(monster);</span>
+                }
+<span class="fc" id="L135">                enemiesremaining = monsterList.size();</span>
+            }           
+<span class="fc" id="L137">        }</span>
+<span class="fc" id="L138">    }</span>
+
+    @Override
+    public void show() {
+<span class="nc" id="L142">        map = mapI.getMap();</span>
+<span class="nc" id="L143">        renderer = new OrthogonalTiledMapRenderer(map);</span>
+<span class="nc" id="L144">        camera = new OrthographicCamera();</span>
+<span class="nc" id="L145">        batch = new SpriteBatch();</span>
+
+<span class="nc" id="L147">        pauseText.getData().setScale(5, 5);</span>
+<span class="nc" id="L148">        pauseText.setColor(Color.BLUE);</span>
+<span class="nc" id="L149">        hpText.getData().setScale(0.7f);</span>
+<span class="nc" id="L150">        hpText.setColor(Color.RED);</span>
+<span class="nc" id="L151">        lifeText.getData().setScale(1.0f);</span>
+<span class="nc" id="L152">        lifeText.setColor(Color.YELLOW);</span>
+<span class="nc" id="L153">    }</span>
+
+    @Override
+    public void render(float delta) {
+<span class="nc" id="L157">        playerI.getRect().setSize(playerI.getWidth(), playerI.getHeight());</span>
+<span class="nc bnc" id="L158" title="All 2 branches missed.">        if (tabJustPressed) {</span>
+<span class="nc bnc" id="L159" title="All 2 branches missed.">            if (timer &lt;= 0) {</span>
+<span class="nc" id="L160">                timer = 0;</span>
+<span class="nc" id="L161">                tabJustPressed = false;</span>
+<span class="nc" id="L162">                controller.setShop(false);</span>
+<span class="nc" id="L163">                controller.setWasKjustPressed(false);</span>
+            } else
+<span class="nc" id="L165">                timer -= delta;</span>
+        }
+<span class="nc bnc" id="L167" title="All 2 branches missed.">        if (controller.isPaused()) {</span>
+<span class="nc" id="L168">            pause();</span>
+        }
+<span class="nc bnc" id="L170" title="All 2 branches missed.">        if (!controller.isPaused()) {</span>
+<span class="nc" id="L171">            resume();</span>
+        }
+<span class="nc bnc" id="L173" title="All 2 branches missed.">        if (paused) {</span>
+<span class="nc" id="L174">            batch.begin();</span>
+<span class="nc" id="L175">            GlyphLayout layout = new GlyphLayout();</span>
+<span class="nc" id="L176">            layout.setText(pauseText, &quot;PAUSED&quot;);</span>
+<span class="nc" id="L177">            pauseText.draw(batch, &quot;PAUSED&quot;, playerI.getPosition().x - (layout.width / 2), playerI.getPosition().y);</span>
+<span class="nc" id="L178">            batch.end();</span>
+<span class="nc" id="L179">            return;</span>
+        }
+
+<span class="nc" id="L182">        Gdx.gl.glClearColor(0, 0, 0, 0);</span>
+<span class="nc" id="L183">        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);</span>
+<span class="nc" id="L184">        camera.position.set(playerI.getPosition().x + playerI.getWidth() / 2,</span>
+<span class="nc" id="L185">                playerI.getPosition().y + playerI.getHeight() / 2, 0);</span>
+
+        // Update
+<span class="nc" id="L188">        camera.update();</span>
+<span class="nc" id="L189">        batch.setProjectionMatrix(camera.combined);</span>
+<span class="nc" id="L190">        playerI.update(delta);</span>
+
+<span class="nc bnc" id="L192" title="All 2 branches missed.">        if (playerI.onPortal()) {</span>
+<span class="nc" id="L193">            sm.safeZone.stop();</span>
+<span class="nc" id="L194">            sm.safeZone.dispose();</span>
+<span class="nc" id="L195">            this.mapI = playerI.nextMap();</span>
+
+<span class="nc" id="L197">            renderer.setMap(mapI.getMap());</span>
+<span class="nc" id="L198">            playerI.setOffPortal();</span>
+<span class="nc" id="L199">            this.scaler = playerI.getLevel();</span>
+<span class="nc bnc" id="L200" title="All 6 branches missed.">            if (mapI.getMapName() == &quot;arena&quot; &amp;&amp; (scaler == 2 || scaler == 6))</span>
+<span class="nc" id="L201">                bosstime = true;</span>
+<span class="nc bnc" id="L202" title="All 2 branches missed.">            if (bosstime) {</span>
+<span class="nc" id="L203">                Map&lt;String, Integer&gt; boss = new HashMap&lt;&gt;();</span>
+<span class="nc" id="L204">                boss.put(&quot;RedBoss&quot;, 1);</span>
+<span class="nc bnc" id="L205" title="All 2 branches missed.">                if (scaler &gt; 2)</span>
+<span class="nc" id="L206">                    bosscale = 2;</span>
+<span class="nc" id="L207">                spawn(boss, bosscale, mapI);</span>
+<span class="nc" id="L208">                mapI.setAllEnemiesDead(false);</span>
+<span class="nc" id="L209">                itemList.clear();</span>
+<span class="nc" id="L210">                bosstime = false;</span>
+<span class="nc" id="L211">            } else {</span>
+<span class="nc" id="L212">                spawn(mapI.getEnemies(), this.scaler, mapI);</span>
+<span class="nc" id="L213">                mapI.setAllEnemiesDead(false);</span>
+<span class="nc" id="L214">                itemList.clear();</span>
+            }
+        }
+
+<span class="nc bnc" id="L218" title="All 2 branches missed.">        if (playerI.isDead()) {</span>
+<span class="nc" id="L219">            mapI.stopMusic();</span>
+<span class="nc" id="L220">            sm.killedAllEnemies.play();</span>
+<span class="nc" id="L221">            game.setScreen(new GameOverScreen(game, controller));</span>
+        }
+
+        // render map
+<span class="nc" id="L225">        renderer.setView(camera);</span>
+<span class="nc" id="L226">        renderer.render();</span>
+
+        // render player / enemies / projectiles
+<span class="nc" id="L229">        batch.begin();</span>
+
+        // draw player
+<span class="nc" id="L232">        playerI.getSprite().draw(batch);</span>
+
+<span class="nc" id="L234">        CopyOnWriteArrayList&lt;MonsterInterface&gt; deadMonsterList = new CopyOnWriteArrayList&lt;&gt;();</span>
+<span class="nc" id="L235">        CopyOnWriteArrayList&lt;ItemImpl&gt; itemsToRemove = new CopyOnWriteArrayList&lt;&gt;();</span>
+<span class="nc" id="L236">        CopyOnWriteArrayList&lt;ProjectileInterface&gt; projectilesToRemove = new CopyOnWriteArrayList&lt;&gt;();</span>
+<span class="nc" id="L237">        CopyOnWriteArrayList&lt;ProjectileInterface&gt; monsterProjectilesToRemove = new CopyOnWriteArrayList&lt;&gt;();</span>
+        
+        // draw projectiles and check if they hit enemy.
+<span class="nc bnc" id="L240" title="All 2 branches missed.">        for (ProjectileInterface projectile : playerI.getProjectiles()) {</span>
+<span class="nc" id="L241">            projectile.getSprite().draw(batch);</span>
+<span class="nc bnc" id="L242" title="All 2 branches missed.">            if (projectile.getPosition().dst(playerI.getPosition()) &gt; 200) {</span>
+<span class="nc" id="L243">                projectilesToRemove.add(projectile);</span>
+            }
+<span class="nc bnc" id="L245" title="All 2 branches missed.">            for (MonsterInterface monsterI : this.monsterList) {</span>
+<span class="nc bnc" id="L246" title="All 2 branches missed.">                if (projectile.getRect().overlaps(monsterI.getRect())) {</span>
+<span class="nc" id="L247">                    sm.hit.play();</span>
+<span class="nc" id="L248">                    monsterI.takeDamage(projectile.getDamage());</span>
+<span class="nc" id="L249">                    projectilesToRemove.add(projectile);</span>
+                }
+<span class="nc" id="L251">            }</span>
+<span class="nc" id="L252">        }</span>
+
+        // draw monsters
+<span class="nc bnc" id="L255" title="All 2 branches missed.">        for (MonsterInterface monsterI : this.monsterList) {</span>
+<span class="nc" id="L256">            monsterI.update(delta);</span>
+<span class="nc" id="L257">            monsterI.getSprite().draw(batch);</span>
+<span class="nc bnc" id="L258" title="All 2 branches missed.">            if (monsterI.getName() == &quot;RedBoss&quot;) {</span>
+<span class="nc" id="L259">                hpText.draw(batch, &quot;HP:&quot; + monsterI.getCurrentHitpoints(), monsterI.getPosition().x - 16,</span>
+<span class="nc" id="L260">                    monsterI.getPosition().y + monsterI.getHeight()*3);</span>
+            }
+            else {
+<span class="nc" id="L263">                hpText.draw(batch, &quot;HP:&quot; + monsterI.getCurrentHitpoints(), monsterI.getPosition().x,</span>
+<span class="nc" id="L264">                    monsterI.getPosition().y);</span>
+            }
+            
+            
+<span class="nc" id="L268">            monsterI.followPlayer(playerI.getPosition().x, playerI.getPosition().y);</span>
+
+            // check if monsterhp is less than or equal to zero
+<span class="nc bnc" id="L271" title="All 2 branches missed.">            if (monsterI.isDead()) {</span>
+<span class="nc bnc" id="L272" title="All 2 branches missed.">                if (monsterI.getName() == &quot;RedBoss&quot;)</span>
+<span class="nc" id="L273">                    sm.monsterdied.play();</span>
+                else
+<span class="nc" id="L275">                    sm.kill.play();</span>
+<span class="nc" id="L276">                enemiesremaining -= 1;</span>
+<span class="nc bnc" id="L277" title="All 2 branches missed.">                if (enemiesremaining == 0) {</span>
+<span class="nc" id="L278">                    mapI.stopMusic();</span>
+<span class="nc" id="L279">                    sm.safeZone.play();</span>
+                }
+<span class="nc" id="L281">                deadMonsterList.add(monsterI);</span>
+<span class="nc" id="L282">                playerI.getExp(monsterI.getName());</span>
+            }
+<span class="nc bnc" id="L284" title="All 2 branches missed.">            for (ProjectileInterface projectile : monsterI.getProjectiles()) {</span>
+<span class="nc" id="L285">                projectile.getSprite().draw(batch);</span>
+<span class="nc bnc" id="L286" title="All 2 branches missed.">                if (projectile.getPosition().dst(monsterI.getPosition()) &gt; 100) {</span>
+<span class="nc" id="L287">                    monsterProjectilesToRemove.add(projectile);</span>
+                }
+<span class="nc bnc" id="L289" title="All 2 branches missed.">                if (projectile.getRect().overlaps(playerI.getRect())) {</span>
+<span class="nc" id="L290">                    playerI.takeDamage(projectile.getDamage());</span>
+<span class="nc" id="L291">                    monsterProjectilesToRemove.add(projectile);</span>
+                }
+
+
+<span class="nc" id="L295">            }</span>
+<span class="nc" id="L296">            monsterI.getProjectiles().removeAll(monsterProjectilesToRemove);</span>
+            // check if monster and player is colliding. if so, player takes damage
+<span class="nc bnc" id="L298" title="All 2 branches missed.">            if (monsterI.getRect().overlaps(playerI.getRect())) {</span>
+<span class="nc" id="L299">                playerI.takeDamage(monsterI.getDamage());</span>
+<span class="nc" id="L300">                break;</span>
+            }
+<span class="nc" id="L302">        }</span>
+
+<span class="nc bnc" id="L304" title="All 2 branches missed.">        for (MonsterInterface monsterI : deadMonsterList) {</span>
+<span class="nc bnc" id="L305" title="All 2 branches missed.">            if (monsterI.dropHealthPotion()) {</span>
+<span class="nc" id="L306">                addPotion(monsterI.getPosition());</span>
+            }
+<span class="nc" id="L308">        }</span>
+
+        // draw items
+<span class="nc bnc" id="L311" title="All 2 branches missed.">        for (ItemImpl item : this.itemList) {</span>
+<span class="nc" id="L312">            item.update(delta);</span>
+<span class="nc" id="L313">            item.getSprite().draw(batch);</span>
+
+            // check if item and player is colliding. if so, player heals damage
+<span class="nc bnc" id="L316" title="All 2 branches missed.">            if (item.getRect().overlaps(playerI.getRect())) {</span>
+<span class="nc" id="L317">                playerI.healDamage(item.getHealAmount());</span>
+<span class="nc" id="L318">                itemsToRemove.add(item);</span>
+<span class="nc" id="L319">                break;</span>
+            }
+<span class="nc" id="L321">        }</span>
+
+        // remove dead monsters, projectiles that hit enemies and used items
+<span class="nc" id="L324">        this.monsterList.removeAll(deadMonsterList);</span>
+<span class="nc" id="L325">        itemList.removeAll(itemsToRemove);</span>
+<span class="nc" id="L326">        playerI.getProjectiles().removeAll(projectilesToRemove);</span>
+<span class="nc" id="L327">        deadMonsterList.clear();</span>
+<span class="nc" id="L328">        itemsToRemove.clear();</span>
+<span class="nc" id="L329">        projectilesToRemove.clear();</span>
+
+        // Check if all enemies are dead
+<span class="nc bnc" id="L332" title="All 2 branches missed.">        if (this.monsterList.isEmpty()) {</span>
+<span class="nc" id="L333">            mapI.setAllEnemiesDead(true);</span>
+        }
+
+        // open store (bound to Tab)
+<span class="nc bnc" id="L337" title="All 2 branches missed.">        if (controller.isShop()) {</span>
+<span class="nc bnc" id="L338" title="All 2 branches missed.">            if (mapI.getMapName() == &quot;house&quot;)</span>
+<span class="nc" id="L339">                game.setScreen(new Shop(game, controller, playerI));</span>
+            else {
+<span class="nc" id="L341">                String text = &quot;You can only open the shop inside your house.&quot;;</span>
+<span class="nc" id="L342">                lifeText.draw(batch, text, (float) (camera.position.x - camera.viewportWidth / 3),</span>
+                        camera.position.y + camera.viewportHeight / 4);
+<span class="nc bnc" id="L344" title="All 2 branches missed.">                if (!tabJustPressed) {</span>
+<span class="nc" id="L345">                    tabJustPressed = true;</span>
+<span class="nc" id="L346">                    timer = 2;</span>
+                }
+            }
+        }
+
+<span class="nc" id="L351">        lifeText.draw(batch, &quot;Lives: &quot; + playerI.getLives(), (camera.position.x - camera.viewportWidth / 2) + 20,</span>
+                camera.position.y + 6 * (camera.viewportHeight / 16));
+<span class="nc" id="L353">        lifeText.draw(batch, &quot;Level: &quot; + playerI.getLevel(), (camera.position.x - camera.viewportWidth / 2) + 20,</span>
+                camera.position.y + 7 * (camera.viewportHeight / 16));
+<span class="nc" id="L355">        hpText.draw(batch, &quot;HP: &quot; + playerI.getCurrentHitpoints(), playerI.getPosition().x - 12,</span>
+<span class="nc" id="L356">                playerI.getPosition().y + playerI.getHeight() + 15);</span>
+
+<span class="nc" id="L358">        batch.end();</span>
+<span class="nc" id="L359">    }</span>
+
+    @Override
+    public void resize(int width, int height) {
+<span class="nc" id="L363">        camera.viewportWidth = width / 3f;</span>
+<span class="nc" id="L364">        camera.viewportHeight = height / 3f;</span>
+<span class="nc" id="L365">    }</span>
+
+    @Override
+    public void pause() {
+<span class="nc" id="L369">        paused = true;</span>
+<span class="nc" id="L370">    }</span>
+
+    /* */
+    @Override
+    public void resume() {
+<span class="nc" id="L375">        paused = false;</span>
+<span class="nc" id="L376">    }</span>
+
+    @Override
+    public void hide() {
+<span class="nc" id="L380">    }</span>
+
+    @Override
+    public void dispose() {
+<span class="nc" id="L384">        map.dispose();</span>
+<span class="nc" id="L385">        renderer.dispose();</span>
+<span class="nc" id="L386">    }</span>
+
+    /**
+     * @return a list of all monster objects.
+     */
+    public ArrayList&lt;MonsterInterface&gt; getMonsterList() {
+<span class="fc" id="L392">        return this.monsterList;</span>
+    }
+
+    private void addPotion(Vector2 position) {
+<span class="nc bnc" id="L396" title="All 2 branches missed.">        if (this.itemList.size() &lt;= 2) {</span>
+<span class="nc" id="L397">            HealthPotion potion = new HealthPotion(position, mapI);</span>
+<span class="nc" id="L398">            this.itemList.add(potion);</span>
+        }
+<span class="nc" id="L400">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

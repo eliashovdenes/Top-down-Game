@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>CreditScreen.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Southgame</a> &gt; <a href="index.source.html" class="el_package">inf112.skeleton.app.Screens</a> &gt; <span class="el_source">CreditScreen.java</span></div><h1>CreditScreen.java</h1><pre class="source lang-java linenums">package inf112.skeleton.app.Screens;
+
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.ScreenAdapter;
+import com.badlogic.gdx.Graphics.DisplayMode;
+import com.badlogic.gdx.backends.lwjgl3.Lwjgl3ApplicationConfiguration;
+import com.badlogic.gdx.graphics.GL20;
+import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.math.Rectangle;
+
+import inf112.skeleton.app.Southgame;
+import inf112.skeleton.app.Controller.Controller;
+
+public class CreditScreen extends ScreenAdapter {
+
+    private SpriteBatch batch;
+    private Southgame game;
+    private Controller controller;
+    private OrthographicCamera camera;
+<span class="nc" id="L22">    private Texture background = new Texture(Gdx.files.internal(&quot;assets/credits.png&quot;));</span>
+<span class="nc" id="L23">    private Lwjgl3ApplicationConfiguration cfg = new Lwjgl3ApplicationConfiguration();</span>
+<span class="nc" id="L24">    private DisplayMode disp = cfg.getDisplayMode();</span>
+
+    Rectangle EliasRect, BjornRect, CasperRect, MagnusRect, HansCRect;
+
+<span class="nc" id="L28">    public CreditScreen(Southgame southGame, Controller controller) {</span>
+<span class="nc" id="L29">        this.game = southGame;</span>
+<span class="nc" id="L30">        this.controller = controller;</span>
+<span class="nc" id="L31">        batch = new SpriteBatch();</span>
+
+        // Create the camera and set its position to the center of the screen
+<span class="nc" id="L34">        camera = new OrthographicCamera();</span>
+<span class="nc" id="L35">        camera.setToOrtho(false, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());</span>
+<span class="nc" id="L36">        camera.position.set(Gdx.graphics.getWidth(), Gdx.graphics.getHeight(), 0);</span>
+<span class="nc" id="L37">        camera.update();</span>
+<span class="nc" id="L38">    }</span>
+
+    @Override
+    public void render(float delta) {
+        // Clear the screen with a solid color
+<span class="nc" id="L43">        Gdx.gl.glClearColor(0, 0, 0, 1);</span>
+<span class="nc" id="L44">        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);</span>
+
+<span class="nc" id="L46">        batch.begin();</span>
+<span class="nc" id="L47">        batch.draw(background, 0, 0, disp.width, disp.height);</span>
+<span class="nc" id="L48">        batch.end();</span>
+<span class="nc bnc" id="L49" title="All 2 branches missed.">        if (controller.getJustTouched()) {</span>
+<span class="nc" id="L50">            controller.setJustTouched(false);</span>
+<span class="nc" id="L51">            game.setScreen(new MainMenuScreen(game, controller));</span>
+        }
+<span class="nc" id="L53">    }</span>
+
+    @Override
+    public void dispose() {
+
+<span class="nc" id="L58">        batch.dispose();</span>
+<span class="nc" id="L59">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

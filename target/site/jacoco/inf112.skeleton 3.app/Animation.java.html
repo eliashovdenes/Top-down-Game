@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Animation.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Southgame</a> &gt; <a href="index.source.html" class="el_package">inf112.skeleton.app</a> &gt; <span class="el_source">Animation.java</span></div><h1>Animation.java</h1><pre class="source lang-java linenums">package inf112.skeleton.app;
+
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.utils.Array;
+
+public class Animation {
+
+    private Array&lt;TextureRegion&gt; frames;
+    private float maxFrameTime;
+    private float currentFrameTime;
+    private int frameCount;
+    private int frame;
+
+<span class="fc" id="L14">    public Animation(TextureRegion region, int frameCount, float cycleTime) {</span>
+<span class="fc" id="L15">        frames = new Array&lt;TextureRegion&gt;();</span>
+<span class="fc" id="L16">        int frameWidth = region.getRegionWidth() / frameCount;</span>
+
+<span class="fc bfc" id="L18" title="All 2 branches covered.">        for (int i = 0; i &lt; frameCount; i++) {</span>
+<span class="fc" id="L19">            frames.add(new TextureRegion(region, i * frameWidth, 0, frameWidth, region.getRegionHeight()));</span>
+        }
+<span class="fc" id="L21">        this.frameCount = frameCount;</span>
+<span class="fc" id="L22">        maxFrameTime = cycleTime / frameCount;</span>
+<span class="fc" id="L23">        frame = 0;</span>
+<span class="fc" id="L24">    }</span>
+
+    /**
+     * updates the frame
+     * 
+     * @param dt delta time parameter decides how often the frame changes
+     */
+    public void update(float dt) {
+<span class="fc" id="L32">        currentFrameTime += dt;</span>
+<span class="pc bpc" id="L33" title="1 of 2 branches missed.">        if (currentFrameTime &gt; maxFrameTime) {</span>
+<span class="fc" id="L34">            frame++;</span>
+<span class="fc" id="L35">            currentFrameTime = 0;</span>
+        }
+<span class="fc bfc" id="L37" title="All 2 branches covered.">        if (frame &gt;= frameCount) {</span>
+<span class="fc" id="L38">            frame = 0;</span>
+        }
+<span class="fc" id="L40">    }</span>
+
+    /**
+     * @returns current frame.
+     */
+    public TextureRegion getFrame() {
+<span class="fc" id="L46">        return frames.get(frame);</span>
+    }
+
+    /**
+     * sets how long it takes for a cycle of animation.
+     * 
+     * @param time
+     */
+    public void setCycleTime(float time) {
+<span class="fc" id="L55">        maxFrameTime = time / frameCount;</span>
+<span class="fc" id="L56">    }</span>
+
+    /**
+     * @return maximum frame time.
+     */
+    public float getMaxFrameTime() {
+<span class="fc" id="L62">        return maxFrameTime;</span>
+    }
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

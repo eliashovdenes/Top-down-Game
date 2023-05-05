@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Collision.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Southgame</a> &gt; <a href="index.source.html" class="el_package">inf112.skeleton.app</a> &gt; <span class="el_source">Collision.java</span></div><h1>Collision.java</h1><pre class="source lang-java linenums">package inf112.skeleton.app;
+
+import com.badlogic.gdx.maps.tiled.TiledMap;
+import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
+
+import inf112.skeleton.app.Entities.AbstractGameObject;
+import inf112.skeleton.app.Entities.Player.Player;
+import inf112.skeleton.app.Mapfolder.GrassMini;
+import inf112.skeleton.app.Mapfolder.House;
+import inf112.skeleton.app.Mapfolder.Level1Mini;
+import inf112.skeleton.app.Mapfolder.MapInterface;
+
+public class Collision {
+
+    public MapInterface nextMap;
+    public MapInterface currMap;
+    private TiledMap map;
+
+    private AbstractGameObject entity;
+
+    private float tileSize;
+    private float posX, posY;
+
+<span class="fc" id="L24">    public Collision(MapInterface currMap, AbstractGameObject entity) {</span>
+<span class="fc" id="L25">        this.currMap = currMap;</span>
+<span class="fc" id="L26">        this.map = currMap.getMap();</span>
+<span class="fc" id="L27">        this.entity = entity;</span>
+<span class="fc" id="L28">        tileSize = ((TiledMapTileLayer) this.map.getLayers().get(0)).getTileWidth();</span>
+<span class="fc" id="L29">    }</span>
+
+    /**
+     * Checks collision in X-direction
+     * 
+     * @param velX velocity of object in X direction
+     * @return false if not collision. True if collision.
+     */
+    public boolean checkXDirection(float velX) {
+<span class="fc" id="L38">        boolean collisionX = false;</span>
+<span class="fc" id="L39">        posX = entity.getPosition().x;</span>
+<span class="fc" id="L40">        posY = entity.getPosition().y;</span>
+
+        // when moving to the left
+<span class="fc bfc" id="L43" title="All 2 branches covered.">        if (velX &lt; 0) {</span>
+            // top left tile
+<span class="fc" id="L45">            collisionX = isCellBlocked((int) (posX + velX / tileSize),</span>
+<span class="fc" id="L46">                    (int) ((posY + entity.getHeight() - (entity.getHeight() / 4)) / tileSize));</span>
+
+            // middle left tile
+<span class="pc bpc" id="L49" title="1 of 2 branches missed.">            if (!collisionX)</span>
+<span class="fc" id="L50">                collisionX = isCellBlocked((int) ((posX + velX) / tileSize),</span>
+<span class="fc" id="L51">                        (int) ((posY + entity.getHeight() / 2) / tileSize));</span>
+
+            // bottom left tile
+<span class="fc bfc" id="L54" title="All 2 branches covered.">            if (!collisionX)</span>
+<span class="fc" id="L55">                collisionX = isCellBlocked((int) (posX + velX / tileSize),</span>
+<span class="fc" id="L56">                        (int) (((posY + entity.getHeight() / 4) / tileSize)));</span>
+
+        }
+
+        // when moving to the right
+<span class="fc bfc" id="L61" title="All 2 branches covered.">        else if (velX &gt; 0) {</span>
+            // top right tile
+<span class="fc" id="L63">            collisionX = isCellBlocked((int) ((posX + velX + entity.getWidth()) / tileSize),</span>
+<span class="fc" id="L64">                    (int) ((posY + entity.getHeight() - (entity.getHeight() / 4)) / tileSize));</span>
+
+            // middle right tile
+<span class="fc bfc" id="L67" title="All 2 branches covered.">            if (!collisionX)</span>
+<span class="fc" id="L68">                collisionX = isCellBlocked((int) ((posX + velX + entity.getWidth()) / tileSize),</span>
+<span class="fc" id="L69">                        (int) ((posY + entity.getHeight() / 2) / tileSize));</span>
+
+            // bottom right
+<span class="fc bfc" id="L72" title="All 2 branches covered.">            if (!collisionX)</span>
+<span class="fc" id="L73">                collisionX = isCellBlocked((int) ((posX + velX + entity.getWidth()) / tileSize),</span>
+<span class="fc" id="L74">                        (int) ((posY + entity.getHeight() / 4) / tileSize));</span>
+        }
+
+<span class="fc bfc" id="L77" title="All 2 branches covered.">        if (collisionX)</span>
+<span class="fc" id="L78">            return true;</span>
+<span class="fc" id="L79">        return false;</span>
+
+    }
+
+    /**
+     * Checks collision in Y-direction
+     * 
+     * @param velY velocity of object in Y direction
+     * @return false if not collision. True if collision.
+     */
+    public boolean checkYDirection(float velY) {
+<span class="fc" id="L90">        boolean collisionY = false;</span>
+<span class="fc" id="L91">        posX = entity.getPosition().x;</span>
+<span class="fc" id="L92">        posY = entity.getPosition().y;</span>
+        // when moving downwards
+<span class="fc bfc" id="L94" title="All 2 branches covered.">        if (velY &lt; 0) {</span>
+            // bottom left
+<span class="fc" id="L96">            collisionY = isCellBlocked((int) ((posX + entity.getWidth() - (entity.getWidth() / 4)) / tileSize),</span>
+                    (int) ((posY + velY) / tileSize));
+
+            // bottom middle
+<span class="fc bfc" id="L100" title="All 2 branches covered.">            if (!collisionY)</span>
+<span class="fc" id="L101">                collisionY = isCellBlocked((int) ((posX + (entity.getWidth() / 2)) / tileSize),</span>
+                        (int) ((posY + velY) / tileSize));
+
+            // bottom right
+<span class="fc bfc" id="L105" title="All 2 branches covered.">            if (!collisionY)</span>
+<span class="fc" id="L106">                collisionY = isCellBlocked((int) ((posX + entity.getWidth() / 4) / tileSize),</span>
+                        (int) ((posY + velY) / tileSize));
+
+        }
+        // moving upwards
+<span class="fc bfc" id="L111" title="All 2 branches covered.">        else if (velY &gt; 0) {</span>
+
+            // top left
+<span class="fc" id="L114">            collisionY = isCellBlocked((int) ((posX + entity.getWidth() - (entity.getWidth() / 4)) / tileSize),</span>
+<span class="fc" id="L115">                    (int) ((posY + velY + entity.getHeight()) / tileSize));</span>
+
+            // top middle
+<span class="fc bfc" id="L118" title="All 2 branches covered.">            if (!collisionY)</span>
+<span class="fc" id="L119">                collisionY = isCellBlocked((int) ((posX + (entity.getWidth() / 2)) / tileSize),</span>
+<span class="fc" id="L120">                        (int) ((posY + velY + entity.getHeight()) / tileSize));</span>
+            // top right
+<span class="fc bfc" id="L122" title="All 2 branches covered.">            if (!collisionY)</span>
+<span class="fc" id="L123">                collisionY = isCellBlocked((int) ((posX + entity.getWidth() / 4) / tileSize),</span>
+<span class="fc" id="L124">                        (int) ((posY + velY + entity.getHeight()) / tileSize));</span>
+        }
+<span class="fc bfc" id="L126" title="All 2 branches covered.">        if (collisionY)</span>
+<span class="fc" id="L127">            return true;</span>
+<span class="fc" id="L128">        return false;</span>
+
+    }
+
+    private boolean isCellBlocked(int xpos, int ypos) {
+
+<span class="fc" id="L134">        int size = map.getLayers().size();</span>
+
+<span class="fc bfc" id="L136" title="All 2 branches covered.">        for (int i = 0; i &lt; size; i++) {</span>
+<span class="fc" id="L137">            TiledMapTileLayer layer = (TiledMapTileLayer) map.getLayers().get(i);</span>
+<span class="fc" id="L138">            TiledMapTileLayer.Cell cell = layer.getCell(xpos, ypos);</span>
+
+<span class="fc bfc" id="L140" title="All 4 branches covered.">            if (cell != null &amp;&amp; cell.getTile().getProperties().containsKey(&quot;blocked&quot;)) {</span>
+<span class="fc" id="L141">                return true;</span>
+            }
+
+        }
+<span class="fc" id="L145">        return false;</span>
+    }
+
+    /**
+     * @return true if entity is a player and collides with a portal. False if not
+     */
+    public boolean isCellAPortal() {
+
+<span class="pc bpc" id="L153" title="1 of 2 branches missed.">        if (entity instanceof Player) {</span>
+
+<span class="fc" id="L155">            int size = map.getLayers().size();</span>
+
+<span class="fc" id="L157">            float entityX = (entity.getPosition().x + entity.getWidth() / 2) / tileSize;</span>
+<span class="fc" id="L158">            float entityY = (entity.getPosition().y + entity.getHeight() / 2) / tileSize;</span>
+
+<span class="fc bfc" id="L160" title="All 2 branches covered.">            for (int i = 0; i &lt; size; i++) {</span>
+
+<span class="fc" id="L162">                TiledMapTileLayer layer = (TiledMapTileLayer) map.getLayers().get(i);</span>
+
+<span class="fc" id="L164">                TiledMapTileLayer.Cell entityCell = layer.getCell((int) entityX, (int) entityY);</span>
+
+<span class="pc bpc" id="L166" title="2 of 4 branches missed.">                if (entityCell != null &amp;&amp; entityCell.getTile().getProperties().containsKey(&quot;portal&quot;)) {</span>
+
+                    // This is for the map cycle
+<span class="nc bnc" id="L169" title="All 2 branches missed.">                    if (entityCell.getTile().getProperties().containsKey(&quot;house&quot;)) {</span>
+<span class="nc" id="L170">                        nextMap = new House();</span>
+<span class="nc" id="L171">                        currMap.stopMusic();</span>
+                    }
+
+<span class="nc bnc" id="L174" title="All 2 branches missed.">                    if (entityCell.getTile().getProperties().containsKey(&quot;level 2&quot;)) {</span>
+<span class="nc" id="L175">                        nextMap = new Level1Mini(113, 75);</span>
+<span class="nc" id="L176">                        currMap.stopMusic();</span>
+                    }
+
+<span class="nc bnc" id="L179" title="All 2 branches missed.">                    if (entityCell.getTile().getProperties().containsKey(&quot;grass&quot;)) {</span>
+<span class="nc" id="L180">                        nextMap = new GrassMini(119, 52);</span>
+<span class="nc" id="L181">                        currMap.stopMusic();</span>
+                    }
+
+<span class="nc bnc" id="L184" title="All 2 branches missed.">                    if (entityCell.getTile().getProperties().containsKey(&quot;mini level 1&quot;)) {</span>
+
+<span class="nc bnc" id="L186" title="All 2 branches missed.">                        if (currMap.getAllEnemiesDead()) {</span>
+<span class="nc" id="L187">                            nextMap = new Level1Mini(139, 70);</span>
+<span class="nc" id="L188">                            currMap.stopMusic();</span>
+                        } else {
+<span class="nc" id="L190">                            return false;</span>
+                        }
+
+                    }
+
+<span class="nc" id="L195">                    return true;</span>
+                }
+            }
+        }
+<span class="fc" id="L199">        return false;</span>
+    }
+
+    /**
+     * @returns map associated with collision.
+     */
+    public TiledMap getMap() {
+<span class="fc" id="L206">        return map;</span>
+    }
+
+    /**
+     * Sets map associated with collision.
+     * 
+     * @param map
+     */
+    public void setMap(TiledMap map) {
+<span class="fc" id="L215">        this.map = map;</span>
+<span class="fc" id="L216">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

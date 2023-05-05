@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>aSound.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Southgame</a> &gt; <a href="index.source.html" class="el_package">inf112.skeleton.app.Sound</a> &gt; <span class="el_source">aSound.java</span></div><h1>aSound.java</h1><pre class="source lang-java linenums">package inf112.skeleton.app.Sound;
+
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.audio.Music;
+
+public class aSound {
+    private Music sound;
+    private String fileString;
+
+<span class="fc" id="L10">    public aSound(String soundString, boolean loop) {</span>
+<span class="fc" id="L11">        this.fileString = soundString;</span>
+<span class="fc" id="L12">        sound = Gdx.audio.newMusic(Gdx.files.internal(fileString));</span>
+<span class="fc" id="L13">        sound.setLooping(loop);</span>
+
+<span class="fc" id="L15">    }</span>
+
+    /**
+     * Starts the play back of the music stream.
+     * In case the stream was paused this will resume the play back.
+     * In case the music stream is finished playing this will restart the play back.
+     */
+    public void play() {
+<span class="fc" id="L23">        sound.play();</span>
+<span class="fc" id="L24">    }</span>
+
+    /**
+     * Stops a playing or paused Music instance.
+     * Next time play() is invoked the Music will start from the beginning.
+     */
+    public void stop() {
+<span class="fc" id="L31">        sound.stop();</span>
+<span class="fc" id="L32">    }</span>
+
+    /**
+     * Needs to be called when the Music is no longer needed.
+     */
+    public void dispose() {
+<span class="fc" id="L38">        sound.dispose();</span>
+<span class="fc" id="L39">    }</span>
+
+    /**
+     * @return path string for music-file.
+     */
+    public String getSoundString() {
+<span class="fc" id="L45">        return fileString;</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

@@ -1,0 +1,248 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>RedBoss.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Southgame</a> &gt; <a href="index.source.html" class="el_package">inf112.skeleton.app.Entities.Enemies</a> &gt; <span class="el_source">RedBoss.java</span></div><h1>RedBoss.java</h1><pre class="source lang-java linenums">package inf112.skeleton.app.Entities.Enemies;
+
+import java.util.ArrayList;
+import java.util.Random;
+
+import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.Sprite;
+import com.badlogic.gdx.math.Rectangle;
+import com.badlogic.gdx.math.Vector2;
+
+import inf112.skeleton.app.Entities.AbstractGameObject;
+import inf112.skeleton.app.Entities.Enums.DirectionEnum;
+import inf112.skeleton.app.Entities.Enums.RedBossPics;
+import inf112.skeleton.app.Entities.Projectiles.ProjectileInterface;
+import inf112.skeleton.app.Entities.Projectiles.RedProjectile;
+import inf112.skeleton.app.Mapfolder.MapInterface;
+
+public class RedBoss extends AbstractGameObject implements MonsterInterface {
+
+    private Sprite sprite;
+<span class="fc" id="L21">    private float speed = 0.5f;</span>
+    private int attackDamage;
+<span class="fc" id="L23">    private Random rand = new Random();</span>
+    float fromX, fromY, toX, toY;
+    private DirectionEnum direction;
+    private double healthPotionDropChance;
+    public ArrayList&lt;ProjectileInterface&gt; projectileList;
+<span class="fc" id="L28">    private boolean shootingAbility = false;</span>
+<span class="fc" id="L29">    private float shootTimer = 0;</span>
+<span class="fc" id="L30">    private int projectileDamage = 30;</span>
+<span class="fc" id="L31">    private final float shootCooldown = 3.0f;</span>
+
+    public RedBoss(MapInterface map, float scaler) {
+<span class="fc" id="L34">        super(new Vector2(0, 0), map);</span>
+<span class="fc" id="L35">        setSprite(RedBossPics.BOSSDOWN.source);</span>
+<span class="fc" id="L36">        rectangle = new Rectangle(position.x, position.y, getWidth(), getHeight());</span>
+<span class="fc" id="L37">        setXYFromSpawnBounds();</span>
+<span class="fc" id="L38">        this.velocity.x = speed;</span>
+<span class="fc" id="L39">        this.velocity.y = speed;</span>
+<span class="fc" id="L40">        this.setMaxhitpoints(Math.round(1000 * scaler));</span>
+<span class="fc" id="L41">        this.setCurrentHitPoints(this.getMaxHitpoints());</span>
+<span class="fc" id="L42">        this.attackDamage = 100;</span>
+<span class="fc" id="L43">        projectileList = new ArrayList&lt;ProjectileInterface&gt;();</span>
+<span class="fc" id="L44">    }</span>
+
+    public static MonsterFactory getFactory() {
+
+<span class="fc" id="L48">        return new MonsterFactory() {</span>
+
+            @Override
+            public String name() {
+<span class="fc" id="L52">                return &quot;RedBoss&quot;;</span>
+            }
+
+            @Override
+            public MonsterInterface create(MapInterface map, float scaler) {
+<span class="fc" id="L57">                return new RedBoss(map, scaler);</span>
+            }
+
+        };
+    }
+
+    @Override
+    public void update(float delta) {
+<span class="fc" id="L65">        ApplyMovement();</span>
+<span class="fc" id="L66">        sprite.setPosition(position.x, position.y);</span>
+<span class="pc bpc" id="L67" title="1 of 2 branches missed.">        if (shootingAbility) {</span>
+<span class="nc" id="L68">            shootRedProjectile(delta, this.projectileDamage);</span>
+<span class="nc bnc" id="L69" title="All 2 branches missed.">            for (ProjectileInterface projectile : projectileList) {</span>
+<span class="nc" id="L70">                projectile.update(delta);</span>
+<span class="nc" id="L71">            }</span>
+        }
+<span class="fc" id="L73">    }</span>
+
+    @Override
+    public void setSprite(String string) {
+<span class="fc" id="L77">        sprite = new Sprite(new Texture(string));</span>
+<span class="fc" id="L78">        sprite.scale(3);</span>
+<span class="fc" id="L79">    }</span>
+
+    @Override
+    public Sprite getSprite() {
+<span class="fc" id="L83">        return sprite;</span>
+    }
+
+    @Override
+    public void setMovementSpeed(float speed) {
+<span class="fc" id="L88">        this.speed = speed;</span>
+<span class="fc" id="L89">    }</span>
+
+    @Override
+    public float getWidth() {
+<span class="fc" id="L93">        return sprite.getWidth();</span>
+    }
+
+    @Override
+    public float getHeight() {
+<span class="fc" id="L98">        return sprite.getHeight();</span>
+    }
+
+    @Override
+    public void setDirection(DirectionEnum direction) {
+<span class="fc" id="L103">        this.direction = direction;</span>
+<span class="fc" id="L104">    }</span>
+
+    @Override
+    public DirectionEnum getDirection() {
+<span class="fc" id="L108">        return direction;</span>
+    }
+
+    @Override
+    public void setXYFromSpawnBounds() {
+
+<span class="fc" id="L114">        fromX = map.getEnemyBoundsFromX() * 16;</span>
+<span class="fc" id="L115">        fromY = map.getEnemyBoundsFromY() * 16;</span>
+<span class="fc" id="L116">        toX = map.getEnemyBoundsToX() * 16;</span>
+<span class="fc" id="L117">        toY = map.getEnemyBoundsToY() * 16;</span>
+<span class="fc" id="L118">        super.position.set(rand.nextFloat(toX - fromX) + fromX, rand.nextFloat(toY - fromY) + fromY);</span>
+<span class="fc" id="L119">        sprite.setPosition(position.x, position.y);</span>
+<span class="fc" id="L120">    }</span>
+
+    @Override
+    public void followPlayer(float x, float y) {
+<span class="nc bnc" id="L124" title="All 2 branches missed.">        if (x &gt; position.x) {</span>
+<span class="nc" id="L125">            velocity.x = speed;</span>
+<span class="nc bnc" id="L126" title="All 2 branches missed.">        } else if (x &lt; position.x) {</span>
+<span class="nc" id="L127">            velocity.x = -speed;</span>
+        }
+<span class="nc bnc" id="L129" title="All 2 branches missed.">        if (y &gt; position.y) {</span>
+<span class="nc" id="L130">            velocity.y = speed;</span>
+<span class="nc bnc" id="L131" title="All 2 branches missed.">        } else if (y &lt; position.y) {</span>
+<span class="nc" id="L132">            velocity.y = -speed;</span>
+        }
+<span class="nc bnc" id="L134" title="All 2 branches missed.">        if (Math.abs(x - position.x) &gt; Math.abs(y - position.y)) {</span>
+<span class="nc bnc" id="L135" title="All 2 branches missed.">            if (x &gt; position.x) {</span>
+<span class="nc" id="L136">                sprite.setTexture(new Texture(RedBossPics.BOSSRIGHT.source));</span>
+<span class="nc" id="L137">                this.direction = DirectionEnum.EAST;</span>
+            } else {
+<span class="nc" id="L139">                sprite.setTexture(new Texture(RedBossPics.BOSSLEFT.source));</span>
+<span class="nc" id="L140">                this.direction = DirectionEnum.WEST;</span>
+            }
+<span class="nc bnc" id="L142" title="All 2 branches missed.">        } else if (Math.abs(x - position.x) &lt; Math.abs(y - position.y)) {</span>
+<span class="nc bnc" id="L143" title="All 2 branches missed.">            if (y &gt; position.y) {</span>
+<span class="nc" id="L144">                sprite.setTexture(new Texture(RedBossPics.BOSSUP.source));</span>
+<span class="nc" id="L145">                this.direction = DirectionEnum.NORTH;</span>
+            } else {
+<span class="nc" id="L147">                sprite.setTexture(new Texture(RedBossPics.BOSSDOWN.source));</span>
+<span class="nc" id="L148">                this.direction = DirectionEnum.SOUTH;</span>
+            }
+        }
+
+<span class="nc" id="L152">    }</span>
+
+    @Override
+    public void handleCollision() {
+<span class="pc bpc" id="L156" title="1 of 2 branches missed.">        if (xCollision()) {</span>
+<span class="nc" id="L157">            position.x = recentPosition.x;</span>
+<span class="nc" id="L158">            velocity.x = -velocity.x;</span>
+
+        }
+<span class="pc bpc" id="L161" title="1 of 2 branches missed.">        if (yCollision()) {</span>
+<span class="nc" id="L162">            position.y = recentPosition.y;</span>
+<span class="nc" id="L163">            velocity.y = -velocity.y;</span>
+
+        }
+
+<span class="fc" id="L167">    }</span>
+
+    @Override
+    public Vector2 getPosition() {
+<span class="fc" id="L171">        return this.position;</span>
+    }
+
+    @Override
+    public Rectangle getRect() {
+<span class="nc" id="L176">        return this.rectangle;</span>
+    }
+
+    @Override
+    public String getName() {
+<span class="fc" id="L181">        return &quot;RedBoss&quot;;</span>
+    }
+
+    @Override
+    public int getDamage() {
+<span class="fc" id="L186">        return attackDamage;</span>
+    }
+
+    @Override
+    public boolean dropHealthPotion() {
+<span class="fc" id="L191">        double dropValue = this.rand.nextDouble();</span>
+<span class="pc bpc" id="L192" title="1 of 2 branches missed.">        return (dropValue &lt;= this.getHealthPotionDropChance());</span>
+    }
+
+    @Override
+    public double getHealthPotionDropChance() {
+<span class="fc" id="L197">        return this.healthPotionDropChance;</span>
+    }
+
+    @Override
+    public void setHealthPotionDropChance(double chance) {
+<span class="fc" id="L202">        this.healthPotionDropChance = chance;</span>
+<span class="fc" id="L203">    }</span>
+
+    @Override
+    public ArrayList&lt;ProjectileInterface&gt; getProjectiles() {
+<span class="fc" id="L207">        return projectileList;</span>
+    }
+
+    public void giveShootingPermission() {
+<span class="nc" id="L211">        shootingAbility = true;</span>
+<span class="nc" id="L212">    }</span>
+
+    private void shootRedProjectile(float delta, int damage) {
+
+<span class="nc bnc" id="L216" title="All 2 branches missed.">        if (shootTimer &lt;= 0) {</span>
+
+            // set velocity based on enemy direction.
+<span class="nc" id="L219">            Vector2 velocity = new Vector2();</span>
+<span class="nc bnc" id="L220" title="All 2 branches missed.">            if (this.direction == DirectionEnum.NORTH)</span>
+<span class="nc" id="L221">                velocity.set(0, 1);</span>
+<span class="nc bnc" id="L222" title="All 2 branches missed.">            if (this.direction == DirectionEnum.EAST)</span>
+<span class="nc" id="L223">                velocity.set(1, 0);</span>
+<span class="nc bnc" id="L224" title="All 2 branches missed.">            if (this.direction == DirectionEnum.WEST)</span>
+<span class="nc" id="L225">                velocity.set(-1, 0);</span>
+<span class="nc bnc" id="L226" title="All 2 branches missed.">            if (this.direction == DirectionEnum.SOUTH)</span>
+<span class="nc" id="L227">                velocity.set(0, -1);</span>
+
+            // projectile created and added.
+<span class="nc" id="L230">            Vector2 projectilePos = new Vector2(position.x, position.y);</span>
+<span class="nc" id="L231">            RedProjectile projectile = new RedProjectile(projectilePos, map, velocity, this, damage);</span>
+<span class="nc" id="L232">            projectileList.add(projectile);</span>
+<span class="nc" id="L233">            shootTimer = shootCooldown;</span>
+<span class="nc" id="L234">        } else {</span>
+<span class="nc" id="L235">            shootTimer -= delta;</span>
+        }
+<span class="nc" id="L237">    }</span>
+
+    public float getSpeed() {
+<span class="fc" id="L240">        return speed;</span>
+    }
+
+    public void setPosition(Vector2 newPosition) {
+<span class="fc" id="L244">        this.position = newPosition;</span>
+<span class="fc" id="L245">    }</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Lightning.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Southgame</a> &gt; <a href="index.source.html" class="el_package">inf112.skeleton.app.Entities.Projectiles</a> &gt; <span class="el_source">Lightning.java</span></div><h1>Lightning.java</h1><pre class="source lang-java linenums">package inf112.skeleton.app.Entities.Projectiles;
+
+import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.Sprite;
+import com.badlogic.gdx.math.Rectangle;
+import com.badlogic.gdx.math.Vector2;
+
+import inf112.skeleton.app.Entities.AbstractGameObject;
+import inf112.skeleton.app.Entities.Enums.PlayerPics;
+import inf112.skeleton.app.Entities.Player.PlayerInterface;
+import inf112.skeleton.app.Mapfolder.MapInterface;
+
+public class Lightning extends AbstractGameObject implements ProjectileInterface {
+
+<span class="fc" id="L15">    protected float speed = 1;</span>
+    protected Sprite sprite;
+    protected PlayerInterface player;
+    protected MapInterface map;
+    protected Vector2 velocity;
+<span class="fc" id="L20">    private float rotationSpeed = 1000;</span>
+<span class="fc" id="L21">    private float rotation = 0;</span>
+<span class="fc" id="L22">    private int attackDamage = 45;</span>
+
+    public Lightning(Vector2 position, MapInterface map, Vector2 velocity) {
+<span class="fc" id="L25">        super(position, map);</span>
+<span class="fc" id="L26">        this.map = map;</span>
+<span class="fc" id="L27">        this.velocity = velocity;</span>
+<span class="fc" id="L28">        setSprite(PlayerPics.LIGHTNING.source);</span>
+<span class="fc" id="L29">        sprite.setSize(40, 40);</span>
+<span class="fc" id="L30">        rectangle = new Rectangle(position.x, position.y, sprite.getWidth(), sprite.getHeight());</span>
+<span class="fc" id="L31">    }</span>
+
+    @Override
+    public void update(float delta) {
+
+<span class="fc" id="L36">        position.x += velocity.x;</span>
+<span class="fc" id="L37">        position.y += velocity.y;</span>
+
+<span class="fc" id="L39">        sprite.setPosition(this.position.x, this.position.y);</span>
+
+<span class="fc" id="L41">        sprite.setOrigin(sprite.getWidth() / 2, sprite.getHeight() / 2);</span>
+
+<span class="fc" id="L43">        rectangle.setPosition(position.x, position.y);</span>
+
+<span class="fc" id="L45">        rotation += rotationSpeed * delta;</span>
+<span class="pc bpc" id="L46" title="1 of 2 branches missed.">        if (rotation &gt;= 360) {</span>
+<span class="fc" id="L47">            rotation -= 360;</span>
+        }
+<span class="fc" id="L49">        sprite.setRotation(rotation);</span>
+
+<span class="fc" id="L51">    }</span>
+
+    // Setters and getters --&gt;&gt;&gt;&gt;
+    @Override
+    public Sprite getSprite() {
+<span class="fc" id="L56">        return sprite;</span>
+    }
+
+    @Override
+    public void setSprite(String string) {
+<span class="fc" id="L61">        sprite = new Sprite(new Texture(string));</span>
+<span class="fc" id="L62">    }</span>
+
+    @Override
+    public void setMovementSpeed(float speed) {
+<span class="fc" id="L66">        this.speed = speed;</span>
+<span class="fc" id="L67">    }</span>
+
+    @Override
+    public float getWidth() {
+<span class="fc" id="L71">        return sprite.getWidth();</span>
+    }
+
+    @Override
+    public float getHeight() {
+<span class="fc" id="L76">        return sprite.getHeight();</span>
+    }
+
+    @Override
+    public int getDamage() {
+<span class="fc" id="L81">        return attackDamage;</span>
+    }
+
+    @Override
+    public float getMovementSpeed() {
+<span class="fc" id="L86">        return speed;</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

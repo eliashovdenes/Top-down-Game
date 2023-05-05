@@ -1,0 +1,233 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Controller.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Southgame</a> &gt; <a href="index.source.html" class="el_package">inf112.skeleton.app.Controller</a> &gt; <span class="el_source">Controller.java</span></div><h1>Controller.java</h1><pre class="source lang-java linenums">package inf112.skeleton.app.Controller;
+
+import com.badlogic.gdx.InputProcessor;
+import com.badlogic.gdx.Input.Keys;
+import com.badlogic.gdx.math.Vector2;
+
+<span class="fc" id="L7">public class Controller implements InputProcessor {</span>
+
+<span class="fc" id="L9">    private boolean isUp = false,</span>
+            isDown = false,
+            isRight = false,
+            isLeft = false,
+            fast = false,
+            isAttack = false,
+            isSpace = false,
+            enter = false,
+            isPaused = false,
+            wasEscJustPressed,
+            wasKjustPressed,
+            isShop,
+            justTouched = false;
+
+    public boolean isWasKjustPressed() {
+<span class="nc" id="L24">        return wasKjustPressed;</span>
+    }
+
+    public void setWasKjustPressed(boolean wasKjustPressed) {
+<span class="nc" id="L28">        this.wasKjustPressed = wasKjustPressed;</span>
+<span class="nc" id="L29">    }</span>
+
+<span class="fc" id="L31">    private Vector2 menuClick = new Vector2(0, 0);</span>
+
+    @Override
+    // *This method is called when a key is pressed */
+    public boolean keyDown(int keycode) {
+<span class="fc bfc" id="L36" title="All 2 branches covered.">        if (keycode == Keys.W)</span>
+<span class="fc" id="L37">            isUp = true;</span>
+<span class="fc bfc" id="L38" title="All 2 branches covered.">        if (keycode == Keys.S)</span>
+<span class="fc" id="L39">            isDown = true;</span>
+<span class="fc bfc" id="L40" title="All 2 branches covered.">        if (keycode == Keys.A)</span>
+<span class="fc" id="L41">            isLeft = true;</span>
+<span class="fc bfc" id="L42" title="All 2 branches covered.">        if (keycode == Keys.D)</span>
+<span class="fc" id="L43">            isRight = true;</span>
+<span class="pc bpc" id="L44" title="1 of 2 branches missed.">        if (keycode == Keys.SHIFT_LEFT)</span>
+<span class="nc" id="L45">            fast = true;</span>
+<span class="fc bfc" id="L46" title="All 2 branches covered.">        if (keycode == Keys.P)</span>
+<span class="fc" id="L47">            isAttack = true;</span>
+<span class="fc bfc" id="L48" title="All 2 branches covered.">        if (keycode == Keys.SPACE)</span>
+<span class="fc" id="L49">            isSpace = true;</span>
+<span class="fc bfc" id="L50" title="All 2 branches covered.">        if (keycode == Keys.ENTER)</span>
+<span class="fc" id="L51">            enter = true;</span>
+<span class="fc bfc" id="L52" title="All 2 branches covered.">        if (keycode == Keys.ESCAPE) {</span>
+<span class="pc bpc" id="L53" title="1 of 2 branches missed.">            if (!wasEscJustPressed) {</span>
+<span class="fc" id="L54">                wasEscJustPressed = true;</span>
+<span class="fc bfc" id="L55" title="All 2 branches covered.">                if (isPaused) {</span>
+<span class="fc" id="L56">                    isPaused = false;</span>
+                } else {
+<span class="fc" id="L58">                    isPaused = true;</span>
+                }
+            }
+        }
+<span class="fc bfc" id="L62" title="All 2 branches covered.">        if (keycode == Keys.TAB) {</span>
+<span class="pc bpc" id="L63" title="1 of 2 branches missed.">            if (!wasKjustPressed) {</span>
+<span class="fc" id="L64">                wasKjustPressed = true;</span>
+<span class="fc bfc" id="L65" title="All 2 branches covered.">                if (isShop) {</span>
+<span class="fc" id="L66">                    isShop = false;</span>
+                } else {
+<span class="fc" id="L68">                    isShop = true;</span>
+                }
+            }
+        }
+<span class="fc" id="L72">        return true;</span>
+    }
+
+    @Override
+    // *This method is called when a key is released */
+    public boolean keyUp(int keycode) {
+<span class="fc bfc" id="L78" title="All 2 branches covered.">        if (keycode == Keys.W)</span>
+<span class="fc" id="L79">            isUp = false;</span>
+<span class="fc bfc" id="L80" title="All 2 branches covered.">        if (keycode == Keys.S)</span>
+<span class="fc" id="L81">            isDown = false;</span>
+<span class="fc bfc" id="L82" title="All 2 branches covered.">        if (keycode == Keys.A)</span>
+<span class="fc" id="L83">            isLeft = false;</span>
+<span class="fc bfc" id="L84" title="All 2 branches covered.">        if (keycode == Keys.D)</span>
+<span class="fc" id="L85">            isRight = false;</span>
+<span class="pc bpc" id="L86" title="1 of 2 branches missed.">        if (keycode == Keys.SHIFT_LEFT)</span>
+<span class="nc" id="L87">            fast = false;</span>
+<span class="fc bfc" id="L88" title="All 2 branches covered.">        if (keycode == Keys.P)</span>
+<span class="fc" id="L89">            isAttack = false;</span>
+<span class="fc bfc" id="L90" title="All 2 branches covered.">        if (keycode == Keys.SPACE)</span>
+<span class="fc" id="L91">            isSpace = false;</span>
+<span class="fc bfc" id="L92" title="All 2 branches covered.">        if (keycode == Keys.ENTER)</span>
+<span class="fc" id="L93">            enter = false;</span>
+<span class="fc bfc" id="L94" title="All 2 branches covered.">        if (keycode == Keys.ESCAPE)</span>
+<span class="fc" id="L95">            wasEscJustPressed = false;</span>
+<span class="fc bfc" id="L96" title="All 2 branches covered.">        if (keycode == Keys.TAB)</span>
+<span class="fc" id="L97">            wasKjustPressed = false;</span>
+
+<span class="fc" id="L99">        return true;</span>
+    }
+
+    @Override
+    public boolean touchDown(int screenX, int screenY, int pointer, int button) {
+<span class="nc" id="L104">        menuClick = new Vector2(screenX, screenY);</span>
+<span class="nc" id="L105">        justTouched = true;</span>
+<span class="nc" id="L106">        return true;</span>
+    }
+
+    @Override
+    public boolean touchUp(int screenX, int screenY, int pointer, int button) {
+<span class="nc" id="L111">        justTouched = false;</span>
+<span class="nc" id="L112">        return false;</span>
+    }
+
+    @Override
+    // *This method is called when a key is typed, we do not use this method*/
+    public boolean keyTyped(char character) {
+<span class="nc" id="L118">        return false;</span>
+    }
+
+    @Override
+    // *This method is called when the mouse is dragged, we do not use this method*/
+    public boolean touchDragged(int screenX, int screenY, int pointer) {
+<span class="nc" id="L124">        return false;</span>
+    }
+
+    @Override
+    // *This method is called when the mouse is moved, we do not use this method*/
+    public boolean mouseMoved(int screenX, int screenY) {
+<span class="nc" id="L130">        return false;</span>
+    }
+
+    @Override
+    // *This method is called when the mouse is scrolled, we do not use this
+    // method*/
+    public boolean scrolled(float amountX, float amountY) {
+<span class="nc" id="L137">        return false;</span>
+    }
+
+    public boolean getJustTouched() {
+<span class="nc" id="L141">        return justTouched;</span>
+    }
+
+    // Getters and setters -----&gt;&gt;&gt;&gt;
+    public boolean isPaused() {
+<span class="fc" id="L146">        return isPaused;</span>
+    }
+
+    public void setPaused(boolean isPaused) {
+<span class="nc" id="L150">        this.isPaused = isPaused;</span>
+<span class="nc" id="L151">    }</span>
+
+    public boolean isUp() {
+<span class="fc" id="L154">        return isUp;</span>
+    }
+
+    public void setUp(boolean isUp) {
+<span class="fc" id="L158">        this.isUp = isUp;</span>
+<span class="fc" id="L159">    }</span>
+
+    public boolean isDown() {
+<span class="fc" id="L162">        return isDown;</span>
+    }
+
+    public void setDown(boolean isDown) {
+<span class="fc" id="L166">        this.isDown = isDown;</span>
+<span class="fc" id="L167">    }</span>
+
+    public boolean isRight() {
+<span class="fc" id="L170">        return isRight;</span>
+    }
+
+    public void setRight(boolean isRight) {
+<span class="fc" id="L174">        this.isRight = isRight;</span>
+<span class="fc" id="L175">    }</span>
+
+    public boolean isLeft() {
+<span class="fc" id="L178">        return isLeft;</span>
+    }
+
+    public void setLeft(boolean isLeft) {
+<span class="fc" id="L182">        this.isLeft = isLeft;</span>
+<span class="fc" id="L183">    }</span>
+
+    public void setAttack(boolean isAttack) {
+<span class="nc" id="L186">        this.isAttack = isAttack;</span>
+<span class="nc" id="L187">    }</span>
+
+    public boolean isAttack() {
+<span class="fc" id="L190">        return isAttack;</span>
+    }
+
+    public boolean isEnter() {
+<span class="fc" id="L194">        return enter;</span>
+    }
+
+    public void setEnter(boolean enter) {
+<span class="nc" id="L198">        this.enter = enter;</span>
+<span class="nc" id="L199">    }</span>
+
+    public boolean isSpace() {
+<span class="fc" id="L202">        return isSpace;</span>
+    }
+
+    public void setSpace(boolean isSpace) {
+<span class="nc" id="L206">        this.isSpace = isSpace;</span>
+<span class="nc" id="L207">    }</span>
+
+    public boolean isFast() {
+<span class="fc" id="L210">        return fast;</span>
+    }
+
+    public void setFast(boolean fast) {
+<span class="fc" id="L214">        this.fast = fast;</span>
+<span class="fc" id="L215">    }</span>
+
+    public void setJustTouched(boolean justTouched) {
+<span class="nc" id="L218">        this.justTouched = justTouched;</span>
+<span class="nc" id="L219">    }</span>
+
+    public boolean isShop() {
+<span class="fc" id="L222">        return isShop;</span>
+    }
+
+    public void setShop(boolean isShop) {
+<span class="nc" id="L226">        this.isShop = isShop;</span>
+<span class="nc" id="L227">    }</span>
+
+    public Vector2 getMenuClick() {
+<span class="nc" id="L230">        return menuClick;</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

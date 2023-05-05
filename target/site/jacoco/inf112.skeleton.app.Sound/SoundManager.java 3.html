@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>SoundManager.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Southgame</a> &gt; <a href="index.source.html" class="el_package">inf112.skeleton.app.Sound</a> &gt; <span class="el_source">SoundManager.java</span></div><h1>SoundManager.java</h1><pre class="source lang-java linenums">package inf112.skeleton.app.Sound;
+
+public class SoundManager {
+    public aSound mainMenuMusic;
+    public aSound arrowSound;
+    public aSound lightningMultiShotSound;
+    public aSound arenaSound;
+    public aSound safeZone;
+    public aSound buttonClick;
+    public aSound house;
+    public aSound hit;
+    public aSound killedAllEnemies;
+    public aSound start;
+    public aSound kill;
+    public aSound monsterdied;
+
+<span class="fc" id="L17">    public SoundManager() {</span>
+<span class="fc" id="L18">        this.mainMenuMusic = new aSound(&quot;assets/soundfiles/Main.mp3&quot;, true);</span>
+<span class="fc" id="L19">        this.arrowSound = new aSound(&quot;assets/soundfiles/bow-release.mp3&quot;, false);</span>
+<span class="fc" id="L20">        this.lightningMultiShotSound = new aSound(&quot;assets/soundfiles/electric-shock.mp3&quot;, false);</span>
+<span class="fc" id="L21">        this.arenaSound = new aSound(&quot;assets/soundfiles/arena-2.mp3&quot;, true);</span>
+<span class="fc" id="L22">        this.safeZone = new aSound(&quot;assets/soundfiles/grasshopper.mp3&quot;, true);</span>
+<span class="fc" id="L23">        this.buttonClick = new aSound(&quot;assets/soundfiles/KnappeLyd.mp3&quot;, false);</span>
+<span class="fc" id="L24">        this.house = new aSound(&quot;assets/soundfiles/HouseMusic.mp3&quot;, true);</span>
+<span class="fc" id="L25">        this.hit = new aSound(&quot;assets/soundfiles/takehit.mp3&quot;, false);</span>
+<span class="fc" id="L26">        this.killedAllEnemies = new aSound(&quot;assets/soundfiles/dead.mp3&quot;, false);</span>
+<span class="fc" id="L27">        this.start = new aSound(&quot;assets/soundfiles/start.mp3&quot;, false);</span>
+<span class="fc" id="L28">        this.kill = new aSound(&quot;assets/soundfiles/killed.mp3&quot;, false);</span>
+<span class="fc" id="L29">        this.monsterdied = new aSound(&quot;assets/soundfiles/monsterdied.mp3&quot;, false);</span>
+
+<span class="fc" id="L31">    }</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

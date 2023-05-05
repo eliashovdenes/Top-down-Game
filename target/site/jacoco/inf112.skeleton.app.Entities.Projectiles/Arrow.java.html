@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Arrow.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Southgame</a> &gt; <a href="index.source.html" class="el_package">inf112.skeleton.app.Entities.Projectiles</a> &gt; <span class="el_source">Arrow.java</span></div><h1>Arrow.java</h1><pre class="source lang-java linenums">package inf112.skeleton.app.Entities.Projectiles;
+
+import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.Sprite;
+import com.badlogic.gdx.maps.tiled.TiledMap;
+import com.badlogic.gdx.math.Rectangle;
+import com.badlogic.gdx.math.Vector2;
+
+import inf112.skeleton.app.Entities.AbstractGameObject;
+import inf112.skeleton.app.Entities.Enums.DirectionEnum;
+import inf112.skeleton.app.Entities.Enums.PlayerPics;
+import inf112.skeleton.app.Entities.Player.PlayerInterface;
+import inf112.skeleton.app.Mapfolder.MapInterface;
+
+public class Arrow extends AbstractGameObject implements ProjectileInterface {
+
+    protected Sprite sprite;
+    protected TiledMap map;
+    protected Vector2 velocity;
+    private PlayerInterface player;
+<span class="fc" id="L21">    private int attackDamage = 5;</span>
+    private float speed;
+
+    public Arrow(Vector2 position, MapInterface map, Vector2 velocity, PlayerInterface player) {
+<span class="fc" id="L25">        super(position, map);</span>
+<span class="fc" id="L26">        this.map = map.getMap();</span>
+<span class="fc" id="L27">        this.player = player;</span>
+<span class="fc" id="L28">        this.velocity = velocity;</span>
+<span class="fc" id="L29">        setCorrectSprite();</span>
+<span class="fc" id="L30">        sprite.setSize(10, 10);</span>
+<span class="fc" id="L31">        rectangle = new Rectangle(position.x, position.y, getWidth(), getHeight());</span>
+
+<span class="fc" id="L33">    }</span>
+
+    @Override
+    public void update(float delta) {
+
+<span class="pc bpc" id="L38" title="2 of 4 branches missed.">        if (velocity.x == 0 &amp;&amp; velocity.y == 0) {</span>
+<span class="nc" id="L39">            velocity.y = -1;</span>
+        }
+
+<span class="fc" id="L42">        position.x += velocity.x;</span>
+<span class="fc" id="L43">        position.y += velocity.y;</span>
+
+<span class="fc" id="L45">        sprite.setPosition(position.x, position.y);</span>
+<span class="fc" id="L46">        ApplyMovement();</span>
+<span class="fc" id="L47">    }</span>
+
+    // Setters and getters -&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;
+    @Override
+    public void setSprite(String string) {
+<span class="fc" id="L52">        sprite = new Sprite(new Texture(string));</span>
+<span class="fc" id="L53">    }</span>
+
+    @Override
+    public Sprite getSprite() {
+<span class="fc" id="L57">        return sprite;</span>
+    }
+
+    @Override
+    public void setMovementSpeed(float speed) {
+<span class="fc" id="L62">        this.speed = speed;</span>
+<span class="fc" id="L63">    }</span>
+
+    @Override
+    public float getMovementSpeed() {
+<span class="fc" id="L67">        return speed;</span>
+    }
+
+    @Override
+    public float getWidth() {
+<span class="fc" id="L72">        return sprite.getWidth();</span>
+    }
+
+    @Override
+    public float getHeight() {
+<span class="fc" id="L77">        return sprite.getHeight();</span>
+    }
+
+    private void setCorrectSprite() {
+<span class="fc" id="L81">        String sprite = &quot;&quot;;</span>
+<span class="fc bfc" id="L82" title="All 2 branches covered.">        if (player.getPlayerDirection() == DirectionEnum.NORTH)</span>
+<span class="fc" id="L83">            sprite = PlayerPics.UPARROW.source;</span>
+<span class="pc bpc" id="L84" title="1 of 2 branches missed.">        if (player.getPlayerDirection() == DirectionEnum.EAST)</span>
+<span class="nc" id="L85">            sprite = PlayerPics.RIGHTARROW.source;</span>
+<span class="pc bpc" id="L86" title="1 of 2 branches missed.">        if (player.getPlayerDirection() == DirectionEnum.WEST)</span>
+<span class="nc" id="L87">            sprite = PlayerPics.LEFTARROW.source;</span>
+<span class="fc bfc" id="L88" title="All 2 branches covered.">        if (player.getPlayerDirection() == DirectionEnum.SOUTH)</span>
+<span class="fc" id="L89">            sprite = PlayerPics.DOWNARROW.source;</span>
+
+<span class="fc" id="L91">        setSprite(sprite);</span>
+<span class="fc" id="L92">    }</span>
+
+    @Override
+    public int getDamage() {
+<span class="fc" id="L96">        return attackDamage;</span>
+    }
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

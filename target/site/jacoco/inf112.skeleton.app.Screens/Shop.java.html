@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Shop.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Southgame</a> &gt; <a href="index.source.html" class="el_package">inf112.skeleton.app.Screens</a> &gt; <span class="el_source">Shop.java</span></div><h1>Shop.java</h1><pre class="source lang-java linenums">package inf112.skeleton.app.Screens;
+
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.ScreenAdapter;
+import com.badlogic.gdx.Graphics.DisplayMode;
+import com.badlogic.gdx.backends.lwjgl3.Lwjgl3ApplicationConfiguration;
+import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.GL20;
+import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
+import com.badlogic.gdx.math.Rectangle;
+import com.badlogic.gdx.math.Vector3;
+
+import inf112.skeleton.app.Southgame;
+import inf112.skeleton.app.Controller.Controller;
+import inf112.skeleton.app.Entities.Player.PlayerInterface;
+
+public class Shop extends ScreenAdapter {
+
+    private SpriteBatch batch;
+    private Southgame game;
+    private BitmapFont font;
+    private Controller controller;
+    private PlayerInterface playerI;
+    private ShapeRenderer shape;
+    Rectangle upgradeArrowRect, upgradeLightningRect, upgradePlayerHealthRect, upgradeMovementSpeed;
+    OrthographicCamera camera;
+    Rectangle newGameRect, instructionsRect, quitRect, creditsRect;
+<span class="nc" id="L32">    private Texture background = new Texture(Gdx.files.internal(&quot;assets/shop.png&quot;));</span>
+<span class="nc" id="L33">    private Lwjgl3ApplicationConfiguration cfg = new Lwjgl3ApplicationConfiguration();</span>
+<span class="nc" id="L34">    private DisplayMode disp = Lwjgl3ApplicationConfiguration.getDisplayMode();</span>
+
+<span class="nc" id="L36">    private float upgradeCooldown = 0.5f;</span>
+<span class="nc" id="L37">    private float timeSinceUpgrade = 0;</span>
+<span class="nc" id="L38">    private float screenWidth = disp.width;</span>
+<span class="nc" id="L39">    private float screenHeight = disp.height;</span>
+
+<span class="nc" id="L41">    public Shop(Southgame southGame, Controller controller, PlayerInterface playerI) {</span>
+<span class="nc" id="L42">        this.game = southGame;</span>
+<span class="nc" id="L43">        this.controller = controller;</span>
+<span class="nc" id="L44">        batch = new SpriteBatch();</span>
+<span class="nc" id="L45">        font = new BitmapFont();</span>
+<span class="nc" id="L46">        this.playerI = playerI;</span>
+
+<span class="nc" id="L48">        upgradeArrowRect = new Rectangle(screenWidth / 22, screenHeight / 6, screenWidth / 6, screenHeight / 6);</span>
+<span class="nc" id="L49">        upgradeLightningRect = new Rectangle(screenWidth / 3.5f, screenHeight / 6, screenWidth / 5, screenHeight / 6);</span>
+<span class="nc" id="L50">        upgradePlayerHealthRect = new Rectangle(screenWidth / 1.9f, screenHeight / 6, screenWidth / 5,</span>
+                screenHeight / 6);
+<span class="nc" id="L52">        upgradeMovementSpeed = new Rectangle(screenWidth / 1.3f, screenHeight / 6, screenWidth / 5, screenHeight / 6);</span>
+<span class="nc" id="L53">        this.shape = new ShapeRenderer();</span>
+
+<span class="nc" id="L55">        camera = new OrthographicCamera();</span>
+<span class="nc" id="L56">        camera.setToOrtho(false, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());</span>
+<span class="nc" id="L57">        camera.position.set(Gdx.graphics.getWidth() / 2f, Gdx.graphics.getHeight() / 2f, 0);</span>
+<span class="nc" id="L58">        camera.update();</span>
+<span class="nc" id="L59">    }</span>
+
+    @Override
+    public void render(float delta) {
+        // Clear the screen with a solid color
+<span class="nc" id="L64">        Gdx.gl.glClearColor(0, 0, 0, 0);</span>
+<span class="nc" id="L65">        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);</span>
+
+        // draw boxes
+
+        // Draw the title
+<span class="nc" id="L70">        batch.begin();</span>
+<span class="nc" id="L71">        batch.draw(background, 0, 0, disp.width, (int) (disp.height * 0.9));</span>
+<span class="nc" id="L72">        font.getData().setScale(3);</span>
+<span class="nc" id="L73">        font.setColor(Color.BLACK);</span>
+<span class="nc" id="L74">        font.draw(batch, &quot;&quot; + playerI.getAbilityPoints() + &quot;&quot;, (float) (screenWidth / 3.95),</span>
+                (float) (screenHeight / 1.375));
+
+        // draw text on buttons
+<span class="nc" id="L78">        font.getData().setScale(2.5f);</span>
+<span class="nc" id="L79">        font.draw(batch, &quot;&quot; + playerI.getArrowAbilityLevel() + &quot;&quot;, upgradeArrowRect.x + upgradeArrowRect.width / 1.2f,</span>
+                upgradeArrowRect.y + upgradeArrowRect.height / 4);
+<span class="nc" id="L81">        font.draw(batch, &quot;&quot; + playerI.getLightningAbilityLevel() + &quot;&quot;,</span>
+                upgradeLightningRect.x + upgradeLightningRect.width / 1.4f,
+                upgradeLightningRect.y + upgradeLightningRect.height / 4);
+<span class="nc" id="L84">        font.draw(batch, &quot;&quot; + playerI.getHealthAbilityLevel() + &quot;&quot;,</span>
+                upgradePlayerHealthRect.x + upgradePlayerHealthRect.width / 1.3f,
+                upgradePlayerHealthRect.y + upgradePlayerHealthRect.height / 4);
+<span class="nc" id="L87">        font.draw(batch, &quot;&quot; + playerI.getMovementAbilityLevel() + &quot;&quot;,</span>
+                upgradeMovementSpeed.x + upgradeMovementSpeed.width / 1.23f,
+                upgradeMovementSpeed.y + upgradeMovementSpeed.height / 4);
+<span class="nc" id="L90">        batch.end();</span>
+
+<span class="nc" id="L92">        timeSinceUpgrade += delta;</span>
+
+<span class="nc bnc" id="L94" title="All 2 branches missed.">        if (!controller.isShop()) {</span>
+<span class="nc" id="L95">            game.setScreen(new View(game, controller, playerI, 0, 0));</span>
+        }
+<span class="nc bnc" id="L97" title="All 2 branches missed.">        if (controller.getJustTouched()) {</span>
+
+<span class="nc" id="L99">            Vector3 hei = new Vector3(controller.getMenuClick(), 0);</span>
+<span class="nc" id="L100">            camera.unproject(hei);</span>
+
+<span class="nc bnc" id="L102" title="All 6 branches missed.">            if (upgradeArrowRect.contains(hei.x, hei.y) &amp;&amp; playerI.getAbilityPoints() &gt; 0</span>
+                    &amp;&amp; timeSinceUpgrade &gt;= upgradeCooldown) {
+<span class="nc" id="L104">                playerI.upgradeArrow();</span>
+<span class="nc" id="L105">                playerI.removeAbilityPoints();</span>
+<span class="nc" id="L106">                timeSinceUpgrade = 0;</span>
+            }
+<span class="nc bnc" id="L108" title="All 6 branches missed.">            if (upgradeLightningRect.contains(hei.x, hei.y) &amp;&amp; playerI.getAbilityPoints() &gt;= 3</span>
+                    &amp;&amp; timeSinceUpgrade &gt;= upgradeCooldown) {
+<span class="nc" id="L110">                playerI.upgradeLightning();</span>
+<span class="nc bnc" id="L111" title="All 2 branches missed.">                for (int i = 0; i &lt; 3; i++) {</span>
+<span class="nc" id="L112">                    playerI.removeAbilityPoints();</span>
+                }
+<span class="nc" id="L114">                timeSinceUpgrade = 0;</span>
+            }
+<span class="nc bnc" id="L116" title="All 6 branches missed.">            if (upgradePlayerHealthRect.contains(hei.x,hei.y)&amp;&amp; playerI.getAbilityPoints()&gt;=3 &amp;&amp; timeSinceUpgrade &gt;=upgradeCooldown){</span>
+<span class="nc" id="L117">                playerI.upgradeHealth();</span>
+<span class="nc bnc" id="L118" title="All 2 branches missed.">                for (int i = 0; i&lt;3;i++){</span>
+<span class="nc" id="L119">                    playerI.removeAbilityPoints();</span>
+                }
+<span class="nc" id="L121">                timeSinceUpgrade = 0;</span>
+            }
+<span class="nc bnc" id="L123" title="All 6 branches missed.">            if (upgradeMovementSpeed.contains(hei.x,hei.y)&amp;&amp; playerI.getAbilityPoints()&gt;=3 &amp;&amp; timeSinceUpgrade &gt;=upgradeCooldown){</span>
+<span class="nc" id="L124">                playerI.upgradeMovement();</span>
+<span class="nc bnc" id="L125" title="All 2 branches missed.">                for (int i = 0; i&lt;3;i++){</span>
+<span class="nc" id="L126">                    playerI.removeAbilityPoints();</span>
+                }
+<span class="nc" id="L128">                timeSinceUpgrade = 0;</span>
+            }
+
+        }
+<span class="nc" id="L132">    }</span>
+
+    @Override
+    public void dispose() {
+
+<span class="nc" id="L137">        batch.dispose();</span>
+<span class="nc" id="L138">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

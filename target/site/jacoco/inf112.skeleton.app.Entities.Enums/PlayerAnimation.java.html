@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>PlayerAnimation.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Southgame</a> &gt; <a href="index.source.html" class="el_package">inf112.skeleton.app.Entities.Enums</a> &gt; <span class="el_source">PlayerAnimation.java</span></div><h1>PlayerAnimation.java</h1><pre class="source lang-java linenums">package inf112.skeleton.app.Entities.Enums;
+
+import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
+
+import inf112.skeleton.app.Animation;
+
+/**
+ * Enum for player animations
+ */
+<span class="fc" id="L11">public enum PlayerAnimation {</span>
+
+    // WALKING ANIMATION
+<span class="fc" id="L14">    UP(new Animation(new TextureRegion(new Texture(&quot;assets/playerPics/animationUP.png&quot;)), 12, 0.5f)),</span>
+<span class="fc" id="L15">    DOWN(new Animation(new TextureRegion(new Texture(&quot;assets/playerPics/animationDOWN.png&quot;)), 12, 0.5f)),</span>
+<span class="fc" id="L16">    RIGHT(new Animation(new TextureRegion(new Texture(&quot;assets/playerPics/animationRIGHT.png&quot;)), 12, 0.5f)),</span>
+<span class="fc" id="L17">    LEFT(new Animation(new TextureRegion(new Texture(&quot;assets/playerPics/animationLEFT.png&quot;)), 12, 0.5f)),</span>
+
+    // RUNNING ANIMATION
+<span class="fc" id="L20">    RUNUP(new Animation(new TextureRegion(new Texture(&quot;assets/playerPics/animationRUNUP.png&quot;)), 12, 0.5f)),</span>
+<span class="fc" id="L21">    RUNDOWN(new Animation(new TextureRegion(new Texture(&quot;assets/playerPics/animationRUNDOWN.png&quot;)), 12, 0.5f)),</span>
+<span class="fc" id="L22">    RUNRIGHT(new Animation(new TextureRegion(new Texture(&quot;assets/playerPics/animationRUNRIGHT.png&quot;)), 12, 0.5f)),</span>
+<span class="fc" id="L23">    RUNLEFT(new Animation(new TextureRegion(new Texture(&quot;assets/playerPics/animationRUNLEFT.png&quot;)), 12, 0.5f)),</span>
+
+    // ATTACK ANIMATION
+<span class="fc" id="L26">    ATTACKDOWN(new Animation(new TextureRegion(new Texture(&quot;assets/playerPics/attackDown.png&quot;)), 8, 0.1f)),</span>
+<span class="fc" id="L27">    ATTACKLEFT(new Animation(new TextureRegion(new Texture(&quot;assets/playerPics/attackLeft.png&quot;)), 12, 0.1f));</span>
+
+    public Animation animation;
+
+<span class="fc" id="L31">    PlayerAnimation(Animation animation) {</span>
+<span class="fc" id="L32">        this.animation = animation;</span>
+<span class="fc" id="L33">    }</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

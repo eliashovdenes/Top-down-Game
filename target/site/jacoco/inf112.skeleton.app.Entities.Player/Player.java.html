@@ -1,0 +1,481 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Player.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Southgame</a> &gt; <a href="index.source.html" class="el_package">inf112.skeleton.app.Entities.Player</a> &gt; <span class="el_source">Player.java</span></div><h1>Player.java</h1><pre class="source lang-java linenums">package inf112.skeleton.app.Entities.Player;
+
+import java.util.ArrayList;
+import java.util.Random;
+
+import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.Sprite;
+import com.badlogic.gdx.math.Rectangle;
+import com.badlogic.gdx.math.Vector2;
+import inf112.skeleton.app.Animation;
+import inf112.skeleton.app.Collision;
+import inf112.skeleton.app.Controller.Controller;
+import inf112.skeleton.app.Entities.AbstractGameObject;
+import inf112.skeleton.app.Entities.Enums.DirectionEnum;
+import inf112.skeleton.app.Entities.Enums.PlayerAnimation;
+import inf112.skeleton.app.Entities.Enums.PlayerPics;
+import inf112.skeleton.app.Entities.Projectiles.Arrow;
+import inf112.skeleton.app.Entities.Projectiles.Lightning;
+import inf112.skeleton.app.Entities.Projectiles.ProjectileInterface;
+import inf112.skeleton.app.Mapfolder.MapInterface;
+import inf112.skeleton.app.Sound.SoundManager;
+
+public class Player extends AbstractGameObject implements PlayerInterface {
+    private Animation playerAnimation;
+<span class="fc" id="L25">    private int playerLevel = 1;</span>
+<span class="fc" id="L26">    private int abilityPoints = 0;</span>
+    private Sprite sprite;
+<span class="fc" id="L28">    private float speed = 1;</span>
+<span class="fc" id="L29">    private float walk = 1;</span>
+<span class="fc" id="L30">    private float run = 2;</span>
+<span class="fc" id="L31">    private int arrowAbilityLevel = 1;</span>
+<span class="fc" id="L32">    private int lightningAbilityLevel = 1;</span>
+<span class="fc" id="L33">    private int healthAbilityLevel = 1;</span>
+<span class="fc" id="L34">    private int movementAbilityLevel = 1;</span>
+    private MapInterface map;
+    public ArrayList&lt;ProjectileInterface&gt; projectileList;
+    private int arrowShootTimer;
+    private int lightningShootTimer;
+    DirectionEnum direction;
+    public MapInterface nextMap;
+    public boolean onPortal;
+    private Controller controller;
+    private SoundManager SM;
+<span class="fc" id="L44">    private Random rand = new Random();</span>
+    private Integer lives;
+    private int exp;
+    private boolean isInvincible;
+
+<span class="fc" id="L49">    private float invincibilityTimer = 0.0f;</span>
+<span class="fc" id="L50">    private final float invincibilityDuration = 1.0f;</span>
+
+    public Player(Vector2 position, MapInterface map, Controller controller) {
+<span class="fc" id="L53">        super(position, map);</span>
+<span class="fc" id="L54">        this.playerAnimation = PlayerAnimation.DOWN.animation;</span>
+<span class="fc" id="L55">        this.map = map;</span>
+<span class="fc" id="L56">        this.controller = controller;</span>
+<span class="fc" id="L57">        setSprite(PlayerPics.ATTACKDOWN.source);</span>
+<span class="fc" id="L58">        sprite.setPosition(position.x, position.y);</span>
+<span class="fc" id="L59">        sprite.setSize(16, 16);</span>
+<span class="fc" id="L60">        rectangle = new Rectangle(position.x, position.y, getWidth(), getHeight());</span>
+<span class="fc" id="L61">        this.SM = new SoundManager();</span>
+<span class="fc" id="L62">        this.lives = 3;</span>
+<span class="fc" id="L63">        this.setMaxhitpoints(100);</span>
+<span class="fc" id="L64">        this.setCurrentHitPoints(this.getMaxHitpoints());</span>
+<span class="fc" id="L65">        this.isInvincible = false;</span>
+
+<span class="fc" id="L67">        projectileList = new ArrayList&lt;ProjectileInterface&gt;();</span>
+
+<span class="fc" id="L69">        arrowShootTimer = 0;</span>
+<span class="fc" id="L70">        lightningShootTimer = 0;</span>
+<span class="fc" id="L71">        direction = DirectionEnum.SOUTH;</span>
+
+<span class="fc" id="L73">    }</span>
+
+    @Override
+    // **Updates the player's position and animation.. */
+    public void update(float delta) {
+
+        // Movement in x-direction
+<span class="fc bfc" id="L80" title="All 2 branches covered.">        if (controller.isLeft()) {</span>
+<span class="fc" id="L81">            velocity.x = -speed;</span>
+<span class="fc" id="L82">            setPlayerDirection(DirectionEnum.WEST);</span>
+<span class="fc bfc" id="L83" title="All 2 branches covered.">        } else if (controller.isRight()) {</span>
+<span class="fc" id="L84">            velocity.x = +speed;</span>
+<span class="fc" id="L85">            setPlayerDirection(DirectionEnum.EAST);</span>
+        } else
+<span class="fc" id="L87">            velocity.x = 0;</span>
+
+        // Movement in y-direction
+<span class="fc bfc" id="L90" title="All 2 branches covered.">        if (controller.isDown()) {</span>
+<span class="fc" id="L91">            velocity.y = -speed;</span>
+<span class="fc" id="L92">            setPlayerDirection(DirectionEnum.SOUTH);</span>
+<span class="fc bfc" id="L93" title="All 2 branches covered.">        } else if (controller.isUp()) {</span>
+<span class="fc" id="L94">            setPlayerDirection(DirectionEnum.NORTH);</span>
+<span class="fc" id="L95">            velocity.y = +speed;</span>
+        } else
+<span class="fc" id="L97">            velocity.y = 0;</span>
+
+<span class="fc bfc" id="L99" title="All 2 branches covered.">        if (controller.isFast()) {</span>
+
+<span class="fc" id="L101">            setMovementSpeed(run);</span>
+        } else
+<span class="fc" id="L103">            setMovementSpeed(walk);</span>
+
+<span class="fc bfc" id="L105" title="All 2 branches covered.">        if (controller.isSpace()) {</span>
+<span class="fc" id="L106">            shootArrow();</span>
+        }
+
+<span class="fc bfc" id="L109" title="All 2 branches covered.">        if (controller.isEnter()) {</span>
+<span class="fc" id="L110">            shootLightning();</span>
+        }
+<span class="fc bfc" id="L112" title="All 2 branches covered.">        if (arrowShootTimer &gt; 0) {</span>
+<span class="fc" id="L113">            arrowShootTimer -= delta;</span>
+        }
+<span class="fc bfc" id="L115" title="All 2 branches covered.">        if (lightningShootTimer &gt; 0) {</span>
+<span class="fc" id="L116">            lightningShootTimer -= delta;</span>
+        }
+
+<span class="fc bfc" id="L119" title="All 2 branches covered.">        for (ProjectileInterface projectile : projectileList) {</span>
+<span class="fc" id="L120">            projectile.update(delta);</span>
+<span class="fc" id="L121">        }</span>
+
+<span class="pc bpc" id="L123" title="1 of 2 branches missed.">        if (isInvincible) {</span>
+<span class="nc" id="L124">            invincibilityTimer -= delta;</span>
+<span class="nc bnc" id="L125" title="All 2 branches missed.">            if (invincibilityTimer &lt;= 0.0f) {</span>
+<span class="nc" id="L126">                isInvincible = false;</span>
+<span class="nc" id="L127">                sprite.setAlpha(1);</span>
+            }
+        }
+
+<span class="fc" id="L131">        animate(delta);</span>
+<span class="fc" id="L132">        ApplyMovement();</span>
+<span class="fc" id="L133">        sprite.setPosition(position.x, position.y);</span>
+
+<span class="fc" id="L135">    }</span>
+
+    // **Getters and setters for Sprite */
+    @Override
+    public void setSprite(String string) {
+<span class="fc" id="L140">        sprite = new Sprite(new Texture(string));</span>
+<span class="fc" id="L141">    }</span>
+
+    @Override
+    public Sprite getSprite() {
+<span class="fc" id="L145">        return sprite;</span>
+    }
+
+    // **Getter and setter for movement speed */
+    @Override
+    public void setMovementSpeed(float speed) {
+<span class="fc" id="L151">        this.speed = speed;</span>
+<span class="fc" id="L152">    }</span>
+
+    public float getMovementSpeed() {
+<span class="fc" id="L155">        return this.speed;</span>
+    }
+
+    // **Getters for width and height */
+    @Override
+    public float getWidth() {
+<span class="fc" id="L161">        return sprite.getWidth();</span>
+    }
+
+    @Override
+    public float getHeight() {
+<span class="fc" id="L166">        return sprite.getHeight();</span>
+    }
+
+    // **animate does the animation of the player */
+    private void animate(float delta) {
+<span class="pc bpc" id="L171" title="1 of 2 branches missed.">        if (isInvincible) {</span>
+<span class="nc" id="L172">            sprite.setAlpha(0.5f);</span>
+        }
+<span class="fc bfc" id="L174" title="All 2 branches covered.">        if (!controller.isFast()) {</span>
+<span class="fc bfc" id="L175" title="All 2 branches covered.">            if (direction == DirectionEnum.NORTH)</span>
+<span class="fc" id="L176">                this.playerAnimation = PlayerAnimation.UP.animation;</span>
+<span class="fc bfc" id="L177" title="All 2 branches covered.">            if (direction == DirectionEnum.EAST)</span>
+<span class="fc" id="L178">                this.playerAnimation = PlayerAnimation.RIGHT.animation;</span>
+<span class="fc bfc" id="L179" title="All 2 branches covered.">            if (direction == DirectionEnum.WEST)</span>
+<span class="fc" id="L180">                this.playerAnimation = PlayerAnimation.LEFT.animation;</span>
+<span class="fc bfc" id="L181" title="All 2 branches covered.">            if (direction == DirectionEnum.SOUTH)</span>
+<span class="fc" id="L182">                this.playerAnimation = PlayerAnimation.DOWN.animation;</span>
+        }
+        // running
+<span class="fc bfc" id="L185" title="All 2 branches covered.">        if (controller.isFast()) {</span>
+<span class="fc bfc" id="L186" title="All 2 branches covered.">            if (direction == DirectionEnum.NORTH)</span>
+<span class="fc" id="L187">                this.playerAnimation = PlayerAnimation.RUNUP.animation;</span>
+<span class="fc bfc" id="L188" title="All 2 branches covered.">            if (direction == DirectionEnum.EAST)</span>
+<span class="fc" id="L189">                this.playerAnimation = PlayerAnimation.RUNRIGHT.animation;</span>
+<span class="fc bfc" id="L190" title="All 2 branches covered.">            if (direction == DirectionEnum.WEST)</span>
+<span class="fc" id="L191">                this.playerAnimation = PlayerAnimation.RUNLEFT.animation;</span>
+<span class="fc bfc" id="L192" title="All 2 branches covered.">            if (direction == DirectionEnum.SOUTH)</span>
+<span class="fc" id="L193">                this.playerAnimation = PlayerAnimation.RUNDOWN.animation;</span>
+
+        }
+
+<span class="fc" id="L197">        sprite.setRegion(playerAnimation.getFrame());</span>
+<span class="fc" id="L198">        playerAnimation.update(delta);</span>
+<span class="fc" id="L199">    }</span>
+
+    // **shootArrow creates a new arrow and adds it to the projectileList */
+    private void shootArrow() {
+
+<span class="pc bpc" id="L204" title="1 of 2 branches missed.">        if (arrowShootTimer &lt;= 0) {</span>
+
+            // set velocity based on player direction.
+<span class="fc" id="L207">            Vector2 velocity = new Vector2();</span>
+<span class="pc bpc" id="L208" title="1 of 2 branches missed.">            if (this.direction == DirectionEnum.NORTH)</span>
+<span class="fc" id="L209">                velocity.set(0, 3);</span>
+<span class="pc bpc" id="L210" title="1 of 2 branches missed.">            if (this.direction == DirectionEnum.EAST)</span>
+<span class="nc" id="L211">                velocity.set(3, 0);</span>
+<span class="pc bpc" id="L212" title="1 of 2 branches missed.">            if (this.direction == DirectionEnum.WEST)</span>
+<span class="nc" id="L213">                velocity.set(-3, 0);</span>
+<span class="pc bpc" id="L214" title="1 of 2 branches missed.">            if (this.direction == DirectionEnum.SOUTH)</span>
+<span class="nc" id="L215">                velocity.set(0, -3);</span>
+
+            // first arrow created and added.
+<span class="fc" id="L218">            Vector2 arrowPos = new Vector2(position.x, position.y);</span>
+<span class="fc" id="L219">            Arrow arrow1 = new Arrow(arrowPos, map, velocity, this);</span>
+
+<span class="fc" id="L221">            projectileList.add(arrow1);</span>
+
+            // for every arrowAbilityLevel beyond 1, create a new arrow at a randomized
+            // angle between -30,30 in the same direction.
+<span class="pc bpc" id="L225" title="1 of 2 branches missed.">            for (int i = 1; i &lt; arrowAbilityLevel; i++) {</span>
+<span class="nc" id="L226">                Vector2 newAngleVelocity = new Vector2(velocity).rotateDeg(rand.nextInt(-30, 30));</span>
+<span class="nc" id="L227">                Vector2 newArrowPos = new Vector2(arrowPos);</span>
+<span class="nc" id="L228">                Arrow extraArrow = new Arrow(newArrowPos, map, newAngleVelocity, this);</span>
+<span class="nc" id="L229">                projectileList.add(extraArrow);</span>
+<span class="nc" id="L230">                velocity = newAngleVelocity;</span>
+            }
+
+<span class="fc" id="L233">            arrowShootTimer = 15;</span>
+<span class="fc" id="L234">            SM.arrowSound.play();</span>
+        }
+<span class="fc" id="L236">    }</span>
+
+    // **shootLightning creates a new lightning and adds it to the projectileList */
+    private void shootLightning() {
+
+<span class="pc bpc" id="L241" title="1 of 2 branches missed.">        if (lightningShootTimer &lt;= 0) {</span>
+
+            // set velocity based on player direction.
+<span class="fc" id="L244">            Vector2 velocity = new Vector2();</span>
+<span class="pc bpc" id="L245" title="1 of 2 branches missed.">            if (this.direction == DirectionEnum.NORTH)</span>
+<span class="fc" id="L246">                velocity.set(0, 1);</span>
+<span class="pc bpc" id="L247" title="1 of 2 branches missed.">            if (this.direction == DirectionEnum.EAST)</span>
+<span class="nc" id="L248">                velocity.set(1, 0);</span>
+<span class="pc bpc" id="L249" title="1 of 2 branches missed.">            if (this.direction == DirectionEnum.WEST)</span>
+<span class="nc" id="L250">                velocity.set(-1, 0);</span>
+<span class="pc bpc" id="L251" title="1 of 2 branches missed.">            if (this.direction == DirectionEnum.SOUTH)</span>
+<span class="nc" id="L252">                velocity.set(0, -1);</span>
+
+            // first lightning created and added.
+<span class="fc" id="L255">            Vector2 lightningPos = new Vector2(position.x - this.getWidth() / 2, position.y - this.getWidth() / 2);</span>
+<span class="fc" id="L256">            Lightning lightning1 = new Lightning(lightningPos, map, velocity);</span>
+<span class="fc" id="L257">            projectileList.add(lightning1);</span>
+
+            // for every arrowAbilityLevel beyond 1, create a new arrow at a randomized
+            // angle between -30,30 in the same direction.
+<span class="pc bpc" id="L261" title="1 of 2 branches missed.">            for (int i = 1; i &lt; lightningAbilityLevel; i++) {</span>
+<span class="nc" id="L262">                Vector2 newAngleVelocity = new Vector2(velocity).rotateDeg(rand.nextInt(-90, 90));</span>
+<span class="nc" id="L263">                Vector2 newLightningPos = new Vector2(lightningPos);</span>
+<span class="nc" id="L264">                Lightning extraLightning = new Lightning(newLightningPos, map, newAngleVelocity);</span>
+<span class="nc" id="L265">                projectileList.add(extraLightning);</span>
+<span class="nc" id="L266">                velocity = newAngleVelocity;</span>
+            }
+
+<span class="fc" id="L269">            lightningShootTimer = 100;</span>
+<span class="fc" id="L270">            SM.lightningMultiShotSound.play();</span>
+        }
+<span class="fc" id="L272">    }</span>
+
+    // *Getter for projectilelist/arrows*/
+    @Override
+    public ArrayList&lt;ProjectileInterface&gt; getProjectiles() {
+<span class="fc" id="L277">        return projectileList;</span>
+    }
+
+    // **Setter and getter for player direction */
+    @Override
+    public void setPlayerDirection(DirectionEnum direction) {
+<span class="fc" id="L283">        this.direction = direction;</span>
+<span class="fc" id="L284">    }</span>
+
+    // **Getter for direction*/
+    @Override
+    public DirectionEnum getPlayerDirection() {
+<span class="fc" id="L289">        return this.direction;</span>
+    }
+
+    @Override
+    // **Overrides method from AbstractGameObject to check for portal collision in
+    // Y-direction */
+    public boolean yCollision() {
+
+<span class="pc bpc" id="L297" title="1 of 2 branches missed.">        if (collision.isCellAPortal()) {</span>
+<span class="nc" id="L298">            onPortal = true;</span>
+<span class="nc" id="L299">            nextMap = collision.nextMap;</span>
+<span class="nc" id="L300">            this.map = nextMap;</span>
+<span class="nc" id="L301">            collision = new Collision(map, this);</span>
+<span class="nc" id="L302">            spawn(nextMap.getPlayerSpawnX() * 16, nextMap.getPlayerSpawnY() * 16);</span>
+<span class="nc" id="L303">            return false;</span>
+        }
+<span class="fc" id="L305">        return collision.checkYDirection(velocity.y);</span>
+    }
+
+    @Override
+    // Overrides method from AbstractGameObject to spawn player at a certain
+    // position
+    public void spawn(float x, float y) {
+<span class="fc" id="L312">        position.x = x;</span>
+<span class="fc" id="L313">        position.y = y;</span>
+<span class="fc" id="L314">    }</span>
+
+    @Override
+    // **Overrides method from AbstractGameObject to check if the player is on a
+    // portal */
+    public boolean onPortal() {
+<span class="fc" id="L320">        return onPortal;</span>
+    }
+
+    // **Sets onPortal to false */
+    public void setOffPortal() {
+<span class="fc" id="L325">        onPortal = false;</span>
+<span class="fc" id="L326">    }</span>
+
+    @Override
+    // **Overrides method from AbstractGameObject to get the next map */
+    public MapInterface nextMap() {
+<span class="nc" id="L331">        return nextMap;</span>
+    }
+
+    @Override
+    // **Overrides method from AbstractGameObject to get the position of the
+    // player*/
+    public Vector2 getPosition() {
+<span class="fc" id="L338">        return super.getPosition();</span>
+    }
+
+    // **getter for map */
+    public MapInterface returnMap() {
+<span class="fc" id="L343">        return map;</span>
+    }
+
+    // **this method upgrades the lightning ability*/
+    @Override
+    public void upgradeLightning() {
+<span class="fc" id="L349">        lightningAbilityLevel += 1;</span>
+<span class="fc" id="L350">    }</span>
+
+    // **this method upgrades the arrow ability*/
+    @Override
+    public void upgradeArrow() {
+<span class="fc" id="L355">        arrowAbilityLevel += 1;</span>
+<span class="fc" id="L356">    }</span>
+
+    // **setter and getter for lives*/
+    public void setLives(int newLives) {
+<span class="fc bfc" id="L360" title="All 2 branches covered.">        if (newLives &lt;= 0) {</span>
+<span class="fc" id="L361">            this.lives = 0;</span>
+        } else {
+<span class="fc" id="L363">            this.lives = newLives;</span>
+<span class="fc" id="L364">            this.setCurrentHitPoints(this.getMaxHitpoints());</span>
+        }
+<span class="fc" id="L366">    }</span>
+
+    public Integer getLives() {
+<span class="fc" id="L369">        return this.lives;</span>
+    }
+
+    // **takeDamage method removes given amount to healthpoints*/
+    @Override
+    public void takeDamage(int damage) {
+<span class="pc bpc" id="L375" title="1 of 2 branches missed.">        if (!isInvincible) {</span>
+<span class="fc" id="L376">            this.setCurrentHitPoints(this.getCurrentHitpoints() - damage);</span>
+<span class="fc bfc" id="L377" title="All 2 branches covered.">            if (this.isDead()) {</span>
+<span class="fc" id="L378">                this.setLives(this.getLives() - 1);</span>
+            }
+<span class="fc" id="L380">            this.isInvincible = true;</span>
+<span class="fc" id="L381">            this.invincibilityTimer = invincibilityDuration;</span>
+        }
+<span class="fc" id="L383">    }</span>
+
+    // **healDamage method heals given amount to healthpoints*/
+    @Override
+    public void healDamage(int healAmount) {
+<span class="fc" id="L388">        this.setCurrentHitPoints(this.getCurrentHitpoints() + healAmount);</span>
+<span class="fc" id="L389">    }</span>
+
+    // Getters and setters
+    @Override
+    public int getArrowAbilityLevel() {
+<span class="fc" id="L394">        return arrowAbilityLevel;</span>
+    }
+
+    @Override
+    public int getLightningAbilityLevel() {
+<span class="fc" id="L399">        return lightningAbilityLevel;</span>
+    }
+
+    @Override
+    public int getAbilityPoints() {
+<span class="fc" id="L404">        return abilityPoints;</span>
+    }
+
+    @Override
+    public void getExp(String monster) {
+<span class="fc bfc" id="L409" title="All 2 branches covered.">        if (monster == &quot;RedBoss&quot;)</span>
+<span class="fc" id="L410">            exp += 10;</span>
+<span class="fc bfc" id="L411" title="All 2 branches covered.">        else if (monster == &quot;RedEnemy&quot;)</span>
+<span class="fc" id="L412">            exp += 2;</span>
+        else
+<span class="fc" id="L414">            exp += 1;</span>
+
+        // level up :)
+<span class="fc bfc" id="L417" title="All 2 branches covered.">        if (exp &gt;= 10) {</span>
+<span class="fc" id="L418">            exp -= 10;</span>
+<span class="fc" id="L419">            playerLevel += 1;</span>
+<span class="fc" id="L420">            abilityPoints += 2;</span>
+<span class="fc" id="L421">            this.setCurrentHitPoints(this.getMaxHitpoints());</span>
+        }
+<span class="fc" id="L423">    }</span>
+
+    @Override
+    public int getLevel() {
+<span class="fc" id="L427">        return playerLevel;</span>
+    }
+
+    @Override
+    public int getHealthAbilityLevel() {
+<span class="fc" id="L432">        return healthAbilityLevel;</span>
+    }
+
+    @Override
+    public int getMovementAbilityLevel() {
+<span class="fc" id="L437">        return movementAbilityLevel;</span>
+    }
+
+    // Removes one ability point
+    @Override
+    public void removeAbilityPoints() {
+<span class="fc" id="L443">        abilityPoints -= 1;</span>
+<span class="fc" id="L444">    }</span>
+
+    // Upgrades the health ability
+    @Override
+    public void upgradeHealth() {
+<span class="fc" id="L449">        healthAbilityLevel += 1;</span>
+<span class="fc" id="L450">        setMaxhitpoints(100 * healthAbilityLevel);</span>
+<span class="fc" id="L451">    }</span>
+
+    // Upgrades the movement ability
+    @Override
+    public void upgradeMovement() {
+<span class="fc" id="L456">        movementAbilityLevel += 1;</span>
+<span class="fc" id="L457">        walk = walk + 1;</span>
+<span class="fc" id="L458">        run = run + 1;</span>
+<span class="fc" id="L459">    }</span>
+
+    // Checks if the player is invincible or not
+    public boolean isInvincible() {
+<span class="fc" id="L463">        return isInvincible;</span>
+    }
+
+    // Sets the player to invincible or not
+    public void setInvincible(boolean isInvincible) {
+<span class="fc" id="L468">        this.isInvincible = isInvincible;</span>
+<span class="fc" id="L469">    }</span>
+
+    // Getter and setters
+    public Animation getPlayerAnimation() {
+<span class="fc" id="L473">        return playerAnimation;</span>
+    }
+
+    public void setPlayerAnimation(Animation playerAnimation) {
+<span class="nc" id="L477">        this.playerAnimation = playerAnimation;</span>
+<span class="nc" id="L478">    }</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

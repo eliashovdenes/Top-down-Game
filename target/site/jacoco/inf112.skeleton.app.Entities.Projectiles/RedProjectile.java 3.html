@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>RedProjectile.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Southgame</a> &gt; <a href="index.source.html" class="el_package">inf112.skeleton.app.Entities.Projectiles</a> &gt; <span class="el_source">RedProjectile.java</span></div><h1>RedProjectile.java</h1><pre class="source lang-java linenums">package inf112.skeleton.app.Entities.Projectiles;
+
+import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.Sprite;
+import com.badlogic.gdx.maps.tiled.TiledMap;
+import com.badlogic.gdx.math.Rectangle;
+import com.badlogic.gdx.math.Vector2;
+
+import inf112.skeleton.app.Entities.AbstractGameObject;
+import inf112.skeleton.app.Entities.Enemies.MonsterInterface;
+import inf112.skeleton.app.Entities.Enums.RedEnemyPics;
+import inf112.skeleton.app.Mapfolder.MapInterface;
+
+public class RedProjectile extends AbstractGameObject implements ProjectileInterface {
+
+<span class="fc" id="L16">    protected float speed = 2;</span>
+    protected Sprite sprite;
+    protected TiledMap map;
+    protected Vector2 velocity;
+    MonsterInterface monster;
+    private int attackDamage;
+
+    public RedProjectile(Vector2 position, MapInterface map, Vector2 velocity, MonsterInterface monster, int damage) {
+<span class="fc" id="L24">        super(position, map);</span>
+<span class="fc" id="L25">        this.map = map.getMap();</span>
+<span class="fc" id="L26">        this.monster = monster;</span>
+<span class="fc" id="L27">        this.velocity = velocity;</span>
+<span class="fc" id="L28">        this.attackDamage = damage;</span>
+<span class="fc" id="L29">        setSprite(RedEnemyPics.REDPROJECTILE.source);</span>
+<span class="fc" id="L30">        sprite.setSize(10, 10);</span>
+<span class="fc" id="L31">        rectangle = new Rectangle(position.x, position.y, getWidth() / 2, getHeight() / 2);</span>
+
+<span class="fc" id="L33">    }</span>
+
+    @Override
+    // update() is a method that updates the position of the projectile. */
+    public void update(float delta) {
+
+<span class="pc bpc" id="L39" title="1 of 4 branches missed.">        if (velocity.x == 0 &amp;&amp; velocity.y == 0) {</span>
+<span class="nc" id="L40">            velocity.y = -1;</span>
+        }
+
+<span class="fc" id="L43">        position.x += velocity.x;</span>
+<span class="fc" id="L44">        position.y += velocity.y;</span>
+
+<span class="fc" id="L46">        sprite.setPosition(position.x, position.y);</span>
+<span class="fc" id="L47">        ApplyMovement();</span>
+<span class="fc" id="L48">    }</span>
+
+    // Setters and getters -&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;
+    @Override
+    public void setSprite(String string) {
+<span class="fc" id="L53">        sprite = new Sprite(new Texture(string));</span>
+<span class="fc" id="L54">    }</span>
+
+    @Override
+    public Sprite getSprite() {
+<span class="nc" id="L58">        return sprite;</span>
+    }
+
+    @Override
+    public void setMovementSpeed(float speed) {
+<span class="fc" id="L63">        this.speed = speed;</span>
+<span class="fc" id="L64">    }</span>
+
+    @Override
+    public float getWidth() {
+<span class="fc" id="L68">        return sprite.getWidth();</span>
+    }
+
+    @Override
+    public float getHeight() {
+<span class="fc" id="L73">        return sprite.getHeight();</span>
+    }
+
+    @Override
+    public int getDamage() {
+<span class="fc" id="L78">        return attackDamage;</span>
+    }
+
+    @Override
+    public float getMovementSpeed() {
+<span class="fc" id="L83">        return speed;</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

@@ -1,0 +1,38 @@
+GROUP,PACKAGE,CLASS,INSTRUCTION_MISSED,INSTRUCTION_COVERED,BRANCH_MISSED,BRANCH_COVERED,LINE_MISSED,LINE_COVERED,COMPLEXITY_MISSED,COMPLEXITY_COVERED,METHOD_MISSED,METHOD_COVERED
+Southgame,inf112.skeleton.app.Mapfolder,Maps,0,32,0,0,0,7,0,2,0,2
+Southgame,inf112.skeleton.app.Mapfolder,GrassMini,0,111,0,0,0,34,0,14,0,14
+Southgame,inf112.skeleton.app.Mapfolder,Level1Mini,0,111,0,0,0,34,0,14,0,14
+Southgame,inf112.skeleton.app.Mapfolder,House,0,105,0,0,0,32,0,14,0,14
+Southgame,inf112.skeleton.app,Animation,0,94,1,5,0,20,1,7,0,5
+Southgame,inf112.skeleton.app,Main,24,0,0,0,6,0,2,0,2,0
+Southgame,inf112.skeleton.app,Southgame,41,0,0,0,16,0,8,0,8,0
+Southgame,inf112.skeleton.app,Collision,71,524,14,38,15,70,9,24,0,7
+Southgame,inf112.skeleton.app.Entities.Enemies,BlueEnemy.new MonsterFactory() {...},0,11,0,0,0,3,0,3,0,3
+Southgame,inf112.skeleton.app.Entities.Enemies,RedEnemy.new MonsterFactory() {...},0,11,0,0,0,3,0,3,0,3
+Southgame,inf112.skeleton.app.Entities.Enemies,RedEnemy,128,444,13,7,22,85,12,27,3,26
+Southgame,inf112.skeleton.app.Entities.Enemies,RedBoss,271,247,32,4,49,55,22,21,4,21
+Southgame,inf112.skeleton.app.Entities.Enemies,BlueEnemy,164,245,19,3,26,52,13,20,2,20
+Southgame,inf112.skeleton.app.Entities.Enemies,RedBoss.new MonsterFactory() {...},0,11,0,0,0,3,0,3,0,3
+Southgame,inf112.skeleton.app.Entities.Enums,ID,0,21,0,0,0,4,0,1,0,1
+Southgame,inf112.skeleton.app.Entities.Enums,PlayerAnimation,0,191,0,0,0,14,0,2,0,2
+Southgame,inf112.skeleton.app.Entities.Enums,RedBossPics,0,39,0,0,0,8,0,2,0,2
+Southgame,inf112.skeleton.app.Entities.Enums,RedEnemyPics,0,46,0,0,0,9,0,2,0,2
+Southgame,inf112.skeleton.app.Entities.Enums,Items,0,18,0,0,0,5,0,2,0,2
+Southgame,inf112.skeleton.app.Entities.Enums,DirectionEnum,0,27,0,0,0,2,0,1,0,1
+Southgame,inf112.skeleton.app.Entities.Enums,PlayerPics,0,102,0,0,0,17,0,2,0,2
+Southgame,inf112.skeleton.app.Entities.Enums,BlueEnemyPics,0,39,0,0,0,8,0,2,0,2
+Southgame,inf112.skeleton.app.Entities,AbstractGameObject,0,196,1,11,0,49,1,23,0,18
+Southgame,inf112.skeleton.app.Screens,MainMenuScreen,323,0,10,0,47,0,8,0,3,0
+Southgame,inf112.skeleton.app.Screens,Shop,539,0,34,0,64,0,20,0,3,0
+Southgame,inf112.skeleton.app.Screens,GameOverScreen,90,0,2,0,19,0,4,0,3,0
+Southgame,inf112.skeleton.app.Screens,CreditScreen,116,0,2,0,23,0,4,0,3,0
+Southgame,inf112.skeleton.app.Screens,InstructionScreen,120,0,2,0,23,0,4,0,3,0
+Southgame,inf112.skeleton.app.Screens,View,960,187,71,9,173,42,46,7,9,4
+Southgame,inf112.skeleton.app.Controller,Controller,70,234,4,44,28,71,20,38,16,18
+Southgame,inf112.skeleton.app.Entities.Player,Player,162,748,18,66,30,184,19,64,2,39
+Southgame,inf112.skeleton.app.Sound,aSound,0,33,0,0,0,12,0,5,0,5
+Southgame,inf112.skeleton.app.Sound,SoundManager,0,87,0,0,0,14,0,1,0,1
+Southgame,inf112.skeleton.app.Entities.Items,HealthPotion,0,70,0,0,0,18,0,10,0,10
+Southgame,inf112.skeleton.app.Entities.Projectiles,RedProjectile,7,117,1,3,2,24,2,9,1,8
+Southgame,inf112.skeleton.app.Entities.Projectiles,Arrow,10,143,4,8,3,33,4,12,0,10
+Southgame,inf112.skeleton.app.Entities.Projectiles,Lightning,0,154,1,1,0,30,1,9,0,9

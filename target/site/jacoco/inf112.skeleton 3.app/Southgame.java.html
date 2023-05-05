@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Southgame.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Southgame</a> &gt; <a href="index.source.html" class="el_package">inf112.skeleton.app</a> &gt; <span class="el_source">Southgame.java</span></div><h1>Southgame.java</h1><pre class="source lang-java linenums">package inf112.skeleton.app;
+
+import com.badlogic.gdx.Game;
+import com.badlogic.gdx.Gdx;
+
+import inf112.skeleton.app.Controller.Controller;
+import inf112.skeleton.app.Screens.MainMenuScreen;
+
+<span class="nc" id="L9">public class Southgame extends Game {</span>
+<span class="nc" id="L10">    private Controller controller = new Controller();</span>
+
+    @Override
+    public void create() {
+<span class="nc" id="L14">        Gdx.input.setInputProcessor(controller);</span>
+<span class="nc" id="L15">        setScreen(new MainMenuScreen(this, controller));</span>
+<span class="nc" id="L16">    }</span>
+
+    @Override
+    public void dispose() {
+<span class="nc" id="L20">        super.dispose();</span>
+<span class="nc" id="L21">    }</span>
+
+    @Override
+    public void render() {
+<span class="nc" id="L25">        super.render();</span>
+<span class="nc" id="L26">    }</span>
+
+    @Override
+    public void resize(int width, int height) {
+<span class="nc" id="L30">        super.resize(width, height);</span>
+<span class="nc" id="L31">    }</span>
+
+    @Override
+    public void pause() {
+<span class="nc" id="L35">        super.pause();</span>
+<span class="nc" id="L36">    }</span>
+
+    @Override
+    public void resume() {
+<span class="nc" id="L40">        super.resume();</span>
+<span class="nc" id="L41">    }</span>
+
+    /**
+     * @return controller associated with game.
+     */
+    public Controller getController() {
+<span class="nc" id="L47">        return controller;</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>
