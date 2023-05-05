@@ -29,7 +29,7 @@ public class Shop extends ScreenAdapter {
     Rectangle upgradeArrowRect, upgradeLightningRect, upgradePlayerHealthRect, upgradeMovementSpeed;
     OrthographicCamera camera;
     Rectangle newGameRect, instructionsRect, quitRect, creditsRect;
-    private Texture background = new Texture(Gdx.files.internal("src/main/resources/assets/shop.png"));
+    private Texture background = new Texture(Gdx.files.internal("assets/shop.png"));
     private Lwjgl3ApplicationConfiguration cfg = new Lwjgl3ApplicationConfiguration();
     private DisplayMode disp = Lwjgl3ApplicationConfiguration.getDisplayMode();
 

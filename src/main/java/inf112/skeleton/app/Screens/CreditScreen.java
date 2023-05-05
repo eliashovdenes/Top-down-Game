@@ -19,7 +19,7 @@ public class CreditScreen extends ScreenAdapter {
     private Southgame game;
     private Controller controller;
     private OrthographicCamera camera;
-    private Texture background = new Texture(Gdx.files.internal("src/main/resources/assets/credits.png"));
+    private Texture background = new Texture(Gdx.files.internal("assets/credits.png"));
     private Lwjgl3ApplicationConfiguration cfg = new Lwjgl3ApplicationConfiguration();
     private DisplayMode disp = cfg.getDisplayMode();
 

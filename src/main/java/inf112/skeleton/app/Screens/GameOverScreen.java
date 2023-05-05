@@ -14,7 +14,7 @@ public class GameOverScreen extends ScreenAdapter {
     private SpriteBatch batch;
     private Southgame game;
     private Controller controller;
-    private Texture background = new Texture(Gdx.files.internal("src/main/resources/assets/gameover.png"));
+    private Texture background = new Texture(Gdx.files.internal("assets/gameover.png"));
     private Lwjgl3ApplicationConfiguration cfg = new Lwjgl3ApplicationConfiguration();
     private DisplayMode disp = cfg.getDisplayMode();
 

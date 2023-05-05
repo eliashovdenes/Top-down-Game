@@ -30,7 +30,7 @@ public class MainMenuScreen extends ScreenAdapter {
     ShapeRenderer shape;
     Rectangle newGameRect, instructionsRect, quitRect, creditsRect;
     OrthographicCamera camera;
-    private Texture background = new Texture(Gdx.files.internal("src/main/resources/assets/mainmenu.png"));
+    private Texture background = new Texture(Gdx.files.internal("assets/mainmenu.png"));
     private Lwjgl3ApplicationConfiguration cfg = new Lwjgl3ApplicationConfiguration();
     private DisplayMode disp = Lwjgl3ApplicationConfiguration.getDisplayMode();
 

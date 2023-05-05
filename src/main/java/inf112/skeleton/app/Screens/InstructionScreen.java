@@ -19,7 +19,7 @@ public class InstructionScreen extends ScreenAdapter {
     private Southgame game;
     private Controller controller;
     private OrthographicCamera camera;
-    private Texture background = new Texture(Gdx.files.internal("src/main/resources/assets/instructions.png"));
+    private Texture background = new Texture(Gdx.files.internal("assets/instructions.png"));
     private Lwjgl3ApplicationConfiguration cfg = new Lwjgl3ApplicationConfiguration();
     private DisplayMode disp = cfg.getDisplayMode();
 

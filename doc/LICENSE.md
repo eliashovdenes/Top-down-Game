@@ -20,7 +20,7 @@
 
 **Projectile pictures**
 - Arrow: 
-- Lightning:
+- Lightning: Lightning pngitem.com
 - red projectile: (Hans-Christian Lønne)
 
 **Map assets**

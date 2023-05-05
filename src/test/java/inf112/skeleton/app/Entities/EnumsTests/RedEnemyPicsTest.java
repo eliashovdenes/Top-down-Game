@@ -9,10 +9,10 @@ public class RedEnemyPicsTest {
 
     @Test
     void testGetSource() {
-        assertEquals(RedEnemyPics.ENEMYDOWN.source, "assets/enemyPics/RedEnemyDOWN.png");
-        assertEquals(RedEnemyPics.ENEMYUP.source, "assets/enemyPics/RedEnemyUP.png");
-        assertEquals(RedEnemyPics.ENEMYLEFT.source, "assets/enemyPics/RedEnemyLEFT.png");
-        assertEquals(RedEnemyPics.ENEMYRIGHT.source, "assets/enemyPics/RedEnemyRIGHT.png");
+        assertEquals(RedEnemyPics.ENEMYDOWN.source, "assets/enemyPics/redEnemyDown.png");
+        assertEquals(RedEnemyPics.ENEMYUP.source, "assets/enemyPics/redEnemyUP.png");
+        assertEquals(RedEnemyPics.ENEMYLEFT.source, "assets/enemyPics/redEnemyLEFT.png");
+        assertEquals(RedEnemyPics.ENEMYRIGHT.source, "assets/enemyPics/redEnemyRIGHT.png");
         assertEquals(RedEnemyPics.REDPROJECTILE.source, "assets/projectilePics/RedProjectile.png");
     }
 }
