@@ -92,23 +92,71 @@ public interface MonsterInterface {
      */
     Rectangle getRect();
 
+    /**
+     * The name of the monster
+     * 
+     * @return String - the name of the monster
+     */
     public String getName();
 
+    /**
+     * The amount of damage the monster does when colliding with it
+     * 
+     * @return int - amount of collision damage
+     */
     int getDamage();
 
+    /**
+     * Reduces the current hitpoints of the monster by a given amount
+     * 
+     * @param damage - int: amount of damage
+     */
     void takeDamage(int damage);
 
+    /**
+     * Gets the currentHitPoints of the monster
+     * 
+     * @return Integer - amount of currentHitPoints
+     */
     Integer getCurrentHitpoints();
 
+    /**
+     * Checks if the monster is dead
+     * 
+     * @return boolean - true if monster is dead, false otherwise
+     */
     boolean isDead();
 
+    /**
+     * Checks if a monster drops a healthPotion
+     * 
+     * @return boolean - true if enemy drops healthPotion, false otherwise
+     */
     public boolean dropHealthPotion();
 
+    /**
+     * Get the monster's chance of dropping a health potion
+     * 
+     * @return double - a value between 0 and 1
+     */
     public double getHealthPotionDropChance();
 
+    /**
+     * Set the monser's health potion drop chance
+     * 
+     * @param chance - double: value between 0 and 1
+     */
     public void setHealthPotionDropChance(double chance);
 
+    /**
+     * Get the arraylist containing all the projectiles the monster has shot
+     * 
+     * @return ArrayList of projectiles
+     */
     ArrayList<ProjectileInterface> getProjectiles();
 
+    /**
+     * Activate the shooting ability of the monster
+     */
     void giveShootingPermission();
 }
