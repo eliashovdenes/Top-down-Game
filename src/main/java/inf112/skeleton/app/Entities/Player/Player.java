@@ -54,7 +54,7 @@ public class Player extends AbstractGameObject implements PlayerInterface {
         this.playerAnimation = PlayerAnimation.DOWN.animation;
         this.map = map;
         this.controller = controller;
-        setSprite(PlayerPics.ATTACKDOWN.source);
+        setSprite(PlayerPics.DOWN.source);
         sprite.setPosition(position.x, position.y);
         sprite.setSize(16, 16);
         rectangle = new Rectangle(position.x, position.y, getWidth(), getHeight());
