@@ -1,5 +1,8 @@
 # INF112 - Prosjekt Top Down Squad
 
+## Gameplay
+![](src/main/resources/assets/gameplay.gif)
+
 ## Default branch er Develepor
 * Vi gjorde Develepor til default branch fordi vi ville unngå merge konflikter på bakgrunn av dårlig tid.
 
